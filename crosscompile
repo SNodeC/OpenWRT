@@ -1,0 +1,32 @@
+#!/bin/bash
+set -x
+
+if ! grep -qFm1 SNodeC feeds.conf.default; then
+	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
+fi
+
+if compgen -G key-build* > /dev/null; then
+  echo "Key files already existing"
+else
+  cp `dirname $0`/key-build* .
+fi
+
+rm -f dl/snode.c*.tar.gz
+rm -f dl/mqttsuite*.tar.gz
+
+./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
+./scripts/feeds install mqttsuite
+
+make defconfig
+
+make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
+make -j $(($(nproc)+1)) package/index
+
+target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
+
+ssh root@proliant "mkdir -p /var/www/html/owrt/packages/"$target_dir
+ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
+export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
+scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
+
+sshpass -p pentium5 ssh root@iot -C ./reinstall
