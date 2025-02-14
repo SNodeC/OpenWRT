@@ -99,8 +99,8 @@ define Package/mqttsuite/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttbroker.init $(1)/etc/init.d/mqttbroker
 	$(INSTALL_BIN) ./files/mqttintegrator.init $(1)/etc/init.d/mqttintegrator
-	$(INSTALL_DIR) $(1)/var/www/snodec
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/../mqttbroker/html $(1)/var/www/snodec/
+	$(INSTALL_DIR) $(1)/var/www/snode.c
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/../mqttbroker/html $(1)/var/www/snode.c/
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
