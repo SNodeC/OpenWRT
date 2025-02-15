@@ -102,7 +102,7 @@ define Package/mqttsuite/install
 	$(INSTALL_DIR) $(1)/var/www
 	$(INSTALL_DIR) $(1)/var/www/mqttsuite
 	$(INSTALL_DIR) $(1)/var/www/mqttsuite/mqttbroker
-	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html $(1)/var/www/smqttsuite/mqttbroker/
+	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html/* $(1)/var/www/mqttsuite/mqttbroker/
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
