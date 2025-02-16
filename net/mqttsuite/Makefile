@@ -99,6 +99,7 @@ define Package/mqttsuite/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttbroker.init $(1)/etc/init.d/mqttbroker
 	$(INSTALL_BIN) ./files/mqttintegrator.init $(1)/etc/init.d/mqttintegrator
+	$(INSTALL_BIN) ./files/mqttbridge.init $(1)/etc/init.d/mqttbridge
 	$(INSTALL_DIR) $(1)/var/www
 	$(INSTALL_DIR) $(1)/var/www/mqttsuite
 	$(INSTALL_DIR) $(1)/var/www/mqttsuite/mqttbroker
