@@ -1,32 +1,69 @@
 #!/bin/bash
-set -x
+#set -x
 
-if ! grep -qFm1 SNodeC feeds.conf.default; then
-	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
+OPTSTRING=":ui"
+
+while getopts ${OPTSTRING} opt; do
+  case ${opt} in
+    u)
+      echo "Upload to proliant requestes."
+      UPLOAD=YES
+      ;;
+    i)
+      echo "Upload to proliant and reinstall on iot.vchrist.at requested."
+      UPLOAD=YES
+      INSTALL=YES
+      ;;
+    ?)
+      echo "Invalid option: -${OPTARG}"
+      exit 1
+      ;;
+  esac
+done
+
+if grep -qFm1 SNodeC feeds.conf.default; then
+  echo "feeds.conf.default already pathched"
+else
+  echo "Patching feeds.conf.default"
+ 	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
 fi
 
 if compgen -G key-build* > /dev/null; then
   echo "Key files already existing"
 else
+  echo "Installing key files"
+  echo "Do not forget to upload public key '7646d48820c9bd9d' into directory /etc/opkg/keys"
   cp `dirname $0`/key-build* .
 fi
 
+echo "Cleaning ..."
 rm -f dl/snode.c*.tar.gz
 rm -f dl/mqttsuite*.tar.gz
 
+echo "Pull necessary feeds"
 ./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
 ./scripts/feeds install mqttsuite
 
+echo "Deploy default configuration - use make menuconfig to adjust build configuration"
 make defconfig
 
+echo "Cross compile MQTTSuite and all its dependencies"
 make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
-make -j $(($(nproc)+1)) package/index
 
-target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
+## Just for my environment
+## Upload all packages to proliant.vchrist.at
+if [[ -v UPLOAD ]]; then
+  make -j $(($(nproc)+1)) package/index
 
-ssh root@proliant "mkdir -p /var/www/html/owrt/packages/"$target_dir
-ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
-export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
-scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
+  target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
 
-sshpass -p pentium5 ssh root@iot -C ./reinstall
+  ssh root@proliant "mkdir -p /var/www/html/owrt/packages/"$target_dir
+  ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
+  export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
+  scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
+
+## If upload and install is requested reinstall everything on my default IoT-Router
+  if [[ -v INSTALL ]]; then
+    sshpass -p pentium5 ssh root@iot -C ./reinstall
+  fi
+fi
