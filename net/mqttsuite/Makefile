@@ -100,10 +100,11 @@ define Package/mqttsuite/install
 	$(INSTALL_BIN) ./files/mqttbroker.init $(1)/etc/init.d/mqttbroker
 	$(INSTALL_BIN) ./files/mqttintegrator.init $(1)/etc/init.d/mqttintegrator
 	$(INSTALL_BIN) ./files/mqttbridge.init $(1)/etc/init.d/mqttbridge
-	$(INSTALL_DIR) $(1)/var/www
-	$(INSTALL_DIR) $(1)/var/www/mqttsuite
-	$(INSTALL_DIR) $(1)/var/www/mqttsuite/mqttbroker
-	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html/* $(1)/var/www/mqttsuite/mqttbroker/
+	$(INSTALL_DIR) $(1)/usr/var
+	$(INSTALL_DIR) $(1)/usr/var/www
+	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite
+	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite/mqttbroker
+	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html/* $(1)/usr/var/www/mqttsuite/mqttbroker/
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
