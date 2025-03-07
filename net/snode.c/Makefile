@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=snode.c
-PKG_VERSION:=1.0.0
+PKG_VERSION:=1.0.1
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -108,6 +108,7 @@ define BuildSNodeCModule
   define Package/snode.c-$(1)/install
 	$(INSTALL_DIR) $$(1)$(3)
 	$(CP) $(PKG_INSTALL_DIR)$(3)/libsnodec-$(1).so.$(SO_VERSION) $$(1)$(3)/
+	$(CP) $(PKG_INSTALL_DIR)$(3)/libsnodec-$(1).so.$(PKG_VERSION) $$(1)$(3)/
   endef
 
   $$(eval $$(call BuildPackage,snode.c-$(1)))
@@ -181,7 +182,9 @@ define Package/snode.c-apps/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-server.so.$(SO_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-server.so.$(PKG_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-client.so.$(SO_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-client.so.$(PKG_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
 endef
 
 ifdef CONFIG_SNODEC_IO_MULTIPLEXER
