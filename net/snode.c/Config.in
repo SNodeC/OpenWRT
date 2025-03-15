@@ -209,45 +209,50 @@ menu "Configuration"
 					Upper limit for the retry timeout even if the calculated timeout is greater.
 					(default: 0, 0 = unlimited)
 
-		config SNODEC_REUSE_ADDRESS
-			bool
-			default n
-			prompt "Reuse address"
-			help
-					Whether the socket address should be immediately reusable or not.
-					(default: n)
+    menu "IPv4 Options"
+			depends on PACKAGE_snode.c-net-in
 
-		config SNODEC_REUSE_PORT
-			depends on PACKAGE_snode.c-net-in || PACKAGE_snode.c-net-in6
-			bool
-			default n
-			prompt "Reuse port (IPv4/IPv6)"
-			help
-					If selected, the port can be reused for further IPv4 or IPv6 servers.
-					Under Linux this makes it is possible to create a simple "multitasking" server.
-					(default: n)
+			config SNODEC_INV4_REUSE_ADDRESS
+				bool
+				default n
+				prompt "Reuse address"
+				help
+						Whether the socket address should be immediately reusable or not.
+						(default: n)
 
-		config SNODEC_IPV6_ONLY
-			depends on PACKAGE_snode.c-net-in6
-			bool
-			default n
-			prompt "IPv6 only"
-			help
-					If selected, an IPv6 server only accepts IPv6 (single-stack) connections.
-					If not selected, IPv4 connections are also accepted (dual stack).
-					(default: n)
+			config SNODEC_INV4_REUSE_PORT
+				bool
+				default n
+				prompt "Reuse port"
+				help
+						If selected, the port can be reused for further servers.
+						Under Linux this makes it is possible to create a simple "multitasking" server.
+						(default: n)
 
-		config SNODEC_IPV4_MAPPED
-			depends on PACKAGE_snode.c-net-in6
-			bool
-			default n
-			prompt "IPv4-mapped IPv6 addresses"
-			help
-					If selected, domain names can also be resolved to IPv4-mapped IPv6 addresses.
-					(default: n)
+			choice
+				depends on PACKAGE_snode.c-net-in-stream
+				prompt "Disable nagle algorithm for IPv4 sockets"
+				default SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_DEFAULT
+				help
+						If 'true', the nagle algorithm will be disabled.
+						If 'false' the nagle algorithm will be enabled.
+						If 'default' the system wide default will be used.
+						(default: 'default')
+				config SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_TRUE
+					bool "true"
+					help
+							If selected the nagle algorithm will be disabled.
+				config SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_FALSE
+					bool "false"
+					help
+							If selected the nagle algorithm will be enabled.
+				config SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_DEFAULT
+				help
+							If selected the system wide default will be used.
+					bool "default"
+			endchoice
 
 		config SNODEC_IPV4_NUMERIC
-			depends on PACKAGE_snode.c-net-in
 			bool
 			default n
 			prompt "Accept numeric IPv4 hostnames only"
@@ -256,31 +261,90 @@ menu "Configuration"
 					(default: n)
 
 		config SNODEC_IPV4_NUMERIC_REVERSE
-			depends on PACKAGE_snode.c-net-in
 			bool
 			default n
 			prompt "Numeric IPv4 reverse lookup"
 			help
 					If selected reverse lookups yields to numeric IPv4 addresses.
 					(default: n)
+    endmenu
 
-		config SNODEC_IPV6_NUMERIC
+    menu "IPv6 Options"
 			depends on PACKAGE_snode.c-net-in6
-			bool
-			default n
-			prompt "Accept numeric IPv6 hostnames only"
-			help
-					If selected reverse lookups yields to numeric IPv6 addresses.
-					(default: n)
 
-		config SNODEC_IPV6_NUMERIC_REVERSE
-			depends on PACKAGE_snode.c-net-in6
-			bool
-			default n
-			prompt "Numeric IPv6 reverse lookup"
-			help
-					If selected host names must be represented as numeric IPv6 addresses.
-					(default: n)
+			config SNODEC_IN6_REUSE_ADDRESS
+				bool
+				default n
+				prompt "Reuse address"
+				help
+						Whether the socket address should be immediately reusable or not.
+						(default: n)
+
+			config SNODEC_IN6_REUSE_PORT
+				bool
+				default n
+				prompt "Reuse port"
+				help
+						If selected, the port can be reused for further servers.
+						Under Linux this makes it is possible to create a simple "multitasking" server.
+						(default: n)
+
+			choice
+				depends on PACKAGE_snode.c-net-in6-stream
+				prompt "Disable nagle algorithm for IPv6 sockets"
+				default SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_DEFAULT
+				help
+						If 'true', the nagle algorithm will be disabled.
+						If 'false' the nagle algorithm will be enabled.
+						If 'default' the system wide default will be used.
+						(default: 'default')
+				config SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE
+					bool "true"
+					help
+							If selected the nagle algorithm will be disabled.
+				config SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE
+					bool "false"
+					help
+							If selected the nagle algorithm will be enabled
+				config SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_DEFAULT
+					bool "default"
+					help
+							If selected the system wide default will be used.
+			endchoice
+
+			config SNODEC_IPV6_ONLY
+				bool
+				default n
+				prompt "IPv6 only"
+				help
+						If selected, an IPv6 server only accepts IPv6 (single-stack) connections.
+						If not selected, IPv4 connections are also accepted (dual stack).
+						(default: n)
+
+			config SNODEC_IPV4_MAPPED
+				bool
+				default n
+				prompt "IPv4-mapped IPv6 addresses"
+				help
+						If selected, domain names can also be resolved to IPv4-mapped IPv6 addresses.
+						(default: n)
+
+			config SNODEC_IPV6_NUMERIC
+				bool
+				default n
+				prompt "Accept numeric IPv6 hostnames only"
+				help
+						If selected reverse lookups yields to numeric IPv6 addresses.
+						(default: n)
+
+			config SNODEC_IPV6_NUMERIC_REVERSE
+				bool
+				default n
+				prompt "Numeric IPv6 reverse lookup"
+				help
+						If selected host names must be represented as numeric IPv6 addresses.
+						(default: n)
+		endmenu
 	endmenu
 
 	menu "SSL/TLS behavior"
