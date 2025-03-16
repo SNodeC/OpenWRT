@@ -209,7 +209,7 @@ menu "Configuration"
 					Upper limit for the retry timeout even if the calculated timeout is greater.
 					(default: 0, 0 = unlimited)
 
-    menu "IPv4 Options"
+		menu "IPv4 Options"
 			depends on PACKAGE_snode.c-net-in
 
 			config SNODEC_INV4_REUSE_ADDRESS
@@ -252,24 +252,24 @@ menu "Configuration"
 					bool "default"
 			endchoice
 
-		config SNODEC_IPV4_NUMERIC
-			bool
-			default n
-			prompt "Accept numeric IPv4 hostnames only"
-			help
-					If selected host names must be represented as numeric IPv4 addresses.
-					(default: n)
+			config SNODEC_IPV4_NUMERIC
+				bool
+				default n
+				prompt "Accept numeric IPv4 hostnames only"
+				help
+						If selected host names must be represented as numeric IPv4 addresses.
+						(default: n)
 
-		config SNODEC_IPV4_NUMERIC_REVERSE
-			bool
-			default n
-			prompt "Numeric IPv4 reverse lookup"
-			help
-					If selected reverse lookups yields to numeric IPv4 addresses.
-					(default: n)
-    endmenu
+			config SNODEC_IPV4_NUMERIC_REVERSE
+				bool
+				default n
+				prompt "Numeric IPv4 reverse lookup"
+				help
+						If selected reverse lookups yields to numeric IPv4 addresses.
+						(default: n)
+		endmenu
 
-    menu "IPv6 Options"
+    	menu "IPv6 Options"
 			depends on PACKAGE_snode.c-net-in6
 
 			config SNODEC_IN6_REUSE_ADDRESS
@@ -301,7 +301,7 @@ menu "Configuration"
 				config SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE
 					bool "true"
 					help
-							If selected the nagle algorithm will be disabled.
+								If selected the nagle algorithm will be disabled.
 				config SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE
 					bool "false"
 					help
