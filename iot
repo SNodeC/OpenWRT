@@ -1,0 +1,11 @@
+#!/bin/bash
+
+currdir=`dirname "$(realpath $0)"`
+
+sdkdir=./sdks/openwrt-sdk-24.10.0-ipq40xx-generic_gcc-13.3.0_musl_eabi.Linux-x86_64
+
+pushd $currdir/$sdkdir
+
+$currdir/iot.vchrist.at
+
+popd

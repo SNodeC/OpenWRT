@@ -1,58 +1,101 @@
 #!/bin/bash
-#set -x
 
-OPTSTRING=":ui"
+usage() {
+  echo "Usage: $0 [-i] [-u <user>] [-p <password>] [-r <router.ip-or-host.name>] [-h]"
+  echo "   -i ... Upload feeds to repository"
+  echo "   -c ... Cross compile"
+  echo "   -r ... Router to install MQTTSuite"
+  echo "   -u ... Username on the router"
+  echo "   -p ... Password of user on router"
+  echo "   -h ... Show this usage information"
+  echo ""
+  echo "   In case -r is specified -i is obsolet"
+  exit 1
+}
 
-while getopts ${OPTSTRING} opt; do
-  case ${opt} in
-    u)
-      echo "Upload to proliant requestes."
-      UPLOAD=YES
-      ;;
+# Default values
+i_flag=0
+r_flag=0
+c_flag=0
+user=""
+password=""
+router=""
+
+# Parse command-line options
+while getopts ":icu:p:r:h" opt; do
+  case $opt in
     i)
-      echo "Upload to proliant and reinstall on iot.vchrist.at requested."
-      UPLOAD=YES
-      INSTALL=YES
+      i_flag=1
       ;;
-    ?)
-      echo "Invalid option: -${OPTARG}"
-      exit 1
+    c)
+      c_flag=1
+      ;;
+    u)
+      user="$OPTARG"
+      ;;
+    p)
+      password="$OPTARG"
+      ;;
+    r)
+      r_flag=1
+      router="$OPTARG"
+      ;;
+    h)
+      usage
+      ;;
+    :)
+      echo "Error: Option -$OPTARG requires an argument."
+      usage
+      ;;
+    \?)
+      echo "Error: Invalid option -$OPTARG"
+      usage
       ;;
   esac
 done
 
-if grep -qFm1 SNodeC feeds.conf.default; then
-  echo "feeds.conf.default already pathched"
-else
-  echo "Patching feeds.conf.default"
- 	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
+if [ $c_flag -eq 1 ] && [ $r_flag -eq 1 ]; then
+  i_flag=1
 fi
 
-if compgen -G key-build* > /dev/null; then
-  echo "Key files already existing"
-else
-  echo "Installing key files"
-  echo "Do not forget to upload public key '7646d48820c9bd9d' into directory /etc/opkg/keys"
-  cp `dirname $0`/key-build* .
+if [ $c_flag -eq 1 ]; then
+  echo "Preparing build environment"
+  if grep -qFm1 SNodeC feeds.conf.default; then
+    echo "  feeds.conf.default already patched"
+  else
+    echo "  Patching feeds.conf.default by appending"
+    echo "  src-git snodec https://github.com/SNodeC/OpenWRT"
+   	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
+  fi
+
+  if compgen -G key-build* > /dev/null; then
+    echo "  Key files already existing"
+  else
+    echo "  Installing key files"
+    cp `dirname $0`/key-build* .
+  fi
+
+  echo "Cleaning"
+  rm -f dl/snode.c*.tar.gz
+  rm -f dl/mqttsuite*.tar.gz
+
+  echo "Update base, packages and snodec feeds"
+  ./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
+
+  echo "Installing mqttsuite and dependent feeds"
+  ./scripts/feeds install mqttsuite
+
+  echo "Deploy default configuration."
+  echo "Use make menuconfig to adjust build configuration"
+  make defconfig
+
+  echo "Cross compile MQTTSuite"
+  make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
 fi
 
-echo "Cleaning ..."
-rm -f dl/snode.c*.tar.gz
-rm -f dl/mqttsuite*.tar.gz
-
-echo "Pull necessary feeds"
-./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
-./scripts/feeds install mqttsuite
-
-echo "Deploy default configuration - use make menuconfig to adjust build configuration"
-make defconfig
-
-echo "Cross compile MQTTSuite and all its dependencies"
-make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
-
-## Just for my environment
-## Upload all packages to proliant.vchrist.at
-if [[ -v UPLOAD ]]; then
+# Execute a set of commands remotely if -i is given
+if [ $i_flag -eq 1 ]; then
+  echo "Uploading packages to repository"
   make -j $(($(nproc)+1)) package/index
 
   target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
@@ -61,9 +104,9 @@ if [[ -v UPLOAD ]]; then
   ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
   export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
   scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
+fi
 
-## If upload and install is requested reinstall everything on my default IoT-Router
-  if [[ -v INSTALL ]]; then
-    sshpass -p pentium5 ssh root@iot -C ./reinstall
-  fi
+if [ "$r_flag" -eq "1" ]; then
+  echo "Installing mqttsuite on $router..."
+  wget -qO- https://raw.githubusercontent.com/SNodeC/mqttsuite/refs/heads/master/misc/owrt-install | sshpass -p "$password" ssh -t "$user@$router" sh -
 fi
