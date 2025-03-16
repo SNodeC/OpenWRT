@@ -1,0 +1,89 @@
+#!/bin/bash
+
+#set -x
+
+usage() {
+  echo "Usage: $0 [-i] [-u <user>] [-p <password>] [-r <router.ip-or-host.name>]"
+  exit 1
+}
+
+# Default values
+i_flag=0
+r_flag=0
+user="root"
+password="pentium5"
+router=""
+
+# Parse command-line options
+while getopts ":iu:p:r:" opt; do
+  case $opt in
+    i)
+      i_flag=1
+      ;;
+    u)
+      user="$OPTARG"
+      ;;
+    p)
+      password="$OPTARG"
+      ;;
+    r)
+      r_flag=1
+      router="$OPTARG"
+      ;;
+    :)
+      echo "Error: Option -$OPTARG requires an argument." >&2
+      usage
+      ;;
+    \?)
+      echo "Error: Invalid option -$OPTARG" >&2
+      usage
+      ;;
+  esac
+done
+
+if grep -qFm1 SNodeC feeds.conf.default; then
+  echo "feeds.conf.default already pathched"
+else
+  echo "Patching feeds.conf.default"
+ 	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
+fi
+
+if compgen -G key-build* > /dev/null; then
+  echo "Key files already existing"
+else
+  echo "Installing key files"
+  echo "Do not forget to upload public key '7646d48820c9bd9d' into directory /etc/opkg/keys"
+  cp `dirname $0`/key-build* .
+fi
+
+echo "Cleaning ..."
+rm -f dl/snode.c*.tar.gz
+rm -f dl/mqttsuite*.tar.gz
+
+echo "Pull necessary feeds"
+./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
+./scripts/feeds install mqttsuite
+
+echo "Deploy default configuration - use make menuconfig to adjust build configuration"
+make defconfig
+
+echo "Cross compile MQTTSuite and all its dependencies"
+make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
+
+# Execute a set of commands remotely if -i is given
+if [ $i_flag -eq 1 ] || [ $r_flag -eq 1 ]; then
+  echo "Uploading packages to repository"
+  make -j $(($(nproc)+1)) package/index
+
+  target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
+
+  ssh root@proliant "mkdir -p /var/www/html/owrt/packages/"$target_dir
+  ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
+  export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
+  scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
+fi
+
+if [ "$r_flag" -eq "1" ]; then
+	echo "Installing mqttsuite on $router..."
+	wget -qO- https://raw.githubusercontent.com/SNodeC/mqttsuite/refs/heads/master/misc/owrt-install | sshpass -p "$password" ssh -t "$user@$router" sh -
+fi
