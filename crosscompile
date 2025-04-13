@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 usage() {
   echo "Usage: $0 [-i] [-u <user>] [-p <password>] [-r <router.ip-or-host.name>] [-h]"
   echo "   -i ... Upload feeds to repository"
