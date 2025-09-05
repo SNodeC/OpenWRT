@@ -154,6 +154,12 @@ define Package/snode.c-full
            +snode.c-net-un-stream-tls \
            +snode.c-net-un-dgram \
            +snode.c-http-server-express \
+           +snode.c-http-server-express-legacy-in \
+           +snode.c-http-server-express-legacy-in6 \
+           +snode.c-http-server-express-legacy-un \
+           +snode.c-http-server-express-tls-in \
+           +snode.c-http-server-express-tls-in6 \
+           +snode.c-http-server-express-tls-un \
            +snode.c-http-client \
            +snode.c-websocket-server \
            +snode.c-websocket-client \
@@ -263,6 +269,12 @@ $(eval $(call BuildSNodeCModule,http,+snode.c-core-socket-stream +libmagic,/usr/
 $(eval $(call BuildSNodeCModule,http-server,+snode.c-http,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-client,+snode.c-http,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server-express,+snode.c-http-server,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-legacy-in,+snode.c-http-server-express +snode.c-net-in-stream-legacy,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-legacy-in6,+snode.c-http-server-express +snode.c-net-in6-stream-legacy,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-legacy-un,+snode.c-http-server-express +snode.c-net-un-stream-legacy,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-in,+snode.c-http-server-express +snode.c-net-in-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-in6,+snode.c-http-server-express +snode.c-net-in6-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-un,+snode.c-http-server-express +snode.c-net-un-stream-tls,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,websocket,+snode.c-logger,/usr/lib/snode.c/web/http/upgrade))
 $(eval $(call BuildSNodeCModule,websocket-server,+snode.c-websocket +snode.c-http-server,/usr/lib/snode.c/web/http/upgrade))
 $(eval $(call BuildSNodeCModule,websocket-client,+snode.c-websocket +snode.c-http-client,/usr/lib/snode.c/web/http/upgrade))
