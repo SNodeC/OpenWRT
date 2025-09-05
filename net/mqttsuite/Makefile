@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mqttsuite
 PKG_VERSION:=1.0.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_PROTO:=git
@@ -38,7 +38,12 @@ define Package/mqttsuite
            +snode.c-net-rc-stream-tls \
            +snode.c-net-un-stream-legacy \
            +snode.c-net-un-stream-tls \
-           +snode.c-http-server-express \
+           +snode.c-http-server-express-legacy-in \
+           +snode.c-http-server-express-legacy-in6 \
+           +snode.c-http-server-express-legacy-un \
+           +snode.c-http-server-express-tls-in \
+           +snode.c-http-server-express-tls-in6 \
+           +snode.c-http-server-express-tls-un \
            +snode.c-http-client \
            +snode.c-websocket-server \
            +snode.c-websocket-client \
