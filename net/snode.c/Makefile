@@ -21,6 +21,10 @@ CMAKE_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
+EXTRA_CFLAGS+=-Og -g3 -fno-omit-frame-pointer
+EXTRA_CXXFLAGS+=-Og -g3 -fno-omit-frame-pointer
+PKG_BUILD_FLAGS:=no-strip
+
 ifdef CONFIG_SNODEC_EPOLL
   CONFIG_SNODEC_IO_MULTIPLEXER=epoll
 else ifdef CONFIG_SNODEC_POLL
