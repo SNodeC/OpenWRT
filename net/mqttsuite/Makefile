@@ -27,13 +27,46 @@ EXTRA_CFLAGS+=-Og -g3 -fno-omit-frame-pointer
 EXTRA_CXXFLAGS+=-Og -g3 -fno-omit-frame-pointer
 PKG_BUILD_FLAGS:=no-strip
 
-define Package/mqttsuite/Default
-  SECTION:=net
-  CATEGORY:=Network
-  TITLE:=MQTTSuite
-  SUBMENU:=MQTTSuite
-  URL:=https://github.com/SNodeC/mqttsuite
-endef
+CMAKE_OPTIONS += \
+  -DCONFIG_MQTTSUITE_BROKER_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_BROKER_TCP_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_TLS_IPV4=$(if $(CONFIG_MQTTSUITE_BROKER_TLS_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_TCP_IPV6=$(if $(CONFIG_MQTTSUITE_BROKER_TCP_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_TLS_IPV6=$(if $(CONFIG_MQTTSUITE_BROKER_TLS_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_UNIX=$(if $(CONFIG_MQTTSUITE_BROKER_UNIX),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_UNIX_TLS=$(if $(CONFIG_MQTTSUITE_BROKER_UNIX_TLS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_WS=$(if $(CONFIG_MQTTSUITE_BROKER_WS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BROKER_WSS=$(if $(CONFIG_MQTTSUITE_BROKER_WSS),ON,OFF) \
+  \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_TCP_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_TLS_IPV4=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_TLS_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_TCP_IPV6=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_TCP_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_TLS_IPV6=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_TLS_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_UNIX=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_UNIX),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_UNIX_TLS=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_UNIX_TLS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_WS=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_WS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_INTEGRATOR_WSS=$(if $(CONFIG_MQTTSUITE_INTEGRATOR_WSS),ON,OFF) \
+  \
+  -DCONFIG_MQTTSUITE_BRIDGE_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_BRIDGE_TCP_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_TLS_IPV4=$(if $(CONFIG_MQTTSUITE_BRIDGE_TLS_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_TCP_IPV6=$(if $(CONFIG_MQTTSUITE_BRIDGE_TCP_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_TLS_IPV6=$(if $(CONFIG_MQTTSUITE_BRIDGE_TLS_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_UNIX=$(if $(CONFIG_MQTTSUITE_BRIDGE_UNIX),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_UNIX_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_UNIX_TLS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_WS=$(if $(CONFIG_MQTTSUITE_BRIDGE_WS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_WSS=$(if $(CONFIG_MQTTSUITE_BRIDGE_WSS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_L2=$(if $(CONFIG_MQTTSUITE_BRIDGE_L2),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_L2_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_L2_TLS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_RC=$(if $(CONFIG_MQTTSUITE_BRIDGE_RC),ON,OFF) \
+  -DCONFIG_MQTTSUITE_BRIDGE_RC_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_RC_TLS),ON,OFF) \
+  \
+  -DCONFIG_MQTTSUITE_CLI_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_CLI_TCP_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_TLS_IPV4=$(if $(CONFIG_MQTTSUITE_CLI_TLS_IPV4),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_TCP_IPV6=$(if $(CONFIG_MQTTSUITE_CLI_TCP_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_TLS_IPV6=$(if $(CONFIG_MQTTSUITE_CLI_TLS_IPV6),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_UNIX=$(if $(CONFIG_MQTTSUITE_CLI_UNIX),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_UNIX_TLS=$(if $(CONFIG_MQTTSUITE_CLI_UNIX_TLS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_WS=$(if $(CONFIG_MQTTSUITE_CLI_WS),ON,OFF) \
+  -DCONFIG_MQTTSUITE_CLI_WSS=$(if $(CONFIG_MQTTSUITE_CLI_WSS),ON,OFF)
 
 # ---------- Common helper: strip RPATH staging prefix ----------
 define strip_staging_dir_prefix_from_rpath
@@ -70,6 +103,14 @@ define strip_staging_dir_prefix_from_rpath
 		true; \
 	); \
 	echo "Stripping done"
+endef
+
+define Package/mqttsuite/Default
+  SECTION:=net
+  CATEGORY:=Network
+  TITLE:=MQTTSuite
+  SUBMENU:=MQTTSuite
+  URL:=https://github.com/SNodeC/mqttsuite
 endef
 
 # ---------- Base (virtual) ----------
@@ -136,8 +177,10 @@ endef
 define Package/mqttsuite-mqttbroker/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttbroker $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-broker.so.* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker/
+	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite/mqttbroker
 	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html/* $(1)/usr/var/www/mqttsuite/mqttbroker/
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -181,10 +224,12 @@ endef
 define Package/mqttsuite-mqttintegrator/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttintegrator $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-integrator.so.* $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-storage.so $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-double.so  $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/
+	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttintegrator.init $(1)/etc/init.d/mqttintegrator
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
@@ -238,8 +283,10 @@ endef
 define Package/mqttsuite-mqttbridge/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttbridge $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-bridge.so.* $(1)/usr/lib/ 2>/dev/null || true
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/
+	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttbridge.init $(1)/etc/init.d/mqttbridge
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
@@ -281,8 +328,10 @@ endef
 define Package/mqttsuite-mqtt/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqtt $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib
+	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-cli.so.* $(1)/usr/lib/ 2>/dev/null || true
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/
+	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
