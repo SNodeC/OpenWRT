@@ -1,0 +1,187 @@
+menu "MQTTSuite options"
+
+comment "Select transports provided"
+
+# ===================== Broker transports =====================
+menu "mqttbroker transports"
+    depends on PACKAGE_mqttsuite-mqttbroker
+
+config MQTTSUITE_BROKER_TCP_IPV4
+    bool "TCP (IPv4)"
+    default y
+
+config MQTTSUITE_BROKER_TLS_IPV4
+    bool "SSL/TLS (IPv4)"
+    depends on MQTTSUITE_BROKER_TCP_IPV4
+    default y
+
+config MQTTSUITE_BROKER_TCP_IPV6
+    bool "TCP (IPv6)"
+    default y
+
+config MQTTSUITE_BROKER_TLS_IPV6
+    bool "SSL/TLS (IPv6)"
+    depends on MQTTSUITE_BROKER_TCP_IPV6
+    default y
+
+config MQTTSUITE_BROKER_UNIX
+    bool "Unix domain sockets"
+    default y
+
+config MQTTSUITE_BROKER_UNIX_TLS
+    bool "SSL/TLS (Unix domain sockets)"
+    depends on MQTTSUITE_BROKER_UNIX
+    default n
+
+config MQTTSUITE_BROKER_WS
+    bool "WebSocket"
+    default y
+
+config MQTTSUITE_BROKER_WSS
+    bool "SSL/TLS (WebSocket)"
+    depends on MQTTSUITE_BROKER_WS
+    default y
+endmenu
+
+# ===================== Integrator transports =====================
+menu "mqttintegrator transports"
+    depends on PACKAGE_mqttsuite-mqttintegrator
+
+config MQTTSUITE_INTEGRATOR_TCP_IPV4
+    bool "TCP (IPv4)"
+    default y
+
+config MQTTSUITE_INTEGRATOR_TLS_IPV4
+    bool "SSL/TLS (IPv4)"
+    depends on MQTTSUITE_INTEGRATOR_TCP_IPV4
+    default y
+
+config MQTTSUITE_INTEGRATOR_TCP_IPV6
+    bool "TCP (IPv6)"
+    default y
+
+config MQTTSUITE_INTEGRATOR_TLS_IPV6
+    bool "SSL/TLS (IPv6)"
+    depends on MQTTSUITE_INTEGRATOR_TCP_IPV6
+    default y
+
+config MQTTSUITE_INTEGRATOR_UNIX
+    bool "Unix domain sockets"
+    default y
+
+config MQTTSUITE_INTEGRATOR_UNIX_TLS
+    bool "SSL/TLS (Unix domain sockets)"
+    depends on MQTTSUITE_INTEGRATOR_UNIX
+    default n
+
+config MQTTSUITE_INTEGRATOR_WS
+    bool "WebSocket"
+    default y
+
+config MQTTSUITE_INTEGRATOR_WSS
+    bool "SSL/TLS (WebSocket)"
+    depends on MQTTSUITE_INTEGRATOR_WS
+    default y
+endmenu
+
+# ===================== Bridge transports =====================
+menu "mqttbridge transports"
+    depends on PACKAGE_mqttsuite-mqttbridge
+
+config MQTTSUITE_BRIDGE_TCP_IPV4
+    bool "TCP (IPv4)"
+    default y
+
+config MQTTSUITE_BRIDGE_TLS_IPV4
+    bool "SSL/TLS (IPv4)"
+    depends on MQTTSUITE_BRIDGE_TCP_IPV4
+    default y
+
+config MQTTSUITE_BRIDGE_TCP_IPV6
+    bool "TCP (IPv6)"
+    default y
+
+config MQTTSUITE_BRIDGE_TLS_IPV6
+    bool "SSL/TLS (IPv6)"
+    depends on MQTTSUITE_BRIDGE_TCP_IPV6
+    default y
+
+config MQTTSUITE_BRIDGE_UNIX
+    bool "Unix domain sockets"
+    default y
+
+config MQTTSUITE_BRIDGE_UNIX_TLS
+    bool "SSL/TLS (Unix domain sockets)"
+    depends on MQTTSUITE_BRIDGE_UNIX
+    default n
+
+config MQTTSUITE_BRIDGE_WS
+    bool "WebSocket"
+    default y
+
+config MQTTSUITE_BRIDGE_WSS
+    bool "SSL/TLS (WebSocket)"
+    depends on MQTTSUITE_BRIDGE_WS
+    default y
+
+config MQTTSUITE_BRIDGE_L2
+    bool "Bluetooth L2CAP"
+    default n
+
+config MQTTSUITE_BRIDGE_L2_TLS
+    bool "SSL/TLS (Bluetooth L2CAP)"
+    depends on MQTTSUITE_BRIDGE_L2
+    default n
+
+config MQTTSUITE_BRIDGE_RC
+    bool "Bluetooth RFCOMM"
+    default n
+
+config MQTTSUITE_BRIDGE_RC_TLS
+    bool "SSL/TLS (Bluetooth RFCOMM)"
+    depends on MQTTSUITE_BRIDGE_RC
+    default n
+endmenu
+
+# ===================== CLI transports =====================
+menu "mqtt CLI transports"
+    depends on PACKAGE_mqttsuite-mqtt
+
+config MQTTSUITE_CLI_TCP_IPV4
+    bool "TCP (IPv4)"
+    default y
+
+config MQTTSUITE_CLI_TLS_IPV4
+    bool "SSL/TLS (IPv4)"
+    depends on MQTTSUITE_CLI_TCP_IPV4
+    default y
+
+config MQTTSUITE_CLI_TCP_IPV6
+    bool "TCP (IPv6)"
+    default y
+
+config MQTTSUITE_CLI_TLS_IPV6
+    bool "SSL/TLS (IPv6)"
+    depends on MQTTSUITE_CLI_TCP_IPV6
+    default y
+
+config MQTTSUITE_CLI_UNIX
+    bool "Unix domain sockets"
+    default y
+
+config MQTTSUITE_CLI_UNIX_TLS
+    bool "SSL/TLS (Unix domain sockets)"
+    depends on MQTTSUITE_CLI_UNIX
+    default n
+
+config MQTTSUITE_CLI_WS
+    bool "WebSocket"
+    default y
+
+config MQTTSUITE_CLI_WSS
+    bool "SSL/TLS (WebSocket)"
+    depends on MQTTSUITE_CLI_WS
+    default y
+endmenu
+
+endmenu
