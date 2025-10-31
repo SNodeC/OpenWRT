@@ -25,7 +25,6 @@ include $(INCLUDE_DIR)/cmake.mk
 
 EXTRA_CFLAGS+=-Og -g3 -fno-omit-frame-pointer
 EXTRA_CXXFLAGS+=-Og -g3 -fno-omit-frame-pointer
-PKG_BUILD_FLAGS:=no-strip
 
 CMAKE_OPTIONS += \
   -DCONFIG_MQTTSUITE_BROKER_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_BROKER_TCP_IPV4),ON,OFF) \
