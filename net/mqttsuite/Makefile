@@ -66,39 +66,39 @@ CMAKE_OPTIONS += \
 
 # ---------- Common helper: strip RPATH staging prefix ----------
 define strip_staging_dir_prefix_from_rpath
-    echo "Stripping $(STAGING_DIR) prefix from RPATH of executables and libraries below $(1)"; \
-    find $(1) -type f -a -exec file {} \; | \
-        sed -n -e 's/^\(.*\):.*ELF.*\(executable\|relocatable\|shared object\).*,.*/\1:\2/p' | \
-    ( \
-        IFS=":"; \
-        while read F S; do \
-            echo "$$$$F: $$$$S"; \
-            b=$$$$(stat -c '%a' $$$$F); \
-            cur_rpath="$$$$($(STAGING_DIR_HOST)/bin/patchelf --print-rpath $$$$F 2>/dev/null || true)"; \
-            new_rpath=""; \
-            [ -n "$$$$cur_rpath" ] || { echo "No RPATH"; continue; }; \
-            echo "Current RPATH: $$$$cur_rpath"; \
-            OLD_IFS="$$$$IFS"; IFS=":"; \
-            for path in $$$$cur_rpath; do \
-                case "$$$$path" in \
-                    $(STAGING_DIR)/[^/]*) \
-                        path_stripped=$$$$(echo $$$$path | sed "s|$(STAGING_DIR)||"); \
-                        new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path_stripped"; \
-                        ;; \
-                    *) \
-                        new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path"; \
-                        ;; \
-                esac; \
-            done; \
-            IFS="$$$$OLD_IFS"; \
-            echo "Final RPATH: $$$$new_rpath"; \
-            [ "$$$$new_rpath" = "$$$$cur_rpath" ] || $(STAGING_DIR_HOST)/bin/patchelf --set-rpath "$$$$new_rpath" $$$$F; \
-            a=$$$$(stat -c '%a' $$$$F); \
-            [ "$$$$a" = "$$$$b" ] || chmod $$$$b $$$$F; \
-        done; \
-        true; \
-    ); \
-    echo "Stripping done"
+	echo "Stripping $(STAGING_DIR) prefix from RPATH of executables and libraries below $(1)"; \
+	find $(1) -type f -a -exec file {} \; | \
+		sed -n -e 's/^\(.*\):.*ELF.*\(executable\|relocatable\|shared object\).*,.*/\1:\2/p' | \
+	( \
+		IFS=":"; \
+		while read F S; do \
+			echo "$$$$F: $$$$S"; \
+			b=$$$$(stat -c '%a' $$$$F); \
+			cur_rpath="$$$$($(STAGING_DIR_HOST)/bin/patchelf --print-rpath $$$$F 2>/dev/null || true)"; \
+			new_rpath=""; \
+			[ -n "$$$$cur_rpath" ] || { echo "No RPATH"; continue; }; \
+			echo "Current RPATH: $$$$cur_rpath"; \
+			OLD_IFS="$$$$IFS"; IFS=":"; \
+			for path in $$$$cur_rpath; do \
+				case "$$$$path" in \
+					$(STAGING_DIR)/[^/]*) \
+						path_stripped=$$$$(echo $$$$path | sed "s|$(STAGING_DIR)||"); \
+						new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path_stripped"; \
+						;; \
+					*) \
+						new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path"; \
+						;; \
+				esac; \
+			done; \
+			IFS="$$$$OLD_IFS"; \
+			echo "Final RPATH: $$$$new_rpath"; \
+			[ "$$$$new_rpath" = "$$$$cur_rpath" ] || $(STAGING_DIR_HOST)/bin/patchelf --set-rpath "$$$$new_rpath" $$$$F; \
+			a=$$$$(stat -c '%a' $$$$F); \
+			[ "$$$$a" = "$$$$b" ] || chmod $$$$b $$$$F; \
+		done; \
+		true; \
+	); \
+	echo "Stripping done"
 endef
 
 define Package/mqttsuite/Default
