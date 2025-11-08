@@ -66,39 +66,39 @@ CMAKE_OPTIONS += \
 
 # ---------- Common helper: strip RPATH staging prefix ----------
 define strip_staging_dir_prefix_from_rpath
-	echo "Stripping $(STAGING_DIR) prefix from RPATH of executables and libraries below $(1)"; \
-	find $(1) -type f -a -exec file {} \; | \
-		sed -n -e 's/^\(.*\):.*ELF.*\(executable\|relocatable\|shared object\).*,.*/\1:\2/p' | \
-	( \
-		IFS=":"; \
-		while read F S; do \
-			echo "$$$$F: $$$$S"; \
-			b=$$$$(stat -c '%a' $$$$F); \
-			cur_rpath="$$$$($(STAGING_DIR_HOST)/bin/patchelf --print-rpath $$$$F 2>/dev/null || true)"; \
-			new_rpath=""; \
-			[ -n "$$$$cur_rpath" ] || { echo "No RPATH"; continue; }; \
-			echo "Current RPATH: $$$$cur_rpath"; \
-			OLD_IFS="$$$$IFS"; IFS=":"; \
-			for path in $$$$cur_rpath; do \
-				case "$$$$path" in \
-					$(STAGING_DIR)/[^/]*) \
-						path_stripped=$$$$(echo $$$$path | sed "s|$(STAGING_DIR)||"); \
-						new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path_stripped"; \
-						;; \
-					*) \
-						new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path"; \
-						;; \
-				esac; \
-			done; \
-			IFS="$$$$OLD_IFS"; \
-			echo "Final RPATH: $$$$new_rpath"; \
-			[ "$$$$new_rpath" = "$$$$cur_rpath" ] || $(STAGING_DIR_HOST)/bin/patchelf --set-rpath "$$$$new_rpath" $$$$F; \
-			a=$$$$(stat -c '%a' $$$$F); \
-			[ "$$$$a" = "$$$$b" ] || chmod $$$$b $$$$F; \
-		done; \
-		true; \
-	); \
-	echo "Stripping done"
+    echo "Stripping $(STAGING_DIR) prefix from RPATH of executables and libraries below $(1)"; \
+    find $(1) -type f -a -exec file {} \; | \
+        sed -n -e 's/^\(.*\):.*ELF.*\(executable\|relocatable\|shared object\).*,.*/\1:\2/p' | \
+    ( \
+        IFS=":"; \
+        while read F S; do \
+            echo "$$$$F: $$$$S"; \
+            b=$$$$(stat -c '%a' $$$$F); \
+            cur_rpath="$$$$($(STAGING_DIR_HOST)/bin/patchelf --print-rpath $$$$F 2>/dev/null || true)"; \
+            new_rpath=""; \
+            [ -n "$$$$cur_rpath" ] || { echo "No RPATH"; continue; }; \
+            echo "Current RPATH: $$$$cur_rpath"; \
+            OLD_IFS="$$$$IFS"; IFS=":"; \
+            for path in $$$$cur_rpath; do \
+                case "$$$$path" in \
+                    $(STAGING_DIR)/[^/]*) \
+                        path_stripped=$$$$(echo $$$$path | sed "s|$(STAGING_DIR)||"); \
+                        new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path_stripped"; \
+                        ;; \
+                    *) \
+                        new_rpath="$$$${new_rpath:+$$$$new_rpath:}$$$$path"; \
+                        ;; \
+                esac; \
+            done; \
+            IFS="$$$$OLD_IFS"; \
+            echo "Final RPATH: $$$$new_rpath"; \
+            [ "$$$$new_rpath" = "$$$$cur_rpath" ] || $(STAGING_DIR_HOST)/bin/patchelf --set-rpath "$$$$new_rpath" $$$$F; \
+            a=$$$$(stat -c '%a' $$$$F); \
+            [ "$$$$a" = "$$$$b" ] || chmod $$$$b $$$$F; \
+        done; \
+        true; \
+    ); \
+    echo "Stripping done"
 endef
 
 define Package/mqttsuite/Default
@@ -130,8 +130,8 @@ define Package/mqttsuite/install
 	true
 endef
 
-# ---------- mqttsuite-mqttbroker ----------
-define Package/mqttsuite-mqttbroker
+# ---------- mqttsuite-broker ----------
+define Package/mqttsuite-broker
   $(call Package/mqttsuite/Default)
   TITLE:=MQTT broker
   DEPENDS:=+mqttsuite \
@@ -165,12 +165,12 @@ define Package/mqttsuite-mqttbroker
         )
 endef
 
-define Package/mqttsuite-mqttbroker/description
+define Package/mqttsuite-broker/description
   Full-featured MQTT 3.1.1 broker with optional WebSocket endpoints
 and a minimal web UI under /var/www/mqttsuite/mqttbroker.
 endef
 
-define Package/mqttsuite-mqttbroker/install
+define Package/mqttsuite-broker/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttbroker $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker
@@ -184,8 +184,8 @@ define Package/mqttsuite-mqttbroker/install
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
-# ---------- mqttsuite-mqttintegrator ----------
-define Package/mqttsuite-mqttintegrator
+# ---------- mqttsuite-integrator ----------
+define Package/mqttsuite-integrator
   $(call Package/mqttsuite/Default)
   TITLE:=MQTT integrator
   DEPENDS:=+mqttsuite \
@@ -213,17 +213,17 @@ define Package/mqttsuite-mqttintegrator
          )
 endef
 
-define Package/mqttsuite-mqttintegrator/description
+define Package/mqttsuite-integrator/description
   JSON-mapping driven MQTT integrator. Includes mapping plugin libraries.
 endef
 
-define Package/mqttsuite-mqttintegrator/install
+define Package/mqttsuite-integrator/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttintegrator $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-integrator.so.* $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-storage.so $(1)/usr/lib/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-double.so  $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-double.so $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/
 	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -231,8 +231,8 @@ define Package/mqttsuite-mqttintegrator/install
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
-# ---------- mqttsuite-mqttbridge ----------
-define Package/mqttsuite-mqttbridge
+# ---------- mqttsuite-bridge ----------
+define Package/mqttsuite-bridge
   $(call Package/mqttsuite/Default)
   TITLE:=MQTT bridge
   DEPENDS:=+mqttsuite \
@@ -260,11 +260,11 @@ define Package/mqttsuite-mqttbridge
          )
 endef
 
-define Package/mqttsuite-mqttbridge/description
+define Package/mqttsuite-bridge/description
   Client-side bridge connecting multiple brokers and relaying topics.
 endef
 
-define Package/mqttsuite-mqttbridge/install
+define Package/mqttsuite-bridge/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttbridge $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge
@@ -276,8 +276,8 @@ define Package/mqttsuite-mqttbridge/install
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
-# ---------- mqttsuite-mqtt (CLI) ----------
-define Package/mqttsuite-mqtt
+# ---------- mqttsuite-cli ----------
+define Package/mqttsuite-cli
   $(call Package/mqttsuite/Default)
   TITLE:=MQTT command line client
   DEPENDS:=+mqttsuite \
@@ -305,13 +305,13 @@ define Package/mqttsuite-mqtt
          )
 endef
 
-define Package/mqttsuite-mqtt/description
+define Package/mqttsuite-cli/description
   Simple command-line MQTT client (publish/subscribe) built on SNode.C.
 endef
 
-define Package/mqttsuite-mqtt/install
+define Package/mqttsuite-cli/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqtt $(1)/usr/bin/
+	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttcli $(1)/usr/bin/
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-cli.so.* $(1)/usr/lib/ 2>/dev/null || true
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/
@@ -323,10 +323,10 @@ endef
 define Package/mqttsuite-full
   $(call Package/mqttsuite/Default)
   TITLE:=Virtual full package for MQTTSuite. Pulls in all MQTTSuite packages
-  DEPENDS:=+mqttsuite-mqttbroker \
-           +mqttsuite-mqttintegrator \
-           +mqttsuite-mqttbridge \
-           +mqttsuite-mqtt
+  DEPENDS:=+mqttsuite-broker \
+           +mqttsuite-integrator \
+           +mqttsuite-bridge \
+           +mqttsuite-cli
 endef
 
 define Package/mqttsuite-full/description
@@ -340,8 +340,8 @@ endef
 
 # ---------- eval ----------
 $(eval $(call BuildPackage,mqttsuite))
-$(eval $(call BuildPackage,mqttsuite-mqttbroker))
-$(eval $(call BuildPackage,mqttsuite-mqttintegrator))
-$(eval $(call BuildPackage,mqttsuite-mqttbridge))
+$(eval $(call BuildPackage,mqttsuite-broker))
+$(eval $(call BuildPackage,mqttsuite-integrator))
+$(eval $(call BuildPackage,mqttsuite-bridge))
 $(eval $(call BuildPackage,mqttsuite-mqtt))
 $(eval $(call BuildPackage,mqttsuite-full))

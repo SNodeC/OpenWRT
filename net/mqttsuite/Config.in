@@ -4,7 +4,7 @@ comment "Select transports provided"
 
 # ===================== Broker transports =====================
 menu "mqttbroker transports"
-    depends on PACKAGE_mqttsuite-mqttbroker
+    depends on PACKAGE_mqttsuite-broker
 
 config MQTTSUITE_BROKER_TCP_IPV4
     bool "TCP (IPv4)"
@@ -45,7 +45,7 @@ endmenu
 
 # ===================== Integrator transports =====================
 menu "mqttintegrator transports"
-    depends on PACKAGE_mqttsuite-mqttintegrator
+    depends on PACKAGE_mqttsuite-integrator
 
 config MQTTSUITE_INTEGRATOR_TCP_IPV4
     bool "TCP (IPv4)"
@@ -86,7 +86,7 @@ endmenu
 
 # ===================== Bridge transports =====================
 menu "mqttbridge transports"
-    depends on PACKAGE_mqttsuite-mqttbridge
+    depends on PACKAGE_mqttsuite-bridge
 
 config MQTTSUITE_BRIDGE_TCP_IPV4
     bool "TCP (IPv4)"
@@ -126,8 +126,8 @@ config MQTTSUITE_BRIDGE_WSS
 endmenu
 
 # ===================== CLI transports =====================
-menu "mqtt CLI transports"
-    depends on PACKAGE_mqttsuite-mqtt
+menu "mqttcli transports"
+    depends on PACKAGE_mqttsuite-cli
 
 config MQTTSUITE_CLI_TCP_IPV4
     bool "TCP (IPv4)"
