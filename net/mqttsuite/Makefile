@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mqttsuite
 PKG_VERSION:=1.0.0
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 # Source via git (kept your style)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
@@ -312,9 +312,9 @@ endef
 define Package/mqttsuite-cli/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/mqttcli $(1)/usr/bin/
-	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt
+	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-cli.so.* $(1)/usr/lib/ 2>/dev/null || true
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqtt/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli/
 	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
@@ -343,5 +343,5 @@ $(eval $(call BuildPackage,mqttsuite))
 $(eval $(call BuildPackage,mqttsuite-broker))
 $(eval $(call BuildPackage,mqttsuite-integrator))
 $(eval $(call BuildPackage,mqttsuite-bridge))
-$(eval $(call BuildPackage,mqttsuite-mqtt))
+$(eval $(call BuildPackage,mqttsuite-cli))
 $(eval $(call BuildPackage,mqttsuite-full))
