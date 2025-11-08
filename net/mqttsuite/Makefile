@@ -54,10 +54,6 @@ CMAKE_OPTIONS += \
   -DCONFIG_MQTTSUITE_BRIDGE_UNIX_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_UNIX_TLS),ON,OFF) \
   -DCONFIG_MQTTSUITE_BRIDGE_WS=$(if $(CONFIG_MQTTSUITE_BRIDGE_WS),ON,OFF) \
   -DCONFIG_MQTTSUITE_BRIDGE_WSS=$(if $(CONFIG_MQTTSUITE_BRIDGE_WSS),ON,OFF) \
-  -DCONFIG_MQTTSUITE_BRIDGE_L2=$(if $(CONFIG_MQTTSUITE_BRIDGE_L2),ON,OFF) \
-  -DCONFIG_MQTTSUITE_BRIDGE_L2_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_L2_TLS),ON,OFF) \
-  -DCONFIG_MQTTSUITE_BRIDGE_RC=$(if $(CONFIG_MQTTSUITE_BRIDGE_RC),ON,OFF) \
-  -DCONFIG_MQTTSUITE_BRIDGE_RC_TLS=$(if $(CONFIG_MQTTSUITE_BRIDGE_RC_TLS),ON,OFF) \
   \
   -DCONFIG_MQTTSUITE_CLI_TCP_IPV4=$(if $(CONFIG_MQTTSUITE_CLI_TCP_IPV4),ON,OFF) \
   -DCONFIG_MQTTSUITE_CLI_TLS_IPV4=$(if $(CONFIG_MQTTSUITE_CLI_TLS_IPV4),ON,OFF) \
@@ -261,18 +257,6 @@ define Package/mqttsuite-mqttbridge
          ) \
         $(if $(CONFIG_MQTTSUITE_BRIDGE_UNIX_TLS), \
            +snode.c-net-un-stream-tls \
-         ) \
-        $(if $(CONFIG_MQTTSUITE_BRIDGE_L2), \
-           +snode.c-net-l2-stream-legacy \
-         ) \
-        $(if $(CONFIG_MQTTSUITE_BRIDGE_L2_TLS), \
-           +snode.c-net-l2-stream-tls \
-         ) \
-        $(if $(CONFIG_MQTTSUITE_BRIDGE_RC), \
-           +snode.c-net-rc-stream-legacy \
-         ) \
-        $(if $(CONFIG_MQTTSUITE_BRIDGE_RC_TLS), \
-           +snode.c-net-rc-stream-tls \
          )
 endef
 

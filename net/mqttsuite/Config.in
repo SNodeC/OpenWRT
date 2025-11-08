@@ -123,24 +123,6 @@ config MQTTSUITE_BRIDGE_WSS
     bool "SSL/TLS (WebSocket)"
     depends on MQTTSUITE_BRIDGE_WS
     default y
-
-config MQTTSUITE_BRIDGE_L2
-    bool "Bluetooth L2CAP"
-    default n
-
-config MQTTSUITE_BRIDGE_L2_TLS
-    bool "SSL/TLS (Bluetooth L2CAP)"
-    depends on MQTTSUITE_BRIDGE_L2
-    default n
-
-config MQTTSUITE_BRIDGE_RC
-    bool "Bluetooth RFCOMM"
-    default n
-
-config MQTTSUITE_BRIDGE_RC_TLS
-    bool "SSL/TLS (Bluetooth RFCOMM)"
-    depends on MQTTSUITE_BRIDGE_RC
-    default n
 endmenu
 
 # ===================== CLI transports =====================
