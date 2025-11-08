@@ -84,7 +84,7 @@ if [ $c_flag -eq 1 ]; then
   rm -f dl/mqttsuite*.tar.gz
 
   echo "Update base, packages and snodec feeds"
-  ./scripts/feeds update base packages snodec # Only the feeds base, packages, and snodec are necessary
+  ./scripts/feeds update base packages snodec || true # Only the feeds base, packages, and snodec are necessary
 
   echo "Installing mqttsuite and dependent feeds"
   ./scripts/feeds install mqttsuite
