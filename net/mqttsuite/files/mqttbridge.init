@@ -9,8 +9,8 @@ start_service() {
         procd_open_instance
         procd_set_param command /usr/bin/mqttbridge -q -e
         procd_append_param command bridge --definition /root/iot-config.json
-        procd_append_param command ttn-local socket --retry --retry-base 1 remote --host localhost
-        procd_append_param command ttn-remote socket --retry --retry-base 1 remote --host eu1.cloud.thethings.network --port 1883
+        procd_append_param command TTN-IoT+ttn-local socket --retry --retry-base 1 remote --host localhost
+        procd_append_param command TTN-IoT+ttn-remote socket --retry --retry-base 1 remote --host eu1.cloud.thethings.network --port 1883
         procd_set_param respawn
         procd_close_instance
 }
