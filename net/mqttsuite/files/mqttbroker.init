@@ -10,7 +10,6 @@ start_service() {
         procd_set_param command /usr/bin/mqttbroker -q -e
         procd_append_param command in-mqtt socket --retry --retry-base 1
         procd_append_param command in-mqtts socket --retry --retry-base 1
-        procd_append_param command un-mqtt socket --retry --retry-base 1
         procd_append_param command in-https socket --retry --retry-base 1
         procd_append_param command in-http socket --retry --retry-base 1
         procd_set_param respawn
