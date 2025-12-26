@@ -8,7 +8,7 @@ PKG_RELEASE:=4
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SNodeC/mqttsuite
-PKG_SOURCE_VERSION:=HEAD
+PKG_SOURCE_VERSION:=OpenWRT
 
 PKG_MAINTAINER:=Volker Christian <me@vchrist.at>
 
