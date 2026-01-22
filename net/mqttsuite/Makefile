@@ -237,6 +237,8 @@ define Package/mqttsuite-bridge
   TITLE:=MQTT bridge
   DEPENDS:=+mqttsuite \
            +snode.c-mqtt-client \
+           +snode.c-http-server-express-legacy-in \
+           +snode.c-http-server-express-tls-in \
         $(if $(filter y,$(CONFIG_MQTTSUITE_BRIDGE_WS) $(CONFIG_MQTTSUITE_BRIDGE_WSS)), \
            +snode.c-mqtt-client-websocket \
          ) \
