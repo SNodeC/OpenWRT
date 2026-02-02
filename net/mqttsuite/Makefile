@@ -275,6 +275,8 @@ define Package/mqttsuite-bridge/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-bridge.so.* $(1)/usr/lib/ 2>/dev/null || true
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/
 	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
+	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite/mqttbridge
+	$(CP) $(PKG_BUILD_DIR)/mqttbridge/html/* $(1)/usr/var/www/mqttsuite/mqttbridge/
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttbridge.init $(1)/etc/init.d/mqttbridge
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
