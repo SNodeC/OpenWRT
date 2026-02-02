@@ -190,6 +190,8 @@ define Package/mqttsuite-integrator
   TITLE:=MQTT integrator
   DEPENDS:=+mqttsuite \
            +snode.c-mqtt-client \
+           +snode.c-http-server-express-legacy-in \
+           +snode.c-http-server-express-tls-in \
         $(if $(filter y,$(CONFIG_MQTTSUITE_INTEGRATOR_WS) $(CONFIG_MQTTSUITE_INTEGRATOR_WSS)), \
            +snode.c-mqtt-client-websocket \
          ) \
