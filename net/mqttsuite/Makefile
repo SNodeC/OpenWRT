@@ -176,7 +176,6 @@ define Package/mqttsuite-broker/install
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-broker.so.* $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbroker/
-	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite/mqttbroker
 	$(CP) $(PKG_BUILD_DIR)/mqttbroker/html/* $(1)/usr/var/www/mqttsuite/mqttbroker/
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -227,7 +226,6 @@ define Package/mqttsuite-integrator/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-storage.so $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-mapping-plugin-double.so $(1)/usr/lib/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttintegrator/
-	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mqttintegrator.init $(1)/etc/init.d/mqttintegrator
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
@@ -274,7 +272,6 @@ define Package/mqttsuite-bridge/install
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-bridge.so.* $(1)/usr/lib/ 2>/dev/null || true
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttbridge/
-	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(INSTALL_DIR) $(1)/usr/var/www/mqttsuite/mqttbridge
 	$(CP) $(PKG_BUILD_DIR)/mqttbridge/html/* $(1)/usr/var/www/mqttsuite/mqttbridge/
 	$(INSTALL_DIR) $(1)/etc/init.d
@@ -321,7 +318,6 @@ define Package/mqttsuite-cli/install
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libmqtt-cli.so.* $(1)/usr/lib/ 2>/dev/null || true
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli/* $(1)/usr/lib/snode.c/web/http/upgrade/websocket/mqttcli/
-	find $(1)/usr/lib -name "*.so"  -exec rm {} ";"
 	$(call strip_staging_dir_prefix_from_rpath,$(1)/usr)
 endef
 
