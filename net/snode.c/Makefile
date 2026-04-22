@@ -13,7 +13,7 @@ PKG_MAINTAINER:=Volker Christian <me@vchrist.at>
 PKG_LICENSE:=LGPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=nlohmannjson easyloggingpp
+PKG_BUILD_DEPENDS:=nlohmannjson
 PKG_BUILD_PARALLEL:=1
 
 CMAKE_INSTALL:=1
