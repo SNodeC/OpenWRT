@@ -1,0 +1,11 @@
+#!/bin/bash
+
+currdir=`dirname "$(realpath $0)"`
+
+sdkdir=./sdks/openwrt-sdk-25.12.2-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64
+
+pushd $currdir/$sdkdir
+
+$currdir/eri.travel.vchrist.at
+
+popd
