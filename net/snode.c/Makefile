@@ -160,9 +160,11 @@ define Package/snode.c-full
            +snode.c-http-server-express \
            +snode.c-http-server-express-legacy-in \
            +snode.c-http-server-express-legacy-in6 \
+           +snode.c-http-server-express-legacy-rc \
            +snode.c-http-server-express-legacy-un \
            +snode.c-http-server-express-tls-in \
            +snode.c-http-server-express-tls-in6 \
+           +snode.c-http-server-express-tls-rc \
            +snode.c-http-server-express-tls-un \
            +snode.c-http-client \
            +snode.c-websocket-server \
@@ -237,7 +239,7 @@ $(eval $(call BuildSNodeCModule,core-socket-stream,+snode.c-core-socket,/usr/lib
 $(eval $(call BuildSNodeCModule,core-socket-stream-legacy,+snode.c-core-socket-stream,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket-stream-tls,+snode.c-core-socket-stream +libopenssl,/usr/lib))
 $(eval $(call BuildSNodeCModule,db-mariadb,+snode.c-core +libmariadb,/usr/lib))
-$(eval $(call BuildSNodeCModule,net,+snode.c-utils,/usr/lib))
+$(eval $(call BuildSNodeCModule,net,+snode.c-core-socket,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-in,+snode.c-net,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-in-phy,+snode.c-net-in,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-in-phy-stream,+snode.c-net-in-phy,/usr/lib))
@@ -250,13 +252,13 @@ $(eval $(call BuildSNodeCModule,net-in6-phy-stream,+snode.c-net-in6-phy,/usr/lib
 $(eval $(call BuildSNodeCModule,net-in6-stream,+snode.c-net-in6-phy-stream,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-in6-stream-legacy,+snode.c-net-in6-stream +snode.c-core-socket-stream-legacy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-in6-stream-tls,+snode.c-net-in6-stream +snode.c-core-socket-stream-tls,/usr/lib))
-$(eval $(call BuildSNodeCModule,net-l2,+snode.c-net,/usr/lib))
+$(eval $(call BuildSNodeCModule,net-l2,+snode.c-net +bluez-libs,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-l2-phy,+snode.c-net-l2 +bluez-libs,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-l2-phy-stream,+snode.c-net-l2-phy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-l2-stream,+snode.c-net-l2-phy-stream,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-l2-stream-legacy,+snode.c-net-l2-stream +snode.c-core-socket-stream-legacy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-l2-stream-tls,+snode.c-net-l2-stream +snode.c-core-socket-stream-tls,/usr/lib))
-$(eval $(call BuildSNodeCModule,net-rc,+snode.c-net,/usr/lib))
+$(eval $(call BuildSNodeCModule,net-rc,+snode.c-net +bluez-libs,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-rc-phy,+snode.c-net-rc +bluez-libs,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-rc-phy-stream,+snode.c-net-rc-phy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-rc-stream,+snode.c-net-rc-phy-stream,/usr/lib))
@@ -268,18 +270,20 @@ $(eval $(call BuildSNodeCModule,net-un-phy-stream,+snode.c-net-un-phy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-un-stream,+snode.c-net-un-phy-stream,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-un-stream-legacy,+snode.c-net-un-stream +snode.c-core-socket-stream-legacy,/usr/lib))
 $(eval $(call BuildSNodeCModule,net-un-stream-tls,+snode.c-net-un-stream +snode.c-core-socket-stream-tls,/usr/lib))
-$(eval $(call BuildSNodeCModule,net-un-dgram,+snode.c-net-un,/usr/lib))
+$(eval $(call BuildSNodeCModule,net-un-dgram,+snode.c-net-un-phy +snode.c-net-un,/usr/lib))
 $(eval $(call BuildSNodeCModule,http,+snode.c-core-socket-stream +libmagic,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server,+snode.c-http,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-client,+snode.c-http,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server-express,+snode.c-http-server,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server-express-legacy-in,+snode.c-http-server-express +snode.c-net-in-stream-legacy,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server-express-legacy-in6,+snode.c-http-server-express +snode.c-net-in6-stream-legacy,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-legacy-rc,+snode.c-http-server-express +snode.c-net-rc-stream-legacy,/usr/lib/snode.c/web/http))
 $(eval $(call BuildSNodeCModule,http-server-express-legacy-un,+snode.c-http-server-express +snode.c-net-un-stream-legacy,/usr/lib/snode.c/web/http))
-$(eval $(call BuildSNodeCModule,http-server-express-tls-in,+snode.c-http-server-express +snode.c-net-in-stream-tls,/usr/lib/snode.c/web/http))
-$(eval $(call BuildSNodeCModule,http-server-express-tls-in6,+snode.c-http-server-express +snode.c-net-in6-stream-tls,/usr/lib/snode.c/web/http))
-$(eval $(call BuildSNodeCModule,http-server-express-tls-un,+snode.c-http-server-express +snode.c-net-un-stream-tls,/usr/lib/snode.c/web/http))
-$(eval $(call BuildSNodeCModule,websocket,+snode.c-logger,/usr/lib/snode.c/web/http/upgrade))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-in,+snode.c-http-server +snode.c-http-server-express +snode.c-net-in-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-in6,+snode.c-http-server +snode.c-http-server-express +snode.c-net-in6-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-rc,+snode.c-http-server +snode.c-http-server-express +snode.c-net-rc-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,http-server-express-tls-un,+snode.c-http-server +snode.c-http-server-express +snode.c-net-un-stream-tls,/usr/lib/snode.c/web/http))
+$(eval $(call BuildSNodeCModule,websocket,+snode.c-utils,/usr/lib/snode.c/web/http/upgrade))
 $(eval $(call BuildSNodeCModule,websocket-server,+snode.c-websocket +snode.c-http-server,/usr/lib/snode.c/web/http/upgrade))
 $(eval $(call BuildSNodeCModule,websocket-client,+snode.c-websocket +snode.c-http-client,/usr/lib/snode.c/web/http/upgrade))
 $(eval $(call BuildSNodeCModule,mqtt,+snode.c-core-socket-stream,/usr/lib/snode.c/iot/mqtt))
