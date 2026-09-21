@@ -1,0 +1,33 @@
+[
+  {
+    "name": "minimal CLI selects only the required SNode.C transport",
+    "request": {
+      "PACKAGE_mqttsuite-cli": "m",
+      "MQTTSUITE_CLI_TCP_IPV4": "n",
+      "MQTTSUITE_CLI_TLS_IPV4": "n",
+      "MQTTSUITE_CLI_TCP_IPV6": "n",
+      "MQTTSUITE_CLI_UNIX": "n",
+      "MQTTSUITE_CLI_WS": "n"
+    },
+    "expected": {
+      "PACKAGE_snode.c-net-in-stream-legacy": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-net-in-stream-tls",
+      "PACKAGE_snode.c-mqtt-client-websocket"
+    ]
+  },
+  {
+    "name": "complete combined inventory",
+    "request": {
+      "PACKAGE_snode.c-full": "m",
+      "PACKAGE_snode.c-apps": "m",
+      "PACKAGE_snode.c-control": "m",
+      "PACKAGE_mqttsuite-full": "m"
+    },
+    "packages": {
+      "snode.c": 67,
+      "mqttsuite": 9
+    }
+  }
+]
