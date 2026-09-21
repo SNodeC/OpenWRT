@@ -1,0 +1,54 @@
+--- a/mqttcli/mqttcli.cpp
++++ b/mqttcli/mqttcli.cpp
+@@ -231,6 +231,7 @@
+     });
+ }
+ 
++#if defined(CONFIG_MQTTSUITE_CLI_WS) || defined(CONFIG_MQTTSUITE_CLI_WSS)
+ static void createWSConfig(net::config::ConfigInstance* config) {
+     createConfig(config);
+ 
+@@ -238,6 +239,7 @@
+         ->addOption("--target", "Websocket endpoint", "string", "/ws", CLI::TypeValidator<std::string>())
+         ->configurable();
+ }
++#endif
+ 
+ int main(int argc, char* argv[]) {
+     core::SNodeC::init(argc, argv);
+--- a/mqttstore/mqttstore.cpp
++++ b/mqttstore/mqttstore.cpp
+@@ -176,6 +176,7 @@
+         ->newSubCommand<mqtt::mqttstore::lib::ConfigStorage>();
+ }
+ 
++#if defined(CONFIG_MQTTSUITE_STORE_WS) || defined(CONFIG_MQTTSUITE_STORE_WSS)
+ static void createWSConfig(net::config::ConfigInstance* config) {
+     createConfig(config);
+ 
+@@ -183,6 +184,7 @@
+         ->addOption("--target", "Websocket endpoint", "string", "/ws", CLI::TypeValidator<std::string>())
+         ->configurable();
+ }
++#endif
+ 
+ static int run(int argc, char* argv[]) {
+     core::SNodeC::init(argc, argv);
+--- a/mqttbridge/mqttbridge.cpp
++++ b/mqttbridge/mqttbridge.cpp
+@@ -220,6 +220,7 @@
+     return socketClient;
+ }
+ 
++#if defined(CONFIG_MQTTSUITE_BRIDGE_WS) || defined(CONFIG_MQTTSUITE_BRIDGE_WSS)
+ template <typename HttpClient>
+ static HttpClient startClient( //
+     const std::string& instanceName,
+@@ -266,6 +267,7 @@
+ 
+     return httpClient;
+ }
++#endif
+ 
+ static void startBridges() {
+     mqtt::bridge::lib::SSEDistributor::instance().bridgesStarting();

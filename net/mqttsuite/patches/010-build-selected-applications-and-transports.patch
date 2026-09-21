@@ -1,0 +1,205 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -90,8 +90,18 @@
+ # LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/15/libasan.s
+ 
+ add_subdirectory(lib)
+-add_subdirectory(mqttbroker)
+-add_subdirectory(mqttintegrator)
+-add_subdirectory(mqttbridge)
+-add_subdirectory(mqttcli)
+-add_subdirectory(mqttstore)
++if(MQTTSUITE_BUILD_broker)
++    add_subdirectory(mqttbroker)
++endif()
++if(MQTTSUITE_BUILD_integrator)
++    add_subdirectory(mqttintegrator)
++endif()
++if(MQTTSUITE_BUILD_bridge)
++    add_subdirectory(mqttbridge)
++endif()
++if(MQTTSUITE_BUILD_cli)
++    add_subdirectory(mqttcli)
++endif()
++if(MQTTSUITE_BUILD_store)
++    add_subdirectory(mqttstore)
++endif()
+--- a/mqttbroker/CMakeLists.txt
++++ b/mqttbroker/CMakeLists.txt
+@@ -153,7 +153,9 @@
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_subdirectory(lib)
+-add_subdirectory(websocket)
++if(CONFIG_MQTTSUITE_BROKER_WS)
++    add_subdirectory(websocket)
++endif()
+ 
+ find_package(nlohmann_json 3.7.0 REQUIRED)
+ find_package(
+--- a/mqttintegrator/CMakeLists.txt
++++ b/mqttintegrator/CMakeLists.txt
+@@ -147,7 +147,9 @@
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_subdirectory(lib)
+-add_subdirectory(websocket)
++if(CONFIG_MQTTSUITE_INTEGRATOR_WS)
++    add_subdirectory(websocket)
++endif()
+ 
+ find_package(nlohmann_json 3.7.0 REQUIRED)
+ find_package(
+--- a/mqttbridge/CMakeLists.txt
++++ b/mqttbridge/CMakeLists.txt
+@@ -144,7 +144,9 @@
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_subdirectory(lib)
+-add_subdirectory(websocket)
++if(CONFIG_MQTTSUITE_BRIDGE_WS)
++    add_subdirectory(websocket)
++endif()
+ 
+ find_package(nlohmann_json 3.7.0 REQUIRED)
+ find_package(
+--- a/mqttcli/CMakeLists.txt
++++ b/mqttcli/CMakeLists.txt
+@@ -144,7 +144,9 @@
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_subdirectory(lib)
+-add_subdirectory(websocket)
++if(CONFIG_MQTTSUITE_CLI_WS)
++    add_subdirectory(websocket)
++endif()
+ 
+ find_package(nlohmann_json 3.7.0 REQUIRED)
+ find_package(snodec 2.0.0 REQUIRED COMPONENTS ${MQTTCLI_COMPONENTS} mqtt-client)
+--- a/mqttstore/CMakeLists.txt
++++ b/mqttstore/CMakeLists.txt
+@@ -108,7 +108,9 @@
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_subdirectory(lib)
+-add_subdirectory(websocket)
++if(CONFIG_MQTTSUITE_STORE_WS)
++    add_subdirectory(websocket)
++endif()
+ 
+ find_package(nlohmann_json 3.7.0 REQUIRED)
+ find_package(
+--- a/mqttbroker/mqttbroker.cpp
++++ b/mqttbroker/mqttbroker.cpp
+@@ -146,7 +146,7 @@
+     }
+ }
+ 
+-static express::Router getRouter(std::shared_ptr<iot::mqtt::server::broker::Broker> broker, const std::string& webRoot) {
++static express::Router getRouter(std::shared_ptr<iot::mqtt::server::broker::Broker> broker, const std::string& webRoot, bool websocket) {
+     const express::Router& jsonRouter = express::middleware::JsonMiddleware();
+ 
+     /*
+@@ -298,24 +298,24 @@
+         }
+     });
+ 
+-    router.get("/ws", [] APPLICATION(req, res) {
+-        if (req->headers.contains("upgrade")) {
++    router.get("/ws", [websocket] APPLICATION(req, res) {
++        if (websocket && req->headers.contains("upgrade")) {
+             upgrade(req, res);
+         } else {
+             res->redirect("/clients");
+         }
+     });
+ 
+-    router.get("/mqtt", [] APPLICATION(req, res) {
+-        if (req->headers.contains("upgrade")) {
++    router.get("/mqtt", [websocket] APPLICATION(req, res) {
++        if (websocket && req->headers.contains("upgrade")) {
+             upgrade(req, res);
+         } else {
+             res->redirect("/clients");
+         }
+     });
+ 
+-    router.get("/", [] APPLICATION(req, res) {
+-        if (req->headers.contains("upgrade")) {
++    router.get("/", [websocket] APPLICATION(req, res) {
++        if (websocket && req->headers.contains("upgrade")) {
+             upgrade(req, res);
+         } else {
+             res->redirect("/clients");
+@@ -460,12 +460,14 @@
+         });
+ #endif
+ #endif
+-    express::Router router = getRouter(broker, utils::Config::configRoot.getSubCommand<mqtt::lib::ConfigMqttBroker>()->getHtmlRoot());
++    const auto router = [broker](bool websocket) {
++        return getRouter(broker, utils::Config::configRoot.getSubCommand<mqtt::lib::ConfigMqttBroker>()->getHtmlRoot(), websocket);
++    };
+ 
+ #ifdef CONFIG_MQTTSUITE_BROKER_TCP_IPV4
+     express::legacy::in::Server( //
+         "in-http",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WS),
+         reportState,
+         [](net::in::stream::legacy::config::ConfigSocketServer* config) {
+             config->setPort(8080);
+@@ -476,7 +478,7 @@
+ #ifdef CONFIG_MQTTSUITE_BROKER_TLS_IPV4
+     express::tls::in::Server( //
+         "in-https",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WSS),
+         reportState,
+         [](net::in::stream::tls::config::ConfigSocketServer* config) {
+             config->setPort(8088);
+@@ -489,7 +491,7 @@
+ #ifdef CONFIG_MQTTSUITE_BROKER_TCP_IPV6
+     express::legacy::in6::Server( //
+         "in6-http",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WS),
+         reportState,
+         [](net::in6::stream::legacy::config::ConfigSocketServer* config) {
+             config->setPort(8080);
+@@ -502,7 +504,7 @@
+ #ifdef CONFIG_MQTTSUITE_BROKER_TLS_IPV6
+     express::tls::in6::Server( //
+         "in6-https",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WSS),
+         reportState,
+         [](net::in6::stream::tls::config::ConfigSocketServer* config) {
+             config->setPort(8088);
+@@ -517,7 +519,7 @@
+ #ifdef CONFIG_MQTTSUITE_BROKER_UNIX
+     express::legacy::un::Server( //
+         "un-http",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WS),
+         reportState,
+         [](net::un::stream::legacy::config::ConfigSocketServer* config) {
+             config->setSunPath("/tmp/" + utils::Config::getApplicationName() + "-" + config->getInstanceName());
+@@ -526,7 +528,7 @@
+ #ifdef CONFIG_MQTTSUITE_BROKER_UNIX_TLS
+     express::tls::un::Server( //
+         "un-https",
+-        router,
++        router(CONFIG_MQTTSUITE_BROKER_WSS),
+         reportState,
+         [](net::un::stream::tls::config::ConfigSocketServer* config) {
+             config->setSunPath("/tmp/" + utils::Config::getApplicationName() + "-" + config->getInstanceName());
+--- a/mqttbroker/cmake/config.h.in
++++ b/mqttbroker/cmake/config.h.in
+@@ -6,5 +6,5 @@
+ #cmakedefine CONFIG_MQTTSUITE_BROKER_TLS_IPV6
+ #cmakedefine CONFIG_MQTTSUITE_BROKER_UNIX
+ #cmakedefine CONFIG_MQTTSUITE_BROKER_UNIX_TLS
+-#cmakedefine CONFIG_MQTTSUITE_BROKER_WS
+-#cmakedefine CONFIG_MQTTSUITE_BROKER_WSS
++#cmakedefine01 CONFIG_MQTTSUITE_BROKER_WS
++#cmakedefine01 CONFIG_MQTTSUITE_BROKER_WSS
