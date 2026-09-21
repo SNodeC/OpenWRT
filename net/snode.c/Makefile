@@ -1,29 +1,85 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=snode.c
-PKG_VERSION:=1.0.1
+PKG_VERSION:=2.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/SNodeC/snode.c.git
-PKG_SOURCE_VERSION:=OpenWRT
+PKG_SOURCE_VERSION:=bb63e8a87aeda88123e8c0d72cb6d298908a9fe6
+PKG_MIRROR_HASH:=db1bdf00091dcb7973ad9679ad62e15f05020620d64bcf89544ecdbb9b72a62e
 
 PKG_MAINTAINER:=Volker Christian <me@vchrist.at>
 PKG_LICENSE:=LGPL-3.0-or-later
 PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DEPENDS:=nlohmannjson
+PKG_BUILD_DEPENDS:=nlohmannjson openssl file bluez libmariadb
 PKG_BUILD_PARALLEL:=1
+PKG_CONFIG_DEPENDS:=CONFIG_SNODEC_GROUP_NAME \
+  CONFIG_SNODEC_EPOLL \
+  CONFIG_SNODEC_POLL \
+  CONFIG_SNODEC_SELECT \
+  CONFIG_SNODEC_READ_BLOCKSIZE \
+  CONFIG_SNODEC_WRITE_BLOCKSIZE \
+  CONFIG_SNODEC_READ_TIMEOUT \
+  CONFIG_SNODEC_WRITE_TIMEOUT \
+  CONFIG_SNODEC_MAXIMUM_WRITE_QUEUE_BYTES \
+  CONFIG_SNODEC_WRITE_QUEUE_HIGH_WATERMARK \
+  CONFIG_SNODEC_WRITE_QUEUE_LOW_WATERMARK \
+  CONFIG_SNODEC_BACKLOG \
+  CONFIG_SNODEC_ACCEPTS_PER_TICK \
+  CONFIG_SNODEC_ACCEPT_TIMEOUT \
+  CONFIG_SNODEC_CONNECT_TIMEOUT \
+  CONFIG_SNODEC_TERMINATE_TIMEOUT \
+  CONFIG_SNODEC_RECONNECT \
+  CONFIG_SNODEC_RECONNECT_TIME \
+  CONFIG_SNODEC_RETRY \
+  CONFIG_SNODEC_RETRY_ON_FATAL \
+  CONFIG_SNODEC_RETRY_TIMEOUT \
+  CONFIG_SNODEC_RETRY_TRIES \
+  CONFIG_SNODEC_RETRY_BASE \
+  CONFIG_SNODEC_RETRY_JITTER \
+  CONFIG_SNODEC_RETRY_LIMIT \
+  CONFIG_SNODEC_INV4_REUSE_ADDRESS \
+  CONFIG_SNODEC_INV4_REUSE_PORT \
+  CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_TRUE \
+  CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_FALSE \
+  CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_DEFAULT \
+  CONFIG_SNODEC_IPV4_NUMERIC \
+  CONFIG_SNODEC_IPV4_NUMERIC_REVERSE \
+  CONFIG_SNODEC_IN6_REUSE_ADDRESS \
+  CONFIG_SNODEC_IN6_REUSE_PORT \
+  CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE \
+  CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE \
+  CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_DEFAULT \
+  CONFIG_SNODEC_IPV6_ONLY \
+  CONFIG_SNODEC_IPV4_MAPPED \
+  CONFIG_SNODEC_IPV6_NUMERIC \
+  CONFIG_SNODEC_IPV6_NUMERIC_REVERSE \
+  CONFIG_SNODEC_TLS_INIT_TIMEOUT \
+  CONFIG_SNODEC_TLS_SHUTDOWN_TIMEOUT \
+  CONFIG_SNODEC_HTTP_REQUEST_PIPELINED \
+  CONFIG_PACKAGE_snode.c-apps
 
 CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-# EXTRA_CFLAGS+=-Og -g3 -fno-omit-frame-pointer
-# EXTRA_CXXFLAGS+=-Og -g3 -fno-omit-frame-pointer
-# PKG_BUILD_FLAGS:=no-strip
+# FetchContent must use OpenWrt's checked download, never the network at configure time.
+define Download/spdlog
+  FILE:=spdlog-1.17.0.tar.gz
+  URL:=https://codeload.github.com/gabime/spdlog/tar.gz/refs/tags
+  URL_FILE:=v1.17.0
+  HASH:=d8862955c6d74e5846b3f580b1605d2428b11d97a410d86e2fb13e857cd3a744
+endef
+$(eval $(call Download,spdlog))
+
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	$(TAR) -xzf $(DL_DIR)/spdlog-1.17.0.tar.gz -C $(PKG_BUILD_DIR)
+endef
 
 ifdef CONFIG_SNODEC_EPOLL
   CONFIG_SNODEC_IO_MULTIPLEXER=epoll
@@ -33,27 +89,38 @@ else ifdef CONFIG_SNODEC_SELECT
   CONFIG_SNODEC_IO_MULTIPLEXER=select
 endif
 
-ifdef SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_TRUE
+ifdef CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_TRUE
   CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM=true
-else ifdef SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_FALSE
+else ifdef CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_FALSE
   CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM=false
 else
   CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM=default
 endif
 
-ifdef SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE
+ifdef CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE
   CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM=true
-else ifdef SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE
+else ifdef CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE
   CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM=false
 else
   CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM=default
 endif
 
-CMAKE_OPTIONS+=-DGROUP_NAME=$(patsubst "%",%,$(CONFIG_SNODEC_GROUP_NAME)) \
+# Reset upstream's derived cache so changed OpenWrt settings take effect.
+CMAKE_OPTIONS+=-U'SNODEC_*' \
+               -DFETCHCONTENT_SOURCE_DIR_SPDLOG=$(PKG_BUILD_DIR)/spdlog-1.17.0 \
+               -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
+               -DSPDLOG_INSTALL=OFF \
+               -DSNODEC_BUILD_APPS=$(if $(CONFIG_PACKAGE_snode.c-apps),ON,OFF) \
+               -DSNODEC_BUILD_TESTS=OFF \
+               -DSNODEC_CONTROL_BUILD_TUI=OFF \
+               -DGROUP_NAME=$(patsubst "%",%,$(CONFIG_SNODEC_GROUP_NAME)) \
                -DIO_MULTIPLEXER=$(CONFIG_SNODEC_IO_MULTIPLEXER) \
                -DREAD_BLOCKSIZE=$(CONFIG_SNODEC_READ_BLOCKSIZE) \
                -DWRITE_BLOCKSIZE=$(CONFIG_SNODEC_WRITE_BLOCKSIZE) \
                -DREAD_TIMEOUT=$(CONFIG_SNODEC_READ_TIMEOUT) \
+               -DMAXIMUM_WRITE_QUEUE_BYTES=$(CONFIG_SNODEC_MAXIMUM_WRITE_QUEUE_BYTES) \
+               -DWRITE_QUEUE_HIGH_WATERMARK=$(CONFIG_SNODEC_WRITE_QUEUE_HIGH_WATERMARK) \
+               -DWRITE_QUEUE_LOW_WATERMARK=$(CONFIG_SNODEC_WRITE_QUEUE_LOW_WATERMARK) \
                -DWRITE_TIMEOUT=$(CONFIG_SNODEC_WRITE_TIMEOUT) \
                -DTERMINATE_TIMEOUT=$(CONFIG_SNODEC_TERMINATE_TIMEOUT) \
                -DBACKLOG=$(CONFIG_SNODEC_BACKLOG) \
@@ -64,11 +131,11 @@ CMAKE_OPTIONS+=-DGROUP_NAME=$(patsubst "%",%,$(CONFIG_SNODEC_GROUP_NAME)) \
                -DIN_CLIENT_DISABLE_NAGLE_ALGORITHM=$(CONFIG_SNODEC_INV4_DISABLE_NAGLE_ALGORITHM) \
                -DIN_NUMERIC=$(CONFIG_SNODEC_IPV4_NUMERIC) \
                -DIN_NUMERIC_REVERSE=$(CONFIG_SNODEC_IPV4_NUMERIC_REVERSE) \
-               -DIN6_REUSE_ADDRESS=$(CONFIG_SNODEC_INV6_REUSE_ADDRESS) \
-               -DIN6_REUSE_PORT=$(CONFIG_SNODEC_INV6_REUSE_PORT) \
+               -DIN6_REUSE_ADDRESS=$(CONFIG_SNODEC_IN6_REUSE_ADDRESS) \
+               -DIN6_REUSE_PORT=$(CONFIG_SNODEC_IN6_REUSE_PORT) \
                -DIN6_SERVER_DISABLE_NAGLE_ALGORITHM=$(CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM) \
                -DIN6_CLIENT_DISABLE_NAGLE_ALGORITHM=$(CONFIG_SNODEC_INV6_DISABLE_NAGLE_ALGORITHM) \
-               -DIN6_IPV6_ONLY=$(CONFIG_SNODEC_IPV6_ONLY) \
+               -DIN6_IPV6_ONLY=$(if $(CONFIG_SNODEC_IPV6_ONLY),true,false) \
                -DIN6_IPV4_MAPPED=$(CONFIG_SNODEC_IPV4_MAPPED) \
                -DIN6_NUMERIC=$(CONFIG_SNODEC_IPV6_NUMERIC) \
                -DIN6_NUMERIC_REVERSE=$(CONFIG_SNODEC_IPV6_NUMERIC_REVERSE) \
@@ -114,8 +181,12 @@ define Package/snode.c/config
   source "$(SOURCE)/Config.in"
 endef
 
+define Package/snode.c/conffiles
+/etc/snode.c/
+endef
+
 define Package/snode.c/install
-	true
+	$(INSTALL_DIR) $(1)/etc/snode.c
 endef
 
 SO_VERSION=$(shell echo $(PKG_VERSION) | cut -d'.' -f1)
@@ -214,7 +285,7 @@ endef
 
 define Package/snode.c-apps/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+	find $(PKG_INSTALL_DIR)/usr/bin -mindepth 1 -maxdepth 1 ! -name snodec-control -exec $(CP) {} $(1)/usr/bin/ \;
 	$(INSTALL_DIR) $(1)/usr/lib/snode.c/web/http/upgrade/websocket
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-server.so.$(SO_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-server.so.$(PKG_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
@@ -222,19 +293,27 @@ define Package/snode.c-apps/install
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/snode.c/web/http/upgrade/websocket/libsnodec-websocket-echo-client.so.$(PKG_VERSION) $(1)/usr/lib/snode.c/web/http/upgrade/websocket/
 endef
 
-ifdef CONFIG_SNODEC_IO_MULTIPLEXER
-  CONFIG_SNODEC_IO_MULTIPLEXER_DEPENDENCY:=+snode.c-core-mux-$(CONFIG_SNODEC_IO_MULTIPLEXER)
-endif
+define Package/snode.c-control
+  $(call Package/snode.c/Default)
+  TITLE:=SNode.C control socket client
+  DEPENDS:=+snode.c
+endef
+
+define Package/snode.c-control/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/snodec-control $(1)/usr/bin/
+endef
 
 $(eval $(call BuildPackage,snode.c))
 $(eval $(call BuildPackage,snode.c-apps))
+$(eval $(call BuildPackage,snode.c-control))
 $(eval $(call BuildPackage,snode.c-full))
-$(eval $(call BuildSNodeCModule,logger,snode.c,/usr/lib))
+$(eval $(call BuildSNodeCModule,logger,+snode.c,/usr/lib))
 $(eval $(call BuildSNodeCModule,utils,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-epoll,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-poll,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-select,+snode.c-logger,/usr/lib))
-$(eval $(call BuildSNodeCModule,core,+snode.c-utils $(CONFIG_SNODEC_IO_MULTIPLEXER_DEPENDENCY),/usr/lib))
+$(eval $(call BuildSNodeCModule,core,+snode.c-utils +SNODEC_EPOLL:snode.c-core-mux-epoll +SNODEC_POLL:snode.c-core-mux-poll +SNODEC_SELECT:snode.c-core-mux-select,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket,+snode.c-core,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket-stream,+snode.c-core-socket,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket-stream-legacy,+snode.c-core-socket-stream,/usr/lib))

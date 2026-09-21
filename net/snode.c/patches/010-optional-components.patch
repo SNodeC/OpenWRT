@@ -1,0 +1,26 @@
+--- a/src/cmake/Config.cmake.in
++++ b/src/cmake/Config.cmake.in
+@@ -74,17 +74,13 @@
+ set(snodec_FOUND TRUE)
+ 
+ foreach(_comp ${snodec_FIND_COMPONENTS})
+-    if(NOT _comp IN_LIST _supported_components)
+-        set(snodec_FOUND FALSE)
+-        set(snodec_NOT_FOUND_MESSAGE
+-            "Unsupported SNode.C component requested: ${_comp}"
+-        )
+-        break()
+-    else(NOT _comp IN_LIST _supported_components)
++    set(snodec_${_comp}_FOUND FALSE)
++    if(_comp IN_LIST _supported_components AND EXISTS "${CMAKE_CURRENT_LIST_DIR}/snodec_${_comp}_Targets.cmake")
+         load_component_with_dependencies(${_comp} "" "  ")
+-        check_required_components(${_comp})
+-    endif(NOT _comp IN_LIST _supported_components)
+-endforeach(_comp ${snodec_FIND_COMPONENTS})
++        set(snodec_${_comp}_FOUND TRUE)
++    endif()
++endforeach()
++check_required_components(snodec)
+ 
+ if(snodec_FOUND)
+     set(CMAKE_SKIP_RPATH FALSE)

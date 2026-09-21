@@ -1,0 +1,98 @@
+[
+  {
+    "name": "logger selects its base and lower layers",
+    "request": {
+      "PACKAGE_snode.c-logger": "m"
+    },
+    "expected": {
+      "PACKAGE_snode.c": "m",
+      "SNODEC_GROUP_NAME": "\"snodec\""
+    },
+    "absent": [
+      "PACKAGE_snode.c-apps"
+    ]
+  },
+  {
+    "name": "net-l2-stream-tls selects its base and lower layers",
+    "request": {
+      "PACKAGE_snode.c-net-l2-stream-tls": "m"
+    },
+    "expected": {
+      "PACKAGE_snode.c": "m",
+      "SNODEC_GROUP_NAME": "\"snodec\"",
+      "PACKAGE_bluez-libs": "m",
+      "PACKAGE_snode.c-core": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-apps"
+    ]
+  },
+  {
+    "name": "net-rc-stream-legacy selects its base and lower layers",
+    "request": {
+      "PACKAGE_snode.c-net-rc-stream-legacy": "m"
+    },
+    "expected": {
+      "PACKAGE_snode.c": "m",
+      "SNODEC_GROUP_NAME": "\"snodec\"",
+      "PACKAGE_bluez-libs": "m",
+      "PACKAGE_snode.c-core": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-apps"
+    ]
+  },
+  {
+    "name": "EPOLL stays a module",
+    "request": {
+      "PACKAGE_snode.c-core": "m",
+      "SNODEC_EPOLL": "y"
+    },
+    "expected": {
+      "PACKAGE_snode.c-core-mux-epoll": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-core-mux-poll",
+      "PACKAGE_snode.c-core-mux-select"
+    ]
+  },
+  {
+    "name": "POLL stays a module",
+    "request": {
+      "PACKAGE_snode.c-core": "m",
+      "SNODEC_POLL": "y"
+    },
+    "expected": {
+      "PACKAGE_snode.c-core-mux-poll": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-core-mux-epoll",
+      "PACKAGE_snode.c-core-mux-select"
+    ]
+  },
+  {
+    "name": "SELECT stays a module",
+    "request": {
+      "PACKAGE_snode.c-core": "m",
+      "SNODEC_SELECT": "y"
+    },
+    "expected": {
+      "PACKAGE_snode.c-core-mux-select": "m"
+    },
+    "absent": [
+      "PACKAGE_snode.c-core-mux-epoll",
+      "PACKAGE_snode.c-core-mux-poll"
+    ]
+  },
+  {
+    "name": "complete SNode.C inventory",
+    "request": {
+      "PACKAGE_snode.c-full": "m",
+      "PACKAGE_snode.c-apps": "m",
+      "PACKAGE_snode.c-control": "m"
+    },
+    "packages": {
+      "snode.c": 67
+    }
+  }
+]
