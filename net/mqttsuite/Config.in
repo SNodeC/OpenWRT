@@ -1,17 +1,18 @@
-menu "MQTTSuite options"
+menu "MQTTSuite build options"
+    visible if PACKAGE_mqttsuite
 
-comment "Select transports provided"
+comment "Select applications and mapping plugins in Network / MQTTSuite"
+comment "full selects every application; transports are compile-time options"
 
-# ===================== Broker transports =====================
 menu "mqttbroker transports"
-    depends on PACKAGE_mqttsuite-broker
+    visible if PACKAGE_mqttsuite-broker
 
 config MQTTSUITE_BROKER_TCP_IPV4
-    bool "TCP (IPv4)"
+    bool "TCP (IPv4)" if MQTTSUITE_BROKER_TCP_IPV6 || MQTTSUITE_BROKER_UNIX
     default y
 
 config MQTTSUITE_BROKER_TLS_IPV4
-    bool "SSL/TLS (IPv4)"
+    bool "TLS (IPv4)"
     depends on MQTTSUITE_BROKER_TCP_IPV4
     default y
 
@@ -20,7 +21,7 @@ config MQTTSUITE_BROKER_TCP_IPV6
     default y
 
 config MQTTSUITE_BROKER_TLS_IPV6
-    bool "SSL/TLS (IPv6)"
+    bool "TLS (IPv6)"
     depends on MQTTSUITE_BROKER_TCP_IPV6
     default y
 
@@ -29,30 +30,34 @@ config MQTTSUITE_BROKER_UNIX
     default y
 
 config MQTTSUITE_BROKER_UNIX_TLS
-    bool "SSL/TLS (Unix domain sockets)"
+    bool "TLS (Unix domain sockets)"
     depends on MQTTSUITE_BROKER_UNIX
     default n
 
 config MQTTSUITE_BROKER_WS
     bool "WebSocket"
+    depends on MQTTSUITE_BROKER_TCP_IPV4 || MQTTSUITE_BROKER_TCP_IPV6 || MQTTSUITE_BROKER_UNIX
     default y
 
 config MQTTSUITE_BROKER_WSS
-    bool "SSL/TLS (WebSocket)"
+    bool "Secure WebSocket"
     depends on MQTTSUITE_BROKER_WS
+    depends on MQTTSUITE_BROKER_TLS_IPV4 || MQTTSUITE_BROKER_TLS_IPV6 || MQTTSUITE_BROKER_UNIX_TLS
     default y
+
+comment "IPv4 TCP is required when both IPv6 and Unix sockets are disabled"
+    depends on !MQTTSUITE_BROKER_TCP_IPV4 && !MQTTSUITE_BROKER_TCP_IPV6 && !MQTTSUITE_BROKER_UNIX
 endmenu
 
-# ===================== Integrator transports =====================
 menu "mqttintegrator transports"
-    depends on PACKAGE_mqttsuite-integrator
+    visible if PACKAGE_mqttsuite-integrator
 
 config MQTTSUITE_INTEGRATOR_TCP_IPV4
-    bool "TCP (IPv4)"
+    bool "TCP (IPv4)" if MQTTSUITE_INTEGRATOR_TCP_IPV6 || MQTTSUITE_INTEGRATOR_UNIX
     default y
 
 config MQTTSUITE_INTEGRATOR_TLS_IPV4
-    bool "SSL/TLS (IPv4)"
+    bool "TLS (IPv4)"
     depends on MQTTSUITE_INTEGRATOR_TCP_IPV4
     default y
 
@@ -61,7 +66,7 @@ config MQTTSUITE_INTEGRATOR_TCP_IPV6
     default y
 
 config MQTTSUITE_INTEGRATOR_TLS_IPV6
-    bool "SSL/TLS (IPv6)"
+    bool "TLS (IPv6)"
     depends on MQTTSUITE_INTEGRATOR_TCP_IPV6
     default y
 
@@ -70,30 +75,34 @@ config MQTTSUITE_INTEGRATOR_UNIX
     default y
 
 config MQTTSUITE_INTEGRATOR_UNIX_TLS
-    bool "SSL/TLS (Unix domain sockets)"
+    bool "TLS (Unix domain sockets)"
     depends on MQTTSUITE_INTEGRATOR_UNIX
     default n
 
 config MQTTSUITE_INTEGRATOR_WS
     bool "WebSocket"
+    depends on MQTTSUITE_INTEGRATOR_TCP_IPV4 || MQTTSUITE_INTEGRATOR_TCP_IPV6 || MQTTSUITE_INTEGRATOR_UNIX
     default y
 
 config MQTTSUITE_INTEGRATOR_WSS
-    bool "SSL/TLS (WebSocket)"
+    bool "Secure WebSocket"
     depends on MQTTSUITE_INTEGRATOR_WS
+    depends on MQTTSUITE_INTEGRATOR_TLS_IPV4 || MQTTSUITE_INTEGRATOR_TLS_IPV6 || MQTTSUITE_INTEGRATOR_UNIX_TLS
     default y
+
+comment "IPv4 TCP is required when both IPv6 and Unix sockets are disabled"
+    depends on !MQTTSUITE_INTEGRATOR_TCP_IPV4 && !MQTTSUITE_INTEGRATOR_TCP_IPV6 && !MQTTSUITE_INTEGRATOR_UNIX
 endmenu
 
-# ===================== Bridge transports =====================
 menu "mqttbridge transports"
-    depends on PACKAGE_mqttsuite-bridge
+    visible if PACKAGE_mqttsuite-bridge
 
 config MQTTSUITE_BRIDGE_TCP_IPV4
-    bool "TCP (IPv4)"
+    bool "TCP (IPv4)" if MQTTSUITE_BRIDGE_TCP_IPV6 || MQTTSUITE_BRIDGE_UNIX
     default y
 
 config MQTTSUITE_BRIDGE_TLS_IPV4
-    bool "SSL/TLS (IPv4)"
+    bool "TLS (IPv4)"
     depends on MQTTSUITE_BRIDGE_TCP_IPV4
     default y
 
@@ -102,7 +111,7 @@ config MQTTSUITE_BRIDGE_TCP_IPV6
     default y
 
 config MQTTSUITE_BRIDGE_TLS_IPV6
-    bool "SSL/TLS (IPv6)"
+    bool "TLS (IPv6)"
     depends on MQTTSUITE_BRIDGE_TCP_IPV6
     default y
 
@@ -111,30 +120,34 @@ config MQTTSUITE_BRIDGE_UNIX
     default y
 
 config MQTTSUITE_BRIDGE_UNIX_TLS
-    bool "SSL/TLS (Unix domain sockets)"
+    bool "TLS (Unix domain sockets)"
     depends on MQTTSUITE_BRIDGE_UNIX
     default n
 
 config MQTTSUITE_BRIDGE_WS
     bool "WebSocket"
+    depends on MQTTSUITE_BRIDGE_TCP_IPV4 || MQTTSUITE_BRIDGE_TCP_IPV6 || MQTTSUITE_BRIDGE_UNIX
     default y
 
 config MQTTSUITE_BRIDGE_WSS
-    bool "SSL/TLS (WebSocket)"
+    bool "Secure WebSocket"
     depends on MQTTSUITE_BRIDGE_WS
+    depends on MQTTSUITE_BRIDGE_TLS_IPV4 || MQTTSUITE_BRIDGE_TLS_IPV6 || MQTTSUITE_BRIDGE_UNIX_TLS
     default y
+
+comment "IPv4 TCP is required when both IPv6 and Unix sockets are disabled"
+    depends on !MQTTSUITE_BRIDGE_TCP_IPV4 && !MQTTSUITE_BRIDGE_TCP_IPV6 && !MQTTSUITE_BRIDGE_UNIX
 endmenu
 
-# ===================== CLI transports =====================
 menu "mqttcli transports"
-    depends on PACKAGE_mqttsuite-cli
+    visible if PACKAGE_mqttsuite-cli
 
 config MQTTSUITE_CLI_TCP_IPV4
-    bool "TCP (IPv4)"
+    bool "TCP (IPv4)" if MQTTSUITE_CLI_TCP_IPV6 || MQTTSUITE_CLI_UNIX
     default y
 
 config MQTTSUITE_CLI_TLS_IPV4
-    bool "SSL/TLS (IPv4)"
+    bool "TLS (IPv4)"
     depends on MQTTSUITE_CLI_TCP_IPV4
     default y
 
@@ -143,7 +156,7 @@ config MQTTSUITE_CLI_TCP_IPV6
     default y
 
 config MQTTSUITE_CLI_TLS_IPV6
-    bool "SSL/TLS (IPv6)"
+    bool "TLS (IPv6)"
     depends on MQTTSUITE_CLI_TCP_IPV6
     default y
 
@@ -152,18 +165,68 @@ config MQTTSUITE_CLI_UNIX
     default y
 
 config MQTTSUITE_CLI_UNIX_TLS
-    bool "SSL/TLS (Unix domain sockets)"
+    bool "TLS (Unix domain sockets)"
     depends on MQTTSUITE_CLI_UNIX
     default n
 
 config MQTTSUITE_CLI_WS
     bool "WebSocket"
+    depends on MQTTSUITE_CLI_TCP_IPV4 || MQTTSUITE_CLI_TCP_IPV6 || MQTTSUITE_CLI_UNIX
     default y
 
 config MQTTSUITE_CLI_WSS
-    bool "SSL/TLS (WebSocket)"
+    bool "Secure WebSocket"
     depends on MQTTSUITE_CLI_WS
+    depends on MQTTSUITE_CLI_TLS_IPV4 || MQTTSUITE_CLI_TLS_IPV6 || MQTTSUITE_CLI_UNIX_TLS
     default y
+
+comment "IPv4 TCP is required when both IPv6 and Unix sockets are disabled"
+    depends on !MQTTSUITE_CLI_TCP_IPV4 && !MQTTSUITE_CLI_TCP_IPV6 && !MQTTSUITE_CLI_UNIX
+endmenu
+
+menu "mqttstore transports"
+    visible if PACKAGE_mqttsuite-store
+
+config MQTTSUITE_STORE_TCP_IPV4
+    bool "TCP (IPv4)" if MQTTSUITE_STORE_TCP_IPV6 || MQTTSUITE_STORE_UNIX
+    default y
+
+config MQTTSUITE_STORE_TLS_IPV4
+    bool "TLS (IPv4)"
+    depends on MQTTSUITE_STORE_TCP_IPV4
+    default y
+
+config MQTTSUITE_STORE_TCP_IPV6
+    bool "TCP (IPv6)"
+    default y
+
+config MQTTSUITE_STORE_TLS_IPV6
+    bool "TLS (IPv6)"
+    depends on MQTTSUITE_STORE_TCP_IPV6
+    default y
+
+config MQTTSUITE_STORE_UNIX
+    bool "Unix domain sockets"
+    default y
+
+config MQTTSUITE_STORE_UNIX_TLS
+    bool "TLS (Unix domain sockets)"
+    depends on MQTTSUITE_STORE_UNIX
+    default n
+
+config MQTTSUITE_STORE_WS
+    bool "WebSocket"
+    depends on MQTTSUITE_STORE_TCP_IPV4 || MQTTSUITE_STORE_TCP_IPV6 || MQTTSUITE_STORE_UNIX
+    default y
+
+config MQTTSUITE_STORE_WSS
+    bool "Secure WebSocket"
+    depends on MQTTSUITE_STORE_WS
+    depends on MQTTSUITE_STORE_TLS_IPV4 || MQTTSUITE_STORE_TLS_IPV6 || MQTTSUITE_STORE_UNIX_TLS
+    default y
+
+comment "IPv4 TCP is required when both IPv6 and Unix sockets are disabled"
+    depends on !MQTTSUITE_STORE_TCP_IPV4 && !MQTTSUITE_STORE_TCP_IPV6 && !MQTTSUITE_STORE_UNIX
 endmenu
 
 endmenu

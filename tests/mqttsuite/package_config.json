@@ -1,0 +1,28 @@
+[
+  {
+    "name": "CLI retains IPv4 when no other transport is selected",
+    "request": {
+      "PACKAGE_mqttsuite-cli": "m",
+      "MQTTSUITE_CLI_TCP_IPV4": "n",
+      "MQTTSUITE_CLI_TLS_IPV4": "n",
+      "MQTTSUITE_CLI_TCP_IPV6": "n",
+      "MQTTSUITE_CLI_UNIX": "n",
+      "MQTTSUITE_CLI_WS": "n"
+    },
+    "expected": {
+      "MQTTSUITE_CLI_TCP_IPV4": "y"
+    },
+    "absent": [
+      "PACKAGE_mqttsuite-broker"
+    ]
+  },
+  {
+    "name": "complete MQTTSuite inventory",
+    "request": {
+      "PACKAGE_mqttsuite-full": "m"
+    },
+    "packages": {
+      "mqttsuite": 9
+    }
+  }
+]
