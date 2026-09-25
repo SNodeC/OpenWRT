@@ -161,6 +161,11 @@ release-series upgrade, reconfigure this feed for the new series.
 
 ## Choose and install packages
 
+**Complete package catalogs:** [SNode.C — all 67 packages](docs/snodec-package-options.md)
+· [MQTTSuite — all 9 packages](docs/mqttsuite-package-options.md).
+The catalogs list individual package names and their contents. Common choices
+are shown below.
+
 | Package | What it installs |
 | --- | --- |
 | `mqttsuite-broker` | MQTT broker and its service |
@@ -200,9 +205,6 @@ opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control
 # OpenWrt 25.12
 apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control
 ```
-
-See the complete [MQTTSuite package inventory](docs/mqttsuite-package-options.md)
-and [SNode.C package inventory](docs/snodec-package-options.md).
 
 ### Configure and start the broker
 
