@@ -39,10 +39,12 @@ class PublicationTest(unittest.TestCase):
 
     def test_same_platforms_in_both_releases(self):
         rows = repo.matrix()
-        self.assertEqual(len(rows), 36)
+        self.assertEqual(len(rows), 50)
         platforms = [{r['target'] for r in rows if r['series'] == version} for version in ['24.10', '25.12']]
         self.assertEqual(platforms[0], platforms[1])
         self.assertTrue({'mediatek/filogic', 'ipq40xx/generic', 'ramips/mt76x8', 'ath79/generic'} <= platforms[0])
+        self.assertTrue({'bcm27xx/bcm2712', 'pistachio/generic', 'octeon/generic', 'x86/generic',
+                         'sunxi/cortexa8', 'loongarch64/generic', 'at91/sama5'} <= platforms[0])
 
     def test_complete_publication_preserves_cached_packages(self):
         old = self.checkout / 'releases/24.10/x86_64/old.ipk'
@@ -50,7 +52,7 @@ class PublicationTest(unittest.TestCase):
         old.write_bytes(b'old')
         self.publish()
         self.assertTrue(old.exists())
-        self.assertEqual(len(list(self.checkout.glob('releases/*/*/build.json'))), 36)
+        self.assertEqual(len(list(self.checkout.glob('releases/*/*/build.json'))), 50)
 
     def test_incomplete_matrix_rejected(self):
         next(self.incoming.glob('releases/*/*/build.json')).unlink()
