@@ -3,22 +3,19 @@
 set -e
 
 usage() {
-  echo "Usage: $0 [-i] [-u <user>] [-p <password>] [-r <router.ip-or-host.name>] [-h]"
-  echo "   -i ... Upload feeds to repository"
+  echo "Usage: $0 [-c] [-u <user>] [-p <password>] [-r <router.ip-or-host.name>] [-h]"
   echo "   -c ... Cross compile"
   echo "   -r ... Router to install MQTTSuite"
   echo "   -u ... Username on the router"
   echo "   -p ... Password of user on router"
   echo "   -h ... Show this usage information"
   echo ""
-  echo "   In case -r is specified -i is obsolet"
   exit 1
 }
 
 unset LD_PRELOAD
 
 # Default values
-i_flag=0
 r_flag=0
 c_flag=0
 user=""
@@ -26,11 +23,8 @@ password=""
 router=""
 
 # Parse command-line options
-while getopts ":icu:p:r:h" opt; do
+while getopts ":cu:p:r:h" opt; do
   case $opt in
-    i)
-      i_flag=1
-      ;;
     c)
       c_flag=1
       ;;
@@ -58,10 +52,6 @@ while getopts ":icu:p:r:h" opt; do
   esac
 done
 
-if [ $c_flag -eq 1 ] && [ $r_flag -eq 1 ]; then
-  i_flag=1
-fi
-
 if [ $c_flag -eq 1 ]; then
   echo "Preparing build environment"
   if grep -qFm1 SNodeC feeds.conf.default; then
@@ -70,13 +60,6 @@ if [ $c_flag -eq 1 ]; then
     echo "  Patching feeds.conf.default by appending"
     echo "  src-git snodec https://github.com/SNodeC/OpenWRT"
    	echo "src-git snodec https://github.com/SNodeC/OpenWRT" >> feeds.conf.default
-  fi
-
-  if compgen -G key-build* > /dev/null; then
-    echo "  Key files already existing"
-  else
-    echo "  Installing key files"
-    cp `dirname $0`/key-build* .
   fi
 
   echo "Cleaning"
@@ -97,20 +80,7 @@ if [ $c_flag -eq 1 ]; then
   make -j $(($(nproc)+1)) package/mqttsuite/compile # Cross compile and install
 fi
 
-# Execute a set of commands remotely if -i is given
-if [ $i_flag -eq 1 ]; then
-  echo "Uploading packages to repository"
-  make -j $(($(nproc)+1)) package/index
-
-  target_dir=$(ls -d "bin/packages/"* | sed 's|bin/packages/||')
-
-  ssh root@proliant "mkdir -p /var/www/html/owrt/packages/"$target_dir
-  ssh root@proliant "rm -f /var/www/html/owrt/packages/"$target_dir/*
-  export GLOBIGNORE="bin/packages/"$target_dir"/snodec/tmp"
-  scp "bin/packages/"$target_dir"/snodec/"* "root@proliant:/var/www/html/owrt/packages/$target_dir/"
-fi
-
 if [ "$r_flag" -eq "1" ]; then
   echo "Installing mqttsuite on $router..."
-  wget -qO- https://raw.githubusercontent.com/SNodeC/mqttsuite/refs/heads/master/misc/owrt-install | sshpass -p "$password" ssh -t "$user@$router" sh -
+  wget -qO- https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh | sshpass -p "$password" ssh -t "$user@$router" sh -
 fi

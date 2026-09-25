@@ -1,5 +1,3 @@
 #!/bin/sh
-
-opkg --force-removal-of-dependent-packages remove snode.c
-opkg update
-opkg install mqttsuite
+set -eu
+exec "$(dirname "$0")/ci/install-feed.sh"
