@@ -1,6 +1,11 @@
 #!/bin/sh
 # Run explicitly on an OpenWrt router; CI never invokes this on owned devices.
 set -eu
+case "$#:${1-}" in
+    0:|1:--minimal) ;;
+    1:--help|1:-h) echo "Usage: $0 [--minimal]  (--minimal: configure feed only)"; exit 0 ;;
+    *) echo "Usage: $0 [--minimal]" >&2; exit 2 ;;
+esac
 . /etc/openwrt_release
 series=${DISTRIB_RELEASE%.*}
 case "$series" in 24.10|25.12) ;; *) echo "Unsupported OpenWrt release: $DISTRIB_RELEASE" >&2; exit 1 ;; esac
@@ -18,11 +23,14 @@ if [ "$series" = 24.10 ]; then
     sed -i '/^src\/gz snodec /d' /etc/opkg/customfeeds.conf
     printf 'src/gz snodec %s\n' "$url" >> /etc/opkg/customfeeds.conf
     opkg update
-    opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control
 else
     wget -q -O "$temporary/key.pem" "$base/keys/snodec-apk.pem"
     cp "$temporary/key.pem" /etc/apk/keys/snodec-apk.pem
     printf '%s/packages.adb\n' "$url" > /etc/apk/repositories.d/snodec.list
     apk update
-    apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control
 fi
+[ "${1-}" != --minimal ] || exit 0
+case "$series" in
+    24.10) opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control ;;
+    25.12) apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control ;;
+esac
