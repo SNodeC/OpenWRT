@@ -24,3 +24,12 @@
  
  if(snodec_FOUND)
      set(CMAKE_SKIP_RPATH FALSE)
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -149,5 +149,5 @@
+ target_link_libraries(
+     core
+-    PRIVATE mux-${SNODEC_IO_MULTIPLEXER}
++    PRIVATE mux-${SNODEC_IO_MULTIPLEXER} atomic
+     PUBLIC utils ${CMAKE_DL_LIBS}
+ )
