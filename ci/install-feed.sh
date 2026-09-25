@@ -2,9 +2,9 @@
 # Run explicitly on an OpenWrt router; CI never invokes this on owned devices.
 set -eu
 case "$#:${1-}" in
-    0:|1:--minimal) ;;
-    1:--help|1:-h) echo "Usage: $0 [--minimal]  (--minimal: configure feed only)"; exit 0 ;;
-    *) echo "Usage: $0 [--minimal]" >&2; exit 2 ;;
+    0:|1:--prepare) ;;
+    1:--help|1:-h) echo "Usage: $0 [--prepare]  (--prepare: configure feed only)"; exit 0 ;;
+    *) echo "Usage: $0 [--prepare]" >&2; exit 2 ;;
 esac
 . /etc/openwrt_release
 series=${DISTRIB_RELEASE%.*}
@@ -29,7 +29,7 @@ else
     printf '%s/packages.adb\n' "$url" > /etc/apk/repositories.d/snodec.list
     apk update
 fi
-[ "${1-}" != --minimal ] || exit 0
+[ "${1-}" != --prepare ] || exit 0
 case "$series" in
     24.10) opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control ;;
     25.12) apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control ;;

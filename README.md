@@ -83,14 +83,14 @@ that the feed exists, imports its public signing key, adds the feed and refreshe
 the package lists. It then installs **`mqttsuite-full`, `snode.c-full`,
 `snode.c-apps` and `snode.c-control`**, including their dependencies.
 
-### Minimal installation
+### Prepare the package feed
 
-To prepare the feed without installing any packages, pass **`--minimal`**:
+To prepare the feed without installing any packages, pass **`--prepare`**:
 
 ```sh
 wget -O /tmp/snodec-install-feed.sh \
   https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh &&
-sh /tmp/snodec-install-feed.sh --minimal
+sh /tmp/snodec-install-feed.sh --prepare
 ```
 
 This imports the signing key, configures the feed and refreshes package lists.

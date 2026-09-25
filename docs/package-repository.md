@@ -14,7 +14,7 @@ is not assumed compatible merely because its CPU matches.
 
 The optional `ci/install-feed.sh` script on `main` performs this setup and
 installation explicitly on a router, rejecting unsupported/unpublished feeds.
-Pass `--minimal` to import the signing key, configure the feed and update package
+Pass `--prepare` to import the signing key, configure the feed and update package
 lists without installing packages. Without options it installs the full selection.
 CI never runs it on your devices.
 
