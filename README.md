@@ -163,8 +163,11 @@ release-series upgrade, reconfigure this feed for the new series.
 
 ## Choose and install packages
 
-**Complete package catalogs:** [SNode.C — all 67 packages](docs/snodec-package-options.md)
-· [MQTTSuite — all 9 packages](docs/mqttsuite-package-options.md).
+**Complete package catalogs:**
+
+- [SNode.C — all 67 packages](docs/snodec-package-options.md)
+- [MQTTSuite — all 9 packages](docs/mqttsuite-package-options.md)
+
 The catalogs list individual package names and their contents.
 
 **Common choices:**
