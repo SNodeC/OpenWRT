@@ -19,19 +19,19 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
           path: feed
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: SNodeC/snode.c
           ref: refs/tags/OpenWRT
           submodules: recursive
           path: sources/snode.c
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: SNodeC/mqttsuite
           ref: refs/tags/OpenWRT
@@ -52,7 +52,7 @@ jobs:
           python3 feed/tests/test_ipk_audit.py
           python3 feed/ci/repository.py prepare sources bundle
           echo "value=$(python3 feed/ci/repository.py matrix)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: tagged-sources
           path: bundle/
@@ -65,7 +65,7 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: tagged-sources
           path: bundle
@@ -88,12 +88,12 @@ jobs:
         run: bash feed/ci/build.sh feed bundle sdk
       - name: Stage complete feed
         run: python3 feed/ci/repository.py stage sdk bundle output
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: packages-${{ matrix.series }}-${{ matrix.arch }}
           path: output/
           if-no-files-found: error
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: logs-${{ matrix.series }}-${{ matrix.arch }}
@@ -113,11 +113,11 @@ jobs:
         series: ['24.10', '25.12']
         arch: [x86_64, aarch64_generic]
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: tagged-sources
           path: bundle
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: packages-${{ matrix.series }}-${{ matrix.arch }}
           path: output
@@ -131,7 +131,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qemu-system-x86 qemu-system-arm e2fsprogs openssl
           python3 feed/tests/test_feed_vm.py output "$SERIES" "$ARCH"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: runtime-${{ matrix.series }}-${{ matrix.arch }}
@@ -142,16 +142,16 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: tagged-sources
           path: bundle
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: packages-*
           merge-multiple: true
           path: incoming
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
           path: published
