@@ -165,9 +165,9 @@ release-series upgrade, reconfigure this feed for the new series.
 
 **Complete package catalogs:** [SNode.C — all 67 packages](docs/snodec-package-options.md)
 · [MQTTSuite — all 9 packages](docs/mqttsuite-package-options.md).
+The catalogs list individual package names and their contents.
 
-**The catalogs** list individual package names and their contents. Common choices
-are shown below.
+**Common choices are shown below.**
 
 | Package | What it installs |
 | --- | --- |
