@@ -16,10 +16,10 @@ cp "$feed/ci/keys/snodec-usign.pub" key-build.pub
 cp "$feed/ci/keys/snodec-apk.pem" public-key.pem
 # These archives were made from fresh OpenWRT-tag checkouts, including submodules.
 mkdir -p dl
-cp "$bundle"/snode.c-*.tar.gz "$bundle"/mqttsuite-*.tar.gz dl/
-# Change only the disposable recipe copies; source refs stay OpenWRT.
+# Bind disposable recipes to the shared archives; source refs stay OpenWRT.
 for package in snode.c mqttsuite; do
-    sed -i "s/^PKG_RELEASE:=.*/PKG_RELEASE:=$PACKAGE_RELEASE/" "$feed/net/$package/Makefile"
+    cp "$bundle/$package-"*.tar.gz dl/
+    sed -i "s/^PKG_RELEASE:=.*/PKG_RELEASE:=$PACKAGE_RELEASE\nPKG_MIRROR_HASH:=$(sha256sum "$bundle/$package-"*.tar.gz | cut -d' ' -f1)/; /^PKG_MIRROR_HASH:=/d" "$feed/net/$package/Makefile"
 done
 cp feeds.conf.default feeds.conf
 printf '\nsrc-link snodec %s\n' "$feed" >> feeds.conf
