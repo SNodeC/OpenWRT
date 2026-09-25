@@ -65,6 +65,11 @@ Available feeds can be browsed under [packages/releases](https://github.com/SNod
 
 ## Quick installation
 
+Run either option on the device as `root`. Use `--help` for usage. The installer
+does not configure your MQTT endpoints or certificates.
+
+### Full installation
+
 For a complete installation, run the following on the device as `root`:
 
 ```sh
@@ -78,6 +83,8 @@ that the feed exists, imports its public signing key, adds the feed and refreshe
 the package lists. It then installs **`mqttsuite-full`, `snode.c-full`,
 `snode.c-apps` and `snode.c-control`**, including their dependencies.
 
+### Minimal installation
+
 To prepare the feed without installing any packages, pass **`--minimal`**:
 
 ```sh
@@ -89,8 +96,6 @@ sh /tmp/snodec-install-feed.sh --minimal
 This imports the signing key, configures the feed and refreshes package lists.
 You then [install the packages you want](#choose-and-install-packages) yourself.
 Running without an option still installs the complete selection above.
-Use `--help` for usage, or follow the manual setup below. The installer does not
-configure your MQTT endpoints or certificates.
 
 ## Add the feed manually
 
