@@ -37,30 +37,41 @@ printf 'OpenWrt: %s\nPackage architecture: %s\n' "$DISTRIB_RELEASE" "$DISTRIB_AR
 Use `DISTRIB_ARCH`, rather than `uname -m`, when selecting a feed. The same
 package architecture can be shared by several hardware targets.
 
-Both release series currently publish these 18 architecture variants:
+Both release series currently publish 18 architecture variants. The table also
+includes seven planned additions whose CI matrix changes are committed locally
+but not yet pushed. Their feeds will become available only after the expanded
+matrix is enabled and passes build, runtime and publication checks.
 
 | Package architecture | Representative SDK target | OpenWrt 24.10 | OpenWrt 25.12 |
 | --- | --- | --- | --- |
 | `x86_64` | `x86/64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/x86_64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/x86_64) |
 | `i386_pentium-mmx` | `x86/geode` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/i386_pentium-mmx) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/i386_pentium-mmx) |
+| `i386_pentium4` | `x86/generic` | Not yet published | Not yet published |
 | `aarch64_cortex-a53` | `mediatek/filogic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_cortex-a53) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_cortex-a53) |
 | `aarch64_cortex-a72` | `bcm27xx/bcm2711` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_cortex-a72) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_cortex-a72) |
+| `aarch64_cortex-a76` | `bcm27xx/bcm2712` | Not yet published | Not yet published |
 | `aarch64_generic` | `armsr/armv8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_generic) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_generic) |
+| `arm_cortex-a5_vfpv4` | `at91/sama5` | Not yet published | Not yet published |
 | `arm_cortex-a7` | `mediatek/mt7629` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7) |
 | `arm_cortex-a7_neon-vfpv4` | `ipq40xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7_neon-vfpv4) |
 | `arm_cortex-a7_vfpv4` | `at91/sama7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7_vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7_vfpv4) |
+| `arm_cortex-a8_vfpv3` | `sunxi/cortexa8` | Not yet published | Not yet published |
 | `arm_cortex-a9` | `bcm53xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9) |
 | `arm_cortex-a9_neon` | `imx/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9_neon) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9_neon) |
 | `arm_cortex-a9_vfpv3-d16` | `mvebu/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9_vfpv3-d16) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9_vfpv3-d16) |
 | `arm_cortex-a15_neon-vfpv4` | `armsr/armv7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a15_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a15_neon-vfpv4) |
+| `loongarch64_generic` | `loongarch64/generic` | Not yet published | Not yet published |
+| `mips64_octeonplus` | `octeon/generic` | Not yet published | Not yet published |
 | `mips_24kc` | `ath79/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mips_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mips_24kc) |
 | `mipsel_24kc` | `ramips/mt76x8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mipsel_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mipsel_24kc) |
+| `mipsel_24kc_24kf` | `pistachio/generic` | Not yet published | Not yet published |
 | `mipsel_74kc` | `ramips/rt3883` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mipsel_74kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mipsel_74kc) |
 | `powerpc_464fp` | `apm821xx/nand` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/powerpc_464fp) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/powerpc_464fp) |
 | `powerpc_8548` | `mpc85xx/p1010` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/powerpc_8548) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/powerpc_8548) |
 | `riscv64_riscv64` (24.10), `riscv64_generic` (25.12) | `sifiveu/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/riscv64_riscv64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/riscv64_generic) |
 
-The build matrix is maintained in [ci/platforms.json](ci/platforms.json).
+The active build matrix is maintained in [ci/platforms.json](ci/platforms.json).
+The pending expansion covers 25 architectures across both releases (50 builds).
 Available feeds can be browsed under [packages/releases](https://github.com/SNodeC/OpenWRT/tree/packages/releases).
 
 ## Quick installation
