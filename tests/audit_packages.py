@@ -1,10 +1,11 @@
-"""Extract APKs and check ELF dependencies through each package's dependency closure.
+"""Extract OpenWrt packages and check ELF dependencies through their closure.
 
 Usage: python3 tests/audit_packages.py SDK OUTPUT_DIRECTORY [all|native|cli]
 No target binaries or package installation scripts are executed.
 """
 from pathlib import Path
 import hashlib
+import io
 import json
 import os
 import posixpath
@@ -12,6 +13,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tarfile
 
 sdk, output = map(lambda p: Path(p).resolve(), sys.argv[1:3])
 mode = sys.argv[3] if len(sys.argv) > 3 else 'all'
@@ -19,8 +21,9 @@ assert mode in {'all', 'native', 'cli'}
 output.mkdir(parents=True, exist_ok=True)
 apk = sdk / 'staging_dir/host/bin/apk'
 archives = {}
-for path in sdk.glob('bin/**/*.apk'):
-    match = re.match(r'(.+)-(?=[0-9])', path.name)
+for path in sdk.glob('bin/**/*'):
+    match = (re.match(r'(.+)-(?=[0-9])', path.name) if path.suffix == '.apk' else
+             re.match(r'(.+?)_', path.name) if path.suffix == '.ipk' else None)
     if match:
         archives[match[1]] = path
 metadata = {}
@@ -29,17 +32,28 @@ def load(name):
     if name in metadata:
         return metadata[name]
     archive = archives[name]
-    dump = subprocess.check_output([str(apk), 'adbdump', '--allow-untrusted', str(archive)], text=True)
-    info = dump.split('info:\n', 1)[1].split('\npaths:', 1)[0]
-    deps = re.search(r'^  depends:.*\n((?:    - .*\n)*)', info, re.M)
-    dependencies = [re.split(r'[<>=~]', line.strip()[2:])[0]
-                    for line in deps[1].splitlines()] if deps else []
     root = output / 'extracted' / name
     if root.exists():
         shutil.rmtree(root)
     root.mkdir(parents=True, exist_ok=True)
-    subprocess.run([str(apk), 'extract', '--allow-untrusted', '--no-chown',
-                    '--destination', str(root), str(archive)], check=True, stdout=subprocess.DEVNULL)
+    if archive.suffix == '.apk':
+        dump = subprocess.check_output([str(apk), 'adbdump', '--allow-untrusted', str(archive)], text=True)
+        info = dump.split('info:\n', 1)[1].split('\npaths:', 1)[0]
+        deps = re.search(r'^  depends:.*\n((?:    - .*\n)*)', info, re.M)
+        dependencies = [re.split(r'[<>=~]', line.strip()[2:])[0]
+                        for line in deps[1].splitlines()] if deps else []
+        subprocess.run([str(apk), 'extract', '--allow-untrusted', '--no-chown',
+                        '--destination', str(root), str(archive)], check=True, stdout=subprocess.DEVNULL)
+    else:
+        with tarfile.open(archive) as package:
+            members = {Path(m.name).name: m for m in package.getmembers()}
+            with tarfile.open(fileobj=io.BytesIO(package.extractfile(members['control.tar.gz']).read())) as control:
+                entry = next(m for m in control.getmembers() if Path(m.name).name == 'control')
+                info = control.extractfile(entry).read().decode()
+            deps = re.search(r'^Depends: (.*)$', info, re.M)
+            dependencies = [item.strip().split()[0] for item in deps[1].split(',')] if deps else []
+            data = package.extractfile(members['data.tar.gz']).read()
+        subprocess.run(['tar', '-xz', '--no-same-owner', '-C', str(root)], input=data, check=True)
     files = {'/' + str(p.relative_to(root)): p for p in root.rglob('*') if p.is_symlink() or p.is_file()}
     result = metadata[name] = {'dependencies': dependencies, 'files': files, 'root': root, 'archive': archive}
     for dep in dependencies:
@@ -73,6 +87,7 @@ for name in selected:
     load(name)
 report = {}
 errors = []
+reference_elf = next(sdk.glob('staging_dir/toolchain-*/lib/libc.so')).read_bytes()[:20]
 for name in selected:
     package = metadata[name]
     available = {}
@@ -91,8 +106,8 @@ for name in selected:
             if file.read(4) != b'\x7fELF':
                 continue
         dynamic = subprocess.check_output(['readelf', '-d', str(host)], text=True)
-        header = subprocess.check_output(['readelf', '-h', str(host)], text=True)
-        if 'AArch64' not in header:
+        header = host.read_bytes()[:20]
+        if (header[4:6], header[18:20]) != (reference_elf[4:6], reference_elf[18:20]):
             errors.append(f'{name}: incorrect architecture for {target}')
         needed = re.findall(r'\(NEEDED\).*\[(.*?)\]', dynamic)
         soname = re.findall(r'\(SONAME\).*\[(.*?)\]', dynamic)

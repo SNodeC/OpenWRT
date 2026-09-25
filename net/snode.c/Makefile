@@ -108,7 +108,7 @@ endif
 CMAKE_OPTIONS+=-U'SNODEC_*' \
                -DFETCHCONTENT_SOURCE_DIR_SPDLOG=$(PKG_BUILD_DIR)/spdlog-1.17.0 \
                -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
-               -DSPDLOG_INSTALL=OFF \
+               -DSPDLOG_INSTALL=OFF -DSPDLOG_SYSTEM_INCLUDES=ON \
                -DSNODEC_BUILD_APPS=$(if $(CONFIG_PACKAGE_snode.c-apps),ON,OFF) \
                -DSNODEC_BUILD_TESTS=OFF \
                -DSNODEC_CONTROL_BUILD_TUI=OFF \
@@ -312,7 +312,7 @@ $(eval $(call BuildSNodeCModule,utils,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-epoll,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-poll,+snode.c-logger,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-mux-select,+snode.c-logger,/usr/lib))
-$(eval $(call BuildSNodeCModule,core,+snode.c-utils +SNODEC_EPOLL:snode.c-core-mux-epoll +SNODEC_POLL:snode.c-core-mux-poll +SNODEC_SELECT:snode.c-core-mux-select,/usr/lib))
+$(eval $(call BuildSNodeCModule,core,+snode.c-utils +libatomic +SNODEC_EPOLL:snode.c-core-mux-epoll +SNODEC_POLL:snode.c-core-mux-poll +SNODEC_SELECT:snode.c-core-mux-select,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket,+snode.c-core,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket-stream,+snode.c-core-socket,/usr/lib))
 $(eval $(call BuildSNodeCModule,core-socket-stream-legacy,+snode.c-core-socket-stream,/usr/lib))

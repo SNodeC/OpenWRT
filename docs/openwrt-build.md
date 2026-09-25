@@ -1,8 +1,7 @@
 # SNode.C and MQTTSuite for GL-MT3000
 
-These recipes target the source revisions pinned in their Makefiles: SNode.C
-2.0.0 from `feature/per-operation-socket-flows`, and MQTTSuite 1.0.1 from
-`master`. All integration patches live in the OpenWrt recipes; the source
+These recipes use the movable `OpenWRT` tag in both source repositories:
+SNode.C 2.0.0 and MQTTSuite 1.0.1. All integration patches live in the OpenWrt recipes; the source
 repositories are not modified.
 
 The build uses the official OpenWrt 25.12.5 `mediatek/filogic` SDK with GCC
@@ -19,6 +18,11 @@ Archive: `openwrt-sdk-25.12.5-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.
 SHA256: `ff4a38a397caa2cfe1c39e18f84ddede14878221b3593c3f2c4cfe24e3ec4c25`
 
 ## Branch ownership
+
+The tag-triggered multi-platform CI and signed binary feed are described in
+[Package repository](package-repository.md). The device-specific steps below
+remain useful for local SDK validation; CI builds both release series for all
+platforms listed in `ci/platforms.json`.
 
 | Branch | Files maintained there |
 | --- | --- |
