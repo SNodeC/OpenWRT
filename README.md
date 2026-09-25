@@ -167,7 +167,7 @@ release-series upgrade, reconfigure this feed for the new series.
 · [MQTTSuite — all 9 packages](docs/mqttsuite-package-options.md).
 The catalogs list individual package names and their contents.
 
-**Common choices**
+**Common choices:**
 
 | Package | What it installs |
 | --- | --- |
