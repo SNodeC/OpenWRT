@@ -92,7 +92,10 @@ version tags, not commit pins.
 
 Publication requires all 36 builds and four clean-VM installation/runtime jobs.
 Matrix jobs do not stop when a different job fails. Packages get increasing
-`PKG_RELEASE` values from the centralized workflow run number and attempt.
+integer `PKG_RELEASE` values from the centralized workflow run number plus one
+(the first CI revision is 2, above the existing recipe revision 1). APK does not
+accept dotted revisions. Reruns retain their revision; an already-published
+revision cannot be overwritten.
 A publisher checks the complete matrix, source generation and file checksums,
 then commits all architectures together. It preserves old package files for
 cached indexes and rejects stale/equal publication revisions. A tag change

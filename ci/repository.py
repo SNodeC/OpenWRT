@@ -132,7 +132,7 @@ def publish(incoming, checkout, bundle):
         destination = checkout / 'releases' / series / arch
         if (destination / 'build.json').exists():
             previous = json.loads((destination / 'build.json').read_text())
-            if tuple(map(int, previous['revision'].split('.'))) >= tuple(map(int, metadata['revision'].split('.'))):
+            if int(previous['revision']) >= int(metadata['revision']):
                 raise RuntimeError('Refusing an older/equal publication revision')
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copytree(directory, destination, dirs_exist_ok=True)

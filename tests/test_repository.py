@@ -30,7 +30,7 @@ class PublicationTest(unittest.TestCase):
             directory = self.incoming / 'releases' / row['series'] / row['arch']
             directory.mkdir(parents=True)
             (directory / 'sample.apk').write_bytes(b'package')
-            info = dict(row, sources=self.sources, revision='1.2.1',
+            info = dict(row, sources=self.sources, revision='2',
                         files={'sample.apk': repo.hashlib.sha256(b'package').hexdigest()})
             (directory / 'build.json').write_text(json.dumps(info))
 
@@ -82,7 +82,7 @@ class PublicationTest(unittest.TestCase):
             self.publish()
         path = self.checkout / 'releases/24.10/aarch64_cortex-a53/build.json'
         metadata = json.loads(path.read_text())
-        metadata['revision'] = '1.3.1'
+        metadata['revision'] = '3'
         path.write_text(json.dumps(metadata))
         with self.assertRaisesRegex(RuntimeError, 'older/equal'):
             self.publish()
