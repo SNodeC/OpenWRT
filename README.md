@@ -142,7 +142,9 @@ are preserved. The public keys can also be inspected in [ci/keys](ci/keys).
 
 ### Example: GL.iNet GL-MT3000 running official OpenWrt
 
-This device uses `aarch64_cortex-a53`. On **24.10**, the entry in
+This device uses `aarch64_cortex-a53`.
+
+On **24.10**, the entry in
 `/etc/opkg/customfeeds.conf` is:
 
 ```text
