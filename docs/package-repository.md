@@ -2,7 +2,7 @@
 
 This is the binary feed for `SNodeC/OpenWRT`, published on branch `packages`.
 OpenWrt 24.10 uses IPK/opkg; 25.12 uses APK. Each series supports the same
-18 platform variants, including all devices described by the `infra` branch.
+25 platform variants, including all devices described by the `infra` branch.
 The RISC-V architecture is named `riscv64_riscv64` on 24.10 and
 `riscv64_generic` on 25.12. See `ci/platforms.json` on `main` for the matrix.
 
@@ -95,7 +95,7 @@ SDK audits. SDK release numbers are maintained in `ci/platforms.json`; downloads
 are checked against the official release's SHA256 checksums. GitHub Actions use
 version tags, not commit pins.
 
-Publication requires all 36 builds and four clean-VM installation/runtime jobs.
+Publication requires all 50 builds and four clean-VM installation/runtime jobs.
 Matrix jobs do not stop when a different job fails. Packages get increasing
 integer `PKG_RELEASE` values from the centralized workflow run number plus one
 (the first CI revision is 2, above the existing recipe revision 1). APK does not

@@ -37,10 +37,9 @@ printf 'OpenWrt: %s\nPackage architecture: %s\n' "$DISTRIB_RELEASE" "$DISTRIB_AR
 Use `DISTRIB_ARCH`, rather than `uname -m`, when selecting a feed. The same
 package architecture can be shared by several hardware targets.
 
-Both release series currently publish 18 architecture variants. The table also
-includes seven planned additions whose CI matrix changes are committed locally
-but not yet pushed. Their feeds will become available only after the expanded
-matrix is enabled and passes build, runtime and publication checks.
+The CI matrix covers 25 architecture variants on both releases. Eighteen are
+already published; seven additional feeds are awaiting their first successful
+build, runtime and publication checks, as marked in the table.
 
 | Package architecture | Representative SDK target | OpenWrt 24.10 | OpenWrt 25.12 |
 | --- | --- | --- | --- |
@@ -71,7 +70,7 @@ matrix is enabled and passes build, runtime and publication checks.
 | `riscv64_riscv64` (24.10), `riscv64_generic` (25.12) | `sifiveu/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/riscv64_riscv64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/riscv64_generic) |
 
 The active build matrix is maintained in [ci/platforms.json](ci/platforms.json).
-The pending expansion covers 25 architectures across both releases (50 builds).
+The same 25 architectures are built across both releases (50 builds).
 Available feeds can be browsed under [packages/releases](https://github.com/SNodeC/OpenWRT/tree/packages/releases).
 
 ## Quick installation
@@ -274,7 +273,7 @@ a package update does not upgrade the OpenWrt firmware or change its release ser
 
 Creation or movement of the upstream **`OpenWRT` tag** in SNode.C or MQTTSuite
 triggers the central build. Both projects are built from those tags using
-official OpenWrt SDKs. All 36 release/architecture builds must pass package
+official OpenWrt SDKs. All 50 release/architecture builds must pass package
 configuration, dependency, architecture, symlink, RPATH and plugin checks.
 
 Four additional jobs boot clean OpenWrt VMs: x86_64 and AArch64 on both releases.
