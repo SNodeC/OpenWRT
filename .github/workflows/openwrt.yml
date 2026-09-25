@@ -160,8 +160,10 @@ jobs:
         run: |
           mkdir ../feed
           tar -xzf ../bundle/feed.tar.gz -C ../feed
+          previous=
           if git ls-remote --exit-code origin refs/heads/packages >/dev/null; then
             git fetch origin packages:refs/remotes/origin/packages
+            previous=$(git rev-parse refs/remotes/origin/packages)
             git checkout -B packages origin/packages
           else
             git checkout --orphan packages
@@ -171,6 +173,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit -m 'Publish packages from OpenWRT tags'
+          snapshot=$(git commit-tree "$(git write-tree)" -m 'Publish packages from OpenWRT tags')
           python3 ../feed/ci/repository.py check ../bundle
-          git push origin HEAD:packages
+          git push --force-with-lease="refs/heads/packages:$previous" origin "$snapshot:refs/heads/packages"

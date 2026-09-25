@@ -100,7 +100,10 @@ integer `PKG_RELEASE` values from the centralized workflow run number plus one
 accept dotted revisions. Reruns retain their revision; an already-published
 revision cannot be overwritten.
 A publisher checks the complete matrix, source generation and file checksums,
-then commits all architectures together. It preserves old package files for
+then publishes all architectures together as a single root commit, replacing
+the `packages` branch with an explicit force-with-lease against its fetched tip.
+Each publication has no parent commits; a concurrent branch update is rejected.
+Source and recipe branch history is unaffected. It preserves old package files for
 cached indexes and rejects stale/equal publication revisions. A tag change
 during the run invalidates it; its later dispatch builds the current tags.
 The old feed remains available if any job fails.
