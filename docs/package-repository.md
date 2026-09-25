@@ -80,12 +80,15 @@ included in artifacts. Previously tracked private keys must not be reused.
 
 Source checkouts always use `refs/tags/OpenWRT`, including submodules at the
 revisions specified by those tagged sources. All matrix jobs consume the same
-fresh source archives. Commit identities in `build.json` only detect moving
-tags and identify builds; they are never substituted for source tag references.
+fresh source archives. Disposable SDK recipes receive checksums of those archives
+so the SDK accepts the shared snapshot without downloading the tag again. These
+archive checksums are not source revision pins. Commit identities in `build.json`
+only detect moving tags and identify builds; they never replace tag references.
 No downloaded source archive cache is reused between runs.
 
-The workflow uses official SDK archives rather than the `gh-action-sdk` wrapper:
-the wrapper has no hook for our shared full-package configuration and existing
+The [official packages CI](https://github.com/openwrt/packages/blob/master/.github/workflows/multi-arch-test-build.yml)
+uses the OpenWrt SDK. This workflow uses official SDK archives directly:
+the `gh-action-sdk` wrapper has no hook for our full-package configuration and existing
 SDK audits. SDK release numbers are maintained in `ci/platforms.json`; downloads
 are checked against the official release's SHA256 checksums. GitHub Actions use
 version tags, not commit pins.
