@@ -10,9 +10,8 @@ baseline; no Pi-specific CPU tuning is used. 32-bit installations are not covere
 ## Installation
 
 Run these commands on the Pi. Keep the official Raspberry Pi OS repositories
-configured: they supply system dependencies. This feed supplies two complete
-packages: `snodec` (framework, modules, headers, examples and control tool) and
-`mqttsuite` (broker, bridge, integrator, CLI, store and plugins).
+configured: they supply system dependencies. This feed supplies individual component packages. The `snodec` and `mqttsuite`
+metapackages install all components of their respective projects.
 
 ```sh
 . /etc/os-release
@@ -35,9 +34,45 @@ These commands only prepare the feed. To install the full system:
 sudo apt-get install snodec mqttsuite
 ```
 
-Or install `snodec` alone for the networking framework. Installing `mqttsuite`
-automatically installs its matching SNode.C dependency. Subsequent versions are
-installed through normal `sudo apt-get update && sudo apt-get upgrade`.
+For a broker and command-line client only:
+
+```sh
+sudo apt-get install mqttsuite-broker mqttsuite-cli
+```
+
+APT installs the required SNode.C components automatically. It does not install
+other MQTTSuite applications or all of SNode.C merely to run the broker.
+
+| Package | Contents |
+| --- | --- |
+| `mqttsuite-broker` | Broker, its library, WebSocket plugin and web assets |
+| `mqttsuite-bridge` | Bridge, its library, WebSocket plugin and web assets |
+| `mqttsuite-integrator` | Integrator, its library and WebSocket plugin |
+| `mqttsuite-cli` | Command-line client, its library and WebSocket plugin |
+| `mqttsuite-store` | Store, its library and WebSocket plugin |
+| `mqttsuite-mapping-double` | Double mapping plugin |
+| `mqttsuite-mapping-storage` | Storage mapping plugin |
+| `mqttsuite` | All seven MQTTSuite components |
+| `snodec` | All SNode.C components, including headers, examples and control tool |
+
+SNode.C package names follow its upstream CPack components: for example,
+`snodec-core`, `snodec-http-server`, `snodec-mqtt-server` and `snodec-apps`.
+The upstream `Unspecified` component is published as `snodec-unspecified` and
+includes `snodec-control`. List all available framework packages with:
+
+```sh
+apt-cache pkgnames snodec- | sort
+```
+
+The complete package names, versions and dependencies are in the
+[Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/bookworm/main/binary-arm64/Packages)
+and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/trixie/main/binary-arm64/Packages).
+
+Existing combined-package installations upgrade to the full-install metapackages
+and their components. Use `sudo apt-get update && sudo apt-get upgrade` for normal
+updates; `sudo apt-get install snodec mqttsuite` also explicitly performs the
+transition. Component packages declare replacement of files from older combined
+packages.
 
 APT signing-key fingerprint:
 `8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
@@ -70,9 +105,12 @@ not pinned checkout references.
 
 Each Pi job builds inside an official image's root filesystem on a native ARM64
 runner. SNode.C's CTests run during the build. A second, clean image filesystem
-then installs both packages through the signed APT feed, resolving dependencies
-without the build environment. Runtime tests cover CLI startup and MQTT
-publish/subscribe over TCP, TLS, WebSocket and secure WebSocket.
+installs only the broker and CLI through the signed APT feed and tests their
+runtime dependency closure before installing all components. A third clean
+filesystem tests upgrades from the original combined packages. Runtime tests
+cover CLI startup and MQTT publish/subscribe over TCP, TLS, WebSocket and secure
+WebSocket. Publication checks the complete CPack-derived component inventory for
+both OS releases.
 
 These are userspace tests, not Pi boot, kernel, peripheral or physical-hardware
 tests. Both Raspberry Pi OS jobs must pass before APT publication. OpenWrt builds

@@ -25,7 +25,7 @@ cleanup() {
 }
 trap cleanup EXIT
 sudo mount -o ro "${loop}p2" pi-image
-for phase in build test; do
+for phase in build test upgrade; do
     sudo cp -a pi-image/. "$root/"
     sudo rm -f "$root/etc/resolv.conf"
     sudo cp /etc/resolv.conf "$root/etc/resolv.conf"
@@ -42,15 +42,7 @@ for phase in build test; do
             bash /work/feed/ci/raspberrypi-build.sh 2>&1 | tee logs/build.log
         python3 feed/ci/apt-repository.py stage "$suite" packages bundle output
     else
-        "${enter[@]}" bash -eu -c '
-            export DEBIAN_FRONTEND=noninteractive
-            install -m 644 /work/feed/ci/keys/snodec-apt.asc /etc/apt/keyrings/snodec.asc
-            echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] file:/work/output/apt $1 main" > /etc/apt/sources.list.d/snodec.list
-            apt-get update
-            apt-get install -y snodec mqttsuite openssl python3
-            ldconfig
-            python3 /work/feed/tests/test_raspberrypi_runtime.py
-        ' bash "$suite" 2>&1 | tee logs/runtime.log
+        "${enter[@]}" bash /work/feed/tests/test_debian_install.sh "$suite" "$phase" 2>&1 | tee "logs/$phase.log"
     fi
     sudo umount -R "$root/dev"
     for mount in sys work; do sudo umount "$root/$mount"; done

@@ -24,11 +24,16 @@ def stage(suite, packages, bundle, output):
     names = set()
     for package in packages.glob('*.deb'):
         name, architecture = run('dpkg-deb', '-f', str(package), 'Package', 'Architecture').splitlines()
-        names.add(name.removeprefix('Package: '))
+        name = name.removeprefix('Package: ')
+        if name in names:
+            raise RuntimeError(f'Duplicate Debian package: {name}')
+        names.add(name)
         if architecture.removeprefix('Architecture: ') != 'arm64':
             raise RuntimeError('Non-ARM64 package')
         shutil.copy2(package, pool / package.name)
-    if names != {'snodec', 'mqttsuite'}:
+    expected = {name for project in ('snodec', 'mqttsuite')
+                for name in (packages / f'{project}.packages').read_text().splitlines()}
+    if names != expected:
         raise RuntimeError(f'Incomplete Debian package set: {names}')
     dist = apt / 'dists' / suite
     index = dist / 'main/binary-arm64'
@@ -71,17 +76,21 @@ def publish(incoming, checkout, bundle):
     expected = set(suites())
     if {p.parent.name for p in apt.glob('dists/*/build.json')} != expected:
         raise RuntimeError('Incomplete Raspberry Pi OS matrix')
+    inventories = []
     for suite in sorted(expected):
         dist = apt / 'dists' / suite
         info = json.loads((dist / 'build.json').read_text())
         if info['sources'] != json.loads((bundle / 'sources.json').read_text()):
             raise RuntimeError('Mixed source generations')
-        if info['image'] != suites()[suite] or info['packages'] != ['mqttsuite', 'snodec']:
-            raise RuntimeError('Unexpected image or package inventory')
         for name, checksum in info['files'].items():
             path = Path(name)
             if path.is_absolute() or '..' in path.parts or digest(apt / path) != checksum:
                 raise RuntimeError(f'APT checksum mismatch: {name}')
+        names = sorted(run('dpkg-deb', '-f', str(apt / name), 'Package')
+                       for name in info['files'] if name.endswith('.deb'))
+        inventories.append(names)
+        if info['image'] != suites()[suite] or info['packages'] != names:
+            raise RuntimeError('Unexpected image or package inventory')
         with tempfile.TemporaryDirectory() as home:
             run('gpg', '--homedir', home, '--batch', '--import', str(ROOT / 'ci/keys/snodec-apt.asc'))
             run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'InRelease'))
@@ -89,6 +98,8 @@ def publish(incoming, checkout, bundle):
         previous = checkout / 'apt/dists' / suite / 'build.json'
         if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(info['revision']):
             raise RuntimeError('Refusing older/equal APT publication')
+    if any(names != inventories[0] for names in inventories):
+        raise RuntimeError('Different component inventories across OS releases')
     # Retain old .debs and by-hash indexes for clients with cached metadata.
     shutil.copytree(apt, checkout / 'apt', dirs_exist_ok=True)
     unchanged(bundle)

@@ -19,13 +19,16 @@ cmake -S sources/snode.c -B build-snodec -G Ninja \
 cmake --build build-snodec --parallel 4
 bash feed/ci/debian/postinst configure
 ctest --test-dir build-snodec --output-on-failure
-snodec_version=$(sed -n 's/^set(CPACK_PACKAGE_VERSION "\([^"]*\)")/\1/p' build-snodec/CPackConfig.cmake)
-snodec_version="$snodec_version-$PACKAGE_RELEASE~$SUITE"
-(cd build-snodec && cpack -G DEB -D CPACK_DEB_COMPONENT_INSTALL=OFF \
-    -D "CPACK_PACKAGE_VERSION=$snodec_version" -D CPACK_DEBIAN_PACKAGE_ARCHITECTURE=arm64 \
-    -D CPACK_DEBIAN_PACKAGE_DEPENDS=adduser \
-    -D CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA=/work/feed/ci/debian/postinst)
-cp build-snodec/_packages/*.deb packages/
+package() {
+    local build=$1 version
+    version=$(sed -n 's/^set(CPACK_PACKAGE_VERSION "\([^" ]*\)")/\1/p' "$build/CPackConfig.cmake")
+    (cd "$build" && cpack -G DEB \
+        -D "CPACK_PACKAGE_VERSION=$version-$PACKAGE_RELEASE~$SUITE" \
+        -D CPACK_PROJECT_CONFIG_FILE=/work/feed/ci/debian-components.cmake \
+        -D COMPONENT_OUTPUT=/work/packages)
+    cp "$build"/_packages/*.deb packages/
+}
+package build-snodec
 apt-get install -y /work/packages/*.deb
 ldconfig
 cmake -S sources/mqttsuite -B build-mqttsuite -G Ninja \
@@ -33,9 +36,4 @@ cmake -S sources/mqttsuite -B build-mqttsuite -G Ninja \
     -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_INSTALL_SYSCONFDIR=/etc \
     -DCMAKE_CXX_FLAGS=-march=armv8-a
 cmake --build build-mqttsuite --parallel 4
-mqtt_version=$(sed -n 's/^CMAKE_PROJECT_VERSION:STATIC=//p' build-mqttsuite/CMakeCache.txt)
-mkdir package-mqttsuite
-(cd package-mqttsuite && cmake -DBUILD=/work/build-mqttsuite \
-    -D "VERSION=$mqtt_version-$PACKAGE_RELEASE~$SUITE" -D "SNODEC_VERSION=$snodec_version" \
-    -P /work/feed/ci/mqttsuite-deb.cmake && cpack)
-cp package-mqttsuite/*.deb packages/
+package build-mqttsuite

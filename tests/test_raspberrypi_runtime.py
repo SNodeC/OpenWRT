@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import subprocess
+import sys
 import time
 
 logs = Path('/work/logs')
@@ -18,7 +19,7 @@ def wait_for(path, needle):
 
 
 results = []
-for app in ['mqttbroker', 'mqttbridge', 'mqttintegrator', 'mqttcli', 'mqttstore', 'snodec-control']:
+for app in sys.argv[1:] or ['mqttbroker', 'mqttbridge', 'mqttintegrator', 'mqttcli', 'mqttstore', 'snodec-control']:
     result = subprocess.run([app, '--help'], capture_output=True, text=True)
     results.append(dict(test=app, passed=result.returncode in (0, 2) and 'Usage:' in result.stdout))
 subprocess.run(['openssl', 'req', '-x509', '-newkey', 'rsa:2048', '-nodes', '-days', '1',

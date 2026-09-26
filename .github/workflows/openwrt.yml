@@ -58,9 +58,9 @@ jobs:
         id: matrix
         run: |
           sudo apt-get update
-          sudo apt-get install -y apt-utils gnupg
+          sudo apt-get install -y apt-utils gnupg cmake build-essential
           status=0
-          for test in test_apt_repository.py test_repository.py test_ipk_audit.py; do
+          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_debian_components.py; do
             python3 "feed/tests/$test" || status=1
           done
           test "$status" = 0

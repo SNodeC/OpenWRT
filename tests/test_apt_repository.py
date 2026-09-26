@@ -52,7 +52,9 @@ class AptPublicationTest(unittest.TestCase):
         for suite in apt.suites():
             packages = self.root / suite
             packages.mkdir()
-            for name in ['snodec', 'mqttsuite']:
+            for project in ['snodec', 'mqttsuite']:
+                (packages / f'{project}.packages').write_text(f'{project}\n{project}-component\n')
+            for name in ['snodec', 'mqttsuite', 'snodec-component', 'mqttsuite-component']:
                 control = self.root / 'deb/DEBIAN'
                 control.mkdir(parents=True, exist_ok=True)
                 (control / 'control').write_text(f'Package: {name}\nVersion: 1.0-2~{suite}\nArchitecture: arm64\n'
@@ -78,6 +80,12 @@ class AptPublicationTest(unittest.TestCase):
             self.assertIn('Acquire-By-Hash: yes', (dist / 'Release').read_text())
             self.assertIn('Filename: pool/' + suite, (dist / 'main/binary-arm64/Packages').read_text())
             self.assertTrue((dist / 'InRelease').exists())
+
+    def test_missing_component_rejected_before_signing(self):
+        packages = self.root / 'bookworm'
+        (packages / 'mqttsuite-component.deb').unlink()
+        with self.assertRaisesRegex(RuntimeError, 'Incomplete Debian package set'):
+            apt.stage('bookworm', packages, self.bundle, self.root / 'missing')
 
     def test_incomplete_matrix(self):
         (self.merged / 'apt/dists/bookworm/build.json').unlink()
