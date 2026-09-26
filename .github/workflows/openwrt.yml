@@ -190,6 +190,7 @@ jobs:
           name: logs-raspberrypi-${{ matrix.suite }}
           path: logs/
   linux:
+    name: Linux (${{ matrix.distribution }} ${{ matrix.suite }}, ${{ matrix.arch }})
     if: github.event.client_payload.ref == 'refs/tags/Linux'
     needs: prepare
     runs-on: ${{ matrix.runner }}
@@ -202,7 +203,7 @@ jobs:
         with:
           name: tagged-sources
           path: bundle
-      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-qemu-action@v4
         if: matrix.arch == 'armhf' || matrix.arch == 'riscv64'
         with:
           platforms: arm,riscv64
