@@ -33,7 +33,7 @@ cmake -S sources/mqttsuite -B build-mqttsuite -G Ninja \
     -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_INSTALL_SYSCONFDIR=/etc \
     -DCMAKE_CXX_FLAGS=-march=armv8-a
 cmake --build build-mqttsuite --parallel 4
-mqtt_version=$(sed -n 's/^PKG_VERSION:=//p' feed/net/mqttsuite/Makefile)
+mqtt_version=$(sed -n 's/^CMAKE_PROJECT_VERSION:STATIC=//p' build-mqttsuite/CMakeCache.txt)
 mkdir package-mqttsuite
 (cd package-mqttsuite && cmake -DBUILD=/work/build-mqttsuite \
     -D "VERSION=$mqtt_version-$PACKAGE_RELEASE~$SUITE" -D "SNODEC_VERSION=$snodec_version" \
