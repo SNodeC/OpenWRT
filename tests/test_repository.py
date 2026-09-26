@@ -50,7 +50,11 @@ class PublicationTest(unittest.TestCase):
         old = self.checkout / 'releases/24.10/x86_64/old.ipk'
         old.parent.mkdir(parents=True)
         old.write_bytes(b'old')
+        apt = self.checkout / 'apt/dists/bookworm/InRelease'
+        apt.parent.mkdir(parents=True)
+        apt.write_bytes(b'existing signed APT index')
         self.publish()
+        self.assertEqual(apt.read_bytes(), b'existing signed APT index')
         self.assertTrue(old.exists())
         self.assertEqual(len(list(self.checkout.glob('releases/*/*/build.json'))), 50)
 
