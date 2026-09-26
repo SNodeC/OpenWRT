@@ -68,11 +68,12 @@ The complete package names, versions and dependencies are in the
 [Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/bookworm/main/binary-arm64/Packages)
 and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/trixie/main/binary-arm64/Packages).
 
-Existing combined-package installations upgrade to the full-install metapackages
-and their components. Use `sudo apt-get update && sudo apt-get upgrade` for normal
-updates; `sudo apt-get install snodec mqttsuite` also explicitly performs the
-transition. Component packages declare replacement of files from older combined
-packages.
+To upgrade an existing combined-package installation, run
+`sudo apt-get update && sudo apt-get install snodec mqttsuite`. This installs the
+new component dependencies as well as updating the two full-install metapackages.
+`apt-get upgrade` alone can hold back this transition because it requires new
+packages. Component packages declare replacement of files from older combined
+packages; subsequent updates use the normal APT update process.
 
 APT signing-key fingerprint:
 `8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
