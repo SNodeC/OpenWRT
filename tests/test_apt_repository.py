@@ -70,13 +70,13 @@ class AptPublicationTest(unittest.TestCase):
         apt.publish(self.merged, self.checkout, self.bundle)
 
     def test_complete_signed_publication_preserves_other_feeds(self):
-        (self.checkout / 'releases').mkdir()
-        old = self.checkout / 'releases/old.ipk'
+        (self.checkout / 'openwrt').mkdir()
+        old = self.checkout / 'openwrt/old.ipk'
         old.write_bytes(b'keep')
         self.publish()
         self.assertEqual(old.read_bytes(), b'keep')
         for suite in apt.suites():
-            dist = self.checkout / 'apt/dists' / suite
+            dist = self.checkout / 'raspberrypios/dists' / suite
             self.assertIn('Acquire-By-Hash: yes', (dist / 'Release').read_text())
             self.assertIn('Filename: pool/' + suite, (dist / 'main/binary-arm64/Packages').read_text())
             self.assertTrue((dist / 'InRelease').exists())
@@ -88,17 +88,17 @@ class AptPublicationTest(unittest.TestCase):
             apt.stage('bookworm', packages, self.bundle, self.root / 'missing')
 
     def test_incomplete_matrix(self):
-        (self.merged / 'apt/dists/bookworm/build.json').unlink()
+        (self.merged / 'raspberrypios/dists/bookworm/build.json').unlink()
         with self.assertRaisesRegex(RuntimeError, 'Incomplete'):
             self.publish()
 
     def test_corrupt_package(self):
-        next((self.merged / 'apt/pool').rglob('*.deb')).write_bytes(b'broken')
+        next((self.merged / 'raspberrypios/pool').rglob('*.deb')).write_bytes(b'broken')
         with self.assertRaisesRegex(RuntimeError, 'checksum'):
             self.publish()
 
     def test_mixed_sources(self):
-        path = self.merged / 'apt/dists/bookworm/build.json'
+        path = self.merged / 'raspberrypios/dists/bookworm/build.json'
         info = json.loads(path.read_text())
         info['sources'] = {}
         path.write_text(json.dumps(info))
@@ -111,7 +111,7 @@ class AptPublicationTest(unittest.TestCase):
             self.publish()
 
     def test_invalid_signature_even_with_updated_manifest(self):
-        path = self.merged / 'apt/dists/bookworm/InRelease'
+        path = self.merged / 'raspberrypios/dists/bookworm/InRelease'
         path.write_text(path.read_text().replace('Origin: SNodeC', 'Origin: SomeoneElse'))
         manifest = path.parent / 'build.json'
         info = json.loads(manifest.read_text())

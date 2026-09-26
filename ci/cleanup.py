@@ -15,23 +15,23 @@ def cleanup(root, now=None):
         raise RuntimeError("Symlink in package snapshot; refusing cleanup")
     protected, candidates = set(), set()
     manifests = []
-    for directory in (root / 'releases').glob('*/*'):
+    for directory in (root / 'openwrt').glob('*/*'):
         if directory.is_dir():
             manifests.append((directory / 'build.json', directory))
             candidates.update(directory.glob('*.ipk'))
             candidates.update(directory.glob('*.apk'))
-    suites = {p.name for base in ['apt/pool', 'apt/dists'] for p in (root / base).glob('*') if p.is_dir()}
+    suites = {p.name for base in ['raspberrypios/pool', 'raspberrypios/dists'] for p in (root / base).glob('*') if p.is_dir()}
     for suite in suites:
-        manifests.append((root / 'apt/dists' / suite / 'build.json', root / 'apt'))
-        candidates.update((root / 'apt/pool' / suite).glob('*.deb'))
-        candidates.update((root / 'apt/dists' / suite).glob('**/by-hash/SHA256/*'))
+        manifests.append((root / 'raspberrypios/dists' / suite / 'build.json', root / 'raspberrypios'))
+        candidates.update((root / 'raspberrypios/pool' / suite).glob('*.deb'))
+        candidates.update((root / 'raspberrypios/dists' / suite).glob('**/by-hash/SHA256/*'))
     if not manifests:
         raise RuntimeError('No publication manifests; refusing cleanup')
     # The publishers create these inventories from the very same staged files as
     # the opkg, APK and APT indexes. Validate them before considering any removal.
     for manifest, base in manifests:
         files = json.loads(manifest.read_text())['files']
-        if base == root / 'apt':
+        if base == root / 'raspberrypios':
             suite = manifest.parent.name
             required = {f'dists/{suite}/{name}' for name in ['Release', 'InRelease', 'Release.gpg',
                         'main/binary-arm64/Packages', 'main/binary-arm64/Packages.gz']}

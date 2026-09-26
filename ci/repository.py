@@ -106,7 +106,7 @@ def stage(sdk, bundle, output):
     audit = json.loads((sdk / 'audit/package-audit.json').read_text())
     if audit['errors'] or len(packages) != len(audit['packages']):
         raise RuntimeError('Package inventory does not match successful audit')
-    destination = output / 'releases' / info['series'] / info['arch']
+    destination = output / 'openwrt' / info['series'] / info['arch']
     destination.mkdir(parents=True)
     indexes = ['Packages', 'Packages.gz', 'Packages.sig'] if extension == '.ipk' else ['packages.adb']
     for path in packages + [feed / name for name in indexes]:
@@ -122,18 +122,18 @@ def stage(sdk, bundle, output):
 def publish(incoming, checkout, bundle):
     unchanged(bundle)
     expected = {(r['series'], r['arch']) for r in matrix()}
-    found = {(p.parent.parent.name, p.parent.name) for p in incoming.glob('releases/*/*/build.json')}
+    found = {(p.parent.parent.name, p.parent.name) for p in incoming.glob('openwrt/*/*/build.json')}
     if found != expected:
         raise RuntimeError(f'Incomplete matrix: missing={expected - found}, unexpected={found - expected}')
     for series, arch in sorted(expected):
-        directory = incoming / 'releases' / series / arch
+        directory = incoming / 'openwrt' / series / arch
         metadata = json.loads((directory / 'build.json').read_text())
         if metadata['sources'] != json.loads((bundle / 'sources.json').read_text()):
             raise RuntimeError('Mixed source generations')
         for name, checksum in metadata['files'].items():
             if Path(name).name != name or digest(directory / name) != checksum:
                 raise RuntimeError(f'Package/index checksum mismatch: {name}')
-        destination = checkout / 'releases' / series / arch
+        destination = checkout / 'openwrt' / series / arch
         if (destination / 'build.json').exists():
             previous = json.loads((destination / 'build.json').read_text())
             if int(previous['revision']) >= int(metadata['revision']):

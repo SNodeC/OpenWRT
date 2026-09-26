@@ -1,10 +1,34 @@
-# SNode.C and MQTTSuite OpenWrt packages
+# SNode.C and MQTTSuite OpenWrt and Raspberry Pi OS packages
 
 This is the binary feed for `SNodeC/OpenWRT`, published on branch `packages`.
 OpenWrt 24.10 uses IPK/opkg; 25.12 uses APK. Each series supports the same
 25 platform variants, including all devices described by the `infra` branch.
 The RISC-V architecture is named `riscv64_riscv64` on 24.10 and
 `riscv64_generic` on 25.12. See `ci/platforms.json` on `main` for the matrix.
+
+## Feed directory migration
+
+The feeds now use distribution names. The old paths have been removed:
+
+| Distribution | Previous path | Current path |
+|---|---|---|
+| OpenWrt | `releases/<series>/<architecture>/` | `openwrt/<series>/<architecture>/` |
+| Raspberry Pi OS | `apt/` | `raspberrypios/` |
+
+In existing feed URLs, replace `/SNodeC/OpenWRT/packages/releases/` with
+`/SNodeC/OpenWRT/packages/openwrt/`, or `/SNodeC/OpenWRT/packages/apt` with
+`/SNodeC/OpenWRT/packages/raspberrypios`. Keep the release, architecture and
+any `packages.adb` suffix unchanged. Edit the file containing your existing entry:
+
+- OpenWrt 24.10: `/etc/opkg/customfeeds.conf` or your custom `/etc/opkg/*.conf` file;
+  then run `opkg update`.
+- OpenWrt 25.12: `/etc/apk/repositories.d/snodec.list`; then run `apk update`.
+- Raspberry Pi OS: `/etc/apt/sources.list.d/snodec.list` (or the `URIs` field in
+  your `.sources` file); then run `sudo apt-get update`.
+
+Signing keys, packages and signed indexes are unchanged. No package reinstall is
+needed. Retention timestamps are preserved. The installation instructions below
+and the preparation scripts already use the new paths.
 
 ## Configure your router
 
@@ -29,7 +53,7 @@ opkg-key add /tmp/snodec-usign.pub
 Add this line to `/etc/opkg/customfeeds.conf` (replace the architecture as needed):
 
 ```text
-src/gz snodec https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/releases/24.10/aarch64_cortex-a53
+src/gz snodec https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_cortex-a53
 ```
 
 For 25.12, install the APK public key instead:
@@ -41,7 +65,7 @@ wget -O /etc/apk/keys/snodec-apk.pem https://raw.githubusercontent.com/SNodeC/Op
 Create `/etc/apk/repositories.d/snodec.list` containing:
 
 ```text
-https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/releases/25.12/aarch64_cortex-a53/packages.adb
+https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_cortex-a53/packages.adb
 ```
 
 Do not mix release series or architecture directories. There is no automatic
@@ -126,8 +150,8 @@ Physical-router behavior is not implied by QEMU results.
 
 ## Raspberry Pi OS APT feed
 
-ARM64 `.deb` packages for Raspberry Pi 3, 4 and 5 live in `apt/pool/`, with
-signed Bookworm and Trixie indexes in `apt/dists/` and the public key at
+ARM64 `.deb` packages for Raspberry Pi 3, 4 and 5 live in `raspberrypios/pool/`, with
+signed Bookworm and Trixie indexes in `raspberrypios/dists/` and the public key at
 `keys/snodec-apt.asc`. See the
 [installation instructions](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md).
 

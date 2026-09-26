@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 suite=$1
 phase=$2
 install -m 644 /work/feed/ci/keys/snodec-apt.asc /etc/apt/keyrings/snodec.asc
-echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] file:/work/output/apt $suite main" > /etc/apt/sources.list.d/snodec.list
+echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] file:/work/output/raspberrypios $suite main" > /etc/apt/sources.list.d/snodec.list
 apt-get update
 apt-get install -y openssl python3 ca-certificates
 if [ "$phase" = upgrade ]; then

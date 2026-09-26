@@ -21,11 +21,11 @@ class RetentionTest(unittest.TestCase):
         self.current, self.old = [], []
         for series, suffix, indexes in [('24.10', '.ipk', ['Packages', 'Packages.gz', 'Packages.sig']),
                                         ('25.12', '.apk', ['packages.adb'])]:
-            base = self.root / 'releases' / series / 'arch'
+            base = self.root / 'openwrt' / series / 'arch'
             names = indexes + ['current' + suffix]
             self.manifest(base / 'build.json', base, names)
             self.old.append(self.write(base / ('old' + suffix)))
-        base = self.root / 'apt'
+        base = self.root / 'raspberrypios'
         for suite in ['bookworm', 'trixie']:
             names = [f'pool/{suite}/current.deb'] + [f'dists/{suite}/{name}' for name in
                      ['Release', 'InRelease', 'Release.gpg', 'main/binary-arm64/Packages',
@@ -82,7 +82,7 @@ class RetentionTest(unittest.TestCase):
         for fault in ['missing', 'corrupt', 'incomplete', 'unsafe']:
             with self.subTest(fault=fault):
                 cleanup(self.root, self.now)
-                manifest = self.root / 'apt/dists/trixie/build.json'
+                manifest = self.root / 'raspberrypios/dists/trixie/build.json'
                 original = manifest.read_text()
                 info = json.loads(original)
                 if fault == 'missing':

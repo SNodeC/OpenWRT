@@ -13,6 +13,10 @@ instructions on **`main`**. Ready-to-install packages, repository indexes and
 public signing keys are published on the **[`packages` branch](https://github.com/SNodeC/OpenWRT/tree/packages)**.
 You do not need to clone this repository or compile anything on your router.
 
+Feeds live under `openwrt/<series>/<architecture>/` and
+`raspberrypios/{dists,pool}/`. Existing installations using `/packages/releases/`
+or `/packages/apt` must [update their feed URLs](docs/package-repository.md#feed-directory-migration).
+
 Superseded package files are retained for 30 days, then cleaned during publication
 and daily maintenance. See the [retention policy](docs/package-repository.md#retention-and-maintenance).
 
@@ -54,35 +58,35 @@ The links open the package directory for the selected release and architecture.
 
 | Package architecture | Representative SDK target | OpenWrt 24.10 | OpenWrt 25.12 |
 | --- | --- | --- | --- |
-| `aarch64_cortex-a53` | `mediatek/filogic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_cortex-a53) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_cortex-a53) |
-| `x86_64` | `x86/64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/x86_64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/x86_64) |
-| `aarch64_generic` | `armsr/armv8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_generic) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_generic) |
-| `aarch64_cortex-a72` | `bcm27xx/bcm2711` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_cortex-a72) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_cortex-a72) |
-| `aarch64_cortex-a76` | `bcm27xx/bcm2712` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/aarch64_cortex-a76) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/aarch64_cortex-a76) |
-| `mipsel_24kc` | `ramips/mt76x8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mipsel_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mipsel_24kc) |
-| `mips_24kc` | `ath79/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mips_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mips_24kc) |
-| `mipsel_24kc_24kf` | `pistachio/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mipsel_24kc_24kf) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mipsel_24kc_24kf) |
-| `arm_cortex-a7_neon-vfpv4` | `ipq40xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7_neon-vfpv4) |
-| `arm_cortex-a15_neon-vfpv4` | `armsr/armv7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a15_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a15_neon-vfpv4) |
-| `arm_cortex-a9_vfpv3-d16` | `mvebu/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9_vfpv3-d16) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9_vfpv3-d16) |
-| `arm_cortex-a9` | `bcm53xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9) |
-| `arm_cortex-a9_neon` | `imx/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a9_neon) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a9_neon) |
-| `arm_cortex-a7` | `mediatek/mt7629` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7) |
-| `mips64_octeonplus` | `octeon/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mips64_octeonplus) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mips64_octeonplus) |
-| `riscv64_riscv64` (24.10), `riscv64_generic` (25.12) | `sifiveu/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/riscv64_riscv64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/riscv64_generic) |
-| `arm_cortex-a7_vfpv4` | `at91/sama7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a7_vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a7_vfpv4) |
-| `i386_pentium4` | `x86/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/i386_pentium4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/i386_pentium4) |
-| `arm_cortex-a8_vfpv3` | `sunxi/cortexa8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a8_vfpv3) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a8_vfpv3) |
-| `mipsel_74kc` | `ramips/rt3883` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/mipsel_74kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/mipsel_74kc) |
-| `loongarch64_generic` | `loongarch64/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/loongarch64_generic) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/loongarch64_generic) |
-| `powerpc_8548` | `mpc85xx/p1010` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/powerpc_8548) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/powerpc_8548) |
-| `arm_cortex-a5_vfpv4` | `at91/sama5` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/arm_cortex-a5_vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/arm_cortex-a5_vfpv4) |
-| `powerpc_464fp` | `apm821xx/nand` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/powerpc_464fp) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/powerpc_464fp) |
-| `i386_pentium-mmx` | `x86/geode` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/24.10/i386_pentium-mmx) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/releases/25.12/i386_pentium-mmx) |
+| `aarch64_cortex-a53` | `mediatek/filogic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a53) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a53) |
+| `x86_64` | `x86/64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/x86_64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/x86_64) |
+| `aarch64_generic` | `armsr/armv8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_generic) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_generic) |
+| `aarch64_cortex-a72` | `bcm27xx/bcm2711` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a72) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a72) |
+| `aarch64_cortex-a76` | `bcm27xx/bcm2712` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a76) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a76) |
+| `mipsel_24kc` | `ramips/mt76x8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_24kc) |
+| `mips_24kc` | `ath79/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mips_24kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mips_24kc) |
+| `mipsel_24kc_24kf` | `pistachio/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_24kc_24kf) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_24kc_24kf) |
+| `arm_cortex-a7_neon-vfpv4` | `ipq40xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7_neon-vfpv4) |
+| `arm_cortex-a15_neon-vfpv4` | `armsr/armv7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a15_neon-vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a15_neon-vfpv4) |
+| `arm_cortex-a9_vfpv3-d16` | `mvebu/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9_vfpv3-d16) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9_vfpv3-d16) |
+| `arm_cortex-a9` | `bcm53xx/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9) |
+| `arm_cortex-a9_neon` | `imx/cortexa9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9_neon) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9_neon) |
+| `arm_cortex-a7` | `mediatek/mt7629` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7) |
+| `mips64_octeonplus` | `octeon/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mips64_octeonplus) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mips64_octeonplus) |
+| `riscv64_riscv64` (24.10), `riscv64_generic` (25.12) | `sifiveu/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/riscv64_riscv64) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/riscv64_generic) |
+| `arm_cortex-a7_vfpv4` | `at91/sama7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7_vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7_vfpv4) |
+| `i386_pentium4` | `x86/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/i386_pentium4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/i386_pentium4) |
+| `arm_cortex-a8_vfpv3` | `sunxi/cortexa8` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a8_vfpv3) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a8_vfpv3) |
+| `mipsel_74kc` | `ramips/rt3883` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_74kc) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_74kc) |
+| `loongarch64_generic` | `loongarch64/generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/loongarch64_generic) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/loongarch64_generic) |
+| `powerpc_8548` | `mpc85xx/p1010` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/powerpc_8548) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/powerpc_8548) |
+| `arm_cortex-a5_vfpv4` | `at91/sama5` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a5_vfpv4) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a5_vfpv4) |
+| `powerpc_464fp` | `apm821xx/nand` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/powerpc_464fp) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/powerpc_464fp) |
+| `i386_pentium-mmx` | `x86/geode` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/i386_pentium-mmx) | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/i386_pentium-mmx) |
 
 The active build matrix is maintained in [ci/platforms.json](ci/platforms.json).
 The same 25 architectures are built across both releases (50 builds).
-Available feeds can be browsed under [packages/releases](https://github.com/SNodeC/OpenWRT/tree/packages/releases).
+Available feeds can be browsed under [packages/openwrt](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt).
 
 ## Quick installation
 
@@ -132,7 +136,7 @@ are preserved. The public keys can also be inspected in [ci/keys](ci/keys).
   . /etc/openwrt_release
   case "$DISTRIB_RELEASE" in 24.10.*) ;; *) echo 'Requires OpenWrt 24.10'; exit 1 ;; esac
   base=https://raw.githubusercontent.com/SNodeC/OpenWRT/packages
-  feed="$base/releases/24.10/$DISTRIB_ARCH"
+  feed="$base/openwrt/24.10/$DISTRIB_ARCH"
   wget -O /tmp/snodec-feed-build.json "$feed/build.json"
   wget -O /tmp/snodec-usign.pub "$base/keys/snodec-usign.pub"
   opkg-key add /tmp/snodec-usign.pub
@@ -151,7 +155,7 @@ are preserved. The public keys can also be inspected in [ci/keys](ci/keys).
   . /etc/openwrt_release
   case "$DISTRIB_RELEASE" in 25.12.*) ;; *) echo 'Requires OpenWrt 25.12'; exit 1 ;; esac
   base=https://raw.githubusercontent.com/SNodeC/OpenWRT/packages
-  feed="$base/releases/25.12/$DISTRIB_ARCH"
+  feed="$base/openwrt/25.12/$DISTRIB_ARCH"
   wget -O /tmp/snodec-feed-build.json "$feed/build.json"
   wget -O /tmp/snodec-apk.pem "$base/keys/snodec-apk.pem"
   mkdir -p /etc/apk/keys /etc/apk/repositories.d
@@ -169,13 +173,13 @@ On **24.10**, the entry in
 `/etc/opkg/customfeeds.conf` is:
 
 ```text
-src/gz snodec https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/releases/24.10/aarch64_cortex-a53
+src/gz snodec https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_cortex-a53
 ```
 
 On **25.12**, `/etc/apk/repositories.d/snodec.list` contains:
 
 ```text
-https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/releases/25.12/aarch64_cortex-a53/packages.adb
+https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_cortex-a53/packages.adb
 ```
 
 Import the corresponding signing key as shown above. For other devices, use

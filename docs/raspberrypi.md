@@ -9,6 +9,9 @@ baseline; no Pi-specific CPU tuning is used. 32-bit installations are not covere
 
 ## Installation
 
+If you previously configured the `/packages/apt` feed, first
+[update its URL](package-repository.md#feed-directory-migration) to `/packages/raspberrypios`.
+
 Run these commands on the Pi. Keep the official Raspberry Pi OS repositories
 configured: they supply system dependencies. This feed supplies individual component packages. The `snodec` and `mqttsuite`
 metapackages install all components of their respective projects.
@@ -23,7 +26,7 @@ sudo install -d -m 755 /etc/apt/keyrings
 curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/keys/snodec-apt.asc |
     sudo tee /etc/apt/keyrings/snodec.asc >/dev/null
 sudo chmod 644 /etc/apt/keyrings/snodec.asc
-printf 'deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt %s main\n' "$VERSION_CODENAME" |
+printf 'deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios %s main\n' "$VERSION_CODENAME" |
     sudo tee /etc/apt/sources.list.d/snodec.list
 sudo apt-get update
 ```
@@ -65,8 +68,8 @@ apt-cache pkgnames snodec- | sort
 ```
 
 The complete package names, versions and dependencies are in the
-[Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/bookworm/main/binary-arm64/Packages)
-and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/dists/trixie/main/binary-arm64/Packages).
+[Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/bookworm/main/binary-arm64/Packages)
+and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/trixie/main/binary-arm64/Packages).
 
 To upgrade an existing combined-package installation, run
 `sudo apt-get update && sudo apt-get install snodec mqttsuite`. This installs the
@@ -89,13 +92,13 @@ user, listeners and TLS configuration.
 
 On the `packages` branch:
 
-- `apt/pool/bookworm/` and `apt/pool/trixie/`: `.deb` files.
-- `apt/dists/<suite>/main/binary-arm64/`: package indexes and SHA256 by-hash indexes.
-- `apt/dists/<suite>/`: signed `InRelease`, `Release`, `Release.gpg` and build provenance.
+- `raspberrypios/pool/bookworm/` and `raspberrypios/pool/trixie/`: `.deb` files.
+- `raspberrypios/dists/<suite>/main/binary-arm64/`: package indexes and SHA256 by-hash indexes.
+- `raspberrypios/dists/<suite>/`: signed `InRelease`, `Release`, `Release.gpg` and build provenance.
 - `keys/snodec-apt.asc`: public APT signing key.
 
-[Browse Bookworm packages](https://github.com/SNodeC/OpenWRT/tree/packages/apt/pool/bookworm)
-· [Browse Trixie packages](https://github.com/SNodeC/OpenWRT/tree/packages/apt/pool/trixie)
+[Browse Bookworm packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/pool/bookworm)
+· [Browse Trixie packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/pool/trixie)
 
 Creation or movement of `RaspberryPiOS` in either source repository triggers only
 the Raspberry Pi jobs. Both projects are built from their `RaspberryPiOS` tags.

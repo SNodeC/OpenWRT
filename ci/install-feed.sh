@@ -11,7 +11,7 @@ series=${DISTRIB_RELEASE%.*}
 case "$series" in 24.10|25.12) ;; *) echo "Unsupported OpenWrt release: $DISTRIB_RELEASE" >&2; exit 1 ;; esac
 case "$DISTRIB_ARCH" in ''|*[!a-zA-Z0-9_-]*) echo 'Invalid package architecture' >&2; exit 1 ;; esac
 base=https://raw.githubusercontent.com/SNodeC/OpenWRT/packages
-url=$base/releases/$series/$DISTRIB_ARCH
+url=$base/openwrt/$series/$DISTRIB_ARCH
 temporary=$(mktemp -d)
 trap 'rm -rf "$temporary"' EXIT HUP INT TERM
 # Fail before changing router configuration if this platform has no published feed.

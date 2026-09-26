@@ -18,7 +18,7 @@ def suites():
 def stage(suite, packages, bundle, output):
     image = suites()[suite]
     unchanged(bundle)
-    apt = output / 'apt'
+    apt = output / 'raspberrypios'
     pool = apt / 'pool' / suite
     pool.mkdir(parents=True)
     names = set()
@@ -72,7 +72,7 @@ def stage(suite, packages, bundle, output):
 
 def publish(incoming, checkout, bundle):
     unchanged(bundle)
-    apt = incoming / 'apt'
+    apt = incoming / 'raspberrypios'
     expected = set(suites())
     if {p.parent.name for p in apt.glob('dists/*/build.json')} != expected:
         raise RuntimeError('Incomplete Raspberry Pi OS matrix')
@@ -95,13 +95,13 @@ def publish(incoming, checkout, bundle):
             run('gpg', '--homedir', home, '--batch', '--import', str(ROOT / 'ci/keys/snodec-apt.asc'))
             run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'InRelease'))
             run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'Release.gpg'), str(dist / 'Release'))
-        previous = checkout / 'apt/dists' / suite / 'build.json'
+        previous = checkout / 'raspberrypios/dists' / suite / 'build.json'
         if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(info['revision']):
             raise RuntimeError('Refusing older/equal APT publication')
     if any(names != inventories[0] for names in inventories):
         raise RuntimeError('Different component inventories across OS releases')
     # Retain old .debs and by-hash indexes for clients with cached metadata.
-    shutil.copytree(apt, checkout / 'apt', dirs_exist_ok=True)
+    shutil.copytree(apt, checkout / 'raspberrypios', dirs_exist_ok=True)
     unchanged(bundle)
 
 

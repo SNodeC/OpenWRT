@@ -27,7 +27,7 @@ class PublicationTest(unittest.TestCase):
         self.mock.start()
         self.addCleanup(self.mock.stop)
         for row in repo.matrix():
-            directory = self.incoming / 'releases' / row['series'] / row['arch']
+            directory = self.incoming / 'openwrt' / row['series'] / row['arch']
             directory.mkdir(parents=True)
             (directory / 'sample.apk').write_bytes(b'package')
             info = dict(row, sources=self.sources, revision='2',
@@ -47,19 +47,19 @@ class PublicationTest(unittest.TestCase):
                          'sunxi/cortexa8', 'loongarch64/generic', 'at91/sama5'} <= platforms[0])
 
     def test_complete_publication_preserves_cached_packages(self):
-        old = self.checkout / 'releases/24.10/x86_64/old.ipk'
+        old = self.checkout / 'openwrt/24.10/x86_64/old.ipk'
         old.parent.mkdir(parents=True)
         old.write_bytes(b'old')
-        apt = self.checkout / 'apt/dists/bookworm/InRelease'
+        apt = self.checkout / 'raspberrypios/dists/bookworm/InRelease'
         apt.parent.mkdir(parents=True)
         apt.write_bytes(b'existing signed APT index')
         self.publish()
         self.assertEqual(apt.read_bytes(), b'existing signed APT index')
         self.assertTrue(old.exists())
-        self.assertEqual(len(list(self.checkout.glob('releases/*/*/build.json'))), 50)
+        self.assertEqual(len(list(self.checkout.glob('openwrt/*/*/build.json'))), 50)
 
     def test_incomplete_matrix_rejected(self):
-        next(self.incoming.glob('releases/*/*/build.json')).unlink()
+        next(self.incoming.glob('openwrt/*/*/build.json')).unlink()
         with self.assertRaisesRegex(RuntimeError, 'Incomplete matrix'):
             self.publish()
         self.assertEqual(list(self.checkout.iterdir()), [])
@@ -70,7 +70,7 @@ class PublicationTest(unittest.TestCase):
             self.publish()
 
     def test_mixed_generation_rejected(self):
-        path = next(self.incoming.glob('releases/*/*/build.json'))
+        path = next(self.incoming.glob('openwrt/*/*/build.json'))
         metadata = json.loads(path.read_text())
         metadata['sources'] = {'other': 'generation'}
         path.write_text(json.dumps(metadata))
@@ -78,7 +78,7 @@ class PublicationTest(unittest.TestCase):
             self.publish()
 
     def test_corrupt_package_rejected(self):
-        next(self.incoming.glob('releases/*/*/sample.apk')).write_bytes(b'corrupt')
+        next(self.incoming.glob('openwrt/*/*/sample.apk')).write_bytes(b'corrupt')
         with self.assertRaisesRegex(RuntimeError, 'checksum mismatch'):
             self.publish()
 
@@ -86,7 +86,7 @@ class PublicationTest(unittest.TestCase):
         self.publish()
         with self.assertRaisesRegex(RuntimeError, 'older/equal'):
             self.publish()
-        path = self.checkout / 'releases/24.10/aarch64_cortex-a53/build.json'
+        path = self.checkout / 'openwrt/24.10/aarch64_cortex-a53/build.json'
         metadata = json.loads(path.read_text())
         metadata['revision'] = '3'
         path.write_text(json.dumps(metadata))
