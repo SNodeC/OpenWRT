@@ -9,11 +9,11 @@ rpm --import /work/feed/ci/keys/snodec-apt.asc
 cat > /etc/yum.repos.d/snodec.repo <<REPO
 [snodec]
 name=SNode.C and MQTTSuite
-baseurl=file:$REPOSITORY/$DISTRIBUTION/$SUITE/$ARCH
+baseurl=file://$REPOSITORY/$DISTRIBUTION/$SUITE/$ARCH
 enabled=1
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=file:/work/feed/ci/keys/snodec-apt.asc
+gpgkey=file:///work/feed/ci/keys/snodec-apt.asc
 REPO
 dnf install -y openssl python3 mqttsuite-broker mqttsuite-cli
 for package in mqttsuite snodec mqttsuite-store mqttsuite-bridge mqttsuite-integrator; do

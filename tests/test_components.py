@@ -8,13 +8,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(*args):
-    return subprocess.check_output(args, text=True, stderr=subprocess.STDOUT)
+    return subprocess.check_output(args, text=True, stderr=subprocess.PIPE)
 
 
 class DebianComponentsTest(unittest.TestCase):
     def test_dependency_closure_and_full_install_migration(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
+            (root / 'LICENSE').write_text('SPDX-License-Identifier: MIT\n')
             (root / 'base.c').write_text('int value(void) { return 42; }\n')
             (root / 'client.c').write_text('extern int value(void); int client(void) { return value(); }\n')
             (root / 'CMakeLists.txt').write_text('''
@@ -65,6 +66,7 @@ include(CPack)
             self.assertIn('fixture-base = 1.0-2', run('rpm', '-qp', '--requires', str(rpm_client)))
             self.assertIn('fixture-client = 1.0-2', run('rpm', '-qp', '--requires', str(rpm_meta)))
             self.assertNotIn('/usr/', run('rpm', '-qpl', str(rpm_meta)))
+            self.assertEqual(run('rpm', '-qp', '--qf', '%{LICENSE}', str(rpm_meta)).strip(), 'MIT')
 
 
 
