@@ -13,6 +13,9 @@ instructions on **`main`**. Ready-to-install packages, repository indexes and
 public signing keys are published on the **[`packages` branch](https://github.com/SNodeC/OpenWRT/tree/packages)**.
 You do not need to clone this repository or compile anything on your router.
 
+Superseded package files are retained for 30 days, then cleaned during publication
+and daily maintenance. See the [retention policy](docs/package-repository.md#retention-and-maintenance).
+
 ## Raspberry Pi OS
 
 **Raspberry Pi 3, 4 and 5:** ARM64 packages for Raspberry Pi OS Bookworm and Trixie.

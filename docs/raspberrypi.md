@@ -120,7 +120,9 @@ the two platforms can build independently. A shared publication-job lock
 serializes writes, and each publication starts from the latest `packages` snapshot
 and preserves the other platform’s feeds. Publication rejects incomplete matrices, corrupt
 packages, invalid signatures, mixed source generations and superseded tags.
-Old packages and by-hash indexes remain available to clients with cached indexes.
+Superseded packages and by-hash indexes remain available for 30 days after
+retirement, then are pruned during publication or daily maintenance. See the
+[shared retention policy](package-repository.md#retention-and-maintenance).
 The branch still contains only one commit after each publication.
 
 The private APT key is stored in the repository secret `APT_SIGNING_KEY`, alongside

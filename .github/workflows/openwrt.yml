@@ -60,7 +60,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y apt-utils gnupg cmake build-essential
           status=0
-          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_debian_components.py; do
+          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_debian_components.py test_cleanup.py; do
             python3 "feed/tests/$test" || status=1
           done
           test "$status" = 0
@@ -195,6 +195,7 @@ jobs:
     concurrency:
       group: package-publication
       cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -234,9 +235,6 @@ jobs:
           mkdir -p keys
           cp -a ../feed/ci/keys/. keys/
           cp ../feed/docs/package-repository.md README.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .
-          snapshot=$(git commit-tree "$(git write-tree)" -m "Publish packages from $SOURCE_TAG tags")
+          python3 ../feed/ci/cleanup.py .
           python3 ../feed/ci/repository.py check ../bundle
-          git push --force-with-lease="refs/heads/packages:$previous" origin "$snapshot:refs/heads/packages"
+          bash ../feed/ci/push-packages.sh . "$previous" "Publish packages from $SOURCE_TAG tags"

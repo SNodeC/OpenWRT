@@ -134,3 +134,31 @@ signed Bookworm and Trixie indexes in `apt/dists/` and the public key at
 The independent `RaspberryPiOS` source tags trigger APT builds; `OpenWRT` tags
 trigger OpenWrt builds. Each publishes after its own checks pass. A shared
 publication lock and snapshot preserve the other package format’s files.
+
+## Retention and maintenance
+
+Files referenced by a current publication are always retained. Superseded
+OpenWrt `.ipk`/`.apk` packages, Raspberry Pi OS `.deb` packages and obsolete APT
+SHA256 `by-hash` indexes are removed after **30 days without a current reference**.
+The clock starts when cleanup first observes that a file is unreferenced, not
+from its build date or filesystem timestamp. Existing leftovers receive a full
+30-day grace period when this policy is first enabled.
+
+`retention.json` on the `packages` branch records retirement dates and checksums.
+A renewed reference clears the retirement date; changed file contents restart it.
+Cleanup validates all current publication manifests and their file checksums
+before deleting anything. The inventories accompany the opkg, APK and APT indexes
+produced by the publishers; missing, incomplete or inconsistent inventories stop
+cleanup. Keys, current metadata and other repository files are not candidates.
+
+The same cleanup runs after each publication and in **Package retention cleanup**,
+scheduled daily at **04:23 UTC** (GitHub may delay scheduled runs). It can also be
+started manually from Actions. Maintenance never builds packages. Both workflows
+share the `package-publication` lock, queue waiting jobs with `queue: max`,
+and use a force-with-lease single-commit
+snapshot. An unchanged cleanup produces no new commit.
+
+The revision-14 Debian upgrade-test archives are permanently stored in the
+[Debian upgrade fixtures release](https://github.com/SNodeC/OpenWRT/releases/tag/debian-upgrade-fixtures),
+with checksums verified by the tests; they do not depend on files retained in the
+live package pool.

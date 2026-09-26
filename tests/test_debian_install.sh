@@ -14,7 +14,7 @@ if [ "$phase" = upgrade ]; then
 import hashlib, json, pathlib, sys, urllib.request
 for name, checksum in json.load(open('/work/feed/tests/debian-monolithic.json')).items():
     if name.startswith('pool/' + sys.argv[1] + '/'):
-        data = urllib.request.urlopen('https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/apt/' + name).read()
+        data = urllib.request.urlopen('https://github.com/SNodeC/OpenWRT/releases/download/debian-upgrade-fixtures/' + pathlib.Path(name).name).read()
         assert hashlib.sha256(data).hexdigest() == checksum
         pathlib.Path('/tmp/' + pathlib.Path(name).name).write_bytes(data)
 PY
