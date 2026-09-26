@@ -13,7 +13,7 @@ platform=${fields[3]}
 image=${fields[4]}
 mkdir -p packages output logs
 docker pull --platform "$platform" "$image"
-container=(docker run --rm --platform "$platform" -v "$PWD:/work" -w /work
+container=(docker run --rm --network host --platform "$platform" -v "$PWD:/work" -w /work
     -e DISTRIBUTION -e SUITE -e ARCH -e PACKAGE_RELEASE)
 "${container[@]}" "$image" bash /work/feed/ci/package-build.sh 2>&1 | tee logs/build.log
 sudo chown -R "$(id -u):$(id -g)" packages

@@ -55,7 +55,9 @@ for checkout; recorded commit IDs only prove provenance. `OpenWRT` and
 [`ci/linux.json`](../ci/linux.json); container images use distribution release tags.
 
 x86-64 and ARM64 build natively on GitHub runners. ARM32 and RISC-V use QEMU
-where required. Each target runs the upstream SNode.C tests, creates CPack
+where required. Build and installation containers share the runner’s network
+namespace, as the Raspberry Pi OS chroots do, so IPv6 tests see configured host
+interfaces instead of an IPv4-only Docker bridge. Each target runs the upstream SNode.C tests, creates CPack
 component packages, then installs from the signed feed in a fresh container.
 Tests exercise selective dependency installation, the full component inventory,
 application startup, MQTT TCP/TLS and MQTT over WebSocket/WSS. Containers test
