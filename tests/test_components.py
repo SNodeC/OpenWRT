@@ -34,7 +34,8 @@ set(CPACK_PACKAGING_INSTALL_PREFIX /usr)
 set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 set(CPACK_DEBIAN_ENABLE_COMPONENT_DEPENDS ON)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-set(CPACK_COMPONENTS_ALL base client)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/client.c" DESTINATION share COMPONENT Data)
+set(CPACK_COMPONENTS_ALL base client Data)
 include(CPack)
 ''')
             build, packages = root / 'build', root / 'packages'
@@ -43,7 +44,7 @@ include(CPack)
             run('cpack', '--config', str(build / 'CPackConfig.cmake'), '-G', 'DEB', '-B', str(packages),
                 '-D', 'CPACK_PACKAGE_VERSION=1.0-2', '-D', f'COMPONENT_OUTPUT={packages}',
                 '-D', f'CPACK_PROJECT_CONFIG_FILE={ROOT}/ci/components.cmake')
-            self.assertEqual(len(list(packages.glob('*.deb'))), 3)
+            self.assertEqual(len(list(packages.glob('*.deb'))), 4)
             architecture = run('dpkg', '--print-architecture').strip()
             client = packages / f'fixture-client_1.0-2_{architecture}.deb'
             meta = packages / f'fixture_1.0-2_{architecture}.deb'
@@ -52,13 +53,13 @@ include(CPack)
                 self.assertEqual(run('dpkg-deb', '-f', str(client), field).strip(), 'fixture (<< 1.0-2)')
             self.assertIn('fixture-client (= 1.0-2)', run('dpkg-deb', '-f', str(meta), 'Depends'))
             self.assertEqual(set((packages / 'fixture.packages').read_text().splitlines()),
-                             {'fixture', 'fixture-base', 'fixture-client'})
+                             {'fixture', 'fixture-base', 'fixture-client', 'fixture-data'})
             self.assertNotIn('libclient', run('dpkg-deb', '-c', str(meta)))
             rpm_packages = root / 'rpm'
             run('cpack', '--config', str(build / 'CPackConfig.cmake'), '-G', 'RPM', '-B', str(rpm_packages),
                 '-D', 'CPACK_RPM_PACKAGE_RELEASE=2', '-D', f'COMPONENT_OUTPUT={rpm_packages}',
                 '-D', f'CPACK_PROJECT_CONFIG_FILE={ROOT}/ci/components.cmake')
-            self.assertEqual(len(list(rpm_packages.glob('*.rpm'))), 3)
+            self.assertEqual(len(list(rpm_packages.glob('*.rpm'))), 4)
             rpm_client = next(rpm_packages.glob('fixture-client-*.rpm'))
             rpm_meta = next(rpm_packages.glob('fixture-1*.rpm'))
             self.assertIn('fixture-base = 1.0-2', run('rpm', '-qp', '--requires', str(rpm_client)))
