@@ -4,7 +4,7 @@ set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 cd /work
 apt-get update
-apt-get install -y build-essential cmake ninja-build pkg-config libbluetooth-dev \
+apt-get install -y build-essential cmake ninja-build pkg-config git ca-certificates libbluetooth-dev \
     libmagic-dev libmariadb-dev libssl-dev libncurses-dev nlohmann-json3-dev file
 mkdir -p sources packages
 for project in snode.c mqttsuite; do
