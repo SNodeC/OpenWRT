@@ -7,7 +7,7 @@ env:
 permissions:
   contents: read
 concurrency:
-  group: openwrt-packages
+  group: packages-${{ github.event.client_payload.ref }}
   cancel-in-progress: false
 jobs:
   prepare:
@@ -192,6 +192,9 @@ jobs:
       ((github.event.client_payload.ref == 'refs/tags/OpenWRT' && needs.build.result == 'success' && needs.runtime.result == 'success') ||
        (github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && needs.raspberrypi.result == 'success'))
     needs: [prepare, build, runtime, raspberrypi]
+    concurrency:
+      group: package-publication
+      cancel-in-progress: false
     runs-on: ubuntu-24.04
     permissions:
       contents: write

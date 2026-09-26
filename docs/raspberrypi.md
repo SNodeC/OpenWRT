@@ -75,8 +75,9 @@ publish/subscribe over TCP, TLS, WebSocket and secure WebSocket.
 
 These are userspace tests, not Pi boot, kernel, peripheral or physical-hardware
 tests. Both Raspberry Pi OS jobs must pass before APT publication. OpenWrt builds
-and tests gate only OpenWrt publication. A shared workflow concurrency group
-serializes runs, and each publication starts from the latest `packages` snapshot
+and tests gate only OpenWrt publication. Runs are serialized per release tag;
+the two platforms can build independently. A shared publication-job lock
+serializes writes, and each publication starts from the latest `packages` snapshot
 and preserves the other platform’s feeds. Publication rejects incomplete matrices, corrupt
 packages, invalid signatures, mixed source generations and superseded tags.
 Old packages and by-hash indexes remain available to clients with cached indexes.
