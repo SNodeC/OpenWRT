@@ -131,4 +131,6 @@ signed Bookworm and Trixie indexes in `apt/dists/` and the public key at
 `keys/snodec-apt.asc`. See the
 [installation instructions](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md).
 
-Both package formats are published together after the combined CI passes.
+The independent `RaspberryPiOS` source tags trigger APT builds; `OpenWRT` tags
+trigger OpenWrt builds. Each publishes after its own checks pass. A shared
+publication lock and snapshot preserve the other package format’s files.

@@ -60,8 +60,10 @@ On the `packages` branch:
 [Browse Bookworm packages](https://github.com/SNodeC/OpenWRT/tree/packages/apt/pool/bookworm)
 · [Browse Trixie packages](https://github.com/SNodeC/OpenWRT/tree/packages/apt/pool/trixie)
 
-Only changes to the `OpenWRT` source tags trigger the combined workflow. Sources
-and recipes are captured once for all OpenWrt and Raspberry Pi jobs. Actions use
+Creation or movement of `RaspberryPiOS` in either source repository triggers only
+the Raspberry Pi jobs. Both projects are built from their `RaspberryPiOS` tags.
+The independent `OpenWRT` tags trigger only OpenWrt jobs. Sources and recipes are
+captured once for each run. Actions use
 version tags. Source commit IDs in provenance record what was built; they are
 not pinned checkout references.
 
@@ -72,8 +74,10 @@ without the build environment. Runtime tests cover CLI startup and MQTT
 publish/subscribe over TCP, TLS, WebSocket and secure WebSocket.
 
 These are userspace tests, not Pi boot, kernel, peripheral or physical-hardware
-tests. Both OS jobs and all OpenWrt checks must pass before the single publication
-step updates the shared branch. Publication rejects incomplete matrices, corrupt
+tests. Both Raspberry Pi OS jobs must pass before APT publication. OpenWrt builds
+and tests gate only OpenWrt publication. A shared workflow concurrency group
+serializes runs, and each publication starts from the latest `packages` snapshot
+and preserves the other platform’s feeds. Publication rejects incomplete matrices, corrupt
 packages, invalid signatures, mixed source generations and superseded tags.
 Old packages and by-hash indexes remain available to clients with cached indexes.
 The branch still contains only one commit after each publication.

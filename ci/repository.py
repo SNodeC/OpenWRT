@@ -1,4 +1,4 @@
-"""Build/publish one complete OpenWRT-tag generation; SHAs are evidence, not refs."""
+"""Capture a release-tag generation; commit IDs are evidence, not pinned refs."""
 import hashlib
 import json
 import os
@@ -30,28 +30,32 @@ def matrix():
 
 
 def sources():
+    tag = os.environ.get('SOURCE_TAG', 'OpenWRT')
+    if tag not in ('OpenWRT', 'RaspberryPiOS'):
+        raise ValueError('Unsupported source tag')
     result = {}
     for repo in REPOSITORIES:
         refs = run('git', 'ls-remote', f'https://github.com/SNodeC/{repo}.git',
-                   'refs/tags/OpenWRT', 'refs/tags/OpenWRT^{}').splitlines()
+                   f'refs/tags/{tag}', f'refs/tags/{tag}^{{}}').splitlines()
         if not refs:
-            raise RuntimeError(f'{repo}: OpenWRT tag is missing')
+            raise RuntimeError(f'{repo}: {tag} tag is missing')
         result[repo] = dict(line.split()[::-1] for line in refs)
     return result
 
 
 def unchanged(bundle):
     if sources() != json.loads((bundle / 'sources.json').read_text()):
-        raise RuntimeError('OpenWRT tags changed: refusing superseded build')
+        raise RuntimeError('Source tags changed: refusing superseded build')
 
 
 def prepare(source_dir, bundle):
     bundle.mkdir(parents=True)
     observed = sources()
+    tag = os.environ.get('SOURCE_TAG', 'OpenWRT')
     for repo in REPOSITORIES:
-        ref = observed[repo].get('refs/tags/OpenWRT^{}', observed[repo]['refs/tags/OpenWRT'])
+        ref = observed[repo].get(f'refs/tags/{tag}^{{}}', observed[repo][f'refs/tags/{tag}'])
         if run('git', '-C', str(source_dir / repo), 'rev-parse', 'HEAD') != ref:
-            raise RuntimeError(f'{repo}: checkout no longer matches OpenWRT')
+            raise RuntimeError(f'{repo}: checkout no longer matches {tag}')
         recipe = (ROOT / 'net' / repo / 'Makefile').read_text()
         version = re.search(r'^PKG_VERSION:=(.+)$', recipe, re.M)[1]
         assert re.search(r'^PKG_SOURCE_VERSION:=OpenWRT$', recipe, re.M)
@@ -60,7 +64,7 @@ def prepare(source_dir, bundle):
             f'--transform=s,^,{name}/,', '-C', str(source_dir / repo), '.')
     (bundle / 'sources.json').write_text(json.dumps(observed, indent=2) + '\n')
     (bundle / 'context.json').write_text(json.dumps({
-        'recipe_ref': 'main', 'recipe_commit': run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
+        'source_tag': tag, 'recipe_ref': 'main', 'recipe_commit': run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
         'run_url': f'https://github.com/SNodeC/OpenWRT/actions/runs/{os.environ.get("GITHUB_RUN_ID", "local")}'
     }))
     run('tar', '-czf', str(bundle / 'feed.tar.gz'), '--exclude=.git', '--exclude=__pycache__', '-C', str(ROOT), '.')
@@ -136,8 +140,6 @@ def publish(incoming, checkout, bundle):
                 raise RuntimeError('Refusing an older/equal publication revision')
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copytree(directory, destination, dirs_exist_ok=True)
-    shutil.copytree(ROOT / 'ci/keys', checkout / 'keys', dirs_exist_ok=True)
-    shutil.copy2(ROOT / 'docs/package-repository.md', checkout / 'README.md')
     unchanged(bundle)
 
 

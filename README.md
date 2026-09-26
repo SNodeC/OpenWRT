@@ -18,7 +18,9 @@ You do not need to clone this repository or compile anything on your router.
 **Raspberry Pi 3, 4 and 5:** ARM64 packages for Raspberry Pi OS Bookworm and Trixie.
 See [Raspberry Pi OS installation and CI details](docs/raspberrypi.md) for feed
 preparation, full installation, package contents and test coverage. Both OS versions
-share this repository's `packages` branch with the OpenWrt feeds.
+share this repository's `packages` branch with the OpenWrt feeds. Independent
+**`RaspberryPiOS` tags** in both source repositories select these builds; the
+**`OpenWRT` tags** continue to select only OpenWrt builds.
 
 ## Supported releases and devices
 

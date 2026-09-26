@@ -95,5 +95,22 @@ class PublicationTest(unittest.TestCase):
                 read_sources()
 
 
+class SourceTagTest(unittest.TestCase):
+    def test_independent_tag_queries(self):
+        for tag in ('OpenWRT', 'RaspberryPiOS'):
+            with self.subTest(tag=tag), patch.dict(repo.os.environ, SOURCE_TAG=tag), \
+                    patch.object(repo, 'run', return_value=f'commit\trefs/tags/{tag}') as query:
+                observed = read_sources()
+                self.assertEqual(set(observed), set(repo.REPOSITORIES))
+                for name in repo.REPOSITORIES:
+                    self.assertEqual(observed[name], {f'refs/tags/{tag}': 'commit'})
+                for call in query.call_args_list:
+                    self.assertEqual(call.args[-2:], (f'refs/tags/{tag}', f'refs/tags/{tag}^{{}}'))
+
+    def test_unsupported_tag_rejected(self):
+        with patch.dict(repo.os.environ, SOURCE_TAG='main'), self.assertRaises(ValueError):
+            read_sources()
+
+
 if __name__ == '__main__':
     unittest.main()
