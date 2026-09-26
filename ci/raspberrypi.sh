@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# Extract official images twice: a build root and a clean installation-test root.
+set -euo pipefail
+suite=$1
+work=$(pwd)
+root="$work/pi-root"
+mkdir -p "$root" pi-image output logs
+readarray -t image < <(python3 - "$suite" <<'PY'
+import json, sys
+row = json.load(open('feed/ci/raspberrypi.json'))[sys.argv[1]]
+print(row['url'])
+print(row['sha256'])
+PY
+)
+curl --fail --location --retry 3 "${image[0]}" -o pi.img.xz
+printf '%s  pi.img.xz\n' "${image[1]}" | sha256sum -c -
+xz -d pi.img.xz
+loop=$(sudo losetup --find --show --partscan pi.img)
+cleanup() {
+    sudo umount -R "$root/dev" 2>/dev/null || true
+    for mount in proc sys work; do sudo umount "$root/$mount" 2>/dev/null || true; done
+    sudo umount pi-image 2>/dev/null || true
+    sudo losetup -d "$loop" 2>/dev/null || true
+}
+trap cleanup EXIT
+sudo mount -o ro "${loop}p2" pi-image
+for phase in build test; do
+    sudo cp -a pi-image/. "$root/"
+    sudo rm -f "$root/etc/resolv.conf"
+    sudo cp /etc/resolv.conf "$root/etc/resolv.conf"
+    sudo mkdir -p "$root/work"
+    sudo mount --bind "$work" "$root/work"
+    sudo mount -t proc proc "$root/proc"
+    sudo mount -t sysfs sysfs "$root/sys"
+    sudo mount --rbind /dev "$root/dev"
+    sudo mount --make-rslave "$root/dev"
+    printf '#!/bin/sh\nexit 101\n' | sudo tee "$root/usr/sbin/policy-rc.d" >/dev/null
+    sudo chmod +x "$root/usr/sbin/policy-rc.d"
+    sudo chroot "$root" sh -c '. /etc/os-release; test "$VERSION_CODENAME" = "$1"; test "$(dpkg --print-architecture)" = arm64' sh "$suite"
+    if [ "$phase" = build ]; then
+        sudo chroot "$root" env PACKAGE_RELEASE="$PACKAGE_RELEASE" SUITE="$suite" \
+            bash /work/feed/ci/raspberrypi-build.sh 2>&1 | tee logs/build.log
+        python3 feed/ci/apt-repository.py stage "$suite" packages bundle output
+    else
+        sudo chroot "$root" bash -eu -c '
+            export DEBIAN_FRONTEND=noninteractive
+            install -m 644 /work/feed/ci/keys/snodec-apt.asc /etc/apt/keyrings/snodec.asc
+            echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] file:/work/output/apt $1 main" > /etc/apt/sources.list.d/snodec.list
+            apt-get update
+            apt-get install -y snodec mqttsuite openssl python3
+            ldconfig
+            python3 /work/feed/tests/test_raspberrypi_runtime.py
+        ' bash "$suite" 2>&1 | tee logs/runtime.log
+    fi
+    sudo umount -R "$root/dev"
+    for mount in proc sys work; do sudo umount "$root/$mount"; done
+    sudo rm -rf "$root"
+    mkdir "$root"
+done
+sudo chown -R "$(id -u):$(id -g)" output logs

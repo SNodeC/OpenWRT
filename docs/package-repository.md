@@ -123,3 +123,12 @@ machine to that SDK's libc. Four QEMU guests (x86-64 and AArch64, both releases)
 install the signed staged feed with official dependencies, exercise TCP, TLS,
 WS and WSS MQTT, and test broker service restart. Logs are retained in Actions.
 Physical-router behavior is not implied by QEMU results.
+
+## Raspberry Pi OS APT feed
+
+ARM64 `.deb` packages for Raspberry Pi 3, 4 and 5 live in `apt/pool/`, with
+signed Bookworm and Trixie indexes in `apt/dists/` and the public key at
+`keys/snodec-apt.asc`. See the
+[installation instructions](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md).
+
+Both package formats are published together after the combined CI passes.

@@ -1,4 +1,4 @@
-name: OpenWrt packages
+name: OpenWrt and Raspberry Pi OS packages
 on:
   repository_dispatch:
     types: [OpenWRT-tag-changed]
@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
+      pi_matrix: ${{ steps.matrix.outputs.pi }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -42,16 +43,24 @@ jobs:
         env:
           OPENWRT_USIGN_KEY: ${{ secrets.OPENWRT_USIGN_KEY }}
           OPENWRT_APK_KEY: ${{ secrets.OPENWRT_APK_KEY }}
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
         run: |
           test -n "$OPENWRT_USIGN_KEY"
           test -n "$OPENWRT_APK_KEY"
+          test -n "$APT_SIGNING_KEY"
       - name: Capture tagged sources and matrix
         id: matrix
         run: |
-          python3 feed/tests/test_repository.py
-          python3 feed/tests/test_ipk_audit.py
+          sudo apt-get update
+          sudo apt-get install -y apt-utils gnupg
+          status=0
+          for test in test_apt_repository.py test_repository.py test_ipk_audit.py; do
+            python3 "feed/tests/$test" || status=1
+          done
+          test "$status" = 0
           python3 feed/ci/repository.py prepare sources bundle
           echo "value=$(python3 feed/ci/repository.py matrix)" >> "$GITHUB_OUTPUT"
+          echo "pi=$(jq -c '{suite: keys}' feed/ci/raspberrypi.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
         with:
           name: tagged-sources
@@ -136,8 +145,41 @@ jobs:
         with:
           name: runtime-${{ matrix.series }}-${{ matrix.arch }}
           path: vm/logs/
+  raspberrypi:
+    needs: prepare
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.pi_matrix) }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: tagged-sources
+          path: bundle
+      - name: Build and test signed Debian packages in official Raspberry Pi OS
+        env:
+          SUITE: ${{ matrix.suite }}
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
+        run: |
+          mkdir feed
+          tar -xzf bundle/feed.tar.gz -C feed
+          sudo apt-get update
+          sudo apt-get install -y apt-utils gnupg xz-utils
+          export PACKAGE_RELEASE=$((GITHUB_RUN_NUMBER + 1))
+          bash feed/ci/raspberrypi.sh "$SUITE"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: packages-raspberrypi-${{ matrix.suite }}
+          path: output/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: logs-raspberrypi-${{ matrix.suite }}
+          path: logs/
   publish:
-    needs: [build, runtime]
+    needs: [build, runtime, raspberrypi]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -169,6 +211,7 @@ jobs:
             git checkout --orphan packages
             git rm -rf .
           fi
+          python3 ../feed/ci/apt-repository.py publish ../incoming . ../bundle
           python3 ../feed/ci/repository.py publish ../incoming . ../bundle
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

@@ -1,4 +1,4 @@
-# SNode.C and MQTTSuite packages for OpenWrt
+# SNode.C and MQTTSuite packages for OpenWrt and Raspberry Pi OS
 
 [![OpenWrt packages](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml/badge.svg)](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml)
 
@@ -12,6 +12,13 @@ This repository hosts the package recipes, build automation and installation
 instructions on **`main`**. Ready-to-install packages, repository indexes and
 public signing keys are published on the **[`packages` branch](https://github.com/SNodeC/OpenWRT/tree/packages)**.
 You do not need to clone this repository or compile anything on your router.
+
+## Raspberry Pi OS
+
+**Raspberry Pi 3, 4 and 5:** ARM64 packages for Raspberry Pi OS Bookworm and Trixie.
+See [Raspberry Pi OS installation and CI details](docs/raspberrypi.md) for feed
+preparation, full installation, package contents and test coverage. Both OS versions
+share this repository's `packages` branch with the OpenWrt feeds.
 
 ## Supported releases and devices
 
