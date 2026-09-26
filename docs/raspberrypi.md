@@ -42,7 +42,8 @@ installed through normal `sudo apt-get update && sudo apt-get upgrade`.
 APT signing-key fingerprint:
 `8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
 
-The applications are installed in `/usr/bin`. Start the broker explicitly with
+Installation creates the required `snodec` system group. The applications are
+installed in `/usr/bin`. Start the broker explicitly with
 `mqttbroker --daemonize=false`; installation does not start network services.
 Use `mqttbroker --help`, `mqttcli --help` or `snodec-control --help` for options.
 For a persistent service, configure your systemd service according to the desired
