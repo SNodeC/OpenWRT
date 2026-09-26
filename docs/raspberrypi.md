@@ -1,4 +1,13 @@
-# Raspberry Pi OS packages
+# Raspberry Pi OS
+
+[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
+
+## Releases, architectures and repositories
+
+| Release | Architecture | Devices | Package files | Signed repository metadata |
+| --- | --- | --- | --- | --- |
+| `bookworm` | `arm64` | Pi 3, 4 and 5 | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/pool/bookworm) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/dists/bookworm/main/binary-arm64) |
+| `trixie` | `arm64` | Pi 3, 4 and 5 | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/pool/trixie) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/dists/trixie/main/binary-arm64) |
 
 The package CI targets **Raspberry Pi 3, 4 and 5 running 64-bit Raspberry Pi OS**.
 It builds one ARM64 package set for Bookworm and one for Trixie, using the
@@ -7,7 +16,7 @@ The image URLs and verification checksums are maintained in
 [`ci/raspberrypi.json`](../ci/raspberrypi.json). Binaries use the common ARMv8-A
 baseline; no Pi-specific CPU tuning is used. 32-bit installations are not covered.
 
-## Installation
+## Prepare the repository
 
 If you previously configured the `/packages/apt` feed, first
 [update its URL](package-repository.md#feed-directory-migration) to `/packages/raspberrypios`.
@@ -31,11 +40,15 @@ printf 'deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] https://raw.gith
 sudo apt-get update
 ```
 
+## Full installation
+
 These commands only prepare the feed. To install the full system:
 
 ```sh
 sudo apt-get install snodec mqttsuite
 ```
+
+## Selective installation
 
 For a broker and command-line client only:
 
@@ -46,30 +59,14 @@ sudo apt-get install mqttsuite-broker mqttsuite-cli
 APT installs the required SNode.C components automatically. It does not install
 other MQTTSuite applications or all of SNode.C merely to run the broker.
 
-| Package | Contents |
-| --- | --- |
-| `mqttsuite-broker` | Broker, its library, WebSocket plugin and web assets |
-| `mqttsuite-bridge` | Bridge, its library, WebSocket plugin and web assets |
-| `mqttsuite-integrator` | Integrator, its library and WebSocket plugin |
-| `mqttsuite-cli` | Command-line client, its library and WebSocket plugin |
-| `mqttsuite-store` | Store, its library and WebSocket plugin |
-| `mqttsuite-mapping-double` | Double mapping plugin |
-| `mqttsuite-mapping-storage` | Storage mapping plugin |
-| `mqttsuite` | All seven MQTTSuite components |
-| `snodec` | All SNode.C components, including headers, examples and control tool |
-
-SNode.C package names follow its upstream CPack components: for example,
-`snodec-core`, `snodec-http-server`, `snodec-mqtt-server` and `snodec-apps`.
-The upstream `Unspecified` component is published as `snodec-unspecified` and
-includes `snodec-control`. List all available framework packages with:
-
-```sh
-apt-cache pkgnames snodec- | sort
-```
+See the shared [component package guide](linux.md#component-packages) for
+individual package names and contents.
 
 The complete package names, versions and dependencies are in the
 [Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/bookworm/main/binary-arm64/Packages)
 and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/trixie/main/binary-arm64/Packages).
+
+## Updates and troubleshooting
 
 To upgrade an existing combined-package installation, run
 `sudo apt-get update && sudo apt-get install snodec mqttsuite`. This installs the

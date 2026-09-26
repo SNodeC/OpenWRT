@@ -1,93 +1,50 @@
-# Debian, Ubuntu, Rocky Linux and Fedora
+# DEB and RPM component packages
 
-Individual SNode.C and MQTTSuite component packages are built separately for each
-supported distribution, release and architecture. Keep the distribution's normal
-repositories enabled for dependencies. The `snodec` and `mqttsuite` metapackages
-install all components; `mqttsuite-broker` and `mqttsuite-cli` provide a smaller
-broker/client installation. Package ownership comes from upstream CMake components.
+Installation guides: [Debian](debian.md) · [Ubuntu](ubuntu.md) ·
+[Rocky Linux](rocky.md) · [Fedora](fedora.md) · [Raspberry Pi OS](raspberrypi.md).
+OpenWrt has [its own package names and guide](openwrt.md).
 
-| Distribution | Suite/version | Architectures | Format |
-|---|---|---|---|
-| Debian stable | `trixie` | `amd64`, `arm64`, `armhf`, `riscv64` | DEB |
-| Debian testing | `forky` | `amd64`, `arm64`, `armhf`, `riscv64` | DEB |
-| Debian unstable | `sid` | `amd64`, `arm64`, `armhf`, `riscv64` | DEB |
-| Ubuntu 24.04 LTS | `noble` | `amd64`, `arm64` | DEB |
-| Ubuntu 26.04 LTS/current | `resolute` | `amd64`, `arm64` | DEB |
-| Rocky Linux | `9`, `10` | `x86_64`, `aarch64` | RPM |
-| Fedora | `43`, `44` | `x86_64`, `aarch64` | RPM |
+## Component packages
 
-Ubuntu policy: two latest LTS releases plus the current stable interim release
-when newer than the latest LTS. No unreleased Ubuntu versions are included.
-Rocky 10 requires x86-64-v3 on x86 systems. Rocky 9 builds use GCC Toolset 14.
-Support for Rocky does not imply separately validated RHEL or AlmaLinux support.
+DEB and RPM packages follow upstream CMake components. The `snodec` and
+`mqttsuite` metapackages install all components of their respective projects.
+Selective application installs pull their required framework modules automatically.
 
-## Debian and Ubuntu
+| Package | Contents |
+| --- | --- |
+| `mqttsuite-broker` | Broker, its library, WebSocket plugin and web assets |
+| `mqttsuite-bridge` | Bridge, its library, WebSocket plugin and web assets |
+| `mqttsuite-integrator` | Integrator, its library and WebSocket plugin |
+| `mqttsuite-cli` | Command-line client, its library and WebSocket plugin |
+| `mqttsuite-store` | Store, its library and WebSocket plugin |
+| `mqttsuite-mapping-double` | Double mapping plugin |
+| `mqttsuite-mapping-storage` | Storage mapping plugin |
+| `mqttsuite` | All seven MQTTSuite components |
+| `snodec` | All SNode.C components, including headers, examples and control tool |
 
-Use the suite matching the installed system; do not mix distribution releases.
-Example for Debian Trixie (replace `debian trixie` with `ubuntu noble`,
-`ubuntu resolute`, `debian forky` or `debian sid` as appropriate):
-
-```sh
-sudo apt-get update
-sudo apt-get install -y ca-certificates curl
-sudo install -d -m 755 /etc/apt/keyrings
-curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/keys/snodec-apt.asc |
-    sudo tee /etc/apt/keyrings/snodec.asc >/dev/null
-sudo chmod 644 /etc/apt/keyrings/snodec.asc
-printf '%s\n' 'deb [signed-by=/etc/apt/keyrings/snodec.asc] https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian trixie main' |
-    sudo tee /etc/apt/sources.list.d/snodec.list
-sudo apt-get update
-```
-
-APT selects the native architecture. Codenames prevent accidental release changes
-when Debian's stable/testing aliases move. Install the full selection:
+SNode.C package names follow its upstream CPack components: for example,
+`snodec-core`, `snodec-http-server`, `snodec-mqtt-server` and `snodec-apps`.
+The upstream `Unspecified` component is published as `snodec-unspecified` and
+includes `snodec-control`. List all available framework packages with:
 
 ```sh
-sudo apt-get install snodec mqttsuite
+apt-cache pkgnames snodec- | sort
+# RPM distributions
+dnf list --available 'snodec-*'
 ```
 
-Or install only the broker and command-line client:
+## Configure applications
 
-```sh
-sudo apt-get install mqttsuite-broker mqttsuite-cli
-```
+Installation creates the `snodec` system group and installs executables in
+`/usr/bin`; it does not start network services. Run `mqttbroker --help` and
+`mqttcli --help` for configuration options. Start a foreground broker explicitly
+with `mqttbroker --daemonize=false`. Configure listeners, credentials and TLS
+certificates for your deployment. The store requires a configured database.
+For a persistent service, configure systemd with the desired user and arguments.
+See the [MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme).
 
-## Rocky Linux and Fedora
-
-On Rocky, enable CRB and EPEL for additional dependencies:
-
-```sh
-sudo dnf install -y dnf-plugins-core epel-release
-sudo dnf config-manager --set-enabled crb
-```
-
-Download the public key (shared with the APT feeds):
-
-```sh
-sudo curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/keys/snodec-apt.asc \
-    -o /etc/pki/rpm-gpg/RPM-GPG-KEY-snodec
-sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-snodec
-```
-
-Create `/etc/yum.repos.d/snodec.repo`. For Fedora replace `rocky` with `fedora`;
-leave `$releasever` and `$basearch` literal so DNF expands them:
-
-```ini
-[snodec]
-name=SNode.C and MQTTSuite
-baseurl=https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/rocky/$releasever/$basearch/
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-snodec
-```
-
-```sh
-sudo dnf makecache
-sudo dnf install snodec mqttsuite
-```
-
-For a smaller installation use `sudo dnf install mqttsuite-broker mqttsuite-cli`.
+The APT and RPM public signing key has fingerprint
+`8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
 
 ## CI and publication
 
