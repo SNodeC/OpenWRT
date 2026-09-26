@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 2140160
+Filename: mqttsuite-bridge_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 613301
+SHA256sum: d71767cd3ef0f00dd6c8724a054dd4b5067907ad2db94e7d8d26351f63a4c69c
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-net-un-stream-tls, snode.c-http-server-express-tls-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 2928640
+Filename: mqttsuite-broker_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 853242
+SHA256sum: 311ead6cadd509bf93abaf747cfd2ea4858bf5e73ea9d28a2ee8b1d0948f72f4
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 1259520
+Filename: mqttsuite-cli_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 348866
+SHA256sum: 16b5a8069a8003da18f9d36dd83eae6cf49336dafb619ca327d86449c5b192c4
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.1-r18
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 956
+SHA256sum: 4a5ab7eb2fda1cc9f68807f1cf2dae2727b0f6d869f3938f09dd062508761b5a
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 2242560
+Filename: mqttsuite-integrator_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 637333
+SHA256sum: 5ba1bd730d6f707dcd5e3e37daca5f8d9093346a304e86d48536d1457c858205
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: mqttsuite-mapping-double_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 9637
+SHA256sum: ca5930b7934ced8274d3a8132c08f5a6211819ecc1ac6dae659379240acd40a2
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: mqttsuite-mapping-storage_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 15604
+SHA256sum: a02a953cad73ff519b9864b4c6f8cfe1157fe599cd2be41943b3abb8b4aba8b9
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 1781760
+Filename: mqttsuite-store_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 506078
+SHA256sum: e95aaecbb79973f387bf678a77b5343e8169dbdf21ce2a798787a3b895e3c2c1
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.1-r18
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: aarch64_cortex-a72
+Installed-Size: 10240
+Filename: mqttsuite_1.0.1-r18_aarch64_cortex-a72.ipk
+Size: 890
+SHA256sum: 622403b7b1e03cfeacaff5ffc2018cf73deaa62d35986df7f64c15fec9c15072
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 16394240
+Filename: snode.c-apps_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5237269
+SHA256sum: 5ca7464f228209653a725e0e46d083e7f86fa0b3dad5f018e052fca062aa43f5
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r18
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 276480
+Filename: snode.c-control_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 90621
+SHA256sum: b5ec26f3a126ef7e2e784248f266aa4964415a64525517956953180c7f96d062
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-core-mux-epoll_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 14058
+SHA256sum: 17c1354e8317a15b7c1fbd6ab9270d06dd1e9f083734d61057332eacbef63fcc
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-core-mux-poll_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 11523
+SHA256sum: ffd338178aea3c233e07ca0e207f3dfbd1dc586ebd2a2722b5cb12171eb84cd3
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-core-mux-select_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 7947
+SHA256sum: 70b520609f65bfaf46bcff14589517870bf8aa3ae0deee50a9a4d62174b4c18a
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5757
+SHA256sum: f935f6f416f29f79b5db75ab1dc6aa595a09025fc2dcbfac3a79f88cb3771af9
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 143360
+Filename: snode.c-core-socket-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 32735
+SHA256sum: ef881c923a6108a0cc70a9597d4633fb978c09d9e6d6b829210b9700c7a41f8a
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-core-socket-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 101506
+SHA256sum: dacc3e399afef4f1ba645f03e15d4f0a92cc3b0da3a4b2373b558040392f6da3
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r18
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-core-socket_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 7936
+SHA256sum: 9c1c1f031c744a108a1777b696f8e36ee4a97254b9a15b42c65227fe4209b288
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r18
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 399360
+Filename: snode.c-core_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 131296
+SHA256sum: 0699b9e18d5ce514398a9e9ba7d2463d3b4f3dc74342ebdce1ac999b45ab9bdd
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r18
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 143360
+Filename: snode.c-db-mariadb_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 34822
+SHA256sum: 7c61938ab6fdc9a78f98e691e621ad653245bd70e432b266ce92edb25c5e63d4
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 1119
+SHA256sum: 2e90fe0343acfd236cbee6b83619c14eea1567cbb7a30ae5bedcb77356c3f7e8
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 471040
+Filename: snode.c-http-client_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 149346
+SHA256sum: 17315cb5cc15e8a31fe45f5da55735883aaf8fc2fd9427942c9d9cd70beca040
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93094
+SHA256sum: 3b07fe65840108b6b72129881c1d74c80d4fcca542b23f95ac551dca9b05983f
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93041
+SHA256sum: 01b6f65bdc2451ded917638d3b7c69de00cfa6dd33e38ed9004a5e110deca1bb
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 92954
+SHA256sum: 1ee6f43c13a4bff0e69c51d5d65a1dd77d94d934ca8290ea8e2e07c313cbaf44
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93058
+SHA256sum: a377b23aa858afe716c07eaabd840c36d09a92a5b96d370eb440c14cbd453217
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93117
+SHA256sum: 2b5eb869dc9699bba8e117356b66b7809410cc89ec6663ef2658fa8132fcef4b
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-tls-in_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93089
+SHA256sum: d7860a5797728e75eafc558f090fb710c98fc15f7baeb3802ad9f4b8016e991f
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93097
+SHA256sum: 6cbb4853e4084c17bb111d66c121eb9f39f23aeae7427052f2e7be69e01eee69
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-http-server-express-tls-un_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93077
+SHA256sum: f24d0f6feaf72bff16627a840e47fe8b68c106b5390265694d8555bec968f8ef
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 798720
+Filename: snode.c-http-server-express_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 216993
+SHA256sum: 8b583d01e73262ab43327c3efec2c20c3effa2c515ff1ffd25eb04e26c33a91c
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 471040
+Filename: snode.c-http-server_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 139162
+SHA256sum: 3b8ce33c3dcb2a122917927a6c0960181c4285373883f77004caf64203093385
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 471040
+Filename: snode.c-http_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 148184
+SHA256sum: d06795fa0b450216dd32b2f844a4467eee2ac7e04182d8aa7827ddf4bdf13254
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r18
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-logger_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 152511
+SHA256sum: 0462f0b40a7a0d009ccd056d1a631ade58ce705be08c7e9b27cf28beb9ab592a
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-mqtt-client-websocket_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 10454
+SHA256sum: 21b3f848db70200b0dcbb22d4bb20e12d444ff68a751bb65d5110d142eee0ed9
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 276480
+Filename: snode.c-mqtt-client_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 68921
+SHA256sum: 97d1637e1704889df0c0283f1bfb5ae5f7b50ab4d57496609e40746ddff62803
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-mqtt-server-websocket_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 10458
+SHA256sum: 1d6b831d475b40e38e05367372829e71de92b26c9e62c1f5e5fa566ea6aaf250
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 399360
+Filename: snode.c-mqtt-server_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 119707
+SHA256sum: 80fb5fda3f85d406bb4a19e35bb24ebc767a82e2d51735df0daabe6d59c270f8
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 204800
+Filename: snode.c-mqtt_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 54642
+SHA256sum: 7fe2e8f790e01ed17276199011c475f85c71b3a0eea1f9c236485195c8e54785
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-in-phy-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 4951
+SHA256sum: b0c7d86a0dbbccb148c2a464d51895ea1b50607d7502f1be0e66e22f18133e1a
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-in-phy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 6515
+SHA256sum: 987c463a4c714f897042b8179073de0d7eaa83b8083d62f7fe95f2582dc0b2da
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-net-in-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 133966
+SHA256sum: 09fbc9a4f7d259ae32f608a42f41c376dc02238dbe96c1a3503094a338409061
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 665600
+Filename: snode.c-net-in-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 175044
+SHA256sum: d409686d12a7f0b37b7b5a3afed1bb030b716397a243cc054ac63eb0b4cdea75
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-in-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 87310
+SHA256sum: 240cc3156e7ca16865f6e7ceb25b72cca88fc3efd2a6a08037f16028b43d6e67
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 4937
+SHA256sum: daf9aa87da767db7a2146e343f3d6be15e4865a49399207cf6eda8d1a3ea3b5b
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 6528
+SHA256sum: d914bab1487a16d5f1bfe0de448039e0e14d38d13a07c1bb54de0f331d44b973
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 133951
+SHA256sum: b545137b1566ebba1ca22da3d35eb03e6065bafb3ec0bb4113a27e313da97481
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 665600
+Filename: snode.c-net-in6-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 175194
+SHA256sum: d84ec8c5d298b9303708db9b5149d5e630588c45a29e9463376a0599d5304c01
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-in6-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 87551
+SHA256sum: 9ede22d0ffac9297f779ee1e03430e89ff343a00d9eef9c6d356b933720a5e6d
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-net-in6_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 97535
+SHA256sum: 3b69ec94af7f042c2c8361aa740e451ec9f89f8857b26e61a4ae3296f78127c8
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-net-in_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 97176
+SHA256sum: b6e2ce53959c9df71330fdd05b69b7bcb2d50e2c73f632a0c6e06dc48654b101
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5039
+SHA256sum: 317152e397266520e540461e6176eb315abaaa5d63154e8afcc612455ef7e4bf
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5890
+SHA256sum: 7af2c6ff30fa04c6a3f35710369a4de69521e4088f5698f953ce2103be870579
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 133279
+SHA256sum: 50e18dfbb8de3458765d996016421eb788550931e05667354fa83c416573e970
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 665600
+Filename: snode.c-net-l2-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 174693
+SHA256sum: 05ded3b8e807c6ec35266a01c4d0a06f7ee47af9675097bb715678b520bea09e
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-l2-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 78646
+SHA256sum: b43f2683476f9d1ae1e981ad04100b98dfec3acf547ac22030b45ba2da46f601
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r18
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 399360
+Filename: snode.c-net-l2_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 125726
+SHA256sum: 271bbdca26ce87ffd22c8df69cfd94e224579ce2d5a42b2dc4d85fde26cdad42
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 4963
+SHA256sum: 22593f688d676fe2f3f081004838cf1781723cb2b24f4c99a72e8eadb88ea584
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5888
+SHA256sum: 5e2a99d46920c6302dba231d7d8ff409e674918da9de7ba865f378cb428e1531
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 133306
+SHA256sum: f930f1bfcf19e6f0e4587172fd7706967fc006e35826168cff8cb2a565ca042b
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 665600
+Filename: snode.c-net-rc-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 174534
+SHA256sum: a9e510d3ab7a8c102428accc010460804fd18020baac573cd1efb9b9778460b6
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-rc-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 78674
+SHA256sum: 8b6c321dd50b94cceaaa3aac94dce4d5c47712e86529fc6dd9173829f8859a6e
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 399360
+Filename: snode.c-net-rc_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 126444
+SHA256sum: 0fa6873f82e1e953a0546b5da6b8edb8188d241b1a0fce91d23e9777c44a8aac
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-un-dgram_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 13424
+SHA256sum: 1eaf44b504f13f3607d903ea72f1de25984fa79311fb2e26885f06a57eef7f80
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-un-phy-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 16373
+SHA256sum: 50b7445965a9b0d82444e8549679ac3bc0559df60a9f4c6af7e21b6d8bb25c14
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-net-un-phy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 5936
+SHA256sum: 6b48ee53d4e16d313e55535e4715e17cd7162c5c9a68f6563317d90733aa1e3b
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 532480
+Filename: snode.c-net-un-stream-legacy_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 132968
+SHA256sum: 73b5b5ad25d1eb042f86730596367e80fd0b105abd914671231c8324a4b2244d
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 665600
+Filename: snode.c-net-un-stream-tls_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 174411
+SHA256sum: 2179164d65a371a89cf626e97d623d6973a34e17dec3b06f63c8e5991b9d657a
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-un-stream_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 78607
+SHA256sum: f9a2c5c6055ae70fff4d915bd93bf1163b0e285ba2bee60bf1cf2996fc46b4e0
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 266240
+Filename: snode.c-net-un_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 83427
+SHA256sum: 32fabf7b5f97b39349bcfb509769d2bf3d96886e4ab7d1a946b66086b6be6a05
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 593920
+Filename: snode.c-net_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 160629
+SHA256sum: aad9569979df80d873eb4afc79d74b8c88f7b7df12b51792b203894db3e89bac
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 727040
+Filename: snode.c-utils_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 232864
+SHA256sum: dbdcb939c9be96611c370088ca157013f980be2d16c6c0b099b3d83bdc465fcd
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-websocket-client_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 93984
+SHA256sum: cffddce4841e7f1de58a3ab18dda3d9cbb21aa54cdd96ba099edc8e0ebde4271
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 337920
+Filename: snode.c-websocket-server_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 98883
+SHA256sum: 7512efacf9ed6f25dbfa52f76fefadb75b2295afdf1bac083e0018e655f13983
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 71680
+Filename: snode.c-websocket_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 12247
+SHA256sum: d79930cc5fdbf194425b677d027477e66d7ae7b6d43583cc71c5da6a5413c492
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r18
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: aarch64_cortex-a72
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r18_aarch64_cortex-a72.ipk
+Size: 1107
+SHA256sum: 01a3dce50eb9f1017d0da2a9b7a6b6fedcecc21a20b9b3f8bc63ad1ce5e78ef4
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+

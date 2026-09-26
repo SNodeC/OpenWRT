@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 2406400
+Filename: mqttsuite-bridge_1.0.1-r18_powerpc_464fp.ipk
+Size: 647421
+SHA256sum: 561726b386330fb4b7b13cb229c0815f929e3df13eb994d6efc763907ccb0fee
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-net-un-stream-tls, snode.c-http-server-express-tls-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 3184640
+Filename: mqttsuite-broker_1.0.1-r18_powerpc_464fp.ipk
+Size: 907395
+SHA256sum: f1ce6fb5c7f834bb34c7ee54f81c3ab1f1d37e94f13bad9189f17dfc69f22e01
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 1525760
+Filename: mqttsuite-cli_1.0.1-r18_powerpc_464fp.ipk
+Size: 367488
+SHA256sum: 079b1fe28cb69de11536f8eb94fcae886dab5c49ac28ddc2f4bf1bd9172f4564
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.1-r18
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.1-r18_powerpc_464fp.ipk
+Size: 954
+SHA256sum: 17ff4965a14798e29c73c965a9a718cf3c6e97ad58240fa26ffd9286b1ba8292
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 2580480
+Filename: mqttsuite-integrator_1.0.1-r18_powerpc_464fp.ipk
+Size: 685149
+SHA256sum: d67dd13b58fc8cfbcc85f63c3bbcffe77160b6f71a3e5bae3b315f29c83165dc
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: mqttsuite-mapping-double_1.0.1-r18_powerpc_464fp.ipk
+Size: 10000
+SHA256sum: aca270d41deeac63c3c77a8112c1e7faad6243ec97e664928ba80c959c0df689
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: mqttsuite-mapping-storage_1.0.1-r18_powerpc_464fp.ipk
+Size: 16252
+SHA256sum: 43ab53e5147bab785bdb1c8303f29abec0c8aaf883462a038bfac28a6dab8ecc
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.1-r18
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 2048000
+Filename: mqttsuite-store_1.0.1-r18_powerpc_464fp.ipk
+Size: 539810
+SHA256sum: 39fb1f68df3300bbfa32ec22c1f62f83943130d66885fdcc5ecaf924f4851866
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.1-r18
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: powerpc_464fp
+Installed-Size: 10240
+Filename: mqttsuite_1.0.1-r18_powerpc_464fp.ipk
+Size: 889
+SHA256sum: 97bf5ed0b1dca141c9e2d28f9bc0acea39f509b54d00d8fbc95af0f784b76221
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 19681280
+Filename: snode.c-apps_2.0.0-r18_powerpc_464fp.ipk
+Size: 5712386
+SHA256sum: 75f9113df66b6af7cbac78fa3f3d9be4ce7b53454fc172294a37cb4188b0a18f
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r18
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-control_2.0.0-r18_powerpc_464fp.ipk
+Size: 101066
+SHA256sum: efbc26b22f918e9b7b35ed4e52b715115de5db66721553084effa4b2004a4a0f
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-core-mux-epoll_2.0.0-r18_powerpc_464fp.ipk
+Size: 14812
+SHA256sum: 3f7a749000313f6fb158fdda876a98f74d22d5a7da9496c90dcde5f436f2f98e
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-core-mux-poll_2.0.0-r18_powerpc_464fp.ipk
+Size: 12466
+SHA256sum: 27a458fa6a272a7f788fe700e686b65b44c25258a262d76b038e0c88c31bc646
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-core-mux-select_2.0.0-r18_powerpc_464fp.ipk
+Size: 8226
+SHA256sum: b62af7efab9d1b2e622c482d141c561e505918a599153fdc47493377d7cfbbe6
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 5528
+SHA256sum: 24094e3bb0372edd536ddfd9b94870bd1fcce7cccef4598c3df1413697e2c24b
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 143360
+Filename: snode.c-core-socket-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 35199
+SHA256sum: 70480fb2b532769f7b26519c41a4ca5997a38df4ebe6a29cde9b4f142a2e30fd
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-core-socket-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 109002
+SHA256sum: c18cba2c1d463c43cfbcbea3c77f72fa801c569662754d0c96f8bbf4f7bffadf
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r18
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-core-socket_2.0.0-r18_powerpc_464fp.ipk
+Size: 8198
+SHA256sum: 3c8a024869fd122bc9923e6a3b3d1e25a608830adca2f6b6e10181ca7d17801c
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r18
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 471040
+Filename: snode.c-core_2.0.0-r18_powerpc_464fp.ipk
+Size: 140887
+SHA256sum: d579071d15b5aa35272e78f8cfc193a0efc7fb7479bd19e6163758d50cea7da2
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r18
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 143360
+Filename: snode.c-db-mariadb_2.0.0-r18_powerpc_464fp.ipk
+Size: 35657
+SHA256sum: 87cacddf22dfcd8725d28e402b87208410c80de458c0f28d4d6eb1335a493b98
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r18_powerpc_464fp.ipk
+Size: 1113
+SHA256sum: 6b6221acaf7f2e7ec0c44f9849200e154ba319dc5b1c635f4eb981989603b773
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-http-client_2.0.0-r18_powerpc_464fp.ipk
+Size: 161164
+SHA256sum: be3517b9df020088938ad52a0b20a564608e609aecb255cb93711d6b14f7400c
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r18_powerpc_464fp.ipk
+Size: 99382
+SHA256sum: 7f6bb7a042e4e9a23af485e6da7de4f9b49e20c662bfcdd1ce034706ddcb064e
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r18_powerpc_464fp.ipk
+Size: 99308
+SHA256sum: 17e9e8b99a889cba3e759cf76abdb1a0fe91a476939651cacdc938e83e541618
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r18_powerpc_464fp.ipk
+Size: 99281
+SHA256sum: 373846d33808ababd255aae9e763639b521d1209a5a6bc7d170614ae477d19c7
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r18_powerpc_464fp.ipk
+Size: 99170
+SHA256sum: 911993a798351595204f0bdfc910aa4107c337e21a968363601aff79a2a20199
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r18_powerpc_464fp.ipk
+Size: 99352
+SHA256sum: 03fe46c18c34e32d402e7fc9b5d065571a6eb3124ca80bcffe98a1c73b352dd3
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-tls-in_2.0.0-r18_powerpc_464fp.ipk
+Size: 99266
+SHA256sum: 17495fb53b68bf229bb60293891d8ceeb16b7bdf41c8656e2bf841ff04915513
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r18_powerpc_464fp.ipk
+Size: 99204
+SHA256sum: 46133453e88bbd9899e80ed69fc76dc345360d448da5e00622543588c253d3d4
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-http-server-express-tls-un_2.0.0-r18_powerpc_464fp.ipk
+Size: 99137
+SHA256sum: 360d712d158a4e15d9a1eb40fee8c0f20ba879433b34e58c126df989aee893d4
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r18
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 860160
+Filename: snode.c-http-server-express_2.0.0-r18_powerpc_464fp.ipk
+Size: 241713
+SHA256sum: 46edd1e8a99ddafcd01166f6d0f77ca65248a7aa535adaf8b422a404fc9f7e06
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-http-server_2.0.0-r18_powerpc_464fp.ipk
+Size: 155646
+SHA256sum: c7bafd4cb0a8d420eb48cfd68f7e2d7964475b5ce8fa9b9bbfce25c2d495c3b0
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-http_2.0.0-r18_powerpc_464fp.ipk
+Size: 160215
+SHA256sum: 190efe3d9e3ec7e6e2cc9514185342b91078d9f8523a5a99125d58bd13c3c0ab
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r18
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-logger_2.0.0-r18_powerpc_464fp.ipk
+Size: 161862
+SHA256sum: c91f460d310fcb3cd744f000e85ac09a41131ad2704423e767e6d077ca5c2de2
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-mqtt-client-websocket_2.0.0-r18_powerpc_464fp.ipk
+Size: 10675
+SHA256sum: e17f5f43b937c552bec5bfe7e82b4f1b28dd90142163c25a6875989ceebdb811
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 276480
+Filename: snode.c-mqtt-client_2.0.0-r18_powerpc_464fp.ipk
+Size: 73809
+SHA256sum: d657a64749fa45311d2d8e0f9cb46686d5b5df0d72536627b7143f1ef90ec6df
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-mqtt-server-websocket_2.0.0-r18_powerpc_464fp.ipk
+Size: 10677
+SHA256sum: b9102948cd2f70b16637b4ccb2bd11317c6a2e9c75e4c27911baf16ebfb138b8
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 471040
+Filename: snode.c-mqtt-server_2.0.0-r18_powerpc_464fp.ipk
+Size: 128125
+SHA256sum: a260f21bf9931bd11c2b3f7a1db50a6c11ca9be6a4a7428fa66db493b6e62e8d
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 204800
+Filename: snode.c-mqtt_2.0.0-r18_powerpc_464fp.ipk
+Size: 57240
+SHA256sum: f327071945ae7015318b05309a0732d3aa46ff4a4f3a4796ad7c8a6855d111a2
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-in-phy-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 5047
+SHA256sum: b1a2b653bd090c9372d248223b54ae9b304e460b4f3a698e4db0649a04a5506a
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-in-phy_2.0.0-r18_powerpc_464fp.ipk
+Size: 6753
+SHA256sum: 0b11439b5ad22dc970c2adf4c9d96b92002ff5d29718b926c64b115ab8235ebb
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-net-in-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 147477
+SHA256sum: ae0f435889331a66d7c72b1b8f14c07c0db125bf394a16dd0a156dccc47aeff4
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net-in-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 190290
+SHA256sum: e2f363854c7c690a193165e7c258ab3be8436fbbdf4fd01f568c9b01670f3ab0
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-net-in-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 94136
+SHA256sum: c43062d99b8b5a257a587979b7e98c667a177fb6a746601b382f6ee374d8a922
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 5062
+SHA256sum: 6eb30d281863d2927ca1d6b2594e3635b164b2f9b3e62d613f09e43d9c34ecc2
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy_2.0.0-r18_powerpc_464fp.ipk
+Size: 6763
+SHA256sum: ac45c1128de81731769877f0098fc1ae88db0a3e764e02fe359f57c5ff03b08f
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 147390
+SHA256sum: 4edd6c97a040c1fd4abe3888b10e50ae8b51852420ff25a55ec053869c14258a
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net-in6-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 190238
+SHA256sum: 1339c6ddab9a7758db79962fda890c7d9e5b1ad1e7b449c70bd4637eb347333f
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-net-in6-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 94623
+SHA256sum: 73a07a33d952d6a9fdc532b133b263c5a4485ee0eb38724f661b712240c6e1ab
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-net-in6_2.0.0-r18_powerpc_464fp.ipk
+Size: 103964
+SHA256sum: 8746ca1362c9fdcd3966af3f52d7efce425592e7c418bd8847a45fe4a2622863
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-net-in_2.0.0-r18_powerpc_464fp.ipk
+Size: 103649
+SHA256sum: c270ed27494129f73b78da6f52f7c6729ae8d79584e42d967090c9779e9f586c
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 5171
+SHA256sum: 5dae57686b121c50cfb8770df478eac015faeaf4b0cb1698a90c3028740f4c66
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy_2.0.0-r18_powerpc_464fp.ipk
+Size: 6269
+SHA256sum: d1dc46981a72857e8a94252ba63763fe583d9c78c1a02436bd3a4b7c8ae59a63
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 146782
+SHA256sum: cf9a57759e2e47ceadb215776380938ad6e38a2dcc662e116572f55126bde25d
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net-l2-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 189489
+SHA256sum: 8bc3cf7a99d8dc315b3ad197a88b486932862dde9baeeca04a5578e0fe75385a
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 266240
+Filename: snode.c-net-l2-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 84788
+SHA256sum: 6effe622a6681033426f1d93fbff9d576c6497e475b57e408681b0a9ea18d980
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r18
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 471040
+Filename: snode.c-net-l2_2.0.0-r18_powerpc_464fp.ipk
+Size: 134890
+SHA256sum: 5abf0b78a2961e3f493b7caad2f5defa9a21826229c453656c6ab458874bd963
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 5042
+SHA256sum: e81c2486830d7fe8d4f42afb0675e1e64d8b0b1ae80d55a16d18ac8ab24dbe5e
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy_2.0.0-r18_powerpc_464fp.ipk
+Size: 6212
+SHA256sum: 403cf327f630fe1e015e4646671251b13bed5f330f7d0e089af292ea9c7434d7
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 146721
+SHA256sum: 1ba4399e48138587d82eb314169d95fe91404b550f07c391909bd72fe77105e0
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net-rc-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 189452
+SHA256sum: f169479ca9ab61a0d4db788e486bdbf0614e79c9ab79630733842423c1192805
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 266240
+Filename: snode.c-net-rc-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 84778
+SHA256sum: f973619328b4776d6b59516237e4b8e6f43145073a29ff42b0a236b102196f85
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r18
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 471040
+Filename: snode.c-net-rc_2.0.0-r18_powerpc_464fp.ipk
+Size: 135605
+SHA256sum: e7275c02c7495e450d9de7021c40d3fe5efb19e4e5b38e285ceb7cdf97017444
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-un-dgram_2.0.0-r18_powerpc_464fp.ipk
+Size: 14269
+SHA256sum: 082224e5764e49ca09b97c9e95e99877fa92f817205815685fad6dba154e66d2
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-un-phy-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 17998
+SHA256sum: 639776136571ca9bbcbd665bedcc2bfc4f3baf825ee343b510e7d850cde5f0d9
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-net-un-phy_2.0.0-r18_powerpc_464fp.ipk
+Size: 6325
+SHA256sum: ed6956a5a0038f18095fec342518449156a42330493b33de2ebf22b68a743c00
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 532480
+Filename: snode.c-net-un-stream-legacy_2.0.0-r18_powerpc_464fp.ipk
+Size: 147400
+SHA256sum: 0ebcad2d8837c81bacc20266051c82ef4ddce41be2cdd3020e322067af86903f
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net-un-stream-tls_2.0.0-r18_powerpc_464fp.ipk
+Size: 189754
+SHA256sum: 7723eefe1b3fa62db62e4d8304fe1105f2ff9765de2c7c412ea9d454f3085a64
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r18
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 266240
+Filename: snode.c-net-un-stream_2.0.0-r18_powerpc_464fp.ipk
+Size: 84662
+SHA256sum: 2242186505b2854e8ee8c5cff13254c658b8cead1f504191955cd6c03b65e04d
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r18
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-net-un_2.0.0-r18_powerpc_464fp.ipk
+Size: 89084
+SHA256sum: 7772537417caf539f48f7716ed43b7c501bbec48760d7f3ec69ebaeba5363834
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r18
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 727040
+Filename: snode.c-net_2.0.0-r18_powerpc_464fp.ipk
+Size: 187939
+SHA256sum: 479701d1b39f607006c64c9da344d0273d197242030131c1db20bbbe453971c7
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r18
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 798720
+Filename: snode.c-utils_2.0.0-r18_powerpc_464fp.ipk
+Size: 251001
+SHA256sum: e1f68e6fe77f0fca76c45152e00aa0321fa89b0fd20694a9639d784b5cda28a4
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r18
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 337920
+Filename: snode.c-websocket-client_2.0.0-r18_powerpc_464fp.ipk
+Size: 102316
+SHA256sum: 1fdb679489a3332e01dff092e61fbb4a800ed97e51470be0ef47f865394268eb
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r18
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 399360
+Filename: snode.c-websocket-server_2.0.0-r18_powerpc_464fp.ipk
+Size: 107605
+SHA256sum: 3c836474c374f7079dc269e1be1de22af67b02e6cab69510d330e3af25ad7b56
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r18
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 71680
+Filename: snode.c-websocket_2.0.0-r18_powerpc_464fp.ipk
+Size: 12674
+SHA256sum: b66f501480f0e137e3e884f9150629e8e87d12073ca780528e22c348b353ce2b
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r18
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: powerpc_464fp
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r18_powerpc_464fp.ipk
+Size: 1105
+SHA256sum: e7a93a1f1916801c405e1306975abe505e3ff88798b26f5e0155081c83375c39
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+
