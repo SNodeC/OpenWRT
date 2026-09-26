@@ -56,8 +56,8 @@ Keep the official distribution feeds enabled for dependencies. These feeds
 contain userspace applications, not firmware or kernel modules. Vendor firmware
 is not assumed compatible merely because its CPU matches.
 
-The optional `ci/install-feed.sh` script on `main` performs this setup and
-installation explicitly on a router, rejecting unsupported/unpublished feeds.
+The shared `ci/install-feed.sh` script on `main` detects all six distributions
+and performs their repository setup and installation, rejecting unpublished feeds.
 Pass `--prepare` to import the signing key, configure the feed and update package
 lists without installing packages. Without options it installs the full selection.
 CI never runs it on your devices.

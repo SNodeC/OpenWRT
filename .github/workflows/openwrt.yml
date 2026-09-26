@@ -62,7 +62,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y apt-utils gnupg cmake build-essential rpm createrepo-c
           status=0
-          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_components.py test_rpm_repository.py test_cleanup.py; do
+          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_components.py test_rpm_repository.py test_cleanup.py test_install_feed.py; do
             python3 "feed/tests/$test" || status=1
           done
           test "$status" = 0

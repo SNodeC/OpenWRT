@@ -2,7 +2,7 @@
 
 [All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
 
-## Supported releases and devices
+## Releases, architectures and repositories
 
 | OpenWrt series | Package manager | Package format | Current SDK release |
 | --- | --- | --- | --- |
@@ -26,31 +26,66 @@ printf 'OpenWrt: %s\nPackage architecture: %s\n' "$DISTRIB_RELEASE" "$DISTRIB_AR
 Use `DISTRIB_ARCH`, rather than `uname -m`, when selecting a feed. The same
 package architecture can be shared by several hardware targets.
 
-Both series cover the same 25 platform variants. See the complete
-[architecture table and per-release package links](../README.md#openwrt-architectures).
-The matrix is maintained in [ci/platforms.json](../ci/platforms.json).
+Both series cover the same 25 platform variants, listed in the established
+priority order within each release. RISC-V uses a different package architecture
+name in each series. The matrix is maintained in [ci/platforms.json](../ci/platforms.json).
 
-## Quick installation
+| Release / suite | Architecture | Package files | Signed repository metadata |
+| --- | --- | --- | --- |
+| `24.10` | `aarch64_cortex-a53` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a53) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_cortex-a53/Packages.gz) |
+| `24.10` | `x86_64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/x86_64) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/x86_64/Packages.gz) |
+| `24.10` | `aarch64_generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_generic) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_generic/Packages.gz) |
+| `24.10` | `aarch64_cortex-a72` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a72) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_cortex-a72/Packages.gz) |
+| `24.10` | `aarch64_cortex-a76` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/aarch64_cortex-a76) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/aarch64_cortex-a76/Packages.gz) |
+| `24.10` | `mipsel_24kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_24kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/mipsel_24kc/Packages.gz) |
+| `24.10` | `mips_24kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mips_24kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/mips_24kc/Packages.gz) |
+| `24.10` | `mipsel_24kc_24kf` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_24kc_24kf) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/mipsel_24kc_24kf/Packages.gz) |
+| `24.10` | `arm_cortex-a7_neon-vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7_neon-vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a7_neon-vfpv4/Packages.gz) |
+| `24.10` | `arm_cortex-a15_neon-vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a15_neon-vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a15_neon-vfpv4/Packages.gz) |
+| `24.10` | `arm_cortex-a9_vfpv3-d16` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9_vfpv3-d16) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a9_vfpv3-d16/Packages.gz) |
+| `24.10` | `arm_cortex-a9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a9/Packages.gz) |
+| `24.10` | `arm_cortex-a9_neon` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a9_neon) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a9_neon/Packages.gz) |
+| `24.10` | `arm_cortex-a7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a7/Packages.gz) |
+| `24.10` | `mips64_octeonplus` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mips64_octeonplus) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/mips64_octeonplus/Packages.gz) |
+| `24.10` | `riscv64_riscv64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/riscv64_riscv64) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/riscv64_riscv64/Packages.gz) |
+| `24.10` | `arm_cortex-a7_vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a7_vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a7_vfpv4/Packages.gz) |
+| `24.10` | `i386_pentium4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/i386_pentium4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/i386_pentium4/Packages.gz) |
+| `24.10` | `arm_cortex-a8_vfpv3` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a8_vfpv3) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a8_vfpv3/Packages.gz) |
+| `24.10` | `mipsel_74kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/mipsel_74kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/mipsel_74kc/Packages.gz) |
+| `24.10` | `loongarch64_generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/loongarch64_generic) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/loongarch64_generic/Packages.gz) |
+| `24.10` | `powerpc_8548` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/powerpc_8548) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/powerpc_8548/Packages.gz) |
+| `24.10` | `arm_cortex-a5_vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/arm_cortex-a5_vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/arm_cortex-a5_vfpv4/Packages.gz) |
+| `24.10` | `powerpc_464fp` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/powerpc_464fp) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/powerpc_464fp/Packages.gz) |
+| `24.10` | `i386_pentium-mmx` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/i386_pentium-mmx) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/i386_pentium-mmx/Packages.gz) |
+| `25.12` | `aarch64_cortex-a53` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a53) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_cortex-a53/packages.adb) |
+| `25.12` | `x86_64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/x86_64) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/x86_64/packages.adb) |
+| `25.12` | `aarch64_generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_generic) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_generic/packages.adb) |
+| `25.12` | `aarch64_cortex-a72` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a72) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_cortex-a72/packages.adb) |
+| `25.12` | `aarch64_cortex-a76` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/aarch64_cortex-a76) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/aarch64_cortex-a76/packages.adb) |
+| `25.12` | `mipsel_24kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_24kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/mipsel_24kc/packages.adb) |
+| `25.12` | `mips_24kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mips_24kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/mips_24kc/packages.adb) |
+| `25.12` | `mipsel_24kc_24kf` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_24kc_24kf) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/mipsel_24kc_24kf/packages.adb) |
+| `25.12` | `arm_cortex-a7_neon-vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7_neon-vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a7_neon-vfpv4/packages.adb) |
+| `25.12` | `arm_cortex-a15_neon-vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a15_neon-vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a15_neon-vfpv4/packages.adb) |
+| `25.12` | `arm_cortex-a9_vfpv3-d16` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9_vfpv3-d16) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a9_vfpv3-d16/packages.adb) |
+| `25.12` | `arm_cortex-a9` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a9/packages.adb) |
+| `25.12` | `arm_cortex-a9_neon` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a9_neon) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a9_neon/packages.adb) |
+| `25.12` | `arm_cortex-a7` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a7/packages.adb) |
+| `25.12` | `mips64_octeonplus` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mips64_octeonplus) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/mips64_octeonplus/packages.adb) |
+| `25.12` | `riscv64_generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/riscv64_generic) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/riscv64_generic/packages.adb) |
+| `25.12` | `arm_cortex-a7_vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a7_vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a7_vfpv4/packages.adb) |
+| `25.12` | `i386_pentium4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/i386_pentium4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/i386_pentium4/packages.adb) |
+| `25.12` | `arm_cortex-a8_vfpv3` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a8_vfpv3) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a8_vfpv3/packages.adb) |
+| `25.12` | `mipsel_74kc` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/mipsel_74kc) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/mipsel_74kc/packages.adb) |
+| `25.12` | `loongarch64_generic` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/loongarch64_generic) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/loongarch64_generic/packages.adb) |
+| `25.12` | `powerpc_8548` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/powerpc_8548) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/powerpc_8548/packages.adb) |
+| `25.12` | `arm_cortex-a5_vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a5_vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a5_vfpv4/packages.adb) |
+| `25.12` | `powerpc_464fp` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/powerpc_464fp) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/powerpc_464fp/packages.adb) |
+| `25.12` | `i386_pentium-mmx` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/i386_pentium-mmx) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/i386_pentium-mmx/packages.adb) |
 
-Run either option on the device as `root`. Use `--help` for usage. The installer
-does not configure your MQTT endpoints or certificates.
+## Prepare the repository
 
-### Full installation
-
-For a complete installation, run the following on the device as `root`:
-
-```sh
-wget -O /tmp/snodec-install-feed.sh \
-  https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh &&
-sh /tmp/snodec-install-feed.sh
-```
-
-The [installer](../ci/install-feed.sh) detects the release and architecture, checks
-that the feed exists, imports its public signing key, adds the feed and refreshes
-the package lists. It then installs **`mqttsuite-full`, `snode.c-full`,
-`snode.c-apps` and `snode.c-control`**, including their dependencies.
-
-### Prepare the package feed
+### Preparation script
 
 To prepare the feed without installing any packages, pass **`--prepare`**:
 
@@ -61,10 +96,10 @@ sh /tmp/snodec-install-feed.sh --prepare
 ```
 
 This imports the signing key, configures the feed and refreshes package lists.
-You then [install the packages you want](#choose-and-install-packages) yourself.
+You then [install the packages you want](#selective-installation) yourself.
 Running without an option still installs the complete selection above.
 
-## Add the feed manually
+### Manual preparation
 
 Run the block for your release as `root`. These commands only configure the feed
 and refresh its index; package installation is a separate step. Existing feeds
@@ -128,7 +163,50 @@ Import the corresponding signing key as shown above. For other devices, use
 their `DISTRIB_ARCH`; each architecture has its own directory. After an OpenWrt
 release-series upgrade, reconfigure this feed for the new series.
 
-## Choose and install packages
+## Full installation
+
+### Installation script
+
+For a complete installation, run the following on the device as `root`:
+
+```sh
+wget -O /tmp/snodec-install-feed.sh \
+  https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh &&
+sh /tmp/snodec-install-feed.sh
+```
+
+The [installer](../ci/install-feed.sh) detects the release and architecture, checks
+that the feed exists, imports its public signing key, adds the feed and refreshes
+the package lists. It then installs **`mqttsuite-full`, `snode.c-full`,
+`snode.c-apps` and `snode.c-control`**, including their dependencies.
+
+### Manual installation
+
+For the complete selection used by the installer:
+
+```sh
+# OpenWrt 24.10
+opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control
+```
+
+```sh
+# OpenWrt 25.12
+apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control
+```
+
+## Selective installation
+
+For a broker and command-line client:
+
+```sh
+# OpenWrt 24.10
+opkg install mqttsuite-broker mqttsuite-cli
+```
+
+```sh
+# OpenWrt 25.12
+apk add mqttsuite-broker mqttsuite-cli
+```
 
 **Complete package catalogs:**
 
@@ -155,31 +233,7 @@ Application packages select their required SNode.C modules automatically.
 Installing `snode.c-full` separately is optional when you only want a particular
 MQTTSuite application. The store still requires a configured database service.
 
-For a broker and command-line client:
-
-```sh
-# OpenWrt 24.10
-opkg install mqttsuite-broker mqttsuite-cli
-```
-
-```sh
-# OpenWrt 25.12
-apk add mqttsuite-broker mqttsuite-cli
-```
-
-For the complete selection used by the installer:
-
-```sh
-# OpenWrt 24.10
-opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control
-```
-
-```sh
-# OpenWrt 25.12
-apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control
-```
-
-### Configure and start the broker
+## Configure applications
 
 Inspect `mqttbroker --help` and configure `/etc/snode.c/mqttbroker.conf` for your
 listeners and, where applicable, TLS certificates. Refer to the
@@ -226,7 +280,7 @@ a package update does not upgrade the OpenWrt firmware or change its release ser
 | Application does not start | Check its `--help` output, configuration and `logread`; verify that installation completed successfully. |
 | A newer build is not available | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Failed or unfinished runs do not replace the published feed. |
 
-## Build and publication
+## Build and validation
 
 Creation or movement of the upstream **`OpenWRT` tag** in SNode.C or MQTTSuite
 triggers the central build. Both projects are built from those tags using
