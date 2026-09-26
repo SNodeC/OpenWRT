@@ -1,4 +1,7 @@
 # Package the upstream install rules; do not maintain a second file inventory.
+load_cache("${BUILD}" READ_WITH_PREFIX build_ CMAKE_GENERATOR)
+set(CPACK_CMAKE_GENERATOR "${build_CMAKE_GENERATOR}")
+set(CPACK_SYSTEM_NAME "${CMAKE_HOST_SYSTEM_NAME}")
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_NAME mqttsuite)
 set(CPACK_PACKAGE_VERSION "${VERSION}")
