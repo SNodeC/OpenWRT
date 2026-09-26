@@ -39,7 +39,7 @@ for phase in build test upgrade; do
     "${enter[@]}" sh -c '. /etc/os-release; test "$VERSION_CODENAME" = "$1"; test "$(dpkg --print-architecture)" = arm64' sh "$suite"
     if [ "$phase" = build ]; then
         "${enter[@]}" env PACKAGE_RELEASE="$PACKAGE_RELEASE" SUITE="$suite" \
-            bash /work/feed/ci/raspberrypi-build.sh 2>&1 | tee logs/build.log
+            bash /work/feed/ci/package-build.sh 2>&1 | tee logs/build.log
         python3 feed/ci/apt-repository.py stage "$suite" packages bundle output
     else
         "${enter[@]}" bash /work/feed/tests/test_debian_install.sh "$suite" "$phase" 2>&1 | tee "logs/$phase.log"

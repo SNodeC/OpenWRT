@@ -1,9 +1,9 @@
-name: OpenWrt and Raspberry Pi OS packages
+name: Distribution packages
 on:
   repository_dispatch:
-    types: [OpenWRT-tag-changed, RaspberryPiOS-tag-changed]
+    types: [OpenWRT-tag-changed, RaspberryPiOS-tag-changed, Linux-tag-changed]
 env:
-  SOURCE_TAG: ${{ github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT' }}
+  SOURCE_TAG: ${{ github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT' }}
 permissions:
   contents: read
 concurrency:
@@ -13,7 +13,8 @@ jobs:
   prepare:
     if: >-
       ((github.event.action == 'OpenWRT-tag-changed' && github.event.client_payload.ref == 'refs/tags/OpenWRT') ||
-       (github.event.action == 'RaspberryPiOS-tag-changed' && github.event.client_payload.ref == 'refs/tags/RaspberryPiOS')) &&
+       (github.event.action == 'RaspberryPiOS-tag-changed' && github.event.client_payload.ref == 'refs/tags/RaspberryPiOS') ||
+       (github.event.action == 'Linux-tag-changed' && github.event.client_payload.ref == 'refs/tags/Linux')) &&
       github.event.client_payload.before != github.event.client_payload.after &&
       github.event.client_payload.deleted == false &&
       (github.event.client_payload.repository == 'SNodeC/snode.c' ||
@@ -22,6 +23,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
       pi_matrix: ${{ steps.matrix.outputs.pi }}
+      linux_matrix: ${{ steps.matrix.outputs.linux }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -58,14 +60,15 @@ jobs:
         id: matrix
         run: |
           sudo apt-get update
-          sudo apt-get install -y apt-utils gnupg cmake build-essential
+          sudo apt-get install -y apt-utils gnupg cmake build-essential rpm createrepo-c
           status=0
-          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_debian_components.py test_cleanup.py; do
+          for test in test_apt_repository.py test_repository.py test_ipk_audit.py test_components.py test_rpm_repository.py test_cleanup.py; do
             python3 "feed/tests/$test" || status=1
           done
           test "$status" = 0
           python3 feed/ci/repository.py prepare sources bundle
           echo "value=$(python3 feed/ci/repository.py matrix)" >> "$GITHUB_OUTPUT"
+          echo "linux=$(python3 feed/ci/repository.py linux-matrix)" >> "$GITHUB_OUTPUT"
           echo "pi=$(jq -c '{suite: keys}' feed/ci/raspberrypi.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
         with:
@@ -186,12 +189,51 @@ jobs:
         with:
           name: logs-raspberrypi-${{ matrix.suite }}
           path: logs/
+  linux:
+    if: github.event.client_payload.ref == 'refs/tags/Linux'
+    needs: prepare
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.linux_matrix) }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: tagged-sources
+          path: bundle
+      - uses: docker/setup-qemu-action@v3
+        if: matrix.arch == 'armhf' || matrix.arch == 'riscv64'
+        with:
+          platforms: arm,riscv64
+      - name: Build components and test signed feed in a clean distribution
+        env:
+          MATRIX_ROW: ${{ toJSON(matrix) }}
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
+        run: |
+          mkdir feed
+          tar -xzf bundle/feed.tar.gz -C feed
+          sudo apt-get update
+          sudo apt-get install -y apt-utils gnupg rpm createrepo-c
+          export PACKAGE_RELEASE=$((GITHUB_RUN_NUMBER + 1))
+          bash feed/ci/linux.sh "$MATRIX_ROW"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: packages-linux-${{ matrix.distribution }}-${{ matrix.suite }}-${{ matrix.arch }}
+          path: output/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: logs-linux-${{ matrix.distribution }}-${{ matrix.suite }}-${{ matrix.arch }}
+          path: logs/
   publish:
     if: >-
       always() && !cancelled() && needs.prepare.result == 'success' &&
       ((github.event.client_payload.ref == 'refs/tags/OpenWRT' && needs.build.result == 'success' && needs.runtime.result == 'success') ||
-       (github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && needs.raspberrypi.result == 'success'))
-    needs: [prepare, build, runtime, raspberrypi]
+       (github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && needs.raspberrypi.result == 'success') ||
+       (github.event.client_payload.ref == 'refs/tags/Linux' && needs.linux.result == 'success'))
+    needs: [prepare, build, runtime, raspberrypi, linux]
     concurrency:
       group: package-publication
       cancel-in-progress: false
@@ -213,7 +255,13 @@ jobs:
         with:
           ref: main
           path: published
+      - name: Install repository tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y apt-utils gnupg rpm createrepo-c
       - name: Publish all releases and architectures together
+        env:
+          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
         working-directory: published
         run: |
           mkdir ../feed
@@ -227,7 +275,9 @@ jobs:
             git checkout --orphan packages
             git rm -rf .
           fi
-          if [ "$SOURCE_TAG" = RaspberryPiOS ]; then
+          if [ "$SOURCE_TAG" = Linux ]; then
+            python3 ../feed/ci/linux.py publish ../incoming . ../bundle
+          elif [ "$SOURCE_TAG" = RaspberryPiOS ]; then
             python3 ../feed/ci/apt-repository.py publish ../incoming . ../bundle
           else
             python3 ../feed/ci/repository.py publish ../incoming . ../bundle

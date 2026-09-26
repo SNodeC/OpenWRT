@@ -4,8 +4,11 @@ set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 suite=$1
 phase=$2
+distribution=${DISTRIBUTION:-raspberrypios}
+repository=${REPOSITORY:-/work/output}
+architecture=$(dpkg --print-architecture)
 install -m 644 /work/feed/ci/keys/snodec-apt.asc /etc/apt/keyrings/snodec.asc
-echo "deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] file:/work/output/raspberrypios $suite main" > /etc/apt/sources.list.d/snodec.list
+echo "deb [arch=$architecture signed-by=/etc/apt/keyrings/snodec.asc] file:$repository/$distribution $suite main" > /etc/apt/sources.list.d/snodec.list
 apt-get update
 apt-get install -y openssl python3 ca-certificates
 if [ "$phase" = upgrade ]; then
@@ -24,12 +27,12 @@ else
     for package in mqttsuite snodec mqttsuite-store mqttsuite-bridge mqttsuite-integrator; do
         test "$(dpkg-query -W -f='${db:Status-Status}' "$package" 2>/dev/null || true)" != installed
     done
-    python3 /work/feed/tests/test_raspberrypi_runtime.py mqttbroker mqttcli
+    python3 /work/feed/tests/test_package_runtime.py mqttbroker mqttcli
     cp /work/logs/results.json /work/logs/selective-results.json
 fi
 apt-get install -y snodec mqttsuite
 ldconfig
-python3 /work/feed/tests/test_raspberrypi_runtime.py
+python3 /work/feed/tests/test_package_runtime.py
 cp /work/logs/results.json "/work/logs/$phase-results.json"
 python3 - <<'PY'
 import pathlib, subprocess

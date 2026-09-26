@@ -1,10 +1,24 @@
-# SNode.C and MQTTSuite OpenWrt and Raspberry Pi OS packages
+# SNode.C and MQTTSuite Linux packages
 
 This is the binary feed for `SNodeC/OpenWRT`, published on branch `packages`.
 OpenWrt 24.10 uses IPK/opkg; 25.12 uses APK. Each series supports the same
 25 platform variants, including all devices described by the `infra` branch.
 The RISC-V architecture is named `riscv64_riscv64` on 24.10 and
 `riscv64_generic` on 25.12. See `ci/platforms.json` on `main` for the matrix.
+
+## Distribution feeds
+
+| Distribution | Repository root | Metadata |
+|---|---|---|
+| Debian | `debian/` | `dists/{trixie,forky,sid}/` and `pool/` |
+| Ubuntu | `ubuntu/` | `dists/{noble,resolute}/` and `pool/` |
+| Rocky Linux | `rocky/<major>/<architecture>/` | `repodata/`, RPMs in `Packages/` |
+| Fedora | `fedora/<release>/<architecture>/` | `repodata/`, RPMs in `Packages/` |
+| Raspberry Pi OS | `raspberrypios/` | `dists/{bookworm,trixie}/` and `pool/` |
+| OpenWrt | `openwrt/<series>/<architecture>/` | opkg or APK index |
+
+See [Debian, Ubuntu, Rocky and Fedora setup](https://github.com/SNodeC/OpenWRT/blob/main/docs/linux.md)
+for the matrix, signing-key installation and package-manager configuration.
 
 ## Feed directory migration
 
@@ -162,8 +176,9 @@ publication lock and snapshot preserve the other package format’s files.
 ## Retention and maintenance
 
 Files referenced by a current publication are always retained. Superseded
-OpenWrt `.ipk`/`.apk` packages, Raspberry Pi OS `.deb` packages and obsolete APT
-SHA256 `by-hash` indexes are removed after **30 days without a current reference**.
+OpenWrt `.ipk`/`.apk` packages, distribution `.deb`/`.rpm` packages, obsolete APT
+SHA256 `by-hash` indexes and superseded RPM metadata are removed after
+**30 days without a current reference**.
 The clock starts when cleanup first observes that a file is unreferenced, not
 from its build date or filesystem timestamp. Existing leftovers receive a full
 30-day grace period when this policy is first enabled.
@@ -171,7 +186,7 @@ from its build date or filesystem timestamp. Existing leftovers receive a full
 `retention.json` on the `packages` branch records retirement dates and checksums.
 A renewed reference clears the retirement date; changed file contents restart it.
 Cleanup validates all current publication manifests and their file checksums
-before deleting anything. The inventories accompany the opkg, APK and APT indexes
+before deleting anything. The inventories accompany the opkg, APK, APT and RPM indexes
 produced by the publishers; missing, incomplete or inconsistent inventories stop
 cleanup. Keys, current metadata and other repository files are not candidates.
 

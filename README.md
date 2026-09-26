@@ -1,4 +1,4 @@
-# SNode.C and MQTTSuite packages for OpenWrt and Raspberry Pi OS
+# SNode.C and MQTTSuite Linux packages
 
 [![OpenWrt packages](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml/badge.svg)](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml)
 
@@ -19,6 +19,24 @@ or `/packages/apt` must [update their feed URLs](docs/package-repository.md#feed
 
 Superseded package files are retained for 30 days, then cleaned during publication
 and daily maintenance. See the [retention policy](docs/package-repository.md#retention-and-maintenance).
+
+## Debian, Ubuntu, Rocky Linux and Fedora
+
+The [`Linux` source tag](docs/linux.md#ci-and-publication) selects the 24-target
+matrix below. Each target builds individual component packages, tests selective
+and full installation in a clean distribution, and publishes a signed APT or DNF
+feed. See [Linux installation instructions](docs/linux.md).
+
+| Distribution | Releases | Architectures |
+|---|---|---|
+| Debian | Trixie (stable), Forky (testing), Sid (unstable) | `amd64`, `arm64`, `armhf`, `riscv64` |
+| Ubuntu | 24.04 Noble, 26.04 Resolute | `amd64`, `arm64` |
+| Rocky Linux | 9, 10 | `x86_64`, `aarch64` |
+| Fedora | 43, 44 | `x86_64`, `aarch64` |
+
+Ubuntu coverage includes the two latest LTS releases and the latest stable interim
+release when newer than the latest LTS; currently 26.04 is also the latest stable.
+New releases require an explicit matrix update and successful validation.
 
 ## Raspberry Pi OS
 

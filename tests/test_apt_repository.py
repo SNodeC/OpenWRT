@@ -120,6 +120,30 @@ class AptPublicationTest(unittest.TestCase):
         with self.assertRaises(subprocess.CalledProcessError):
             self.publish()
 
+    def test_multiarchitecture_indexes_and_complete_matrix(self):
+        import shutil
+        packages = self.root / 'multiarch'
+        packages.mkdir()
+        for inventory in (self.root / 'trixie').glob('*.packages'):
+            shutil.copy2(inventory, packages / inventory.name)
+        rows = [dict(distribution='debian', suite='trixie', arch=arch, image='debian:trixie')
+                for arch in ['amd64', 'arm64']]
+        with patch.object(apt, 'linux_matrix', return_value=rows):
+            for arch in ['amd64', 'arm64']:
+                for name in ['snodec', 'mqttsuite', 'snodec-component', 'mqttsuite-component']:
+                    control = self.root / 'deb/DEBIAN/control'
+                    control.write_text(f'Package: {name}\nVersion: 1.0-2\nArchitecture: {arch}\n'
+                                       'Maintainer: Test <test@example.invalid>\nDescription: Test\n')
+                    apt.run('dpkg-deb', '--build', '--root-owner-group', str(control.parent.parent),
+                            str(packages / f'{name}_{arch}.deb'))
+            output = self.root / 'multi-output'
+            apt.stage('trixie', packages, self.bundle, output, 'debian')
+            apt.publish(output, self.checkout, self.bundle, 'debian')
+            for arch in ['amd64', 'arm64']:
+                index = (self.checkout / f'debian/dists/trixie/main/binary-{arch}/Packages').read_text()
+                self.assertEqual(index.count('Package: '), 4)
+                self.assertEqual(index.count('Architecture: ' + arch), 4)
+
 
 if __name__ == '__main__':
     unittest.main()

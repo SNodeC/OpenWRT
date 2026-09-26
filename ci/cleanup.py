@@ -20,21 +20,33 @@ def cleanup(root, now=None):
             manifests.append((directory / 'build.json', directory))
             candidates.update(directory.glob('*.ipk'))
             candidates.update(directory.glob('*.apk'))
-    suites = {p.name for base in ['raspberrypios/pool', 'raspberrypios/dists'] for p in (root / base).glob('*') if p.is_dir()}
-    for suite in suites:
-        manifests.append((root / 'raspberrypios/dists' / suite / 'build.json', root / 'raspberrypios'))
-        candidates.update((root / 'raspberrypios/pool' / suite).glob('*.deb'))
-        candidates.update((root / 'raspberrypios/dists' / suite).glob('**/by-hash/SHA256/*'))
+    for distribution in ['raspberrypios', 'debian', 'ubuntu']:
+        base = root / distribution
+        suites = {p.name for part in ['pool', 'dists'] for p in (base / part).glob('*') if p.is_dir()}
+        for suite in suites:
+            manifests.append((base / 'dists' / suite / 'build.json', base))
+            candidates.update((base / 'pool' / suite).glob('*.deb'))
+            candidates.update((base / 'dists' / suite).glob('**/by-hash/SHA256/*'))
+    for distribution in ['rocky', 'fedora']:
+        for directory in (root / distribution).glob('*/*'):
+            if directory.is_dir():
+                manifests.append((directory / 'build.json', directory))
+                candidates.update((directory / 'Packages').glob('*.rpm'))
+                candidates.update((directory / 'repodata').glob('*'))
     if not manifests:
         raise RuntimeError('No publication manifests; refusing cleanup')
     # The publishers create these inventories from the very same staged files as
     # the opkg, APK and APT indexes. Validate them before considering any removal.
     for manifest, base in manifests:
-        files = json.loads(manifest.read_text())['files']
-        if base == root / 'raspberrypios':
+        info = json.loads(manifest.read_text())
+        files = info['files']
+        if base.name in {'raspberrypios', 'debian', 'ubuntu'}:
             suite = manifest.parent.name
-            required = {f'dists/{suite}/{name}' for name in ['Release', 'InRelease', 'Release.gpg',
-                        'main/binary-arm64/Packages', 'main/binary-arm64/Packages.gz']}
+            required = {f'dists/{suite}/{name}' for name in ['Release', 'InRelease', 'Release.gpg']}
+            for arch in info.get('architectures', ['arm64']):
+                required.update(f'dists/{suite}/main/binary-{arch}/{name}' for name in ['Packages', 'Packages.gz'])
+        elif base.parent.parent.name in {'rocky', 'fedora'}:
+            required = {'repodata/repomd.xml', 'repodata/repomd.xml.asc'}
         else:
             series = base.parent.name
             if series not in {'24.10', '25.12'}:

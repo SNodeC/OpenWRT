@@ -33,6 +33,21 @@ class RetentionTest(unittest.TestCase):
             self.manifest(base / 'dists' / suite / 'build.json', base, names)
             self.old.extend([self.write(base / 'pool' / suite / 'old.deb'),
                              self.write(base / 'dists' / suite / 'main/binary-arm64/by-hash/SHA256/old')])
+        for distribution in ['debian', 'ubuntu']:
+            base = self.root / distribution
+            names = ['pool/trixie/current.deb'] + [f'dists/trixie/{name}' for name in
+                     ['Release', 'InRelease', 'Release.gpg', 'main/binary-amd64/Packages', 'main/binary-amd64/Packages.gz']]
+            manifest = base / 'dists/trixie/build.json'
+            self.manifest(manifest, base, names)
+            info = json.loads(manifest.read_text())
+            info['architectures'] = ['amd64']
+            manifest.write_text(json.dumps(info))
+            self.old.append(self.write(base / 'pool/trixie/old.deb'))
+        for distribution in ['rocky', 'fedora']:
+            base = self.root / distribution / '10' / 'x86_64'
+            self.manifest(base / 'build.json', base,
+                          ['Packages/current.rpm', 'repodata/repomd.xml', 'repodata/repomd.xml.asc', 'repodata/current.xml.gz'])
+            self.old.extend([self.write(base / 'Packages/old.rpm'), self.write(base / 'repodata/old.xml.gz')])
         self.key = self.write(self.root / 'keys/public.key')
         self.readme = self.write(self.root / 'README.md')
 

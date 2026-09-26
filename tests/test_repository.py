@@ -37,6 +37,17 @@ class PublicationTest(unittest.TestCase):
     def publish(self):
         repo.publish(self.incoming, self.checkout, self.bundle)
 
+    def test_linux_matrix(self):
+        rows = repo.linux_matrix()
+        self.assertEqual(len(rows), 24)
+        self.assertEqual(len({(r['distribution'], r['suite'], r['arch']) for r in rows}), 24)
+        for suite in ['trixie', 'forky', 'sid']:
+            self.assertEqual({r['arch'] for r in rows if r['distribution'] == 'debian' and r['suite'] == suite},
+                             {'amd64', 'arm64', 'armhf', 'riscv64'})
+        for row in rows:
+            self.assertIn(row['runner'], ['ubuntu-24.04', 'ubuntu-24.04-arm'])
+            self.assertNotIn('@sha256:', row['image'])
+
     def test_same_platforms_in_both_releases(self):
         rows = repo.matrix()
         self.assertEqual(len(rows), 50)

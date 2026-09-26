@@ -1,4 +1,6 @@
 """Capture a release-tag generation; commit IDs are evidence, not pinned refs."""
+from contextlib import contextmanager
+import tempfile
 import hashlib
 import json
 import os
@@ -22,6 +24,15 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+@contextmanager
+def signer():
+    with tempfile.TemporaryDirectory() as home:
+        subprocess.run(['gpg', '--homedir', home, '--batch', '--import'],
+                       input=os.environ['APT_SIGNING_KEY'], text=True, check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+        yield home
+
+
 def matrix():
     config = json.loads((ROOT / 'ci/platforms.json').read_text())
     return [dict(release=release, series=release.rsplit('.', 1)[0], target=target,
@@ -29,9 +40,19 @@ def matrix():
             for release in config['releases'] for arch, target in config['targets'].items()]
 
 
+def linux_matrix():
+    platforms = {'amd64': 'linux/amd64', 'x86_64': 'linux/amd64',
+                 'arm64': 'linux/arm64', 'aarch64': 'linux/arm64',
+                 'armhf': 'linux/arm/v7', 'riscv64': 'linux/riscv64'}
+    return [dict(distribution=row['distribution'], suite=row['suite'], image=row['image'],
+                 arch=arch, platform=platforms[arch],
+                 runner='ubuntu-24.04-arm' if arch in {'arm64', 'aarch64', 'armhf'} else 'ubuntu-24.04')
+            for row in json.loads((ROOT / 'ci/linux.json').read_text()) for arch in row['architectures']]
+
+
 def sources():
     tag = os.environ.get('SOURCE_TAG', 'OpenWRT')
-    if tag not in ('OpenWRT', 'RaspberryPiOS'):
+    if tag not in ('OpenWRT', 'RaspberryPiOS', 'Linux'):
         raise ValueError('Unsupported source tag')
     result = {}
     for repo in REPOSITORIES:
@@ -147,6 +168,8 @@ if __name__ == '__main__':
     command, *args = sys.argv[1:]
     if command == 'matrix':
         print(json.dumps({'include': matrix()}))
+    elif command == 'linux-matrix':
+        print(json.dumps({'include': linux_matrix()}))
     elif command == 'sdk':
         download_sdk(json.loads(args[0]), Path(args[1]).resolve())
     else:

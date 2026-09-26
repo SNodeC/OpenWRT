@@ -1,4 +1,4 @@
-"""Exercise installed .debs in a pristine official Raspberry Pi OS rootfs."""
+"""Exercise installed packages in a pristine target-distribution environment."""
 import json
 from pathlib import Path
 import subprocess
@@ -44,7 +44,7 @@ with (logs / 'broker.log').open('w') as broker_log:
                         '--port', str(port), 'socket', '--retry=true', '--reconnect=false']
                 if secure:
                     args += ['tls', '--ca-cert', '/tmp/server.crt']
-                topic, payload = 'ci/' + protocol, 'raspberrypi-' + protocol + '-ok'
+                topic, payload = 'ci/' + protocol, 'package-ci-' + protocol + '-ok'
                 path = logs / (protocol + '.log')
                 with path.open('w') as output:
                     subscriber = subprocess.Popen(args + ['sub', '--topic', topic], stdout=output,
