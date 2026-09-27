@@ -26,7 +26,6 @@ include $(INCLUDE_DIR)/cmake.mk
 
 CMAKE_OPTIONS += -DCMAKE_SKIP_RPATH=FALSE -DCMAKE_MODULE_PATH=$(CURDIR)/files
 CMAKE_OPTIONS += $(foreach app,BROKER INTEGRATOR BRIDGE CLI STORE,$(foreach transport,$(MQTTSUITE_TRANSPORTS),-DCONFIG_MQTTSUITE_$(app)_$(transport)=$(if $(CONFIG_MQTTSUITE_$(app)_$(transport)),ON,OFF)))
-CMAKE_OPTIONS += $(foreach app,$(MQTTSUITE_APPS),-DMQTTSUITE_BUILD_$(app)=$(if $(CONFIG_PACKAGE_mqttsuite-$(app)),ON,OFF))
 
 define Package/mqttsuite/Default
   SECTION:=net

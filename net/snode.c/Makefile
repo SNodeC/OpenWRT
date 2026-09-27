@@ -106,6 +106,7 @@ endif
 
 # Reset upstream's derived cache so changed OpenWrt settings take effect.
 CMAKE_OPTIONS+=-U'SNODEC_*' \
+               -DCMAKE_CXX_STANDARD_LIBRARIES=-latomic \
                -DFETCHCONTENT_SOURCE_DIR_SPDLOG=$(PKG_BUILD_DIR)/spdlog-1.17.0 \
                -DFETCHCONTENT_FULLY_DISCONNECTED=ON \
                -DSPDLOG_INSTALL=OFF -DSPDLOG_SYSTEM_INCLUDES=ON \
