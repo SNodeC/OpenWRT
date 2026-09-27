@@ -21,7 +21,7 @@ from repository import fetch, run
 
 output, series, arch = sys.argv[1:]
 output = Path(output).resolve()
-metadata = json.loads((output / 'releases' / series / arch / 'build.json').read_text())
+metadata = json.loads((output / 'openwrt' / series / arch / 'build.json').read_text())
 vm = Path('vm').resolve()
 vm.mkdir()
 logs = vm / 'logs'
@@ -113,7 +113,7 @@ try:
         ssh('opkg-key add /tmp/snodec.pub')
     else:
         ssh('cat > /etc/apk/keys/snodec-apk.pem', data=key.read_text())
-    url = f'http://10.0.2.2:{server.server_port}/releases/{series}/{arch}'
+    url = f'http://10.0.2.2:{server.server_port}/openwrt/{series}/{arch}'
     if series == '24.10':
         ssh('cat > /etc/opkg/customfeeds.conf', data=f'src/gz snodec {url}\n')
         ssh('opkg update')

@@ -31,6 +31,7 @@ make defconfig
 make -j"$(nproc)" package/mqttsuite/compile V=s BUILD_LOG=1
 # A failed check must not suppress independent later checks.
 status=0
+python3 "$feed/tests/test_upstream.py" "$sdk" || status=1
 python3 "$feed/tests/test_package_config.py" "$sdk" || status=1
 python3 "$feed/tests/test_rpath.py" "$sdk/staging_dir/host/bin/patchelf" || status=1
 python3 "$feed/tests/audit_packages.py" "$sdk" "$sdk/audit" || status=1

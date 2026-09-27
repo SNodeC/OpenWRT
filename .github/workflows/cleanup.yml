@@ -1,0 +1,35 @@
+name: Package retention cleanup
+on:
+  schedule:
+    - cron: '23 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cleanup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    concurrency:
+      group: package-publication
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          path: feed
+          persist-credentials: false
+      - name: Test retention policy
+        run: python3 feed/tests/test_cleanup.py
+      - uses: actions/checkout@v6
+        with:
+          ref: packages
+          path: published
+      - name: Prune expired files and publish a single snapshot
+        run: |
+          previous=$(git -C published rev-parse HEAD)
+          cp feed/docs/package-repository.md published/README.md
+          python3 feed/ci/cleanup.py published
+          bash feed/ci/push-packages.sh published "$previous" 'Prune expired package files'

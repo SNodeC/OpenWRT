@@ -1,4 +1,6 @@
-"""Build/publish one complete OpenWRT-tag generation; SHAs are evidence, not refs."""
+"""Capture a release-tag generation; commit IDs are evidence, not pinned refs."""
+from contextlib import contextmanager
+import tempfile
 import hashlib
 import json
 import os
@@ -22,6 +24,15 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+@contextmanager
+def signer():
+    with tempfile.TemporaryDirectory() as home:
+        subprocess.run(['gpg', '--homedir', home, '--batch', '--import'],
+                       input=os.environ['APT_SIGNING_KEY'], text=True, check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+        yield home
+
+
 def matrix():
     config = json.loads((ROOT / 'ci/platforms.json').read_text())
     return [dict(release=release, series=release.rsplit('.', 1)[0], target=target,
@@ -29,29 +40,43 @@ def matrix():
             for release in config['releases'] for arch, target in config['targets'].items()]
 
 
+def linux_matrix():
+    platforms = {'amd64': 'linux/amd64', 'x86_64': 'linux/amd64',
+                 'arm64': 'linux/arm64', 'aarch64': 'linux/arm64',
+                 'armhf': 'linux/arm/v7', 'riscv64': 'linux/riscv64'}
+    return [dict(distribution=row['distribution'], suite=row['suite'], image=row['image'],
+                 arch=arch, platform=platforms[arch],
+                 runner='ubuntu-24.04-arm' if arch in {'arm64', 'aarch64', 'armhf'} else 'ubuntu-24.04')
+            for row in json.loads((ROOT / 'ci/linux.json').read_text()) for arch in row['architectures']]
+
+
 def sources():
+    tag = os.environ.get('SOURCE_TAG', 'OpenWRT')
+    if tag not in ('OpenWRT', 'RaspberryPiOS', 'Linux'):
+        raise ValueError('Unsupported source tag')
     result = {}
     for repo in REPOSITORIES:
         refs = run('git', 'ls-remote', f'https://github.com/SNodeC/{repo}.git',
-                   'refs/tags/OpenWRT', 'refs/tags/OpenWRT^{}').splitlines()
+                   f'refs/tags/{tag}', f'refs/tags/{tag}^{{}}').splitlines()
         if not refs:
-            raise RuntimeError(f'{repo}: OpenWRT tag is missing')
+            raise RuntimeError(f'{repo}: {tag} tag is missing')
         result[repo] = dict(line.split()[::-1] for line in refs)
     return result
 
 
 def unchanged(bundle):
     if sources() != json.loads((bundle / 'sources.json').read_text()):
-        raise RuntimeError('OpenWRT tags changed: refusing superseded build')
+        raise RuntimeError('Source tags changed: refusing superseded build')
 
 
 def prepare(source_dir, bundle):
     bundle.mkdir(parents=True)
     observed = sources()
+    tag = os.environ.get('SOURCE_TAG', 'OpenWRT')
     for repo in REPOSITORIES:
-        ref = observed[repo].get('refs/tags/OpenWRT^{}', observed[repo]['refs/tags/OpenWRT'])
+        ref = observed[repo].get(f'refs/tags/{tag}^{{}}', observed[repo][f'refs/tags/{tag}'])
         if run('git', '-C', str(source_dir / repo), 'rev-parse', 'HEAD') != ref:
-            raise RuntimeError(f'{repo}: checkout no longer matches OpenWRT')
+            raise RuntimeError(f'{repo}: checkout no longer matches {tag}')
         recipe = (ROOT / 'net' / repo / 'Makefile').read_text()
         version = re.search(r'^PKG_VERSION:=(.+)$', recipe, re.M)[1]
         assert re.search(r'^PKG_SOURCE_VERSION:=OpenWRT$', recipe, re.M)
@@ -60,7 +85,7 @@ def prepare(source_dir, bundle):
             f'--transform=s,^,{name}/,', '-C', str(source_dir / repo), '.')
     (bundle / 'sources.json').write_text(json.dumps(observed, indent=2) + '\n')
     (bundle / 'context.json').write_text(json.dumps({
-        'recipe_ref': 'main', 'recipe_commit': run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
+        'source_tag': tag, 'recipe_ref': 'main', 'recipe_commit': run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
         'run_url': f'https://github.com/SNodeC/OpenWRT/actions/runs/{os.environ.get("GITHUB_RUN_ID", "local")}'
     }))
     run('tar', '-czf', str(bundle / 'feed.tar.gz'), '--exclude=.git', '--exclude=__pycache__', '-C', str(ROOT), '.')
@@ -102,7 +127,7 @@ def stage(sdk, bundle, output):
     audit = json.loads((sdk / 'audit/package-audit.json').read_text())
     if audit['errors'] or len(packages) != len(audit['packages']):
         raise RuntimeError('Package inventory does not match successful audit')
-    destination = output / 'releases' / info['series'] / info['arch']
+    destination = output / 'openwrt' / info['series'] / info['arch']
     destination.mkdir(parents=True)
     indexes = ['Packages', 'Packages.gz', 'Packages.sig'] if extension == '.ipk' else ['packages.adb']
     for path in packages + [feed / name for name in indexes]:
@@ -118,26 +143,24 @@ def stage(sdk, bundle, output):
 def publish(incoming, checkout, bundle):
     unchanged(bundle)
     expected = {(r['series'], r['arch']) for r in matrix()}
-    found = {(p.parent.parent.name, p.parent.name) for p in incoming.glob('releases/*/*/build.json')}
+    found = {(p.parent.parent.name, p.parent.name) for p in incoming.glob('openwrt/*/*/build.json')}
     if found != expected:
         raise RuntimeError(f'Incomplete matrix: missing={expected - found}, unexpected={found - expected}')
     for series, arch in sorted(expected):
-        directory = incoming / 'releases' / series / arch
+        directory = incoming / 'openwrt' / series / arch
         metadata = json.loads((directory / 'build.json').read_text())
         if metadata['sources'] != json.loads((bundle / 'sources.json').read_text()):
             raise RuntimeError('Mixed source generations')
         for name, checksum in metadata['files'].items():
             if Path(name).name != name or digest(directory / name) != checksum:
                 raise RuntimeError(f'Package/index checksum mismatch: {name}')
-        destination = checkout / 'releases' / series / arch
+        destination = checkout / 'openwrt' / series / arch
         if (destination / 'build.json').exists():
             previous = json.loads((destination / 'build.json').read_text())
             if int(previous['revision']) >= int(metadata['revision']):
                 raise RuntimeError('Refusing an older/equal publication revision')
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copytree(directory, destination, dirs_exist_ok=True)
-    shutil.copytree(ROOT / 'ci/keys', checkout / 'keys', dirs_exist_ok=True)
-    shutil.copy2(ROOT / 'docs/package-repository.md', checkout / 'README.md')
     unchanged(bundle)
 
 
@@ -145,6 +168,8 @@ if __name__ == '__main__':
     command, *args = sys.argv[1:]
     if command == 'matrix':
         print(json.dumps({'include': matrix()}))
+    elif command == 'linux-matrix':
+        print(json.dumps({'include': linux_matrix()}))
     elif command == 'sdk':
         download_sdk(json.loads(args[0]), Path(args[1]).resolve())
     else:
