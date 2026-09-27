@@ -4,7 +4,6 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
 import sys
 import tempfile
 
@@ -25,9 +24,6 @@ def architectures(distribution, suite):
 def stage(suite, packages, bundle, output, distribution='raspberrypios'):
     image = suites(distribution)[suite]
     unchanged(bundle)
-    apt = output / distribution
-    pool = apt / 'pool' / suite
-    pool.mkdir(parents=True)
     names = set()
     by_arch = {}
     for package in packages.glob('*.deb'):
@@ -40,11 +36,27 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
         by_arch.setdefault(architecture, set()).add(name)
         if architecture not in architectures(distribution, suite):
             raise RuntimeError(f'Unexpected architecture: {architecture}')
-        shutil.copy2(package, pool / package.name)
     expected = {name for project in ('snodec', 'mqttsuite')
                 for name in (packages / f'{project}.packages').read_text().splitlines()}
     if not by_arch or any(names != expected for names in by_arch.values()):
         raise RuntimeError(f'Incomplete Debian package set: {names}')
+    if len(by_arch) != 1:
+        raise RuntimeError('Build artifact must contain exactly one architecture')
+    arch = next(iter(by_arch))
+    target = output / distribution / suite / arch
+    target.mkdir(parents=True)
+    for path in [*packages.glob('*.deb'), *packages.glob('*.packages')]:
+        shutil.copy2(path, target / path.name)
+    info = dict(suite=suite, distribution=distribution, image=image, architectures=[arch], packages=sorted(expected),
+                revision=os.environ['PACKAGE_RELEASE'],
+                sources=json.loads((bundle / 'sources.json').read_text()),
+                context=json.loads((bundle / 'context.json').read_text()),
+                files={p.name: digest(p) for p in target.iterdir() if p.is_file()})
+    (target / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
+    unchanged(bundle)
+
+
+def index(apt, suite, by_arch):
     dist = apt / 'dists' / suite
     records = run('apt-ftparchive', 'packages', f'pool/{suite}', cwd=apt).split('\n\n')
     for arch in sorted(by_arch):
@@ -70,48 +82,64 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
         for option, filename in [('--clearsign', 'InRelease'), ('--detach-sign', 'Release.gpg')]:
             run('gpg', '--homedir', home, '--batch', '--yes', '--armor',
                 '--output', str(dist / filename), option, str(dist / 'Release'))
-    info = dict(suite=suite, distribution=distribution, image=image, architectures=sorted(by_arch), packages=sorted(expected),
-                revision=os.environ['PACKAGE_RELEASE'],
-                sources=json.loads((bundle / 'sources.json').read_text()),
-                context=json.loads((bundle / 'context.json').read_text()),
-                files={str(p.relative_to(apt)): digest(p) for p in apt.rglob('*') if p.is_file()})
-    (dist / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
-    unchanged(bundle)
+
+    with tempfile.TemporaryDirectory() as home:
+        run('gpg', '--homedir', home, '--batch', '--import', str(ROOT / 'ci/keys/snodec-apt.asc'))
+        run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'InRelease'))
+        run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'Release.gpg'), str(dist / 'Release'))
 
 
 def publish(incoming, checkout, bundle, distribution='raspberrypios'):
     unchanged(bundle)
-    apt = incoming / distribution
-    expected = set(suites(distribution))
-    if {p.parent.name for p in apt.glob('dists/*/build.json')} != expected:
-        raise RuntimeError(f'Incomplete {distribution} matrix')
-    inventories = []
-    for suite in sorted(expected):
-        dist = apt / 'dists' / suite
-        info = json.loads((dist / 'build.json').read_text())
-        if info['sources'] != json.loads((bundle / 'sources.json').read_text()):
-            raise RuntimeError('Mixed source generations')
-        for name, checksum in info['files'].items():
-            path = Path(name)
-            if path.is_absolute() or '..' in path.parts or digest(apt / path) != checksum:
-                raise RuntimeError(f'APT checksum mismatch: {name}')
-        names = sorted({run('dpkg-deb', '-f', str(apt / name), 'Package')
-                        for name in info['files'] if name.endswith('.deb')})
-        inventories.append(names)
-        if (info['image'] != suites(distribution)[suite] or info['packages'] != names
-                or info['architectures'] != architectures(distribution, suite)):
-            raise RuntimeError('Unexpected image or package inventory')
-        with tempfile.TemporaryDirectory() as home:
-            run('gpg', '--homedir', home, '--batch', '--import', str(ROOT / 'ci/keys/snodec-apt.asc'))
-            run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'InRelease'))
-            run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'Release.gpg'), str(dist / 'Release'))
-        previous = checkout / distribution / 'dists' / suite / 'build.json'
-        if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(info['revision']):
-            raise RuntimeError('Refusing older/equal APT publication')
-    if any(names != inventories[0] for names in inventories):
-        raise RuntimeError('Different component inventories across OS releases')
-    # Retain old .debs and by-hash indexes for clients with cached metadata.
-    shutil.copytree(apt, checkout / distribution, dirs_exist_ok=True)
+    expected = {(suite, arch) for suite in suites(distribution) for arch in architectures(distribution, suite)}
+    found = {p.relative_to(incoming / distribution).parts for p in (incoming / distribution).glob('*/*') if p.is_dir()}
+    if found != expected:
+        raise RuntimeError(f'Incomplete {distribution} matrix: missing={expected - found}, unexpected={found - expected}')
+    revision = None
+    inventory = None
+    with tempfile.TemporaryDirectory() as temporary:
+        apt = Path(temporary) / distribution
+        for suite in suites(distribution):
+            pool = apt / 'pool' / suite
+            pool.mkdir(parents=True)
+            for arch in architectures(distribution, suite):
+                target = incoming / distribution / suite / arch
+                info = json.loads((target / 'build.json').read_text())
+                if (info['sources'] != json.loads((bundle / 'sources.json').read_text())
+                        or info['context'] != json.loads((bundle / 'context.json').read_text())):
+                    raise RuntimeError('Mixed source generations')
+                if (info['suite'] != suite or info['distribution'] != distribution
+                        or info['architectures'] != [arch] or info['image'] != suites(distribution)[suite]):
+                    raise RuntimeError('Unexpected APT target')
+                if revision is not None and revision != info['revision']:
+                    raise RuntimeError('Mixed publication revisions')
+                revision = info['revision']
+                if inventory is not None and inventory != info['packages']:
+                    raise RuntimeError('Different component inventories across targets')
+                inventory = info['packages']
+                names = []
+                for name, checksum in info['files'].items():
+                    path = Path(name)
+                    if path.name != name or digest(target / path) != checksum:
+                        raise RuntimeError(f'APT checksum mismatch: {name}')
+                    if path.suffix == '.deb':
+                        package, package_arch = run('dpkg-deb', '-f', str(target / path), 'Package', 'Architecture').splitlines()
+                        if package_arch.removeprefix('Architecture: ') != arch:
+                            raise RuntimeError(f'Unexpected package architecture: {name}')
+                        names.append(package.removeprefix('Package: '))
+                        shutil.copy2(target / path, pool / name)
+                if sorted(names) != inventory:
+                    raise RuntimeError('Incomplete Debian package set')
+            previous = checkout / distribution / 'dists' / suite / 'build.json'
+            if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(revision):
+                raise RuntimeError('Refusing older/equal APT publication')
+            index(apt, suite, architectures(distribution, suite))
+            info.update(architectures=architectures(distribution, suite), files={
+                str(p.relative_to(apt)): digest(p)
+                for directory in (pool, apt / 'dists' / suite) for p in directory.rglob('*') if p.is_file()})
+            (apt / 'dists' / suite / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
+        # Retain old .debs and by-hash indexes for clients with cached metadata.
+        shutil.copytree(apt, checkout / distribution, dirs_exist_ok=True)
     unchanged(bundle)
 
 

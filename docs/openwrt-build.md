@@ -26,17 +26,13 @@ platforms listed in `ci/platforms.json`.
 
 | Branch | Files maintained there |
 | --- | --- |
-| `SNode.C` | `net/snode.c/`, `docs/snodec-package-options.md`, `tests/snodec/` |
-| `MQTTSuite` | `net/mqttsuite/`, `docs/mqttsuite-package-options.md`, `tests/mqttsuite/`, `tests/test_rpath.py` |
-| `main` | Shared build/verification documents, package inventory index, configuration test runner, `tests/integration/`, package audit and combined device configuration |
+| `SNode.C` | `net/snode.c/`, `docs/snodec-package-options.md` |
+| `MQTTSuite` | `net/mqttsuite/`, `docs/mqttsuite-package-options.md` |
+| `main` | Shared build/verification documents, package inventory index and upstream test runner |
 | `infra` | Build, publishing and deployment orchestration |
 
 Merge project branches separately into `main`. Do not merge all of `main`
-back into a project branch: that would bring in the other recipe. Each
-project owns its configuration cases as JSON data. The shared runner on
-`main` can run cases from another checkout before that project is merged;
-it does not require either project's tests to import the other's tests.
-The SDK must have generated package metadata for the recipes being tested.
+back into a project branch: that would bring in the other recipe.
 
 ## Package selection
 
@@ -83,14 +79,26 @@ retained.
 mkdir -p package/local
 ln -s /path/to/OpenWRT/net/snode.c package/local/snode.c
 ln -s /path/to/OpenWRT/net/mqttsuite package/local/mqttsuite
-cp /path/to/OpenWRT/tests/gl-mt3000-all.config .config
+cat > .config <<'EOF'
+# CONFIG_ALL is not set
+# CONFIG_ALL_NONSHARED is not set
+# CONFIG_ALL_KMODS is not set
+# CONFIG_SIGNED_PACKAGES is not set
+# CONFIG_AUTOREMOVE is not set
+CONFIG_PACKAGE_snode.c-full=m
+CONFIG_PACKAGE_snode.c-apps=m
+CONFIG_PACKAGE_snode.c-control=m
+CONFIG_PACKAGE_mqttsuite-full=m
+EOF
 make defconfig
 make -j16 package/local/mqttsuite/compile V=s
 ```
 
-The combined fixture disables signing for local validation. Enable package
-signing and supply the appropriate keys before using a configuration for
-publication. Committing the fixture does not apply it to an SDK automatically.
+This selects all publication packages and uses the feature defaults from the
+package Makefiles and `Config.in` files. In particular, MQTTSuite's Unix-socket
+TLS options retain their default of disabled; CI does not override them.
+The example disables signing for local validation. CI enables package signing
+and supplies the publication keys.
 
 MQTTSuite's build dependency builds and stages SNode.C first. MQTTSuite uses
 a separate CMake build directory so its private `lib/Log.h` cannot shadow
@@ -121,7 +129,7 @@ MQTTSuite recipe removes only the literal staging-directory prefix from each
 RPATH/RUNPATH entry. It preserves target subdirectories, `$ORIGIN`, unrelated
 entries, permissions, and the original tag type; patchelf errors fail the
 build. It does not delete or shrink all RPATHs. OpenWrt may subsequently remove
-ordinary system-directory entries; the final APK audit checks the remaining
+ordinary system-directory entries; the packaged libraries retain the remaining
 paths on each ELF file against that package's dependency closure.
 
 ## Services and device verification
@@ -149,28 +157,9 @@ writes. Physical router execution and hardware verification remain for the
 owner. See [QEMU VM verification](qemu-vm.md) for completed virtual-machine
 installation, MQTT/TLS/WS/WSS traffic tests and runtime observations.
 
-## Validation tools
+## Upstream tests
 
-From this repository, with `SDK` set to the extracted SDK path:
-
-```sh
-python3 tests/test_package_config.py "$SDK"
-python3 tests/test_rpath.py "$SDK/staging_dir/host/bin/patchelf"
-python3 tests/audit_packages.py "$SDK" sdks/package-audit
-```
-
-The first command runs all project-owned and integration configuration cases.
-To check one project checkout before merging it, pass its case file explicitly:
-
-```sh
-python3 tests/test_package_config.py "$SDK" /path/to/SNode.C/tests/snodec/package_config.json
-python3 tests/test_package_config.py "$SDK" /path/to/MQTTSuite/tests/mqttsuite/package_config.json
-```
-
-Use `TMPDIR` inside the workspace when temporary test files must stay there.
-
-The package audit extracts archives without installing them or executing target
-binaries. It verifies package dependency closures, AArch64 ELF architecture,
-symlinks, direct library resolution, absence of SDK paths in final RPATHs, and
-the separately loaded WebSocket libraries. Its JSON contains every package's
-files, dependencies, ELF paths and archive SHA256.
+CI runs the upstream SNode.C CTest suite for each SDK build using
+`tests/test_upstream.py`. Target executables run under QEMU with the SDK's
+libraries. Test failures block publication. This repository does not maintain
+additional application, configuration, package-audit or installation tests.

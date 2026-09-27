@@ -153,4 +153,4 @@ metadata. For missing feeds, signature errors or dependency failures, see
 
 These targets use the independent `Linux` source tags. See
 [shared CI and publication details](linux.md#ci-and-publication) for build,
-installation, runtime tests and publication gates.
+upstream tests and publication gates.

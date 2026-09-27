@@ -144,16 +144,3 @@ selecting extra multiplexer packages does not change that default.
 All 44 SNode.C default/choice symbols and the demo selector participate in
 recipe reconfiguration. Other module selectors govern package emission and
 dependency closure; they do not prune the shared library compilation pass.
-
-## Configuration regression tests
-
-This branch owns `tests/snodec/package_config.json`. Use the shared runner
-from a `main` checkout against an SDK whose generated package configuration
-includes this branch's recipe and dependencies:
-
-```sh
-python3 /path/to/main/tests/test_package_config.py "$SDK" tests/snodec/package_config.json
-```
-
-The runner leaves the SDK's active `.config` unchanged. It can test this branch
-before it is merged into `main`.

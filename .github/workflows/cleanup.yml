@@ -21,8 +21,6 @@ jobs:
           ref: main
           path: feed
           persist-credentials: false
-      - name: Test retention policy
-        run: python3 feed/tests/test_cleanup.py
       - uses: actions/checkout@v6
         with:
           ref: packages

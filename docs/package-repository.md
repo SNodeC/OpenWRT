@@ -134,12 +134,11 @@ No downloaded source archive cache is reused between runs.
 
 The [official packages CI](https://github.com/openwrt/packages/blob/master/.github/workflows/multi-arch-test-build.yml)
 uses the OpenWrt SDK. This workflow uses official SDK archives directly:
-the `gh-action-sdk` wrapper has no hook for our full-package configuration and existing
-SDK audits. SDK release numbers are maintained in `ci/platforms.json`; downloads
+SDK release numbers are maintained in `ci/platforms.json`; downloads
 are checked against the official release's SHA256 checksums. GitHub Actions use
 version tags, not commit pins.
 
-Publication requires all 50 builds and four clean-VM installation/runtime jobs.
+Publication requires all 50 builds and their upstream tests to pass.
 Matrix jobs do not stop when a different job fails. Packages get increasing
 integer `PKG_RELEASE` values from the centralized workflow run number plus one
 (the first CI revision is 2, above the existing recipe revision 1). APK does not
@@ -160,13 +159,11 @@ clients encountering a propagation delay can retry their update.
 
 ## Validation
 
-Run `python3 tests/test_repository.py` for publication boundary tests.
-Each SDK build runs the existing configuration, RPATH and package audits.
-The package audit supports APK and IPK and compares ELF class, endianness and
-machine to that SDK's libc. Four QEMU guests (x86-64 and AArch64, both releases)
-install the signed staged feed with official dependencies, exercise TCP, TLS,
-WS and WSS MQTT, and test broker service restart. Logs are retained in Actions.
-Physical-router behavior is not implied by QEMU results.
+Each SDK build runs the upstream SNode.C CTest suite through
+`tests/test_upstream.py`, using QEMU and the target SDK libraries. Failed or
+skipped tests block publication. Logs are retained in Actions. The repository
+has no separate application, package-audit or VM installation test suite.
+Physical-router behavior is not implied by these userspace tests.
 
 ## Raspberry Pi OS APT feed
 
@@ -202,8 +199,3 @@ started manually from Actions. Maintenance never builds packages. Both workflows
 share the `package-publication` lock, queue waiting jobs with `queue: max`,
 and use a force-with-lease single-commit
 snapshot. An unchanged cleanup produces no new commit.
-
-The revision-14 Debian upgrade-test archives are permanently stored in the
-[Debian upgrade fixtures release](https://github.com/SNodeC/OpenWRT/releases/tag/debian-upgrade-fixtures),
-with checksums verified by the tests; they do not depend on files retained in the
-live package pool.

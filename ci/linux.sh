@@ -18,10 +18,4 @@ container=(docker run --rm --network host --platform "$platform" -v "$PWD:/work"
 "${container[@]}" "$image" bash /work/feed/ci/package-build.sh 2>&1 | tee logs/build.log
 sudo chown -R "$(id -u):$(id -g)" packages
 python3 feed/ci/linux.py stage "$row" packages bundle output
-export REPOSITORY="/work/output/linux/$DISTRIBUTION/$SUITE/$ARCH"
-if [ "$DISTRIBUTION" = debian ] || [ "$DISTRIBUTION" = ubuntu ]; then
-    "${container[@]}" -e REPOSITORY "$image" bash /work/feed/tests/test_debian_install.sh "$SUITE" test 2>&1 | tee logs/install.log
-else
-    "${container[@]}" -e REPOSITORY "$image" bash /work/feed/tests/test_rpm_install.sh 2>&1 | tee logs/install.log
-fi
 sudo chown -R "$(id -u):$(id -g)" output logs

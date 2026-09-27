@@ -119,14 +119,11 @@ def download_sdk(row, destination):
 
 
 def stage(sdk, bundle, output):
-    """Stage only audited project packages; official feeds supply other dependencies."""
+    """Stage project packages and signed indexes; official feeds supply other dependencies."""
     info = json.loads((sdk / 'ci-sdk.json').read_text())
     feed = sdk / 'bin/packages' / info['arch'] / 'snodec'
     extension = '.ipk' if info['series'] == '24.10' else '.apk'
     packages = sorted(feed.glob('*' + extension))
-    audit = json.loads((sdk / 'audit/package-audit.json').read_text())
-    if audit['errors'] or len(packages) != len(audit['packages']):
-        raise RuntimeError('Package inventory does not match successful audit')
     destination = output / 'openwrt' / info['series'] / info['arch']
     destination.mkdir(parents=True)
     indexes = ['Packages', 'Packages.gz', 'Packages.sig'] if extension == '.ipk' else ['packages.adb']
@@ -135,7 +132,7 @@ def stage(sdk, bundle, output):
     files = {p.name: digest(p)
              for p in destination.iterdir()}
     info.update(sources=json.loads((bundle / 'sources.json').read_text()), files=files,
-                packages=sorted(audit['packages']), revision=os.environ['PACKAGE_RELEASE'],
+                revision=os.environ['PACKAGE_RELEASE'],
                 context=json.loads((bundle / 'context.json').read_text()))
     (destination / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
 

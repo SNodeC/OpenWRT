@@ -42,8 +42,9 @@ inventories accompany the APKs. Build prerequisites use the SDK's pinned feeds.
 No changes were made in either upstream source repository.
 
 The branch split changed no recipe, helper, service or source patch bytes.
-The configuration cases and RPATH tests passed again from the project
-worktrees. The SDK's active `.config` was unchanged. The archive/build/runtime
+The then-existing configuration cases and RPATH tests passed from the project
+worktrees. Those repository-owned tests have since been removed; current CI
+runs the upstream tests. The SDK's active `.config` was unchanged. The archive/build/runtime
 results above therefore remain evidence for the same production files; no
 new cross-build was required merely to reorganize their Git ownership.
 Whitespace checks exclude unified-diff context markers in patch files;

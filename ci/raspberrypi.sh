@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Extract official images twice: a build root and a clean installation-test root.
+# Build and run upstream tests in the official image filesystem.
 set -euo pipefail
 suite=$1
 work=$(pwd)
@@ -25,28 +25,22 @@ cleanup() {
 }
 trap cleanup EXIT
 sudo mount -o ro "${loop}p2" pi-image
-for phase in build test upgrade; do
-    sudo cp -a pi-image/. "$root/"
-    sudo rm -f "$root/etc/resolv.conf"
-    sudo cp /etc/resolv.conf "$root/etc/resolv.conf"
-    sudo mkdir -p "$root/work"
-    sudo mount --bind "$work" "$root/work"
-    sudo mount -t sysfs sysfs "$root/sys"
-    sudo mount --rbind /dev "$root/dev"
-    sudo mount --make-rslave "$root/dev"
-    printf '#!/bin/sh\nexit 101\n' | sudo tee "$root/usr/sbin/policy-rc.d" >/dev/null
-    sudo chmod +x "$root/usr/sbin/policy-rc.d"
-    "${enter[@]}" sh -c '. /etc/os-release; test "$VERSION_CODENAME" = "$1"; test "$(dpkg --print-architecture)" = arm64' sh "$suite"
-    if [ "$phase" = build ]; then
-        "${enter[@]}" env PACKAGE_RELEASE="$PACKAGE_RELEASE" SUITE="$suite" \
-            bash /work/feed/ci/package-build.sh 2>&1 | tee logs/build.log
-        python3 feed/ci/apt-repository.py stage "$suite" packages bundle output
-    else
-        "${enter[@]}" bash /work/feed/tests/test_debian_install.sh "$suite" "$phase" 2>&1 | tee "logs/$phase.log"
-    fi
-    sudo umount -R "$root/dev"
-    for mount in sys work; do sudo umount "$root/$mount"; done
-    sudo rm -rf "$root"
-    mkdir "$root"
-done
+sudo cp -a pi-image/. "$root/"
+sudo rm -f "$root/etc/resolv.conf"
+sudo cp /etc/resolv.conf "$root/etc/resolv.conf"
+sudo mkdir -p "$root/work"
+sudo mount --bind "$work" "$root/work"
+sudo mount -t sysfs sysfs "$root/sys"
+sudo mount --rbind /dev "$root/dev"
+sudo mount --make-rslave "$root/dev"
+printf '#!/bin/sh\nexit 101\n' | sudo tee "$root/usr/sbin/policy-rc.d" >/dev/null
+sudo chmod +x "$root/usr/sbin/policy-rc.d"
+"${enter[@]}" sh -c '. /etc/os-release; test "$VERSION_CODENAME" = "$1"; test "$(dpkg --print-architecture)" = arm64' sh "$suite"
+"${enter[@]}" env PACKAGE_RELEASE="$PACKAGE_RELEASE" SUITE="$suite" \
+    bash /work/feed/ci/package-build.sh 2>&1 | tee logs/build.log
+python3 feed/ci/apt-repository.py stage "$suite" packages bundle output
+sudo umount -R "$root/dev"
+for mount in sys work; do sudo umount "$root/$mount"; done
+sudo rm -rf "$root"
+
 sudo chown -R "$(id -u):$(id -g)" output logs

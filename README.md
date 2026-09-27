@@ -92,9 +92,9 @@ Each distribution guide describes its source tag, build matrix and validation.
 The CI configuration is authoritative for supported targets. Source-tag groups
 build independently and share the publication mechanism.
 
-MQTT runtime checks cover TCP, TLS, WebSocket and secure WebSocket. Container
-and VM tests do not imply validation on every physical device. All required
-jobs in a group must pass before that group publishes; publication preserves
+CI runs upstream tests in each target build environment. These userspace tests
+do not imply validation on every physical device. All required jobs in a group
+must pass before that group publishes; publication preserves
 other distributions and uses a shared lock.
 
 The `packages` branch contains one parentless snapshot commit. Source history

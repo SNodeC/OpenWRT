@@ -55,17 +55,13 @@ for checkout; recorded commit IDs only prove provenance. `OpenWRT` and
 [`ci/linux.json`](../ci/linux.json); container images use distribution release tags.
 
 x86-64 and ARM64 build natively on GitHub runners. ARM32 and RISC-V use QEMU
-where required. Build and installation containers share the runner’s network
-namespace, as the Raspberry Pi OS chroots do, so IPv6 tests see configured host
-interfaces instead of an IPv4-only Docker bridge. Each target runs the upstream
-SNode.C tests as a non-root user; failed or skipped tests block packaging. It then
-creates CPack component packages and installs from the signed feed in a fresh container.
-Tests exercise selective dependency installation, the full component inventory,
-application startup, MQTT TCP/TLS and MQTT over WebSocket/WSS. Containers test
-userspace compatibility, not physical hardware, boot or service-manager behavior.
+where required. Build containers share the runner’s network namespace, as the Raspberry Pi OS
+chroots do. Each target creates upstream CPack component packages and runs the upstream
+SNode.C CTest suite. Failed upstream tests block publication. There are no separate installation or application runtime
+checks maintained in this repository.
 
-Publication requires the entire Linux matrix to pass. APT indexes are combined
-per suite with one index per architecture; RPM metadata remains per release and
+Publication requires the entire Linux matrix to pass. APT indexes are generated and signed only during publication,
+once per suite with one index per architecture; RPM metadata remains per release and
 architecture. RPM packages and `repomd.xml` are signed. APT uses signed `InRelease`
 and `Release.gpg` plus by-hash indexes. The existing `APT_SIGNING_KEY` secret and
 public key serve both formats; no additional signing secret is required.

@@ -178,14 +178,12 @@ version tags. Source commit IDs in provenance record what was built; they are
 not pinned checkout references.
 
 Each Pi job builds inside an official image's root filesystem on a native ARM64
-runner. SNode.C's CTests run as a non-root user during the build; failed or
-skipped tests block packaging. A second, clean image filesystem
-installs only the broker and CLI through the signed APT feed and tests their
-runtime dependency closure before installing all components. A third clean
-filesystem tests upgrades from the original combined packages. Runtime tests
-cover CLI startup and MQTT publish/subscribe over TCP, TLS, WebSocket and secure
-WebSocket. Publication checks the complete CPack-derived component inventory for
-both OS releases.
+runner. SNode.C's upstream CTests run during the build; failed tests block
+publication. CPack creates the component packages, and publication checks the
+complete CPack-derived component inventory for both OS releases. APT indexes
+and signatures are generated only during publication; build jobs upload packages
+and provenance. There are no
+separate installation, upgrade or application runtime test phases.
 
 These are userspace tests, not Pi boot, kernel, peripheral or physical-hardware
 tests. Both Raspberry Pi OS jobs must pass before APT publication. OpenWrt builds

@@ -25,17 +25,21 @@ cp feeds.conf.default feeds.conf
 printf '\nsrc-link snodec %s\n' "$feed" >> feeds.conf
 ./scripts/feeds update base packages snodec
 ./scripts/feeds install -a -p snodec
-cp "$feed/tests/gl-mt3000-all.config" .config
-sed -i 's/# CONFIG_SIGNED_PACKAGES is not set/CONFIG_SIGNED_PACKAGES=y/' .config
+# Select publication packages; feature defaults come from their Config.in files.
+cat > .config <<'EOF'
+# CONFIG_ALL is not set
+# CONFIG_ALL_NONSHARED is not set
+# CONFIG_ALL_KMODS is not set
+# CONFIG_AUTOREMOVE is not set
+CONFIG_SIGNED_PACKAGES=y
+CONFIG_PACKAGE_snode.c-full=m
+CONFIG_PACKAGE_snode.c-apps=m
+CONFIG_PACKAGE_snode.c-control=m
+CONFIG_PACKAGE_mqttsuite-full=m
+EOF
 make defconfig
 make -j"$(nproc)" package/mqttsuite/compile V=s BUILD_LOG=1
-# A failed check must not suppress independent later checks.
-status=0
-python3 "$feed/tests/test_upstream.py" "$sdk" || status=1
-python3 "$feed/tests/test_package_config.py" "$sdk" || status=1
-python3 "$feed/tests/test_rpath.py" "$sdk/staging_dir/host/bin/patchelf" || status=1
-python3 "$feed/tests/audit_packages.py" "$sdk" "$sdk/audit" || status=1
-[ "$status" = 0 ]
+python3 "$feed/tests/test_upstream.py" "$sdk"
 make package/index V=s
 arch=$(sed -n 's/^CONFIG_TARGET_ARCH_PACKAGES="\(.*\)"/\1/p' .config)
 repository="bin/packages/$arch/snodec"

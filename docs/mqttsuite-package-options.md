@@ -78,19 +78,3 @@ servers, so disabling MQTT TLS does not remove their admin TLS dependency.
 All 40 transport symbols and the five application selectors participate in
 recipe reconfiguration. Mapping plugin selectors govern separate package
 emission. SNode.C is a build/runtime dependency, maintained on its own branch.
-
-## Regression tests
-
-This branch owns `tests/mqttsuite/package_config.json` and `tests/test_rpath.py`.
-Use the shared configuration runner from a `main` checkout against an SDK
-whose generated package configuration includes this branch's recipe and its
-SNode.C dependency:
-
-```sh
-python3 /path/to/main/tests/test_package_config.py "$SDK" tests/mqttsuite/package_config.json
-python3 tests/test_rpath.py "$SDK/staging_dir/host/bin/patchelf"
-```
-
-The configuration runner leaves the SDK's active `.config` unchanged. SNode.C
-can be supplied as a separate feed or checkout; its recipe does not need to
-be copied onto this branch.
