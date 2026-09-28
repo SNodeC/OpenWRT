@@ -1,6 +1,6 @@
 # SNode.C and MQTTSuite packages
 
-[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs)
+[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs) · [Troubleshooting](#repository-troubleshooting)
 
 Signed packages for **OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora**.
 Install directly with your distribution's package manager; no source checkout or
@@ -63,9 +63,11 @@ For OpenWrt's individual package names and contents, see the complete catalogs:
 - [SNode.C packages](docs/snodec-package-options.md)
 - [MQTTSuite packages](docs/mqttsuite-package-options.md)
 
-For the other distributions, each installation guide describes its component
-packages and common selections. The `snodec` and `mqttsuite` metapackages in the
-DEB/RPM repositories install their respective complete component sets.
+For Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora, see the shared
+[DEB/RPM component package guide](docs/linux.md#component-packages). Each
+distribution guide provides the installation commands and common selections.
+The `snodec` and `mqttsuite` metapackages in the DEB/RPM repositories install
+their respective complete component sets.
 
 ## Repository layout and links
 

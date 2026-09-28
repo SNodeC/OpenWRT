@@ -1,8 +1,9 @@
 # SNode.C packages and options
 
-Package selection uses `CONFIG_PACKAGE_<name>` for every package below, with
-ordinary n/m/y semantics and automatic dependency selection. Build defaults
-do not replace package selectors.
+[All package catalogs](../README.md#package-catalogs) · [OpenWrt installation](openwrt.md#selective-installation) · [MQTTSuite catalog](mqttsuite-package-options.md) · [DEB/RPM components](linux.md#component-packages)
+
+These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
+to prepare the feed and install packages with `opkg` or `apk`.
 
 ## Packages: 67
 
@@ -82,6 +83,10 @@ supports RFCOMM; upstream does not provide an Express/L2CAP module to package.
 
 ## SNode.C build defaults
 
+For source builds, package selection uses `CONFIG_PACKAGE_<name>` with
+ordinary n/m/y semantics and automatic dependency selection. Build defaults
+do not replace package selectors.
+
 Every symbol below has the `CONFIG_` prefix in `.config`. Defaults shown are
 menu defaults. A choice uses exactly one of its alternative symbols. Values
 are passed into the existing upstream CMake settings; they are runtime defaults
@@ -144,3 +149,5 @@ selecting extra multiplexer packages does not change that default.
 All 44 SNode.C default/choice symbols and the demo selector participate in
 recipe reconfiguration. Other module selectors govern package emission and
 dependency closure; they do not prune the shared library compilation pass.
+
+[OpenWrt installation](openwrt.md#selective-installation) · [All package catalogs](../README.md#package-catalogs)

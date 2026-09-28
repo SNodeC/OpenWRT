@@ -2,6 +2,8 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt)
 
+[Architectures](#releases-architectures-and-repositories) · [Full installation](#full-installation) · [Prepare only / manual setup](#prepare-the-repository) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+
 ## Releases, architectures and repositories
 
 | OpenWrt series | Package manager | Package format | Current SDK release |
@@ -279,3 +281,5 @@ a package update does not upgrade the OpenWrt firmware or change its release ser
 | Download fails just after publication | Refresh the package index and retry; GitHub's raw-content caches can take time to update. |
 | Application does not start | Check its `--help` output, configuration and `logread`; verify that installation completed successfully. |
 | A newer build is not available | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Failed or unfinished runs do not replace the published feed. |
+
+[Back to top](#openwrt) · [All distributions](../README.md#distribution-and-architecture-matrix)

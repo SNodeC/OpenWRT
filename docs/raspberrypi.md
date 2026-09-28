@@ -2,6 +2,8 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os)
 
+[Architectures](#releases-architectures-and-repositories) · [Full installation](#full-installation) · [Prepare only / manual setup](#prepare-the-repository) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+
 ## Releases, architectures and repositories
 
 | Release / suite | Architecture | Package files | Signed repository metadata |
@@ -153,3 +155,5 @@ packages; subsequent updates use the normal APT update process.
 | Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
 | Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
 | A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
+
+[Back to top](#raspberry-pi-os) · [All distributions](../README.md#distribution-and-architecture-matrix)

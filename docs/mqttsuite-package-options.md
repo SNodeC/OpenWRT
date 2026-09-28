@@ -1,8 +1,9 @@
 # MQTTSuite packages and options
 
-Package selection uses `CONFIG_PACKAGE_<name>` for every package below, with
-ordinary n/m/y semantics and automatic dependency selection. Build defaults
-do not replace package selectors.
+[All package catalogs](../README.md#package-catalogs) · [OpenWrt installation](openwrt.md#selective-installation) · [SNode.C catalog](snodec-package-options.md) · [DEB/RPM components](linux.md#component-packages)
+
+These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
+to prepare the feed and install packages with `opkg` or `apk`.
 
 ## Packages: 9
 
@@ -22,6 +23,10 @@ Application libraries also include the real `.so.1.0.1` file. Each enabled
 MQTT WebSocket plugin contains its `.so.2` ABI symlink and `.so.1.0.1` real file.
 
 ## MQTTSuite transport defaults
+
+For source builds, package selection uses `CONFIG_PACKAGE_<name>` with
+ordinary n/m/y semantics and automatic dependency selection. Build defaults
+do not replace package selectors.
 
 All rows have the `CONFIG_` prefix in `.config`. Enabling a row compiles that
 application's endpoint support and selects the matching SNode.C packages.
@@ -77,4 +82,6 @@ servers, so disabling MQTT TLS does not remove their admin TLS dependency.
 
 All 40 transport symbols and the five application selectors participate in
 recipe reconfiguration. Mapping plugin selectors govern separate package
-emission. SNode.C is a build/runtime dependency, maintained on its own branch.
+emission. SNode.C is a build/runtime dependency.
+
+[OpenWrt installation](openwrt.md#selective-installation) · [All package catalogs](../README.md#package-catalogs)
