@@ -72,7 +72,7 @@ def index(apt, suite, by_arch):
             target = index / 'by-hash/SHA256' / digest(path)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
-    release = run('apt-ftparchive',
+    release = run('apt-ftparchive', '--md5=no', '--sha1=no', '--sha512=no',
                   '-o', f'APT::FTPArchive::Release::Codename={suite}',
                   '-o', f'APT::FTPArchive::Release::Suite={suite}',
                   '-o', 'APT::FTPArchive::Release::Architectures=' + ' '.join(sorted(by_arch)),

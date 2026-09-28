@@ -232,6 +232,24 @@ Development status and feed versions are generated in
 A failed build retains the last successful feed and its published version.
 
 Local publication checks cover partial APT updates, legacy manifest import,
-identical retries, stale revisions, signed metadata and retention. GitHub
-validation of the three development builds remains required before expanding
-the matrix or enabling production publication.
+identical retries, stale revisions, signed metadata, retention, snapshot writer
+conflicts and monotonic status updates. Real APT clients also validate signed
+indexes with forced by-hash downloads.
+
+The [first development run](https://github.com/SNodeC/OpenWRT/actions/runs/36385083597)
+passed all 212 upstream tests on each target and published them independently:
+Raspberry Pi OS at 06:26 UTC, Debian at 06:32 and OpenWRT at 06:43 on 28 September.
+The completion handler passed, and the published branch retained one parentless
+commit. Production workflows and feeds were unchanged.
+
+A subsequent native APT client check found that Release metadata advertised
+SHA512 while only SHA256 by-hash paths were published. The index generator now
+advertises SHA256 consistently. Temporary signed feeds pass forced by-hash
+client checks; a fresh development run must verify the corrected public feeds
+before matrix expansion.
+
+| Development target | Latest build |
+| --- | --- |
+| Debian trixie amd64 | [![Debian](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/debian-trixie-amd64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
+| OpenWRT 25.12 x86_64 | [![OpenWRT](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/openwrt-25.12-x86_64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
+| Raspberry Pi OS trixie arm64 | [![Raspberry Pi OS](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/raspberrypios-trixie-arm64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
