@@ -1,0 +1,1350 @@
+Package: mqttsuite-bridge
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 3467
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-http-server (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), snodec-http-server-express-legacy-in (= 2.0.0-3~forky), snodec-http-server-express-tls-in (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), snodec-mqtt-client-websocket (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-bridge_1.0.1-3~forky_riscv64.deb
+Size: 780004
+MD5sum: e509cfd7d2242264ed22e29b9a9b77bc
+SHA1: 7245aae0d30baf448d56bdeb6521f8533961a501
+SHA256: a4d83461df2d3867f6a5938b249075738d1d7290b23593cf0e8808769766c548
+SHA512: 5d8ff6364f26b819154b36873fd599b51a0b80ce5c7d326c5cf606845a2ae155cf50a0aac992f8de4a0c958364a7f0a36c086d2c19c2bfffd287f45ce224dcc5
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-broker
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 5060
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-http-server (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), snodec-http-server-express-legacy-in (= 2.0.0-3~forky), snodec-http-server-express-legacy-in6 (= 2.0.0-3~forky), snodec-http-server-express-legacy-un (= 2.0.0-3~forky), snodec-http-server-express-tls-in (= 2.0.0-3~forky), snodec-http-server-express-tls-in6 (= 2.0.0-3~forky), snodec-http-server-express-tls-un (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-mqtt-server (= 2.0.0-3~forky), snodec-mqtt-server-websocket (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-broker_1.0.1-3~forky_riscv64.deb
+Size: 1049396
+MD5sum: 9dfecfe043216eab6d8d93fffae01098
+SHA1: 00155b4b3c15d816733296257f069cf45cfd380a
+SHA256: 54976b0b475680f0c27490671a9b73b69713aec5c26cbd3d21e9e63bd048be54
+SHA512: ea3eda044c9c3c295d6df523c53ba83c298e84d8f88bd5615c314c0a0025f25f43d7b38b4e0d3d4d65251abca01683016db5ffaee00f2d9784be6ffdfb3e9d5d
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-cli
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2101
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), snodec-mqtt-client-websocket (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-cli_1.0.1-3~forky_riscv64.deb
+Size: 448404
+MD5sum: 30a0a6425c8c1824520c8c8d8e095848
+SHA1: 11b2dc6814ba4fca6b5baa9c1e369b0725621506
+SHA256: df4876b093d213a70182efe9b14b9e1e56589050aa857ad292b3b735c809f73b
+SHA512: a5fe57d39b0345a3b93bc40d8828f5648effe1fd900bb806c784db7b2f594668be8a187cd09f03953fcb2903e72813a467e4367f1edd264375c16c3def0ec7d9
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-integrator
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 4027
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), snodec-http-server-express-legacy-in (= 2.0.0-3~forky), snodec-http-server-express-tls-in (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), snodec-mqtt-client-websocket (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-integrator_1.0.1-3~forky_riscv64.deb
+Size: 839270
+MD5sum: 7e0c8b7db4c42c033682d454b16a8dd6
+SHA1: 20d0d6fd72a9ebd9ae3f27486fcb1d5301cb85d7
+SHA256: a3bb4bd567bdf3161017f6edad8b1a649dcdc1528945e0fee836a2190ba5295d
+SHA512: 76309414819c2183718bcae68c3035b9bca5e3bd52e4f84b0c5393c29444ea4f67557b611a944c801809d6c2f1c13d5cf40491a577d3734970d2b273b852a0e8
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-double
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 27
+Depends: libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-mapping-double_1.0.1-3~forky_riscv64.deb
+Size: 8448
+MD5sum: b81b77d2fc033ac850e3d3b0f1dc9978
+SHA1: 2c305781f08c5a1dd9b18e6251d403d864cc5c24
+SHA256: 493e6a6be1e19c29c20961ccbbe32980ba8350c465f41147c254e620ea435fc6
+SHA512: 4058724062e6e0e09c3b4507441724f1d8cc20910b8cbabe0f389be5dabb7d690232a32e2183b7ddfa71b5b6865b3ff604d57e05969c67f0ad01997072c218fb
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-storage
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 51
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-mapping-storage_1.0.1-3~forky_riscv64.deb
+Size: 17538
+MD5sum: bb754d2a565c43bfe2098307fdeffae0
+SHA1: 85de071dcb714ddfc64e7cdc5b4479ec8e3bbf6d
+SHA256: 7d75de5b8f49130c36136d0221bd84fec5037ad08e179e998ce8a0ff9ec89097
+SHA512: 2e9db58c6ab139a1a2d2f2129ad1b021b192ad477b94db5898eee77a61c1780a5012473c7d858e709c017c420805fc87c942e3e84a6dcaff8ba790054ebaf63e
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-store
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 3459
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-db-mariadb (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), snodec-mqtt-client-websocket (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite-store_1.0.1-3~forky_riscv64.deb
+Size: 674342
+MD5sum: 3f3b5b420a4810f15dc70b4fd0a49c99
+SHA1: d1e5a1e514a58104a0a8cc2730fcc7f60e06e42f
+SHA256: 0f1a9770170d3bd6fa587f9904a9dd9488ae3c3d8b91b04291a261caa43365eb
+SHA512: 761f9c2e1bf2a9a1aa6b63c1775501e6e877957e581972836ed68d81f30b0ce3c9309950ad83eb0c93f22aa5462a791aa18f8fec72325e4e7caf0d37ec610e3f
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite
+Architecture: riscv64
+Version: 1.0.1-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: mqttsuite-store (= 1.0.1-3~forky), mqttsuite-mapping-storage (= 1.0.1-3~forky), mqttsuite-mapping-double (= 1.0.1-3~forky), mqttsuite-integrator (= 1.0.1-3~forky), mqttsuite-cli (= 1.0.1-3~forky), mqttsuite-broker (= 1.0.1-3~forky), mqttsuite-bridge (= 1.0.1-3~forky)
+Breaks: mqttsuite (<< 1.0.1-3~forky)
+Replaces: mqttsuite (<< 1.0.1-3~forky)
+Filename: pool/forky/mqttsuite_1.0.1-3~forky_riscv64.deb
+Size: 1068
+MD5sum: 010abf2fbcb56ba4d15dcb29e99dea4d
+SHA1: 10d5e85a3ba230ac39af4128df6c07a3fd1bc29b
+SHA256: 42c010bae15886ca680340d775bdb28956c9e06b80cc91e6afac28348a17507d
+SHA512: 1d6ab1294d56d896dadb72b43be163fe1b630f5ec6cafc45a5cb86d278fc82ef10e705fbfaaf3fd9a498fd4b33e1b203ca543327cc77ad6201f69eb15b18580d
+Description: A lightweight MQTT Integration System
+
+Package: snodec-apps
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 14377
+Depends: snodec-db-mariadb (= 2.0.0-3~forky), snodec-websocket-client (= 2.0.0-3~forky), snodec-websocket-server (= 2.0.0-3~forky), snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-rc-stream-legacy (= 2.0.0-3~forky), snodec-net-l2-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-net-rc-stream-tls (= 2.0.0-3~forky), snodec-net-l2-stream-tls (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.4), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-apps_2.0.0-3~forky_riscv64.deb
+Size: 7066406
+MD5sum: da63efd25eb5a1399f7171f68d2cd2fc
+SHA1: 63491f6465546c9249d2ad93c12a280b71a017d7
+SHA256: baa676edd1bdbc89ff322b238d0ddbeec254246288bd8ee76d7ff8f13c11ef1b
+SHA512: 1623598e71c53d2c91d2f60354ad04e0b20e1ca48b9474d6876304ff984b58537ae5cda00ca29928da910efd2a69244178fc7b06348f539f8ed9ebfcf531ecad
+Description: Simple Node in C++, a Slim Network Framework
+ We install Applications
+
+Package: snodec-core-socket-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 116
+Depends: snodec-core-socket-stream (= 2.0.0-3~forky), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-core-socket-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 9842
+MD5sum: 91c1c82b9849a8c9115096447c66aeb2
+SHA1: 88425b9b348d0da1b1ff197ae0bff383b082ab4d
+SHA256: 100b37f8edb12442d16b95240959c4e229cbc19e2d27670ab17e3589c699e81a
+SHA512: 5663f04976f0cf486ccb1919157a16883ffcc0fab47441f0e6b3b1b82e6239e889e72323d1e3b0ac838b6d694f1659032b82491b9c71a39064e1b05202c306ad
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 452
+Depends: snodec-core-socket-stream (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-core-socket-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 58984
+MD5sum: 6a95495b45064da94e5e5d614a858688
+SHA1: 39262a43f1974b5c0cc7dcbb777e52ea09ce420e
+SHA256: 0631dd10df4a05ee55eeae57fe772b3da466c7f333e749415303b9d37d2051b1
+SHA512: eff382559a05b6da7dbd2d83e1c4e95125b6cf678537b3cc763aa33e35f3c2905468d678e5566f9a6654796e1e6835a686903371b3229cf45b52769e77f2413e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1024
+Depends: snodec-core-socket (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-core-socket-stream_2.0.0-3~forky_riscv64.deb
+Size: 149304
+MD5sum: 46a624954c3b3b2251594d017908187d
+SHA1: 1b911a4a88517a444bc85c1b52324bff22b49d25
+SHA256: a659e5b01fb216b0ee05360269fb6d11477a2ccad5516fdead5280b5c8b1150b
+SHA512: bc73e9fbac78eb32b27d396cb8e5750a93fa06c0731abdbefbe3cc76df51e4df4bc3ab5b02faba514b13376cbdaf2e1269e38aac579a093237346075c2ff426a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 109
+Depends: snodec-core (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-core-socket_2.0.0-3~forky_riscv64.deb
+Size: 13610
+MD5sum: bed655f424cfef040c4b1982213e22b8
+SHA1: 39d52720da647d564ae1c8a14916b515576636e3
+SHA256: ab77b3342e630069961e0da58a5cab5a3f1cfea7a8e819500199d051b6c5b75e
+SHA512: 02da1cfc4068ff258eb9b5ccc7e77bb90cd61ba8fa0a7fcc7639fbc5e7a11505e8cd397d788cee98951767cd7acf8d15e764515ccf9ea484739377e6ae1411a9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1172
+Depends: snodec-utils (= 2.0.0-3~forky), snodec-mux-epoll (= 2.0.0-3~forky), adduser, libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-core_2.0.0-3~forky_riscv64.deb
+Size: 173178
+MD5sum: 2ed6117300d2e7cdf5c875df7af13cef
+SHA1: 7569b399ca573327f16864512aff5b4e1792e783
+SHA256: ee03c99ed92fd3d08dba740202ac489e080c9a17ae9b6f5819484ddfed86ebfd
+SHA512: 89725afb487c155d62f7c8ae6a032a817fa661801944a85e5e4a4cfc0619b6fa44c1e849969a56e737bf8daf9388e49df6427ebb8f87882ccefd215fb40d86ce
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-db-mariadb
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 426
+Depends: snodec-core (= 2.0.0-3~forky), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libmariadb3 (>= 3.0.19), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-db-mariadb_2.0.0-3~forky_riscv64.deb
+Size: 47348
+MD5sum: 1a5e233b3d6d1625b7cb09a2cf7f8a17
+SHA1: 739d9843b72a733e0ecd40554646952a4f75063d
+SHA256: 70b1d44f69d3df304ca11f54dac4177c47fd93ce21990ad65381d609335a706d
+SHA512: 11a9c3672693f8629eab3e2d3e3cded52a941b8471b6081c779b84e5e5f9523deb6bfe59cf592251639b0b77566b51760ed527ec0a9612e3612e804ab2cd059c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-client
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1506
+Depends: snodec-http (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-client_2.0.0-3~forky_riscv64.deb
+Size: 229638
+MD5sum: 667f848411c61766aca5ca4520c81bb7
+SHA1: 435673039818cc73d725f7a30d977edc6ba45249
+SHA256: 49a4255b424546db76fc81204561440e97db4bbfccffee464d745e10e243fcae
+SHA512: 70bd94882a9a98ae9fc7252f4f24f71d101fb9fdecd155651047ce64e5a600d400b427c618147782856be77e7fdd3ab30580e6b4f35dd70b87c1d3a20bc13138
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in6
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-legacy-in6_2.0.0-3~forky_riscv64.deb
+Size: 113888
+MD5sum: b05f6b4938dca39b57decc0aecf1bac5
+SHA1: 54e8ef3dbf9d3c684ca3f427c719310f860e09d3
+SHA256: 27c8a35894a2c17d2c7d0b5dfd47590e41fcc56c52daf95540e9e0a3346287fe
+SHA512: 84a8bfd4389eafa31de20d9d1da50a09c86b1b1acb8951d528d66bcb3aac1931ab3efd901f8a7889a311b87beb48dbf91125c3b0f49c347a538f073ef1fa3c44
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-legacy-in_2.0.0-3~forky_riscv64.deb
+Size: 113872
+MD5sum: 6c3e025ad482c3a5f97ccb580d4a9936
+SHA1: 40da268c57a7571e9d1bd57f4926c7fe28577a85
+SHA256: 04824e792239bbd529ff5f07cb9d777e3a9252630515e19f05e1659face12837
+SHA512: 802ce7601efee0582effea97e968e52d012d37a2f231acdf167697b0904d6a898827285da941917604f5f4883eb8babdf5581390d5e5009b20ed6fbe84dbe019
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-rc
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-rc-stream-legacy (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-legacy-rc_2.0.0-3~forky_riscv64.deb
+Size: 113836
+MD5sum: 8577199a41db7f4371ec9c1d1086aee3
+SHA1: e6ff1526f0f7b5cb716ea9281b8670822f9d4c60
+SHA256: c2c1c1f338e2a1dafdd839f4567874733894028b9369b0bec2a3c297c12fb4ce
+SHA512: 3a80d8e370d85531575e2a7ef5ab2c167c12cff97297c7f8bc176a3fe3f2f2648009b2dc2c71effe1bcda0182e96d7f18a8711ad5ccf77f535b0331d771e110d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-un
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-legacy-un_2.0.0-3~forky_riscv64.deb
+Size: 113724
+MD5sum: b5fa6aa41254fbbdd3b1ea43731b01d6
+SHA1: 09dfb4f9db8f023141fa3c5b2ebec27cbd874d00
+SHA256: 6bf849604c182e82652c161bd840b008529bd2e413d9fc60da2efc00f3395e17
+SHA512: fe125f96fb5381556b40d1cf138e6dcd403b2862900662876d11619756100fe0de09eaf450c1f932d39f3580921308e52cd6f2a0ae40da8f4b0dc506a317bc15
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in6
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-tls-in6_2.0.0-3~forky_riscv64.deb
+Size: 113844
+MD5sum: 4a03bad7cffb411c69cb7f8358c68614
+SHA1: 8e23eedad409f0bff76971ac81923ca233bc639a
+SHA256: c53d5c78ca94a6f052d3846668d5cf43226ae223254fa3adc234a2dcbc73492c
+SHA512: 2d1f145ab874f595c0854d49f90f3c571d5827608217c8686ee48c66327fb09028bce1d7a0c04a0f70418b70faeb51f3d854a6d9f18be39e4540311a3dae3530
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-tls-in_2.0.0-3~forky_riscv64.deb
+Size: 113800
+MD5sum: b156685dff386eed9f223450639e7c7f
+SHA1: b64be0c7eabb0e9fc49ce81b78d99a04bfd14c93
+SHA256: 9f0674a5e83515563768d2059c4a77e97b4243b4576aecbcd0785c62927e23b1
+SHA512: 9cb5befc40a92613d846a01d63ab529a8e4b7677fd63baf3e8a5e503b66a097a6fc2a9a26a2ad99ae91f7fdca66675e6bd8e881ae55f5d3ac3d4a7703f7afa50
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-rc
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-rc-stream-tls (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-tls-rc_2.0.0-3~forky_riscv64.deb
+Size: 113700
+MD5sum: 4c3d5d51c6aa9f3eac59ca830d7d78c6
+SHA1: 6d6da654186b6b4dba9cadd7b9d178ed7bee24fb
+SHA256: d8e028ec0493ba5879c48f068de43ce8c86221d199ba559d1f6a27111c768fef
+SHA512: 2b00929cfcef5b5bb774557576734e0a8bd25534b0c5d08a99e48981936767aa781b5f835a958a97a94084b3a9465c8c8b576fcd1fea21aa317825e5f99329da
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-un
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 827
+Depends: snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express-tls-un_2.0.0-3~forky_riscv64.deb
+Size: 113694
+MD5sum: aa82c03576321666d53e41df79d34a9e
+SHA1: 18d093942e0463273e667df3ef4c2a04e40c309a
+SHA256: e17d8ba49c760e714bbd3b2730ca4c8eef0e33db65a6d943495fc0e4199cdb76
+SHA512: 82c598291b20ae52f068baa7ee8de66ce5e32ac257e59c09336b6ae0886fea2d8952970566c542d8ef798797802e2db76a9a6a2da79c8fbf94242710fcda13ac
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2137
+Depends: snodec-http-server (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server-express_2.0.0-3~forky_riscv64.deb
+Size: 312392
+MD5sum: 384a6f4228ff8f39f0a3bc368bd91778
+SHA1: 09e001e2e8927ff6019bbf3d59557a4b1da0534c
+SHA256: 94121e0c81327219c473ec0b3aadbbe4edda15a759085af2fafacfc3c7ab1239
+SHA512: e4475e114905ef210657d7307d2add519c8f66ed4f28999b107a850d6958b14a8a52c45432ae1fc4636b1998415dd0ac237e70eb3e8ba0dc0eed504fda6895a3
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1281
+Depends: snodec-http (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http-server_2.0.0-3~forky_riscv64.deb
+Size: 195832
+MD5sum: 423c231230bb2ce982c0c6e7915e805b
+SHA1: d973a9ffcf807d4fb9f7f81482f5404d3c6d22c4
+SHA256: db5359ab0804cbe807c30a090934a88cb0929520730ec15d349a9fe867e7785d
+SHA512: 4ed69c182a62f46d02907b55005385ef0cee1e3eca8f88da6d5026b30d7e3441ca23580419040d3cbb0224fd738aa22306e0ed7a5ca16d1eaf8e5c062abec552
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1302
+Depends: snodec-core-socket-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.4), libmagic1t64 (>= 5.12), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-http_2.0.0-3~forky_riscv64.deb
+Size: 205966
+MD5sum: d16dea94e812ec44b593229afe7bbc48
+SHA1: 4cf6a5788bf58dde1d916f96859c96acb84dfb58
+SHA256: 3ac54c92a47073ad0464fe7a9e8bcff8aace093171cce73749841818ea14c42d
+SHA512: 6a32d65cadbde95364ac7bea6f52f816f8eb19e91a18d6706a582db072983625ccccfb738f3d8547422e983e56cb2354fb9797539753ef288e9d9f5942b61460
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-logger
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1619
+Depends: libc6 (>= 2.33), libgcc-s1 (>= 4.5), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-logger_2.0.0-3~forky_riscv64.deb
+Size: 231886
+MD5sum: f83cfbb0ae1056c4661022af00066427
+SHA1: 376b55039e69998b86b7e2023a12f343183d8ac3
+SHA256: ae5be49bbf1d782b9dfa7d1e72fc6a17064ee49f0919416bd857a0b89c2ce177
+SHA512: 4e081fc14a93c3ebabb76d85fff325f649fcddcb052595b00dd996dee9b4cbdea63c0ae96980027b172accdb790b9bb5d3e30ebf8a58240567600d00b270d878
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client-websocket
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 136
+Depends: snodec-websocket-client (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mqtt-client-websocket_2.0.0-3~forky_riscv64.deb
+Size: 15868
+MD5sum: 945e104e0dd8ec50a476214926787f43
+SHA1: bbe96374b1f59235e76cb253290f6a83b3ea7206
+SHA256: a856d022abf4a88d3eb4cd9d593e46a99e34c3e14b14f2b9f2a926a6222f7840
+SHA512: 576755c6ea9577042b58ef0002cd5add9668b939ed769a308ef84dc96dd4099bc0c4762858e1b57fe7770ecd39ba9a9e56542d1ef0e9c4672ce3f120a7bb1fb7
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 664
+Depends: snodec-mqtt (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mqtt-client_2.0.0-3~forky_riscv64.deb
+Size: 89862
+MD5sum: a73f3bd627d690517d1bf6e18ce15439
+SHA1: e6f2b7d122a8023b58afb26140c680a6c0c24833
+SHA256: c0fececd654e0440e699121761f7633cf8b8850e1594113ec4166efe44c6fab6
+SHA512: f8cc234f2fdd1a91273e9d678beed5d342947148bc858431402cc076df2184d39d4610c89a909f9be136ace2abbbd04161a3a93f96ee9591043f7abbb63336a2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server-websocket
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 136
+Depends: snodec-websocket-server (= 2.0.0-3~forky), snodec-mqtt-server (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mqtt-server-websocket_2.0.0-3~forky_riscv64.deb
+Size: 15878
+MD5sum: e28dbf01ca77441d4467bf39bf8949ec
+SHA1: 0099fe1401cf9a6fee173c60c22c17d0155c02fd
+SHA256: ff698e7045c17bcce9a7ae11c0b2b576fbc8642f7ae1e13064fe442786323211
+SHA512: c866588757aa91bdf32897e5582f05efd473ac0789754fcab5bd029fadbc21139c083ef4109112d87fa374d7d83ece614ccf6cf8a042fdfe7256e8f24a8ae86f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1109
+Depends: snodec-mqtt (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mqtt-server_2.0.0-3~forky_riscv64.deb
+Size: 167154
+MD5sum: e84916d712cfbd4b1eb291bc7f1779e0
+SHA1: 75c29fb2b10cf8557911277ec529c6a8c6f68346
+SHA256: 4605d4975cfc463fbcfe4111504c540878794a3355b1f4aa6358def4a6912e04
+SHA512: c80757a62dbdd43ea51ca585c43ffb458dbcf63f6e351658e71bc8f221593a821c512d0744a3b6bee827a16872f2c16bbe6b1023e1331cf3f206f2de36bd9f88
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 589
+Depends: snodec-core-socket-stream (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 4.3), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mqtt_2.0.0-3~forky_riscv64.deb
+Size: 76728
+MD5sum: f5f1ce632563cbeef67687c9962df583
+SHA1: 94bf72aedc25278381e2d0c6f31446bb51e1b9a0
+SHA256: f7b93370729f06ea899324329cad60781d09bbb8f6f7d065a9e044d12c244427
+SHA512: d725d4a9baefbb238114cc8e611fb4feecadc72e7bc719a5c935eeb1a1223a69eca6f17658b9bc267fdd00b8ac01cf0cce371cf591edcc7b11d0b1e41d7ab375
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-epoll
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 137
+Depends: libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mux-epoll_2.0.0-3~forky_riscv64.deb
+Size: 19996
+MD5sum: 975272209d1d657b396f2c91f57dc11a
+SHA1: d4e375b4ea937f676792894355dbfd2af5245e8e
+SHA256: 0449d934462dd5213ba3277b0681cedfc403a44ab057d12c3afdf275080eaaa9
+SHA512: 4cc807f4925e64a6eb6dde169e089ff7aa712832ffad3ea4f2608106f57b25c9b6a7ec3437768f352433bc8b73c6e8bbd681d78c18cd45d84f347b070eed8ad0
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-poll
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 89
+Depends: libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mux-poll_2.0.0-3~forky_riscv64.deb
+Size: 12422
+MD5sum: 406138abdf1f380943b4bf3c98d73ad8
+SHA1: 62c8507b6153d5fa11c6501ba608a0323ba214f9
+SHA256: 50b02b2654da45c698b4dca53bc2c15404742d1609f99bb4291cccbe7ce55be2
+SHA512: 738a2f6cc86c95199edc8369f0d18c78913e50f9c0e6a5c442a66f805021bd2bd93813cdfc44d5fc8fb73d90b45e59bc6e0d60fc877ebe97624c4b9a17e15331
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-select
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 77
+Depends: libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-mux-select_2.0.0-3~forky_riscv64.deb
+Size: 8972
+MD5sum: de3d0d302d1712cd0000bec9e90cd5c8
+SHA1: 0ee565410f02878d5b32793644bc4e3712fbaed9
+SHA256: 875ab07c471aeee06c5e6b9cf83e4a6bd829f9614739b7e997bec4e91f5c9253
+SHA512: fd008be408bd4b2121a9beb65e4214d058135cbc03a52710d8146f6a9ee4089cb0b7b283eb62247e7d5b49470c578c9242c7978c966256598861c50ff254e674
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 112
+Depends: snodec-net-in-phy (= 2.0.0-3~forky), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in-phy-stream_2.0.0-3~forky_riscv64.deb
+Size: 9144
+MD5sum: a64e222be94e065fd1aed765ff8c8685
+SHA1: 26ebc30f659c1cad7fdbef86b37fe3632dadd99e
+SHA256: d97720dd8b21a84eecfcab5d3c37c1c63f5182ba16854693940eb601ef065e99
+SHA512: 3a92474446034a4c3cc13c9dbcc95c5c4b47f0fdb5d961d5761e0b340847fdd2e95e87e751d409224c8f39bf82acb28b5ec97b7fbc03882561b867cece4f8125
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 103
+Depends: snodec-net-in (= 2.0.0-3~forky), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in-phy_2.0.0-3~forky_riscv64.deb
+Size: 11270
+MD5sum: 4029eafc263c84109734bd315b919584
+SHA1: 9e9215fb33c1d9291fe078f581d203bd8b1dcccf
+SHA256: aaf545ba13a358d438d080f96119cfc95d51316a0b4fc2ffc6e9e9a5074cc74f
+SHA512: 09b634d6d6b5a54220eaade158ae663cdd3af3aa39d9ce9a7f072c7934eb490e5a48fee879077ed2f6c7ec99edbd38e0cfd32f46190c74d09ac7ee2f1402c19e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1375
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 176852
+MD5sum: d2b74a12f2c23f592378a7d331f5b9c9
+SHA1: 9b25ba1c856b1573708b71913bbed6925c23538a
+SHA256: 321c164eb080b81f761ba24d5345b362d2c697f1c86d76a8f359f28586be114d
+SHA512: ac122400323c6c12902be26587e8cb50900dd07bb1730882db1edaaf638e901ecca7f72ae1776e0dd56968b88f39204091d74544c04729ee4610f56dbd0ebac3
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1784
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 220814
+MD5sum: d8da69f534c4baccf9ac29912693c177
+SHA1: 1c066461ad92e1a971470055e20fa9cf349a60d1
+SHA256: 376981ca781db2ca2701cbe628b1941ccf01f2b205471f5c804f385d6a086f88
+SHA512: cf375d55c81d246d8e97dfaa1b6f380e35cdb8952b8a18a31a5bffd712a706363d1ee793385d0d2f7e0dbf409780a504e33737e6452acb546e5fc05ca1bd380a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 744
+Depends: snodec-net-in-phy-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in-stream_2.0.0-3~forky_riscv64.deb
+Size: 114628
+MD5sum: 8fd9ef07e45d7c3de823a8aa625d6b5d
+SHA1: 65c0a6dd08dab2c54cae16ff83e0e17eccd43590
+SHA256: b01dc5914add97c5b6aad836fb8d94c3d197bd718079755b88f0159a0a4d0c28
+SHA512: 2df96a2eff5692737b05c043b3fce99ff1763059f54f645eadbab939a4366cb78613a97ebc3a846f94c7676611c3fe6f624014834fcd283a8bc825a59ae12c05
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-in6-phy (= 2.0.0-3~forky)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6-phy-stream_2.0.0-3~forky_riscv64.deb
+Size: 4556
+MD5sum: 091dbd24ce5f32c0249c8b2dbe4e30bd
+SHA1: 38939e5ae2d4895b6e8f544ae6c18959aaec4a38
+SHA256: 655bed9763c208dfa5bb41eb0c9a3aca5125b583d63233a278985f8efcf54269
+SHA512: 2083bbabe0e3a24858dcb2117a79c6a0c346e03f14eaef395b539a9ca46f7f0dec7193acfca7a8b45ea503296dd2a485c8f059251835d8222c7a220ee856579b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 103
+Depends: snodec-net-in6 (= 2.0.0-3~forky), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6-phy_2.0.0-3~forky_riscv64.deb
+Size: 11292
+MD5sum: 9b64381328e016a08f91a5b3aa131711
+SHA1: 8a9ad5f9e28479bf4604b0a35bd932cb4a1b112c
+SHA256: 56083049d3daa303258a59fe029a2f5a18d0ecb635624e8da3d3b373077fdb80
+SHA512: 0a951d51950cdb3b0654dad6dcc75a3e6a05db59f76f71b13ade3e55b499606cc5355a30ca3757e4f9f8aca36ea8c7e29de871ee70c1246aa5503c02a2a7bbb1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1375
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 176872
+MD5sum: a1fc05320abbf7d21bff997b57d1deaa
+SHA1: ece69b1be7e5d73ef5ff800a945a86b38425f6f6
+SHA256: 45da5907227d5e5fa0eb4e77b7d9499cd01f9bdadd62ab7fabf88292cdc7e4ed
+SHA512: 1e0aedb517ab3959c17f28b424bcafff5d54e778017e5a62a3fe5c54140b695d410ddf658ddbd9589bd95c84b1f214f465e098394747947880d72706e1ddc947
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1796
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 220926
+MD5sum: 9dc2df8dbfba2e9e555766a1b0950c2b
+SHA1: 1cb3b0ab23190f459bfc45eacff216a03387edd2
+SHA256: 151a1de2d3102c29fbde94fb18b46b4efb8d13f24ae3b55ec0450efe9bff5d00
+SHA512: 0bb4dccc0a3341b27114fdae8e605b75efc5672af6f35349297a48029d5dfaf95d4ba0438ae48820bc80fe0251717b58ba756ad6ad532bc2421f9d7072cdf9bf
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 799
+Depends: snodec-net-in6-phy-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6-stream_2.0.0-3~forky_riscv64.deb
+Size: 119608
+MD5sum: b899d5fd3f474a48d6b1215a4fd7d30e
+SHA1: 24c82b90201a7977a5a6423ecaee5b9a22ff91c5
+SHA256: 769f7b416c26fc21df03484402d64259539837adbb9a4243c504b97a8e1766a0
+SHA512: 1ebd029491da95bd8e236279d62b14f680af8ac3c8dbffda7d9197f7f249cdc46e0aa7ae852401bf941d7f182c0e1eff0467b29753a930e0301b1ba600f54bb0
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 821
+Depends: snodec-net (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in6_2.0.0-3~forky_riscv64.deb
+Size: 125754
+MD5sum: 7123b0b8fef922c8381b294137809587
+SHA1: 2816c738b40d166757da01a0939a10b3c248b628
+SHA256: 2f7b7b763fecb46ca58ab3fbb7c13b9cb44084125f18fa50c34d256364072bdf
+SHA512: 90a7f75ac0af1de35ea877aa2a0fed746984c943000cdbda28c5a15979ee45ed56ec73342366f4eb88b7bbc4457b2e549cf51f76232332eb6b27ddf106b9dbcf
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 821
+Depends: snodec-net (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-in_2.0.0-3~forky_riscv64.deb
+Size: 125384
+MD5sum: 7420686a9288ca549ef9850b75374b0f
+SHA1: e8b43545aa70df56d5cace00b0bd15c3f9e1e8f2
+SHA256: a60a7078f5827347f5f84746938ba9cf68c1843c8c75cd13ef6a8d0a9ac624d3
+SHA512: b3c8569dadb80f62ade2e9eab0e745c3172e32e9e6063a9711534149acd9b9aaed82107b830ddc652344772fb9bba0c697e35f1489af0bfdff6692bd7a06e6ff
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-l2-phy (= 2.0.0-3~forky)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2-phy-stream_2.0.0-3~forky_riscv64.deb
+Size: 4676
+MD5sum: 45a4f8da6b3fe7053b41f86f9dc1b83a
+SHA1: f32c03dd34aa13c2b0a725eba5f528a5c46713f4
+SHA256: 345934247a9e0039e2a53094864a683eed8f07dc864d9809ae3221d86dc307d5
+SHA512: 88cbb79bc3b407106a2a4c06322d72a5321752bfcd7e7c6cb35cae5f024611533cc14da1c68bfa8e5b5d55d982872e2810c92e023c84fb926f601748147f59e2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 91
+Depends: snodec-net-l2 (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2-phy_2.0.0-3~forky_riscv64.deb
+Size: 9394
+MD5sum: 16f8df913319dc4648f6b8c557665099
+SHA1: 8300e5bf5bab637b4d54442ec050e60d1649f898
+SHA256: a4e87d8f1635a0b6fc83188be2348958891de01ac22bb2c5cda67e920775b4a6
+SHA512: 5b84fa59cecd9ab6d1f353f0aaa34eccedb05cd26a02e3c35e16628dfea87b92af622e519f6596903a5628fd46a79b6b6377a93f4881e034823f942a0224996a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1375
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-l2-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 177548
+MD5sum: f654fef5ae111edbd48c7f48b7dd3361
+SHA1: 47ddc9d8dd7de0618e9fc05a1631b696ee21909f
+SHA256: 465f76766d18b6fa36e8a92c3801d64e3eae71b906631a890f05beecd63853f0
+SHA512: 1e08b6ab8ddd5f5b21ca5bd16a3141a64163892fb2ec0c26b5c1b7ffbbf367cc6c5e787936beaaefee0d23e815ef0588037cdbb53777c2dcd0b2540e44c2f6af
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1796
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-net-l2-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 221324
+MD5sum: bbf2a99191393b3680efaa35a97f794c
+SHA1: 60f34ddf8577dbe7db9e9219bd8489ddcf703f7c
+SHA256: 7dcbdf7f62e428340a3c472204ce1b524f61e5a885b7c7cfd3a0e52ee2c2253b
+SHA512: 3d4df021c524e6b38658c2da00990cc99acb5b64a313c866ea81ace4154fbc70264ff49ed08de95e3cc71d0b34db25549318e5143151cd2049e20d604ffc04de
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 726
+Depends: snodec-net-l2-phy-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2-stream_2.0.0-3~forky_riscv64.deb
+Size: 107326
+MD5sum: 6e7eb6bfbdb3da9b2adda9b4b7fd3648
+SHA1: 4245215b316dbe52b93bca149d75904e8cfffeec
+SHA256: 86d5ad9f3644faf09a81904fd56ba03068762f3afcc2d8579e875127546035e7
+SHA512: 2ce652aaa0b5e5779eddda828974cc3598aea39ff6aa603abdcda20da711944878aee0e915bd3e6c6b13e2e941b7ceec013d006dd2f5edd3b39196d09f00c21b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1056
+Depends: snodec-net (= 2.0.0-3~forky), libbluetooth3 (>= 4.91), libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-l2_2.0.0-3~forky_riscv64.deb
+Size: 159024
+MD5sum: f358b138ae6c22d02a7ccde8092fe949
+SHA1: bf2b0e61de7e192f7797efb350866550d90a3e94
+SHA256: 15c03dd60f717189f1ab00b3f5f5b367c9c944301d58629941f287a1583c4c20
+SHA512: 18fe7745568246c96741adebec03205755016544d8154848f52659e9b53cdfb639ac91b72846892e7dfc97e1a3d6d3e11da226a5589829fcf4ddbe8d6cc23104
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-rc-phy (= 2.0.0-3~forky)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc-phy-stream_2.0.0-3~forky_riscv64.deb
+Size: 4560
+MD5sum: 4360d36a227a63ae3004e3c8bfe02194
+SHA1: 8bb5c42752bc52b6eb4b2b89245c2aa0ed979666
+SHA256: c794197d4e141767a2698f1713a595c99ebac0e08f8759683fcaa245b89953ff
+SHA512: 86602f791939032ebe9c13f029fb3f560673010492bce69cd24a32fd7db71a07d960b1517ee05a3e92317158ebe7dbab8f7efbe12496af2f2782daf84f136301
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 91
+Depends: snodec-net-rc (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc-phy_2.0.0-3~forky_riscv64.deb
+Size: 9386
+MD5sum: d1dbb254c751e3d303a66419c75ac9f0
+SHA1: f5ba45fd591b1c740cb56d97fbfb95c3df9f8d75
+SHA256: 80adcfc4964422fb5dd627c8583aca06fdf2574706fc3305edf552a2637019eb
+SHA512: 8e3fade06ae22e510b04a7b99ebb22ab9e65e59effb79df7c1531d510ff9726e4686a61454c2d1b8dff579819e360818fa5ea4c91268579bcc4733f2c1357b32
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1375
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-rc-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 177448
+MD5sum: f5338dd6dca6f8b6a6454290f8de779c
+SHA1: 385072772cb6f05efad970c0f351c3e4a9a1ff2a
+SHA256: d415018110efb3f17f7863a53f6fe978322e160bb867819d2a29e45c1d92af2a
+SHA512: 223170a2b90d0296e75b935c3d76502f0455b25681289e72010195d088694e9ef81dd4a203a46ed8a1b315552adfc3255ae93896782a47fee1a4cc1c12f192dc
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1796
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-net-rc-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 221286
+MD5sum: fbd81ae8e5e2ca9848371e5e1d6ec8aa
+SHA1: 6a358c2336917fa1eaa606ef187f32667d9bc0f9
+SHA256: 2d3d592ba2a3adebe5615ec79e366198b549cc58e5613c632e6dab478d07f68e
+SHA512: c6064fc7ac06839192eb6f3c028fd312d5467c3f5e9b1558678848a6936fa575cb3fdf1297b04a987d3e481a6eff4de83e808f92619aa7b1e0e55f374df6f152
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 726
+Depends: snodec-net-rc-phy-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc-stream_2.0.0-3~forky_riscv64.deb
+Size: 107234
+MD5sum: b60f474e00197409307a43d9dad174d2
+SHA1: d63599833dad03b7bf8974841cffaa26156917e5
+SHA256: 3b59c9add1e8b672570eef81df5df37a41fa2be4c63c9bcb3a18fe71b696df7b
+SHA512: ccc19a5aaa22c3876f5e7a2748bf449edee7362d0ae9c3bb016301330ac2306a0323eda863f8b73c90cea9f88cce1bf27d22068fcf098b9397707f90e434a2d8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1056
+Depends: snodec-net (= 2.0.0-3~forky), libbluetooth3 (>= 4.91), libc6 (>= 2.38), libgcc-s1 (>= 3.4), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-rc_2.0.0-3~forky_riscv64.deb
+Size: 159506
+MD5sum: 3ca4adb7d331de10779b88ebf843be8c
+SHA1: 670b2616f4373b656c7003aef1bb1e81209bfd81
+SHA256: cffcb92fbdb703f3a9e88aa58783c357dfe4e2317d33ad645e66cd5de4752233
+SHA512: f394da99d27a26d54121acc5eeb450db08b56ccd81e4d09ba74012d32f2c07c140fbf3fecca66d4ad790c8049318773b251a60237f3393c26cfce6a82a8ed331
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-dgram
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 149
+Depends: snodec-net-un-phy (= 2.0.0-3~forky), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-dgram_2.0.0-3~forky_riscv64.deb
+Size: 20054
+MD5sum: 7e21e563230c1a9930ac0395e9c896a2
+SHA1: 98575839e760904ef59e345ca3f108c232eec62e
+SHA256: 2ef9e8087a0a159ce5d9b34bb7ee35f3debf32d163296cb247da7a65a58dcbb8
+SHA512: 1c772744beda7dc7f2bae944278c9300377a2f8910508763e81bba67e0630d16a9407be48fe95cf215614af41c79e540f29369bc19075686fab03cd0d3972333
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 207
+Depends: snodec-net-un-phy (= 2.0.0-3~forky), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-phy-stream_2.0.0-3~forky_riscv64.deb
+Size: 22610
+MD5sum: b495b73f3e4cb6ee32fd8947e3a93a86
+SHA1: b1840e7d46f7fd2cf0e7aef948bd5a9d66732ea0
+SHA256: da95e1bcb0e0060519b7b77b022cf2f30ff3931afab26fa260560d45a0eb75f1
+SHA512: aa7efd2cd38bcabbf600a10ead02ed07f92d958a2e7212ce627c210a289089d7acf137a9151a20572785a0c29c7639963408ea594d79f3d9cd4b8c90d8bc84e9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 110
+Depends: snodec-net-un (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-phy_2.0.0-3~forky_riscv64.deb
+Size: 12886
+MD5sum: 37191031be7ebe5cb7739077d3135caa
+SHA1: 4c895e0f4e34a40bbd5a7a069649a1709e6201bb
+SHA256: 5db9815df40bf99ac0bda0fa72fd89fadb2d9508019dd5599e6a4a11d9bdffb2
+SHA512: 902ef98581937e3c75097c8d842b1e3ff962a5af857c4c498c5e52bc0d133a467d36a8aeb6b60ce25ee44bb3154092c6f551b52be411b6b70e5a3005b3146906
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-sphy-tream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 23
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-sphy-tream_2.0.0-3~forky_riscv64.deb
+Size: 2610
+MD5sum: 16bee5d9aebd5441d94d736d4f740dcf
+SHA1: 8e41f42f6517fddacbe59774b820e791d23d9962
+SHA256: 15db76efe62c883d0fc17e73d82481b1e51cada9d1f561cf9b43a13cdc1f575b
+SHA512: 3b49b4a28de42a1479d964381afbcb3d163793302c99d650fc9e7725e8daec3d088c4e2126a49c474c2d9ef713d62a52f5ee19fcf8c391432af1e6756e407c7b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-legacy
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1375
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-stream-legacy_2.0.0-3~forky_riscv64.deb
+Size: 177648
+MD5sum: 96e095f68404cf870e2fc02860b39854
+SHA1: fb41cc2248fa9fc3f1614d5c95955b2eec9dccd6
+SHA256: 6a267889549d850568b547d83eb13db22becccd43c41a8c8c889a1a8b9d8c1af
+SHA512: 0ecbbcc0bfd9149e4593e1a85c7b324b8dd1797464ea262aabad43cff81404e6723c4826927f20260534e456d679703515ea8a2cbe8991ac126c07fe2920c662
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-tls
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1796
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-net-un-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-stream-tls_2.0.0-3~forky_riscv64.deb
+Size: 222240
+MD5sum: 9788b26e39f01f0e714718c10f2a5ad0
+SHA1: 81cc95c98400b3b5d7699048340caf9dc5e520f2
+SHA256: 8fc0e7b8702b07af8f8ba05cff6d53f4e883be495e0eb0eb4679f3c21111fa3c
+SHA512: d4231027bf9bc00d50f6512644c0459ab783c080a96051aff25d494a213ad7eb0c2758be2585bbaebcd0bcc54a30f76b86cafdafa9c75cffed16185d3863392e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 669
+Depends: snodec-net-un-phy-stream (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un-stream_2.0.0-3~forky_riscv64.deb
+Size: 103180
+MD5sum: a5c121438e8ec4e469c8210a3ac4eba3
+SHA1: 661a55ea14b512e773687a937246c1b277053e5f
+SHA256: cc6f0ea4b9898cc7dcbfde79195cd167fc1fa7672f80a3578670ea727fa609c5
+SHA512: 7711f526550c2d418d80a4ff6fd4b1aca70e3d5a594deb4cefe635a28bbcbea7cf5c0adc7e093bc65dd81ef90115aefe1845148e2e8121dadbdd3e9349dadc06
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 686
+Depends: snodec-net (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net-un_2.0.0-3~forky_riscv64.deb
+Size: 104752
+MD5sum: 244a5c98852a6ffdd79dc1951819117d
+SHA1: 669519bc51d25fb8980c5f2f9767dda9ade22581
+SHA256: 858569c58b549ce21c56c939da01ac4e51b72200e367773d6689593f035aa083
+SHA512: adfc4efec7282457b0cc6752a90b3817193294d013589644ec3bb272c080e7a55f72bffcfd7e149118436fbb9f67c2626fb5793bfbf7293740285b01e19d91d8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1655
+Depends: snodec-core-socket (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-net_2.0.0-3~forky_riscv64.deb
+Size: 231678
+MD5sum: be8323b7542a2aef951f6f1f2c9d4f0c
+SHA1: 2fde6e1bde5d44d33b017effcf762d5c4e0d334c
+SHA256: 614aa5474f8c62c515e67fc10854d500d9a1d6cd45e6eb66d5dc5d5156eba8a2
+SHA512: 1c445a4ff7364082c59b3fe0c5983d9a2e3b13b408a2dc1539fa52a9dcb5d8116eace61fc6a55a1059df6b6fbf8bbfb7c04d9bc493bd2303da640813350f20b6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-unspecified
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 440
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.4), libncurses6 (>= 6), libstdc++6 (>= 13.1), libtinfo6 (>= 6)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-unspecified_2.0.0-3~forky_riscv64.deb
+Size: 267138
+MD5sum: ca377fbb58a819a1b599933687b793dc
+SHA1: c3048112f1172c7c8016f59c454820bdba386e09
+SHA256: d70d4259d2fdbd7989f0fb062024886cc5af7431de24615ba0c04decc671a108
+SHA512: cb6e8e5ebdadc77d0268b77ababf439a36515c76209500ac90d998518111ff4167ea56d75b6679fb4618e42a571833931054fe9889935a3b32d3f657d800aafb
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-utils
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2309
+Depends: snodec-logger (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-utils_2.0.0-3~forky_riscv64.deb
+Size: 410040
+MD5sum: b8ab2b43f6cf06900e7e44a48ce761a1
+SHA1: d084e24d9da34c5d014cd8b07db27f81a4f68e54
+SHA256: 4a209a5b2a4e41cd44f7cfac0c579f09944e23eb5533f47ad2902c7de3c241c9
+SHA512: 3f781cdef823ca1f7dd5bef26d900988bfcf9f469bae30372aaa8e74a1355bc27b4a6df8086144376ab16e8482da6c96d1676dfbf519411c61243eb78d1a3b43
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-client
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 815
+Depends: snodec-http-client (= 2.0.0-3~forky), snodec-websocket (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-websocket-client_2.0.0-3~forky_riscv64.deb
+Size: 121626
+MD5sum: 10f00aacb7af46a1f80aa6bc6912ec0d
+SHA1: 8e3543f52b8374412faf1cdbcb1fe05f9c92b9da
+SHA256: 3faadc031f9b6bc83465aeb2e5ebeddf1a63cc9165bd282c77d6bd342791a558
+SHA512: eb0cd47f57d66e737907914b4fb70a906c687c4aa56b7652cb16497023aa78c588739b8d10d70b2a76dfe4c71641b30cf664e0621b4147705d28e027b35fc1d8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-server
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 856
+Depends: snodec-http-server (= 2.0.0-3~forky), snodec-websocket (= 2.0.0-3~forky), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-websocket-server_2.0.0-3~forky_riscv64.deb
+Size: 129512
+MD5sum: 827e852d2454b889a59bdf17fdd519db
+SHA1: ce54e5248ef66a0601e36300e80ae0581f7bd5a7
+SHA256: 62c0ae20cc06e066e92915588e013e14910a250c4b79a07aed878f5ec63203e8
+SHA512: 44d9935d20b29e8f80a0a757da737cbce8806351a90f371b6dd0abf812a224f0191d60067e58a948439b5e18b267a398d423a7ee266ce93f3b444c55a9b2fda1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 200
+Depends: snodec-utils (= 2.0.0-3~forky), libc6 (>= 2.27), libgcc-s1 (>= 4.3), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec-websocket_2.0.0-3~forky_riscv64.deb
+Size: 23504
+MD5sum: 608376eb01aec580f4bcda24ae4cc3d6
+SHA1: 488bed1498a4d02da85e334b2ceea5b454f099b7
+SHA256: 4f86c1c50956a5f384ba6a9025282db0e1f44af51c1b501f358372b4d9066b50
+SHA512: feca41e497ef6622d45f07a6c475bcc35b69104c2a2faec406046499143479fa8359361e3eec349c99541e193b601a3fda0e5ece8ae27648256e6cdd3d65f137
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec
+Architecture: riscv64
+Version: 2.0.0-3~forky
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: snodec-websocket-server (= 2.0.0-3~forky), snodec-websocket-client (= 2.0.0-3~forky), snodec-websocket (= 2.0.0-3~forky), snodec-utils (= 2.0.0-3~forky), snodec-net-un-stream-tls (= 2.0.0-3~forky), snodec-net-un-stream-legacy (= 2.0.0-3~forky), snodec-net-un-stream (= 2.0.0-3~forky), snodec-net-un-sphy-tream (= 2.0.0-3~forky), snodec-net-un-phy-stream (= 2.0.0-3~forky), snodec-net-un-phy (= 2.0.0-3~forky), snodec-net-un-dgram (= 2.0.0-3~forky), snodec-net-un (= 2.0.0-3~forky), snodec-net-rc-stream-tls (= 2.0.0-3~forky), snodec-net-rc-stream-legacy (= 2.0.0-3~forky), snodec-net-rc-stream (= 2.0.0-3~forky), snodec-net-rc-phy-stream (= 2.0.0-3~forky), snodec-net-rc-phy (= 2.0.0-3~forky), snodec-net-rc (= 2.0.0-3~forky), snodec-net-l2-stream-tls (= 2.0.0-3~forky), snodec-net-l2-stream-legacy (= 2.0.0-3~forky), snodec-net-l2-stream (= 2.0.0-3~forky), snodec-net-l2-phy-stream (= 2.0.0-3~forky), snodec-net-l2-phy (= 2.0.0-3~forky), snodec-net-l2 (= 2.0.0-3~forky), snodec-net-in6-stream-tls (= 2.0.0-3~forky), snodec-net-in6-stream-legacy (= 2.0.0-3~forky), snodec-net-in6-stream (= 2.0.0-3~forky), snodec-net-in6-phy-stream (= 2.0.0-3~forky), snodec-net-in6-phy (= 2.0.0-3~forky), snodec-net-in6 (= 2.0.0-3~forky), snodec-net-in-stream-tls (= 2.0.0-3~forky), snodec-net-in-stream-legacy (= 2.0.0-3~forky), snodec-net-in-stream (= 2.0.0-3~forky), snodec-net-in-phy-stream (= 2.0.0-3~forky), snodec-net-in-phy (= 2.0.0-3~forky), snodec-net-in (= 2.0.0-3~forky), snodec-net (= 2.0.0-3~forky), snodec-mux-select (= 2.0.0-3~forky), snodec-mux-poll (= 2.0.0-3~forky), snodec-mux-epoll (= 2.0.0-3~forky), snodec-mqtt-server-websocket (= 2.0.0-3~forky), snodec-mqtt-server (= 2.0.0-3~forky), snodec-mqtt-client-websocket (= 2.0.0-3~forky), snodec-mqtt-client (= 2.0.0-3~forky), snodec-mqtt (= 2.0.0-3~forky), snodec-logger (= 2.0.0-3~forky), snodec-http-server-express-tls-un (= 2.0.0-3~forky), snodec-http-server-express-tls-rc (= 2.0.0-3~forky), snodec-http-server-express-tls-in6 (= 2.0.0-3~forky), snodec-http-server-express-tls-in (= 2.0.0-3~forky), snodec-http-server-express-legacy-un (= 2.0.0-3~forky), snodec-http-server-express-legacy-rc (= 2.0.0-3~forky), snodec-http-server-express-legacy-in6 (= 2.0.0-3~forky), snodec-http-server-express-legacy-in (= 2.0.0-3~forky), snodec-http-server-express (= 2.0.0-3~forky), snodec-http-server (= 2.0.0-3~forky), snodec-http-client (= 2.0.0-3~forky), snodec-http (= 2.0.0-3~forky), snodec-db-mariadb (= 2.0.0-3~forky), snodec-core-socket-stream-tls (= 2.0.0-3~forky), snodec-core-socket-stream-legacy (= 2.0.0-3~forky), snodec-core-socket-stream (= 2.0.0-3~forky), snodec-core-socket (= 2.0.0-3~forky), snodec-core (= 2.0.0-3~forky), snodec-apps (= 2.0.0-3~forky), snodec-unspecified (= 2.0.0-3~forky)
+Breaks: snodec (<< 2.0.0-3~forky)
+Replaces: snodec (<< 2.0.0-3~forky)
+Filename: pool/forky/snodec_2.0.0-3~forky_riscv64.deb
+Size: 1310
+MD5sum: c11e6e0bac9b51a78461a3bfd6081af5
+SHA1: 73417587b44a0da696f5fd80be521a20a2ad258b
+SHA256: 5a65191cc83e8189c221d07b4b0c3843003a43a20ad48a2ac008a6a36492bf1f
+SHA512: abf9a2b0316ab0e3b79c2e27192f31d6a1ea627d682ed72071e94e468b46340128a26209cfac4315c3f1766ba22ee42e16b6d42d569f0ef10af8434495827f95
+Description: Simple Node in C++, a Slim Network Framework
+
