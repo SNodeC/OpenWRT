@@ -1,6 +1,6 @@
 # SNode.C and MQTTSuite packages
 
-[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs) · [Troubleshooting](#repository-troubleshooting)
+[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs) · [Repository layout](#repository-layout-and-links) · [Troubleshooting](#repository-troubleshooting)
 
 Signed packages for **OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora**.
 Install directly with your distribution's package manager; no source checkout or

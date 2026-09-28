@@ -1,4 +1,4 @@
-# SNode.C packages and options
+# SNode.C package catalog
 
 [All package catalogs](../README.md#package-catalogs) · [OpenWrt installation](openwrt.md#selective-installation) · [MQTTSuite catalog](mqttsuite-package-options.md) · [DEB/RPM components](linux.md#component-packages)
 
@@ -80,74 +80,5 @@ to prepare the feed and install packages with `opkg` or `apk`.
 The `net-l2-*` rows are L2CAP; the `net-rc-*` rows are RFCOMM. Selecting their
 upper layers selects their own lower layers and BlueZ automatically. Express
 supports RFCOMM; upstream does not provide an Express/L2CAP module to package.
-
-## SNode.C build defaults
-
-For source builds, package selection uses `CONFIG_PACKAGE_<name>` with
-ordinary n/m/y semantics and automatic dependency selection. Build defaults
-do not replace package selectors.
-
-Every symbol below has the `CONFIG_` prefix in `.config`. Defaults shown are
-menu defaults. A choice uses exactly one of its alternative symbols. Values
-are passed into the existing upstream CMake settings; they are runtime defaults
-that the application's existing configuration system can override.
-
-| Config.in symbol | Meaning | Default |
-| --- | --- | --- |
-| `SNODEC_GROUP_NAME` | Group name of unix group used for config/log/pid file management | `snodec` |
-| `SNODEC_EPOLL` | epoll | `selected` |
-| `SNODEC_POLL` | poll | `not selected` |
-| `SNODEC_SELECT` | select | `not selected` |
-| `SNODEC_READ_BLOCKSIZE` | Read block size in bytes | `16384` |
-| `SNODEC_WRITE_BLOCKSIZE` | Write block size in bytes | `16384` |
-| `SNODEC_READ_TIMEOUT` | Read inactivity timeout in seconds | `60` |
-| `SNODEC_WRITE_TIMEOUT` | Write inactivity timeout in seconds | `60` |
-| `SNODEC_MAXIMUM_WRITE_QUEUE_BYTES` | Maximum queued write bytes (0 = unlimited) | `0` |
-| `SNODEC_WRITE_QUEUE_HIGH_WATERMARK` | Pipe write queue high watermark (0 = automatic) | `0` |
-| `SNODEC_WRITE_QUEUE_LOW_WATERMARK` | Pipe write queue low watermark | `0` |
-| `SNODEC_BACKLOG` | Listen backlog | `5` |
-| `SNODEC_ACCEPTS_PER_TICK` | Accepts per tick | `1` |
-| `SNODEC_ACCEPT_TIMEOUT` | Accept inactivity timeout in seconds | `0` |
-| `SNODEC_CONNECT_TIMEOUT` | Connect timeout in seconds | `10` |
-| `SNODEC_TERMINATE_TIMEOUT` | Shutdown timeout in seconds | `1` |
-| `SNODEC_RECONNECT` | Reconnect after disconnect | `n` |
-| `SNODEC_RECONNECT_TIME` | Reconnect time in seconds | `1` |
-| `SNODEC_RETRY` | Retry listen and connect | `n` |
-| `SNODEC_RETRY_ON_FATAL` | Retry also on fatal error | `n` |
-| `SNODEC_RETRY_TIMEOUT` | Retry interval in seconds | `1` |
-| `SNODEC_RETRY_TRIES` | Upper limit of retry tries | `0` |
-| `SNODEC_RETRY_BASE` | Base of exponential increase | `"1.8"` |
-| `SNODEC_RETRY_JITTER` | Jitter of retry timeout in percent | `0` |
-| `SNODEC_RETRY_LIMIT` | Upper limit of retry timeout in seconds | `0` |
-| `SNODEC_INV4_REUSE_ADDRESS` | Reuse address | `n` |
-| `SNODEC_INV4_REUSE_PORT` | Reuse port | `n` |
-| `SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_TRUE` | true | `not selected` |
-| `SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_FALSE` | false | `not selected` |
-| `SNODEC_INV4_DISABLE_NAGLE_ALGORITHM_DEFAULT` | default | `selected` |
-| `SNODEC_IPV4_NUMERIC` | Accept numeric IPv4 hostnames only | `n` |
-| `SNODEC_IPV4_NUMERIC_REVERSE` | Numeric IPv4 reverse lookup | `n` |
-| `SNODEC_IN6_REUSE_ADDRESS` | Reuse address | `n` |
-| `SNODEC_IN6_REUSE_PORT` | Reuse port | `n` |
-| `SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_TRUE` | true | `not selected` |
-| `SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_FALSE` | false | `not selected` |
-| `SNODEC_INV6_DISABLE_NAGLE_ALGORITHM_DEFAULT` | default | `selected` |
-| `SNODEC_IPV6_ONLY` | IPv6 only | `n` |
-| `SNODEC_IPV4_MAPPED` | IPv4-mapped IPv6 addresses | `n` |
-| `SNODEC_IPV6_NUMERIC` | Accept numeric IPv6 hostnames only | `n` |
-| `SNODEC_IPV6_NUMERIC_REVERSE` | Numeric IPv6 reverse lookup | `n` |
-| `SNODEC_TLS_INIT_TIMEOUT` | SSL/TLS initial handshake timeout in seconds | `10` |
-| `SNODEC_TLS_SHUTDOWN_TIMEOUT` | SSL/TLS teardown timeout in seconds | `2` |
-| `SNODEC_HTTP_REQUEST_PIPELINED` | Pipelined requests | `y` |
-
-Read/write sizes, timeouts, retry/reconnect settings and write-queue limits
-configure `snode.c-net`. IPv4/IPv6 stream flags configure their stream layers;
-name-resolution flags configure their address layers. TLS defaults are shared
-by TLS endpoints. HTTP pipelining configures the HTTP client. The I/O choice
-controls the core's linked default multiplexer and its package dependency;
-selecting extra multiplexer packages does not change that default.
-
-All 44 SNode.C default/choice symbols and the demo selector participate in
-recipe reconfiguration. Other module selectors govern package emission and
-dependency closure; they do not prune the shared library compilation pass.
 
 [OpenWrt installation](openwrt.md#selective-installation) · [All package catalogs](../README.md#package-catalogs)

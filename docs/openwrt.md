@@ -2,7 +2,7 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt)
 
-[Architectures](#releases-architectures-and-repositories) · [Full installation](#full-installation) · [Prepare only / manual setup](#prepare-the-repository) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+[Architectures](#releases-architectures-and-repositories) · [Prepare only / manual setup](#prepare-the-repository) · [Full installation](#full-installation) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
 
 ## Releases, architectures and repositories
 
@@ -31,6 +31,9 @@ package architecture can be shared by several hardware targets.
 Both series cover the same 25 platform variants, listed in the established
 priority order within each release. RISC-V uses a different package architecture
 name in each series. The matrix is maintained in [ci/platforms.json](../ci/platforms.json).
+
+<details>
+<summary>All 50 OpenWrt release and architecture combinations</summary>
 
 | Release / suite | Architecture | Package files | Signed repository metadata |
 | --- | --- | --- | --- |
@@ -84,6 +87,8 @@ name in each series. The matrix is maintained in [ci/platforms.json](../ci/platf
 | `25.12` | `arm_cortex-a5_vfpv4` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/arm_cortex-a5_vfpv4) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/arm_cortex-a5_vfpv4/packages.adb) |
 | `25.12` | `powerpc_464fp` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/powerpc_464fp) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/powerpc_464fp/packages.adb) |
 | `25.12` | `i386_pentium-mmx` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/25.12/i386_pentium-mmx) | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/25.12/i386_pentium-mmx/packages.adb) |
+
+</details>
 
 ## Prepare the repository
 

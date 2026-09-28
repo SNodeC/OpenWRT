@@ -2,7 +2,7 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#rocky-linux)
 
-[Architectures](#releases-architectures-and-repositories) · [Full installation](#full-installation) · [Prepare only / manual setup](#prepare-the-repository) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+[Architectures](#releases-architectures-and-repositories) · [Prepare only / manual setup](#prepare-the-repository) · [Full installation](#full-installation) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
 
 ## Releases, architectures and repositories
 
@@ -51,6 +51,10 @@ Install your chosen packages afterwards using the commands below.
 ### Manual preparation
 
 These commands configure the signed feed without installing SNode.C or MQTTSuite.
+
+APT and RPM repositories use the same signing key. Its download filename is
+`snodec-apt.asc`; the commands below install it under the RPM-specific name
+`RPM-GPG-KEY-snodec`.
 
 ```sh
 sudo install -d -m 755 /etc/pki/rpm-gpg

@@ -2,7 +2,7 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os)
 
-[Architectures](#releases-architectures-and-repositories) · [Full installation](#full-installation) · [Prepare only / manual setup](#prepare-the-repository) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+[Architectures](#releases-architectures-and-repositories) · [Prepare only / manual setup](#prepare-the-repository) · [Full installation](#full-installation) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
 
 ## Releases, architectures and repositories
 
