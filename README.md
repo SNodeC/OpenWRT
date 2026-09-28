@@ -43,14 +43,14 @@ manager. Packages from different distributions are not interchangeable.
 
 The **[publication validation README](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md)**
 lists all 76 configured targets, grouped by distribution. Each row shows its
-latest build badge, published project versions, publication time and repository
-links. Click a build badge for its GitHub Actions run or **Provenance** for the
+latest build badge, published project versions, publication date and repository
+links. Click a build badge for its GitHub Actions run or **Build** for the
 source tags and resolved commits recorded with the packages.
 
 The validation README describes the separate **`packages-dev` channel**, with all
 76 targets enabled for validation. Each successful target publishes independently.
-**Not built** or **Not published** in that channel does not mean a production
-package is unavailable. Use the production links above for installations.
+A missing publication or unfinished build in that channel does not mean a
+production package is unavailable. Use the production links above for installations.
 
 Build status and published versions are separate: a failed or unfinished rebuild
 leaves the previous published feed available. See also the
