@@ -25,6 +25,7 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
     image = suites(distribution)[suite]
     unchanged(bundle)
     names = set()
+    versions = {}
     by_arch = {}
     for package in packages.glob('*.deb'):
         name, architecture = run('dpkg-deb', '-f', str(package), 'Package', 'Architecture').splitlines()
@@ -33,6 +34,8 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
         if (name, architecture) in names:
             raise RuntimeError(f'Duplicate Debian package: {name}')
         names.add((name, architecture))
+        if name in {'snodec', 'mqttsuite'}:
+            versions[name] = run('dpkg-deb', '-f', str(package), 'Version')
         by_arch.setdefault(architecture, set()).add(name)
         if architecture not in architectures(distribution, suite):
             raise RuntimeError(f'Unexpected architecture: {architecture}')
@@ -47,7 +50,7 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
     target.mkdir(parents=True)
     for path in [*packages.glob('*.deb'), *packages.glob('*.packages')]:
         shutil.copy2(path, target / path.name)
-    info = dict(suite=suite, distribution=distribution, image=image, architectures=[arch], packages=sorted(expected),
+    info = dict(suite=suite, distribution=distribution, image=image, architectures=[arch], packages=sorted(expected), versions=versions,
                 revision=os.environ['PACKAGE_RELEASE'],
                 sources=json.loads((bundle / 'sources.json').read_text()),
                 context=json.loads((bundle / 'context.json').read_text()),
@@ -69,7 +72,7 @@ def index(apt, suite, by_arch):
             target = index / 'by-hash/SHA256' / digest(path)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
-    release = run('apt-ftparchive',
+    release = run('apt-ftparchive', '--md5=no', '--sha1=no', '--sha512=no',
                   '-o', f'APT::FTPArchive::Release::Codename={suite}',
                   '-o', f'APT::FTPArchive::Release::Suite={suite}',
                   '-o', 'APT::FTPArchive::Release::Architectures=' + ' '.join(sorted(by_arch)),
@@ -89,57 +92,111 @@ def index(apt, suite, by_arch):
         run('gpg', '--homedir', home, '--batch', '--verify', str(dist / 'Release.gpg'), str(dist / 'Release'))
 
 
+def active_targets(base, suite):
+    """Read per-architecture generations; import older suite inventories once."""
+    manifest = base / 'dists' / suite / 'build.json'
+    if not manifest.exists():
+        return {}
+    previous = json.loads(manifest.read_text())
+    for name, checksum in previous['files'].items():
+        path = Path(name)
+        if path.is_absolute() or '..' in path.parts or digest(base / path) != checksum:
+            raise RuntimeError(f'Existing APT inventory mismatch: {name}')
+    if 'targets' in previous:
+        return previous['targets']
+    targets = {}
+    for arch in previous['architectures']:
+        records = (base / 'dists' / suite / f'main/binary-{arch}/Packages').read_text().split('\n\n')
+        files, names = {}, []
+        for record in records:
+            fields = dict(line.split(': ', 1) for line in record.splitlines() if ': ' in line and not line.startswith(' '))
+            if not fields:
+                continue
+            filename = fields['Filename']
+            if fields['Architecture'] != arch or previous['files'].get(filename) != fields['SHA256']:
+                raise RuntimeError('Cannot import existing APT index into architecture inventory')
+            files[Path(filename).name] = fields['SHA256']
+            names.append(fields['Package'])
+        targets[arch] = dict(distribution=previous['distribution'], suite=suite,
+                             image=previous['image'], architectures=[arch], packages=sorted(names),
+                             revision=previous['revision'], sources=previous['sources'],
+                             context=previous['context'], files=files)
+    return targets
+
+
 def publish(incoming, checkout, bundle, distribution='raspberrypios'):
     unchanged(bundle)
     expected = {(suite, arch) for suite in suites(distribution) for arch in architectures(distribution, suite)}
-    found = {p.relative_to(incoming / distribution).parts for p in (incoming / distribution).glob('*/*') if p.is_dir()}
-    if found != expected:
-        raise RuntimeError(f'Incomplete {distribution} matrix: missing={expected - found}, unexpected={found - expected}')
-    revision = None
-    inventory = None
-    with tempfile.TemporaryDirectory() as temporary:
-        apt = Path(temporary) / distribution
-        for suite in suites(distribution):
+    found = {p.parent.relative_to(incoming / distribution).parts
+             for p in (incoming / distribution).glob('*/*/build.json')}
+    if not found or not found <= expected:
+        raise RuntimeError(f'Unexpected {distribution} targets: {found - expected}')
+    for suite in sorted({suite for suite, _ in found}):
+        base = checkout / distribution
+        targets = active_targets(base, suite)
+        incoming_packages = {}
+        changed = False
+        for _, arch in sorted(pair for pair in found if pair[0] == suite):
+            target = incoming / distribution / suite / arch
+            info = json.loads((target / 'build.json').read_text())
+            if (info['sources'] != json.loads((bundle / 'sources.json').read_text())
+                    or info['context'] != json.loads((bundle / 'context.json').read_text())):
+                raise RuntimeError('Mixed source generations')
+            if (info['suite'] != suite or info['distribution'] != distribution
+                    or info['architectures'] != [arch] or info['image'] != suites(distribution)[suite]):
+                raise RuntimeError('Unexpected APT target')
+            names = []
+            for name, checksum in info['files'].items():
+                path = target / name
+                if Path(name).name != name or path.is_symlink() or digest(path) != checksum:
+                    raise RuntimeError(f'APT checksum mismatch: {name}')
+                if path.suffix == '.deb':
+                    package, package_arch = run('dpkg-deb', '-f', str(path), 'Package', 'Architecture').splitlines()
+                    if package_arch.removeprefix('Architecture: ') != arch:
+                        raise RuntimeError(f'Unexpected package architecture: {name}')
+                    names.append(package.removeprefix('Package: '))
+                    existing = base / 'pool' / suite / name
+                    if existing.exists() and digest(existing) != checksum:
+                        raise RuntimeError(f'Refusing to replace existing package bytes: {name}')
+                    incoming_packages[name] = path
+            if sorted(names) != info['packages']:
+                raise RuntimeError('Incomplete Debian package set')
+            if arch in targets:
+                old = targets[arch]
+                if int(old['revision']) > int(info['revision']):
+                    raise RuntimeError('Superseded publication: a newer architecture revision exists')
+                if int(old['revision']) == int(info['revision']):
+                    if {k: v for k, v in old.items() if k != 'published_at'} != info:
+                        raise RuntimeError('Different APT content under the same publication revision')
+                    continue
+            targets[arch] = info
+            changed = True
+        if not changed:
+            continue
+        with tempfile.TemporaryDirectory() as temporary:
+            apt = Path(temporary) / distribution
             pool = apt / 'pool' / suite
             pool.mkdir(parents=True)
-            for arch in architectures(distribution, suite):
-                target = incoming / distribution / suite / arch
-                info = json.loads((target / 'build.json').read_text())
-                if (info['sources'] != json.loads((bundle / 'sources.json').read_text())
-                        or info['context'] != json.loads((bundle / 'context.json').read_text())):
-                    raise RuntimeError('Mixed source generations')
-                if (info['suite'] != suite or info['distribution'] != distribution
-                        or info['architectures'] != [arch] or info['image'] != suites(distribution)[suite]):
-                    raise RuntimeError('Unexpected APT target')
-                if revision is not None and revision != info['revision']:
-                    raise RuntimeError('Mixed publication revisions')
-                revision = info['revision']
-                if inventory is not None and inventory != info['packages']:
-                    raise RuntimeError('Different component inventories across targets')
-                inventory = info['packages']
-                names = []
+            # Only current architecture inventories enter the regenerated indexes.
+            # Retained older packages remain on disk, never in this staging pool.
+            for info in targets.values():
                 for name, checksum in info['files'].items():
-                    path = Path(name)
-                    if path.name != name or digest(target / path) != checksum:
-                        raise RuntimeError(f'APT checksum mismatch: {name}')
-                    if path.suffix == '.deb':
-                        package, package_arch = run('dpkg-deb', '-f', str(target / path), 'Package', 'Architecture').splitlines()
-                        if package_arch.removeprefix('Architecture: ') != arch:
-                            raise RuntimeError(f'Unexpected package architecture: {name}')
-                        names.append(package.removeprefix('Package: '))
-                        shutil.copy2(target / path, pool / name)
-                if sorted(names) != inventory:
-                    raise RuntimeError('Incomplete Debian package set')
-            previous = checkout / distribution / 'dists' / suite / 'build.json'
-            if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(revision):
-                raise RuntimeError('Refusing older/equal APT publication')
-            index(apt, suite, architectures(distribution, suite))
-            info.update(architectures=architectures(distribution, suite), files={
-                str(p.relative_to(apt)): digest(p)
-                for directory in (pool, apt / 'dists' / suite) for p in directory.rglob('*') if p.is_file()})
+                    if not name.endswith('.deb'):
+                        continue
+                    source = incoming_packages.get(name, base / 'pool' / suite / name)
+                    if Path(name).name != name or digest(source) != checksum:
+                        raise RuntimeError(f'Active APT package mismatch: {name}')
+                    shutil.copy2(source, pool / name)
+            index(apt, suite, targets)
+            info = dict(distribution=distribution, suite=suite, architectures=sorted(targets), targets=targets,
+                        revision=str(max(int(t['revision']) for t in targets.values())),
+                        files={str(p.relative_to(apt)): digest(p)
+                               for directory in (pool, apt / 'dists' / suite)
+                               for p in directory.rglob('*') if p.is_file()})
             (apt / 'dists' / suite / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
-        # Retain old .debs and by-hash indexes for clients with cached metadata.
-        shutil.copytree(apt, checkout / distribution, dirs_exist_ok=True)
+            unchanged(bundle)
+            # Keep old .debs and by-hash indexes for clients with cached metadata.
+            shutil.copytree(apt, base, dirs_exist_ok=True)
     unchanged(bundle)
 
 

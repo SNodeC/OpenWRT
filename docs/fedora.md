@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for Fedora](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
-- [Check validation builds and published versions for Fedora](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora)
+- [Check build results and published versions for Fedora](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#fedora)
 
 ## Releases, architectures and repositories
 

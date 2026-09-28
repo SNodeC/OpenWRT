@@ -2,250 +2,34 @@ name: Distribution packages
 on:
   repository_dispatch:
     types: [OpenWRT-tag-changed, RaspberryPiOS-tag-changed, Linux-tag-changed]
-env:
-  SOURCE_TAG: ${{ github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT' }}
+  workflow_dispatch:
+    inputs:
+      snodec_tag:
+        description: Existing SNode.C source tag
+        default: OpenWRT
+        required: true
+        type: string
+      mqttsuite_tag:
+        description: Existing MQTTSuite source tag
+        default: OpenWRT
+        required: true
+        type: string
 permissions:
-  contents: read
-concurrency:
-  group: packages-${{ github.event.client_payload.ref }}
-  cancel-in-progress: false
+  contents: write
+  actions: read
 jobs:
-  prepare:
+  packages:
     if: >-
-      ((github.event.action == 'OpenWRT-tag-changed' && github.event.client_payload.ref == 'refs/tags/OpenWRT') ||
-       (github.event.action == 'RaspberryPiOS-tag-changed' && github.event.client_payload.ref == 'refs/tags/RaspberryPiOS') ||
-       (github.event.action == 'Linux-tag-changed' && github.event.client_payload.ref == 'refs/tags/Linux')) &&
-      github.event.client_payload.before != github.event.client_payload.after &&
-      github.event.client_payload.deleted == false &&
-      (github.event.client_payload.repository == 'SNodeC/snode.c' ||
-       github.event.client_payload.repository == 'SNodeC/mqttsuite')
-    runs-on: ubuntu-24.04
-    outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
-      pi_matrix: ${{ steps.matrix.outputs.pi }}
-      linux_matrix: ${{ steps.matrix.outputs.linux }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: main
-          path: feed
-          persist-credentials: false
-      - uses: actions/checkout@v6
-        with:
-          repository: SNodeC/snode.c
-          ref: refs/tags/${{ env.SOURCE_TAG }}
-          submodules: recursive
-          path: sources/snode.c
-          persist-credentials: false
-      - uses: actions/checkout@v6
-        with:
-          repository: SNodeC/mqttsuite
-          ref: refs/tags/${{ env.SOURCE_TAG }}
-          submodules: recursive
-          path: sources/mqttsuite
-          persist-credentials: false
-      - name: Check signing setup
-        env:
-          OPENWRT_USIGN_KEY: ${{ secrets.OPENWRT_USIGN_KEY }}
-          OPENWRT_APK_KEY: ${{ secrets.OPENWRT_APK_KEY }}
-          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
-        run: |
-          if [ "$SOURCE_TAG" = OpenWRT ]; then
-            test -n "$OPENWRT_USIGN_KEY"
-            test -n "$OPENWRT_APK_KEY"
-          else
-            test -n "$APT_SIGNING_KEY"
-          fi
-      - name: Capture tagged sources and matrix
-        id: matrix
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y apt-utils gnupg cmake build-essential rpm createrepo-c
-          python3 feed/ci/repository.py prepare sources bundle
-          echo "value=$(python3 feed/ci/repository.py matrix)" >> "$GITHUB_OUTPUT"
-          echo "linux=$(python3 feed/ci/repository.py linux-matrix)" >> "$GITHUB_OUTPUT"
-          echo "pi=$(jq -c '{suite: keys}' feed/ci/raspberrypi.json)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v7
-        with:
-          name: tagged-sources
-          path: bundle/
-          if-no-files-found: error
-  build:
-    if: github.event.client_payload.ref == 'refs/tags/OpenWRT'
-    needs: prepare
-    runs-on: ubuntu-24.04
-    timeout-minutes: 180
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: tagged-sources
-          path: bundle
-      - name: Unpack recipes and install SDK prerequisites
-        run: |
-          mkdir feed
-          tar -xzf bundle/feed.tar.gz -C feed
-          sudo apt-get update
-          sudo apt-get install -y build-essential clang flex bison g++ gawk gcc-multilib gettext git \
-            libncurses-dev libssl-dev python3-setuptools rsync swig unzip zlib1g-dev file wget zstd cmake qemu-user
-          echo "PACKAGE_RELEASE=$((GITHUB_RUN_NUMBER + 1))" >> "$GITHUB_ENV"
-      - name: Download and verify official SDK
-        env:
-          MATRIX_ROW: ${{ toJSON(matrix) }}
-        run: python3 feed/ci/repository.py sdk "$MATRIX_ROW" sdk
-      - name: Build, test, audit and sign packages
-        env:
-          OPENWRT_USIGN_KEY: ${{ secrets.OPENWRT_USIGN_KEY }}
-          OPENWRT_APK_KEY: ${{ secrets.OPENWRT_APK_KEY }}
-        run: bash feed/ci/build.sh feed bundle sdk
-      - name: Stage complete feed
-        run: python3 feed/ci/repository.py stage sdk bundle output
-      - uses: actions/upload-artifact@v7
-        with:
-          name: packages-${{ matrix.series }}-${{ matrix.arch }}
-          path: output/
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: logs-${{ matrix.series }}-${{ matrix.arch }}
-          include-hidden-files: true
-          path: |
-            sdk/logs/
-            sdk/.config
-            sdk/ci-sdk.json
-  raspberrypi:
-    if: github.event.client_payload.ref == 'refs/tags/RaspberryPiOS'
-    needs: prepare
-    runs-on: ubuntu-24.04-arm
-    timeout-minutes: 180
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare.outputs.pi_matrix) }}
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: tagged-sources
-          path: bundle
-      - name: Build and test Debian packages in official Raspberry Pi OS
-        env:
-          SUITE: ${{ matrix.suite }}
-        run: |
-          mkdir feed
-          tar -xzf bundle/feed.tar.gz -C feed
-          sudo apt-get update
-          sudo apt-get install -y xz-utils
-          export PACKAGE_RELEASE=$((GITHUB_RUN_NUMBER + 1))
-          bash feed/ci/raspberrypi.sh "$SUITE"
-      - uses: actions/upload-artifact@v7
-        with:
-          name: packages-raspberrypi-${{ matrix.suite }}
-          path: output/
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: logs-raspberrypi-${{ matrix.suite }}
-          path: logs/
-  linux:
-    name: Linux (${{ matrix.distribution }} ${{ matrix.suite }}, ${{ matrix.arch }})
-    if: github.event.client_payload.ref == 'refs/tags/Linux'
-    needs: prepare
-    runs-on: ${{ matrix.runner }}
-    timeout-minutes: 360
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJSON(needs.prepare.outputs.linux_matrix) }}
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: tagged-sources
-          path: bundle
-      - uses: docker/setup-qemu-action@v4
-        if: matrix.arch == 'armhf' || matrix.arch == 'riscv64'
-        with:
-          platforms: arm,riscv64
-      - name: Build and run upstream tests in the target distribution
-        env:
-          MATRIX_ROW: ${{ toJSON(matrix) }}
-          APT_SIGNING_KEY: ${{ (matrix.distribution == 'fedora' || matrix.distribution == 'rocky') && secrets.APT_SIGNING_KEY || '' }}
-        run: |
-          mkdir feed
-          tar -xzf bundle/feed.tar.gz -C feed
-          sudo apt-get update
-          sudo apt-get install -y gnupg rpm createrepo-c
-          export PACKAGE_RELEASE=$((GITHUB_RUN_NUMBER + 1))
-          bash feed/ci/linux.sh "$MATRIX_ROW"
-      - uses: actions/upload-artifact@v7
-        with:
-          name: packages-linux-${{ matrix.distribution }}-${{ matrix.suite }}-${{ matrix.arch }}
-          path: output/
-          if-no-files-found: error
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: logs-linux-${{ matrix.distribution }}-${{ matrix.suite }}-${{ matrix.arch }}
-          path: logs/
-  publish:
-    if: >-
-      always() && !cancelled() && needs.prepare.result == 'success' &&
-      ((github.event.client_payload.ref == 'refs/tags/OpenWRT' && needs.build.result == 'success') ||
-       (github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && needs.raspberrypi.result == 'success') ||
-       (github.event.client_payload.ref == 'refs/tags/Linux' && needs.linux.result == 'success'))
-    needs: [prepare, build, raspberrypi, linux]
-    concurrency:
-      group: package-publication
-      cancel-in-progress: false
-      queue: max
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: tagged-sources
-          path: bundle
-      - uses: actions/download-artifact@v8
-        with:
-          pattern: packages-*
-          merge-multiple: true
-          path: incoming
-      - uses: actions/checkout@v6
-        with:
-          ref: main
-          path: published
-      - name: Install repository tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y apt-utils gnupg rpm createrepo-c
-      - name: Publish all releases and architectures together
-        env:
-          APT_SIGNING_KEY: ${{ secrets.APT_SIGNING_KEY }}
-        working-directory: published
-        run: |
-          mkdir ../feed
-          tar -xzf ../bundle/feed.tar.gz -C ../feed
-          previous=
-          if git ls-remote --exit-code origin refs/heads/packages >/dev/null; then
-            git fetch origin packages:refs/remotes/origin/packages
-            previous=$(git rev-parse refs/remotes/origin/packages)
-            git checkout -B packages origin/packages
-          else
-            git checkout --orphan packages
-            git rm -rf .
-          fi
-          if [ "$SOURCE_TAG" = Linux ]; then
-            python3 ../feed/ci/linux.py publish ../incoming . ../bundle
-          elif [ "$SOURCE_TAG" = RaspberryPiOS ]; then
-            python3 ../feed/ci/apt-repository.py publish ../incoming . ../bundle
-          else
-            python3 ../feed/ci/repository.py publish ../incoming . ../bundle
-          fi
-          mkdir -p keys
-          cp -a ../feed/ci/keys/. keys/
-          cp ../feed/docs/package-repository.md README.md
-          python3 ../feed/ci/cleanup.py .
-          python3 ../feed/ci/repository.py check ../bundle
-          bash ../feed/ci/push-packages.sh . "$previous" "Publish packages from $SOURCE_TAG tags"
+      github.event_name == 'workflow_dispatch' ||
+      (((github.event.action == 'OpenWRT-tag-changed' && github.event.client_payload.ref == 'refs/tags/OpenWRT') ||
+        (github.event.action == 'RaspberryPiOS-tag-changed' && github.event.client_payload.ref == 'refs/tags/RaspberryPiOS') ||
+        (github.event.action == 'Linux-tag-changed' && github.event.client_payload.ref == 'refs/tags/Linux')) &&
+       github.event.client_payload.before != github.event.client_payload.after &&
+       github.event.client_payload.deleted == false &&
+       (github.event.client_payload.repository == 'SNodeC/snode.c' ||
+        github.event.client_payload.repository == 'SNodeC/mqttsuite'))
+    uses: ./.github/workflows/packages.yml
+    with:
+      snodec_tag: ${{ inputs.snodec_tag || (github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT') }}
+      mqttsuite_tag: ${{ inputs.mqttsuite_tag || (github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT') }}
+    secrets: inherit

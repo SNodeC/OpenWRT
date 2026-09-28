@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for Rocky Linux](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
-- [Check validation builds and published versions for Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#rocky-linux)
+- [Check build results and published versions for Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#rocky-linux)
 
 ## Releases, architectures and repositories
 

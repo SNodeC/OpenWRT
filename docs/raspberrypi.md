@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
-- [Check validation builds and published versions for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os)
+- [Check build results and published versions for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#raspberry-pi-os)
 
 ## Releases, architectures and repositories
 

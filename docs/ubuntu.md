@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for Ubuntu](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
-- [Check validation builds and published versions for Ubuntu](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#ubuntu)
+- [Check build results and published versions for Ubuntu](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#ubuntu)
 
 ## Releases, architectures and repositories
 

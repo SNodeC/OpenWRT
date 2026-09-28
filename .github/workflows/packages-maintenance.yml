@@ -1,28 +1,19 @@
-name: Development package status and retention
+name: Package publication status
 on:
   workflow_run:
-    workflows: [Development distribution packages]
+    workflows: [Distribution packages]
     types: [completed]
-  schedule:
-    - cron: '43 4 * * *'
 permissions:
   contents: write
   actions: read
 jobs:
   reconcile:
     if: >-
-      github.event_name == 'workflow_run' &&
-      github.event.workflow_run.event == 'workflow_dispatch' &&
+      contains(fromJSON('["workflow_dispatch", "repository_dispatch"]'), github.event.workflow_run.event) &&
       github.event.workflow_run.head_repository.full_name == github.repository
-    uses: SNodeC/OpenWRT/.github/workflows/package-write.yml@refactor/distribution-packages
+    uses: ./.github/workflows/package-write.yml
     with:
       operation: reconcile
       run_id: ${{ format('{0}', github.event.workflow_run.id) }}
       attempt: ${{ github.event.workflow_run.run_attempt }}
-    secrets: inherit
-  cleanup:
-    if: github.event_name == 'schedule'
-    uses: SNodeC/OpenWRT/.github/workflows/package-write.yml@refactor/distribution-packages
-    with:
-      operation: cleanup
     secrets: inherit

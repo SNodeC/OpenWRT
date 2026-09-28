@@ -41,14 +41,14 @@ Configure application listeners, credentials and TLS before starting services.
 
 ## Distribution and architecture matrix
 
-| Distribution | Releases / suites | Architectures and installation | Production packages | Validation results |
+| Distribution | Releases / suites | Architectures and installation | Production packages | Build results |
 | --- | --- | --- | --- | --- |
-| OpenWrt | 24.10, 25.12 | [OpenWrt guide](docs/openwrt.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt) |
-| Raspberry Pi OS | bookworm, trixie | [Raspberry Pi OS guide](docs/raspberrypi.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os) |
-| Debian | trixie, forky, sid | [Debian guide](docs/debian.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian) |
-| Ubuntu | noble, resolute | [Ubuntu guide](docs/ubuntu.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#ubuntu) |
-| Rocky Linux | 9, 10 | [Rocky Linux guide](docs/rocky.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#rocky-linux) |
-| Fedora | 43, 44 | [Fedora guide](docs/fedora.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora) |
+| OpenWrt | 24.10, 25.12 | [OpenWrt guide](docs/openwrt.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt) |
+| Raspberry Pi OS | bookworm, trixie | [Raspberry Pi OS guide](docs/raspberrypi.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#raspberry-pi-os) |
+| Debian | trixie, forky, sid | [Debian guide](docs/debian.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#debian) |
+| Ubuntu | noble, resolute | [Ubuntu guide](docs/ubuntu.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#ubuntu) |
+| Rocky Linux | 9, 10 | [Rocky Linux guide](docs/rocky.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#rocky-linux) |
+| Fedora | 43, 44 | [Fedora guide](docs/fedora.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#fedora) |
 
 Every guide lists all supported release/architecture combinations with package
 and repository-index links. Architecture names follow the distribution's package
@@ -56,16 +56,14 @@ manager. Packages from different distributions are not interchangeable.
 
 ## Build and publication status
 
-The **[publication validation README](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md)**
+The **[package publication README](https://github.com/SNodeC/OpenWRT/blob/packages/README.md)**
 lists all 76 configured targets, grouped by distribution. Each row shows its
 latest build badge, published project versions, publication date and repository
 links. Click a build badge for its GitHub Actions run or **Build** for the
 source tags and resolved commits recorded with the packages.
 
-The validation README describes the separate **`packages-dev` channel**, with all
-76 targets enabled for validation. Each successful target publishes independently.
-A missing publication or unfinished build in that channel does not mean a
-production package is unavailable. Use the production links above for installations.
+Each successful target publishes independently to the production repository.
+The listed versions are the packages currently available for installation.
 
 Build status and published versions are separate: a failed or unfinished rebuild
 leaves the previous published feed available. See also the

@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for Debian](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
-- [Check validation builds and published versions for Debian](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian)
+- [Check build results and published versions for Debian](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#debian)
 
 ## Releases, architectures and repositories
 

@@ -12,7 +12,7 @@
 ## Package repository
 
 - [Browse production packages for OpenWrt](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
-- [Check validation builds and published versions for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt)
+- [Check build results and published versions for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt)
 
 ## Releases, architectures and repositories
 

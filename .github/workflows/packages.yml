@@ -1,0 +1,75 @@
+name: Unified distribution packages
+on:
+  workflow_call:
+    inputs:
+      snodec_tag:
+        required: true
+        type: string
+      mqttsuite_tag:
+        required: true
+        type: string
+permissions:
+  contents: write
+  actions: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          path: feed
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          repository: SNodeC/snode.c
+          ref: refs/tags/${{ inputs.snodec_tag }}
+          submodules: recursive
+          path: sources/snode.c
+          persist-credentials: false
+      - uses: actions/checkout@v6
+        with:
+          repository: SNodeC/mqttsuite
+          ref: refs/tags/${{ inputs.mqttsuite_tag }}
+          submodules: recursive
+          path: sources/mqttsuite
+          persist-credentials: false
+      - name: Capture the source pair and full matrix
+        id: matrix
+        env:
+          SNODEC_TAG: ${{ inputs.snodec_tag }}
+          MQTTSUITE_TAG: ${{ inputs.mqttsuite_tag }}
+          PACKAGE_BRANCH: packages
+          RECIPE_REF: main
+        run: |
+          python3 feed/ci/repository.py prepare sources bundle
+          python3 feed/ci/publication.py matrix > matrix.json
+          jq '.include' matrix.json > bundle/targets.json
+          echo "value=$(jq -c . matrix.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: source-pair
+          path: bundle/
+          if-no-files-found: error
+          overwrite: true
+  allocate:
+    needs: prepare
+    uses: ./.github/workflows/package-write.yml
+    with:
+      operation: allocate
+    secrets: inherit
+  target:
+    name: ${{ matrix.id }}
+    needs: [prepare, allocate]
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    uses: ./.github/workflows/package-target.yml
+    with:
+      target: ${{ toJSON(matrix) }}
+      revision: ${{ needs.allocate.outputs.revision }}
+    secrets: inherit
