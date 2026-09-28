@@ -53,20 +53,24 @@ def render(root, state):
     for row in targets():
         item = state['targets'].get(row['id'], {})
         status = item.get('status', 'not built')
-        (badges / f"{row['id']}.svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" role="img" aria-label="{escape(status)}"><rect width="120" height="20" rx="3" fill="{colors[status]}"/><text x="60" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
+        width = len(status) * 7 + 16
+        (badges / f"{row['id']}.svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{escape(status)}"><rect width="{width}" height="20" rx="3" fill="{colors[status]}"/><text x="{width / 2}" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
         info, feed = published(root, row)
-        label = '<br>'.join(f'{name}: `{info["versions"][key]}`' for key, name in [('snodec', 'SNode.C'), ('snode.c', 'SNode.C'), ('mqttsuite', 'MQTTSuite')] if key in info.get('versions', {})) or ('revision ' + info['revision'] if info else 'Not published')
-        date = info.get('published_at', '—')[:16].replace('T', ' ')
+        versions = info.get('versions', {})
+        snodec = versions.get('snodec', versions.get('snode.c'))
+        version_cells = ' | '.join(f'`{version}`' if version else '—' for version in (snodec, versions.get('mqttsuite')))
+        date = f"[{info['published_at'][:10]}]({feed}/build.json)" if info.get('published_at') else '—'
         packages = f"{row['distribution']}/pool/{row['suite']}" if row['distribution'] in {'debian', 'ubuntu', 'raspberrypios'} else f'{feed}/Packages' if row['distribution'] in {'rocky', 'fedora'} else feed
-        links = f'[Packages]({packages}/) · [Metadata]({feed}/) · [Provenance]({feed}/build.json)' if info else '—'
+        links = f'[Packages]({packages}/) · [Build]({feed}/build.json)' if info else '—'
         badge = f"![{status}](status/{row['id']}.svg)"
         badge = f"[{badge}]({item['run_url']})" if item.get('run_url') else badge
-        sections.setdefault(row['distribution'], []).append(f"| `{row['suite']}` | `{row['arch']}` | {badge} | {label} | {date} | {links} |")
+        sections.setdefault(row['distribution'], {}).setdefault(row['suite'], []).append(f"| `{row['arch']}` | {badge} | {version_cells} | {date} | {links} |")
     text = (ROOT / 'docs/package-repository.md').read_text()
-    for distribution, lines in sections.items():
-        text = text.replace(f'<!-- targets:{distribution} -->', '\n'.join(lines))
+    for distribution, suites in sections.items():
+        tables = [f'### {suite}\n\n| Architecture | Result | SNode.C | MQTTSuite | Published | Repository |\n| --- | --- | --- | --- | --- | --- |\n' + '\n'.join(lines) for suite, lines in suites.items()]
+        text = text.replace(f'<!-- targets:{distribution} -->', '\n\n'.join(tables))
     if state['branch'] == 'packages-dev':
-        text = text.replace('\n\n', '\n\n> **Validation channel — `packages-dev`.** “Not built” and “Not published” refer to this channel; they do not describe availability in the [production feeds](https://github.com/SNodeC/OpenWRT/tree/packages). Installation guides use production feeds.\n\n', 1)
+        text = text.replace('\n\n', '\n\n> **Validation channel — `packages-dev`.** Build results and published versions refer to this channel; they do not describe availability in the [production feeds](https://github.com/SNodeC/OpenWRT/tree/packages). Installation guides use production feeds.\n\n', 1)
     (root / 'README.md').write_text(text)
     (root / 'STATUS.md').unlink(missing_ok=True)
 
