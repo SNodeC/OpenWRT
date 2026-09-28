@@ -1,7 +1,5 @@
 # SNode.C and MQTTSuite packages
 
-[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs) · [Repository layout](#repository-layout-and-links) · [Troubleshooting](#repository-troubleshooting)
-
 Signed packages for **OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora**.
 Install directly with your distribution's package manager; no source checkout or
 compilation is needed on the device.
@@ -9,6 +7,23 @@ compilation is needed on the device.
 [SNode.C](https://github.com/SNodeC/snode.c) provides the C++ networking framework
 and runtime libraries. [MQTTSuite](https://github.com/SNodeC/mqttsuite) provides an
 MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
+
+## Explore this repository
+
+### Install packages
+
+- [Choose your distribution and architecture](#distribution-and-architecture-matrix)
+- [Compare full installation and preparation only](#installation)
+
+### Available packages and build results
+
+- [Browse the package catalogs](#package-catalogs)
+- [Check build results and published versions](#build-and-publication-status)
+
+### Repository help
+
+- [Understand the repository layout](#repository-layout-and-links)
+- [Troubleshoot repository access](#repository-troubleshooting)
 
 ## Installation
 

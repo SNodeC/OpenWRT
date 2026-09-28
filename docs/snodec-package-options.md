@@ -1,9 +1,17 @@
 # SNode.C package catalog
 
-[All package catalogs](../README.md#package-catalogs) · [OpenWrt installation](openwrt.md#selective-installation) · [MQTTSuite catalog](mqttsuite-package-options.md) · [DEB/RPM components](linux.md#component-packages)
-
 These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
 to prepare the feed and install packages with `opkg` or `apk`.
+
+## Install packages
+
+[Prepare the OpenWrt feed and install individual packages](openwrt.md#selective-installation).
+
+## Related package catalogs
+
+- [Browse the MQTTSuite package catalog](mqttsuite-package-options.md)
+- [Find DEB and RPM component packages](linux.md#component-packages)
+- [Return to the package catalog overview](../README.md#package-catalogs)
 
 ## Packages: 67
 
@@ -80,5 +88,3 @@ to prepare the feed and install packages with `opkg` or `apk`.
 The `net-l2-*` rows are L2CAP; the `net-rc-*` rows are RFCOMM. Selecting their
 upper layers selects their own lower layers and BlueZ automatically. Express
 supports RFCOMM; upstream does not provide an Express/L2CAP module to package.
-
-[OpenWrt installation](openwrt.md#selective-installation) · [All package catalogs](../README.md#package-catalogs)

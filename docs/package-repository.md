@@ -17,12 +17,15 @@ The RISC-V architecture is named `riscv64_riscv64` on 24.10 and
 | Raspberry Pi OS | `raspberrypios/` | `dists/{bookworm,trixie}/` and `pool/` |
 | OpenWrt | `openwrt/<series>/<architecture>/` | opkg or APK index |
 
-Installation guides: [OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md),
-[Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md),
-[Debian](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md),
-[Ubuntu](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md),
-[Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md) and
-[Fedora](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md).
+## Installation guides
+
+- [Install on OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md)
+- [Install on Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md)
+- [Install on Debian](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md)
+- [Install on Ubuntu](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md)
+- [Install on Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md)
+- [Install on Fedora](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md)
+
 See the [complete matrix](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
 for all distributions and architectures.
 
