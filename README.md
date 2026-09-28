@@ -47,11 +47,10 @@ latest build badge, published project versions, publication time and repository
 links. Click a build badge for its GitHub Actions run or **Provenance** for the
 source tags and resolved commits recorded with the packages.
 
-The validation README describes the separate **`packages-dev` channel**. Currently,
-three targets are enabled there: Debian trixie amd64, OpenWrt 25.12 x86_64 and
-Raspberry Pi OS trixie arm64. **Not built** or **Not published** in that channel
-does not mean a production package is unavailable. Use the production links
-above for installations.
+The validation README describes the separate **`packages-dev` channel**, with all
+76 targets enabled for validation. Each successful target publishes independently.
+**Not built** or **Not published** in that channel does not mean a production
+package is unavailable. Use the production links above for installations.
 
 Build status and published versions are separate: a failed or unfinished rebuild
 leaves the previous published feed available. See also the
