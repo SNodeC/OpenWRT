@@ -210,7 +210,7 @@ refactor, branch retirement, rename or release-versioning work is complete.
 
 ## Development implementation
 
-The reusable `packages.yml` workflow selects the three development targets.
+The reusable `packages.yml` workflow now selects all 76 targets for validation.
 `packages-development.yml` is the manual entry point on `main`; it accepts
 independent existing upstream tags and invokes this branch.
 `packages-maintenance.yml` handles cancelled/failed run status and retention.
@@ -225,7 +225,7 @@ revision, and conflicting or stale publications are rejected.
 APT publication preserves other architectures using the current per-architecture
 manifest and regenerates signed suite metadata in one place. Retained payloads
 are not automatically reintroduced into indexes. The full 76-target definition
-is preserved but not enabled by the development dispatcher.
+is enabled by the development dispatcher, still publishing only to `packages-dev`.
 
 Development status and feed versions are generated in
 [packages-dev/README.md](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md).
@@ -272,7 +272,7 @@ production workflow has not been replaced or retriggered by this development wor
 
 The generated publication README is the single target-status view. It lists the
 complete canonical matrix, grouped by distribution and preserving its configured
-architecture order, even while only three development targets are enabled.
+architecture order, including targets that have not yet been built.
 Targets without a recorded build display a neutral badge; targets without a feed
 display `Not published` and no package links. These labels describe the validation
 channel only, not production availability. Existing manifests remain the authority
@@ -283,3 +283,12 @@ corresponding sections of this README, which links back to installation guides a
 production packages. The separate `STATUS.md` view is removed. The renderer is
 reshaped without increasing its production line count; package content, build
 selection, test execution and publication policy are unchanged.
+
+## Full-matrix validation
+
+Following the successful three-target runs and publication README review, the
+development workflow selects the existing full profile: 50 OpenWrt targets,
+two Raspberry Pi OS targets and 24 Linux targets. Source tags, build and test
+steps, independent publication and serialized writes are unchanged. Production
+feeds remain isolated. Monitor the complete run and report failures before
+making fixes; enabling the matrix is not evidence that all targets have passed.

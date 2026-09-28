@@ -38,7 +38,7 @@ jobs:
           submodules: recursive
           path: sources/mqttsuite
           persist-credentials: false
-      - name: Capture the source pair and development matrix
+      - name: Capture the source pair and full matrix
         id: matrix
         env:
           SNODEC_TAG: ${{ inputs.snodec_tag }}
@@ -47,7 +47,7 @@ jobs:
           RECIPE_REF: refactor/distribution-packages
         run: |
           python3 feed/ci/repository.py prepare sources bundle
-          python3 feed/ci/publication.py matrix development > matrix.json
+          python3 feed/ci/publication.py matrix full > matrix.json
           jq '.include' matrix.json > bundle/targets.json
           echo "value=$(jq -c . matrix.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
