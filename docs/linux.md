@@ -1,10 +1,18 @@
 # DEB and RPM component packages
 
-[All package catalogs](../README.md#package-catalogs) · [Application configuration](#configure-applications)
+## Installation guides
 
-Installation guides: [Debian](debian.md) · [Ubuntu](ubuntu.md) ·
-[Rocky Linux](rocky.md) · [Fedora](fedora.md) · [Raspberry Pi OS](raspberrypi.md).
-OpenWrt has [its own package names and guide](openwrt.md).
+Choose the distribution installed on your device:
+
+- [Debian installation guide](debian.md)
+- [Ubuntu installation guide](ubuntu.md)
+- [Rocky Linux installation guide](rocky.md)
+- [Fedora installation guide](fedora.md)
+- [Raspberry Pi OS installation guide](raspberrypi.md)
+
+OpenWrt uses different package names:
+
+- [OpenWrt installation and package selection](openwrt.md)
 
 ## Component packages
 
@@ -48,4 +56,7 @@ See the [MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme).
 The APT and RPM public signing key has fingerprint
 `8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
 
-[Choose your distribution](../README.md#distribution-and-architecture-matrix) · [All package catalogs](../README.md#package-catalogs)
+## Related documentation
+
+- [Compare supported distributions and architectures](../README.md#distribution-and-architecture-matrix)
+- [Return to the package catalog overview](../README.md#package-catalogs)

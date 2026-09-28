@@ -1,50 +1,74 @@
 # SNode.C and MQTTSuite packages
 
-[Project & installation](https://github.com/SNodeC/OpenWRT/blob/main/README.md#installation) · [Package catalogs](https://github.com/SNodeC/OpenWRT/blob/main/README.md#package-catalogs) · [Production feeds](https://github.com/SNodeC/OpenWRT/tree/packages) · [Signing keys](keys/)
-
 Find a distribution below to see every configured release and architecture.
 Published versions and links come from the repository manifests; a build badge
 alone is not evidence that new packages are available.
 
-[OpenWrt](#openwrt) · [Raspberry Pi OS](#raspberry-pi-os) · [Debian](#debian) · [Ubuntu](#ubuntu) · [Rocky Linux](#rocky-linux) · [Fedora](#fedora)
+## Installation
+
+- [Choose your distribution and install packages](https://github.com/SNodeC/OpenWRT/blob/main/README.md#installation)
+- [Browse the production package repository](https://github.com/SNodeC/OpenWRT/tree/packages)
+
+## Package catalogs
+
+- [SNode.C packages for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/snodec-package-options.md)
+- [MQTTSuite packages for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/mqttsuite-package-options.md)
+- [DEB and RPM component packages](https://github.com/SNodeC/OpenWRT/blob/main/docs/linux.md#component-packages)
+
+## Build and publication results
+
+Select a distribution to see its releases, architectures and published versions:
+
+- [OpenWrt](#openwrt)
+- [Raspberry Pi OS](#raspberry-pi-os)
+- [Debian](#debian)
+- [Ubuntu](#ubuntu)
+- [Rocky Linux](#rocky-linux)
+- [Fedora](#fedora)
+
+[Understand the status badges and publication columns](#reading-the-matrix).
 
 ## OpenWrt
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
+- [Install packages on OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md)
+- [Browse production packages for OpenWrt](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
 
 <!-- targets:openwrt -->
 
 ## Raspberry Pi OS
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
+- [Install packages on Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md)
+- [Browse production packages for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
 
 <!-- targets:raspberrypios -->
 
 ## Debian
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
+- [Install packages on Debian](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md)
+- [Browse production packages for Debian](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
 
 <!-- targets:debian -->
 
 ## Ubuntu
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
+- [Install packages on Ubuntu](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md)
+- [Browse production packages for Ubuntu](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
 
 <!-- targets:ubuntu -->
 
 ## Rocky Linux
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
+- [Install packages on Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md)
+- [Browse production packages for Rocky Linux](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
 
 <!-- targets:rocky -->
 
 ## Fedora
 
-[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
+- [Install packages on Fedora](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md)
+- [Browse production packages for Fedora](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
 
 <!-- targets:fedora -->
-
-[How to read the matrix](#reading-the-matrix) · [Choose a distribution](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
 
 ## Reading the matrix
 
@@ -69,4 +93,8 @@ publication record. Package
 managers use raw file URLs; opening a raw directory URL in a browser can return
 404 even when the individual package and index files exist.
 
-[Installation guides](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix) · [Package catalogs](https://github.com/SNodeC/OpenWRT/blob/main/README.md#package-catalogs) · [Repository troubleshooting](https://github.com/SNodeC/OpenWRT/blob/main/README.md#repository-troubleshooting)
+## Repository help
+
+- [Inspect the public signing keys](keys/)
+- [Troubleshoot repository access](https://github.com/SNodeC/OpenWRT/blob/main/README.md#repository-troubleshooting)
+- [Return to the project overview](https://github.com/SNodeC/OpenWRT/blob/main/README.md)

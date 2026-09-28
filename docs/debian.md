@@ -1,8 +1,18 @@
 # Debian
 
-[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian)
+## Installation and configuration
 
-[Architectures](#releases-architectures-and-repositories) · [Prepare only / manual setup](#prepare-the-repository) · [Full installation](#full-installation) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+- [Find supported releases and architectures](#releases-architectures-and-repositories)
+- [Prepare the repository using the script or manual commands](#prepare-the-repository)
+- [Install the complete package set](#full-installation)
+- [Choose individual packages](#selective-installation)
+- [Configure applications](#configure-applications)
+- [Update packages and troubleshoot](#updates-and-troubleshooting)
+
+## Package repository
+
+- [Browse production packages for Debian](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
+- [Check validation builds and published versions for Debian](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian)
 
 ## Releases, architectures and repositories
 
@@ -175,4 +185,7 @@ metadata. For missing feeds, signature errors or dependency failures, see
 | Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
 | A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
 
-[Back to top](#debian) · [All distributions](../README.md#distribution-and-architecture-matrix)
+## Related navigation
+
+- [Choose another distribution](../README.md#distribution-and-architecture-matrix)
+- [Return to the top of this guide](#debian)

@@ -1,9 +1,17 @@
 # MQTTSuite package catalog
 
-[All package catalogs](../README.md#package-catalogs) · [OpenWrt installation](openwrt.md#selective-installation) · [SNode.C catalog](snodec-package-options.md) · [DEB/RPM components](linux.md#component-packages)
-
 These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
 to prepare the feed and install packages with `opkg` or `apk`.
+
+## Install packages
+
+[Prepare the OpenWrt feed and install individual packages](openwrt.md#selective-installation).
+
+## Related package catalogs
+
+- [Browse the SNode.C package catalog](snodec-package-options.md)
+- [Find DEB and RPM component packages](linux.md#component-packages)
+- [Return to the package catalog overview](../README.md#package-catalogs)
 
 ## Packages: 9
 
@@ -21,5 +29,3 @@ to prepare the feed and install packages with `opkg` or `apk`.
 
 Application libraries also include the real `.so.1.0.1` file. Each enabled
 MQTT WebSocket plugin contains its `.so.2` ABI symlink and `.so.1.0.1` real file.
-
-[OpenWrt installation](openwrt.md#selective-installation) · [All package catalogs](../README.md#package-catalogs)
