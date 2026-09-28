@@ -116,7 +116,7 @@ Separate two facts:
 A failed latest rebuild does not make an existing feed unavailable. Derive
 published information from feed manifests, not merely workflow success. GitHub's
 ordinary workflow badge does not directly represent individual matrix results;
-the mechanism for per-combination badges remains to be implemented.
+per-combination badges are generated from recorded build results.
 
 Keep generated publication information on the `packages` branch and link to it
 from the main README. Avoid committing generated status to main after every
@@ -228,7 +228,7 @@ are not automatically reintroduced into indexes. The full 76-target definition
 is preserved but not enabled by the development dispatcher.
 
 Development status and feed versions are generated in
-[packages-dev/STATUS.md](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md).
+[packages-dev/README.md](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md).
 A failed build retains the last successful feed and its published version.
 
 Local publication checks cover partial APT updates, legacy manifest import,
@@ -264,6 +264,22 @@ production workflow has not been replaced or retriggered by this development wor
 
 | Development target | Latest build |
 | --- | --- |
-| Debian trixie amd64 | [![Debian](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/debian-trixie-amd64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
-| OpenWRT 25.12 x86_64 | [![OpenWRT](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/openwrt-25.12-x86_64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
-| Raspberry Pi OS trixie arm64 | [![Raspberry Pi OS](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/raspberrypios-trixie-arm64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md) |
+| Debian trixie amd64 | [![Debian](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/debian-trixie-amd64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
+| OpenWRT 25.12 x86_64 | [![OpenWRT](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/openwrt-25.12-x86_64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
+| Raspberry Pi OS trixie arm64 | [![Raspberry Pi OS](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/raspberrypios-trixie-arm64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
+
+## Publication README and landing-page integration
+
+The generated publication README is the single target-status view. It lists the
+complete canonical matrix, grouped by distribution and preserving its configured
+architecture order, even while only three development targets are enabled.
+Targets without a recorded build display a neutral badge; targets without a feed
+display `Not published` and no package links. These labels describe the validation
+channel only, not production availability. Existing manifests remain the authority
+for published versions, timestamps and provenance after failed rebuilds.
+
+The project landing page and all six distribution guides link directly to the
+corresponding sections of this README, which links back to installation guides and
+production packages. The separate `STATUS.md` view is removed. The renderer is
+reshaped without increasing its production line count; package content, build
+selection, test execution and publication policy are unchanged.

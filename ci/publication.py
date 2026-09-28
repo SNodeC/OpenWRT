@@ -54,28 +54,28 @@ def published(root, row):
 def render(root, state):
     badges = root / 'status'
     badges.mkdir(exist_ok=True)
-    lines = ['# Package build and publication status', '',
-             'Development feeds for validation only.' if state['branch'] == 'packages-dev' else 'Published distribution packages.', '',
-             'Build badges describe the latest requested build. A failed rebuild leaves the previous published feed available.', '',
-             '| Distribution | Release | Architecture | Latest build | Published versions | Published UTC | Feed |',
-             '| --- | --- | --- | --- | --- | --- | --- |']
-    colors = {'queued': '#777', 'running': '#007ec6', 'passed': '#4c1', 'failed': '#e05d44',
-              'cancelled': '#777', 'superseded': '#dfb317', 'publication failed': '#e05d44'}
-    for key, item in sorted(state['targets'].items()):
-        row, status = item['target'], item['status']
-        badge = f'<svg xmlns="http://www.w3.org/2000/svg" width="170" height="20" role="img" aria-label="{escape(status)}"><rect width="170" height="20" rx="3" fill="{colors[status]}"/><text x="85" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n'
-        (badges / f'{key}.svg').write_text(badge)
+    sections = {}
+    colors = {'queued': '#57606a', 'running': '#0969da', 'passed': '#1a7f37', 'failed': '#cf222e',
+              'cancelled': '#57606a', 'superseded': '#9a6700', 'publication failed': '#cf222e', 'not built': '#57606a'}
+    for row in targets('full'):
+        item = state['targets'].get(row['id'], {})
+        status = item.get('status', 'not built')
+        (badges / f"{row['id']}.svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" role="img" aria-label="{escape(status)}"><rect width="120" height="20" rx="3" fill="{colors[status]}"/><text x="60" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
         info, feed = published(root, row)
-        versions = info.get('versions', {})
-        label = ' · '.join(f'{name} `{version}`' for name, version in versions.items()) or ('revision ' + info['revision'] if info else 'Not published')
-        date = info.get('published_at', '—')
-        link = f'[Browse]({feed}/)' if info else '—'
-        lines.append(f"| {row['distribution']} | {row['suite']} | {row['arch']} | [![{status}](status/{key}.svg)]({item['run_url']}) | {label} | {date} | {link} |")
-    (root / 'STATUS.md').write_text('\n'.join(lines) + '\n')
+        label = '<br>'.join(f'{name}: `{info["versions"][key]}`' for key, name in [('snodec', 'SNode.C'), ('snode.c', 'SNode.C'), ('mqttsuite', 'MQTTSuite')] if key in info.get('versions', {})) or ('revision ' + info['revision'] if info else 'Not published')
+        date = info.get('published_at', '—')[:16].replace('T', ' ')
+        packages = f"{row['distribution']}/pool/{row['suite']}" if row['distribution'] in {'debian', 'ubuntu', 'raspberrypios'} else f'{feed}/Packages' if row['distribution'] in {'rocky', 'fedora'} else feed
+        links = f'[Packages]({packages}/) · [Metadata]({feed}/) · [Provenance]({feed}/build.json)' if info else '—'
+        badge = f"![{status}](status/{row['id']}.svg)"
+        badge = f"[{badge}]({item['run_url']})" if item.get('run_url') else badge
+        sections.setdefault(row['distribution'], []).append(f"| `{row['suite']}` | `{row['arch']}` | {badge} | {label} | {date} | {links} |")
     text = (ROOT / 'docs/package-repository.md').read_text()
+    for distribution, lines in sections.items():
+        text = text.replace(f'<!-- targets:{distribution} -->', '\n'.join(lines))
     if state['branch'] == 'packages-dev':
-        text = '> **Development feeds for validation only.** Installation guides below describe the production feeds.\n\n' + text
-    (root / 'README.md').write_text(text + '\n\n[Build badges and published versions](STATUS.md)\n')
+        text = text.replace('\n\n', '\n\n> **Validation channel — `packages-dev`.** “Not built” and “Not published” refer to this channel; they do not describe availability in the [production feeds](https://github.com/SNodeC/OpenWRT/tree/packages). Installation guides use production feeds.\n\n', 1)
+    (root / 'README.md').write_text(text)
+    (root / 'STATUS.md').unlink(missing_ok=True)
 
 
 def update(state, row, generation, status, attempt):

@@ -1,6 +1,6 @@
 # Ubuntu
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#ubuntu)
 
 ## Releases, architectures and repositories
 

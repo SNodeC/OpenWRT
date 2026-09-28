@@ -1,42 +1,79 @@
-# SNode.C and MQTTSuite package repositories
+# SNode.C and MQTTSuite — build and publication matrix
 
-This branch contains signed binary packages and repository indexes for installing
-SNode.C and MQTTSuite on supported Linux distributions. It is not a source or
-firmware repository.
+[Project & installation](https://github.com/SNodeC/OpenWRT#installation) · [Production feeds](https://github.com/SNodeC/OpenWRT/tree/packages) · [Signing keys](keys/)
 
-## Distribution feeds
+Find a distribution below to see every configured release and architecture.
+Published versions and links come from the repository manifests; a build badge
+alone is not evidence that new packages are available.
 
-| Distribution | Repository root | Metadata |
-|---|---|---|
-| Debian | `debian/` | `dists/{trixie,forky,sid}/` and `pool/` |
-| Ubuntu | `ubuntu/` | `dists/{noble,resolute}/` and `pool/` |
-| Rocky Linux | `rocky/<major>/<architecture>/` | `repodata/`, RPMs in `Packages/` |
-| Fedora | `fedora/<release>/<architecture>/` | `repodata/`, RPMs in `Packages/` |
-| Raspberry Pi OS | `raspberrypios/` | `dists/{bookworm,trixie}/` and `pool/` |
-| OpenWrt | `openwrt/<series>/<architecture>/` | opkg or APK index |
+[OpenWrt](#openwrt) · [Raspberry Pi OS](#raspberry-pi-os) · [Debian](#debian) · [Ubuntu](#ubuntu) · [Rocky Linux](#rocky-linux) · [Fedora](#fedora)
 
-Installation guides: [OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md),
-[Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md),
-[Debian](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md),
-[Ubuntu](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md),
-[Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md) and
-[Fedora](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md).
-See the [complete matrix](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
-for all distributions and architectures.
+## Reading the matrix
 
-## Using the repositories
+- **Latest build:** click a badge to open its run. **Not built** means no build is recorded for that target in this channel.
+- **Published versions:** the packages currently offered by this channel, independently of the latest build result. **Not published** means this channel has no feed for the target yet.
+- **Published UTC:** when that target was last published successfully.
+- **Repository:** package files, signed metadata and the provenance manifest containing the source tags and resolved commits.
 
-Follow your distribution guide for automatic preparation, full installation or
-manual setup. Select the matching release and architecture and keep the official
-distribution repositories enabled for dependencies. Public signing keys are in
-[`keys/`](keys/).
+A failed or unfinished rebuild retains the previous successful publication.
+Superseded package files remain available for 30 days after leaving the active
+index, so clients with cached metadata can finish downloads.
 
-Use GitHub directory links for browsing. Package managers use the raw file URLs
-provided by the installation guides.
+## OpenWrt
 
-## Package updates
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
 
-A higher package revision is an upgrade even when the upstream version is
-unchanged. Refresh package indexes before upgrading. Older package files remain
-available for 30 days after they leave the active index, allowing clients with
-cached metadata to finish downloads.
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:openwrt -->
+
+## Raspberry Pi OS
+
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
+
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:raspberrypios -->
+
+## Debian
+
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
+
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:debian -->
+
+## Ubuntu
+
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
+
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:ubuntu -->
+
+## Rocky Linux
+
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
+
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:rocky -->
+
+## Fedora
+
+[Installation & architecture guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
+
+| Release / suite | Architecture | Latest build | Published versions | Published UTC | Repository |
+| --- | --- | --- | --- | --- | --- |
+<!-- targets:fedora -->
+
+## Installation and repository access
+
+Use the [distribution guides](https://github.com/SNodeC/OpenWRT#distribution-and-architecture-matrix)
+for the full installer, prepare-only mode and complete manual instructions.
+They use the production feeds and keep official repositories enabled for system
+dependencies. Select the release and package architecture installed on the device.
+
+Use **Packages** and **Metadata** to browse this channel on GitHub. Package
+managers use raw file URLs; opening a raw directory URL in a browser can return
+404 even when the individual package and index files exist.

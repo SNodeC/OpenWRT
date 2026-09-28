@@ -1,6 +1,6 @@
 # Rocky Linux
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#rocky-linux)
 
 ## Releases, architectures and repositories
 

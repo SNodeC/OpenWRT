@@ -1,6 +1,6 @@
 # Raspberry Pi OS
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os)
 
 ## Releases, architectures and repositories
 

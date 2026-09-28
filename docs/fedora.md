@@ -1,6 +1,6 @@
 # Fedora
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora)
 
 ## Releases, architectures and repositories
 

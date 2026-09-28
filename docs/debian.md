@@ -1,6 +1,6 @@
 # Debian
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian)
 
 ## Releases, architectures and repositories
 

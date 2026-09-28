@@ -1,6 +1,6 @@
 # OpenWrt
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt)
 
 ## Releases, architectures and repositories
 
