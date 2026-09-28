@@ -1,7 +1,7 @@
 # Distribution packaging refactor: discussion and plan
 
-Recorded on 28 September 2026. This is a development planning document, not
-installation documentation or a description of an already implemented system.
+Recorded on 28 September 2026. This document tracks the agreed design and
+implementation status. Installation instructions live in the distribution guides.
 
 ## Starting point and scope
 
@@ -245,8 +245,22 @@ commit. Production workflows and feeds were unchanged.
 A subsequent native APT client check found that Release metadata advertised
 SHA512 while only SHA256 by-hash paths were published. The index generator now
 advertises SHA256 consistently. Temporary signed feeds pass forced by-hash
-client checks; a fresh development run must verify the corrected public feeds
-before matrix expansion.
+client checks. The [second development run](https://github.com/SNodeC/OpenWRT/actions/runs/36391172432)
+also passed all 212 upstream tests on each target and independently published
+revision 2. Native APT clients verified signatures and mandatory SHA256 by-hash
+index downloads against both public development feeds without fallback. The
+completion handler passed; the final snapshot has no parent commit. Retention
+protected 241 current files and retained 230 superseded files for the grace period.
+
+Failure rollback, stale writer rejection, partial APT updates, retry ordering,
+legacy suite import and expiry of unreferenced files were verified with temporary
+local fixtures. No application or test source was changed in either upstream
+repository, and no extra application tests were added here.
+
+The three-target development phase is validated. Full-matrix validation,
+production cutover, retirement of obsolete branches, repository renaming and
+upstream release/version policy remain separate outstanding stages. The
+production workflow has not been replaced or retriggered by this development work.
 
 | Development target | Latest build |
 | --- | --- |
