@@ -1,59 +1,78 @@
-# SNode.C and MQTTSuite Linux packages
+# SNode.C and MQTTSuite packages
 
-[![Distribution packages](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml/badge.svg)](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml)
+[Install](#installation) · [Distributions](#distribution-and-architecture-matrix) · [Package status](#build-and-publication-status) · [Package catalogs](#package-catalogs)
 
-Install [SNode.C](https://github.com/SNodeC/snode.c) and
-[MQTTSuite](https://github.com/SNodeC/mqttsuite) from signed repositories for
-**OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora**.
-SNode.C provides a C++ networking framework and runtime modules. MQTTSuite
-provides an MQTT broker, bridge, integrator, client, store and mapping plugins.
+Signed packages for **OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora**.
+Install directly with your distribution's package manager; no source checkout or
+compilation is needed on the device.
 
-The **`main` branch** contains recipes, CI and documentation. Ready-to-install
-packages, signed indexes and public keys live on the
-**[`packages` branch](https://github.com/SNodeC/OpenWRT/tree/packages)**.
-No source checkout or compilation is needed on the device.
-
-## Distribution and architecture matrix
-
-Choose your installed **distribution, release and package architecture**. Each
-installation guide includes repository preparation, full and selective installation,
-updates and package links. Architectures share a guide because package managers
-select the correct index; separate guides per CPU would duplicate instructions.
-
-| Distribution | Releases / suites | Architectures and package links | Installation | Repository |
-| --- | --- | --- | --- | --- |
-| OpenWrt | 24.10, 25.12 | [Architecture matrix](docs/openwrt.md#releases-architectures-and-repositories) | [Guide](docs/openwrt.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) |
-| Raspberry Pi OS | bookworm, trixie | [Architecture matrix](docs/raspberrypi.md#releases-architectures-and-repositories) | [Guide](docs/raspberrypi.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) |
-| Debian | trixie, forky, sid | [Architecture matrix](docs/debian.md#releases-architectures-and-repositories) | [Guide](docs/debian.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) |
-| Ubuntu | noble, resolute | [Architecture matrix](docs/ubuntu.md#releases-architectures-and-repositories) | [Guide](docs/ubuntu.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) |
-| Rocky Linux | 9, 10 | [Architecture matrix](docs/rocky.md#releases-architectures-and-repositories) | [Guide](docs/rocky.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) |
-| Fedora | 43, 44 | [Architecture matrix](docs/fedora.md#releases-architectures-and-repositories) | [Guide](docs/fedora.md#prepare-the-repository) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) |
-
-**76 build targets:** 50 OpenWrt, 2 Raspberry Pi OS and 24 Debian/Ubuntu/Rocky/Fedora.
-The three source-tag groups build and publish independently. Check
-[Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml) and each
-feed's `build.json` for build status and the published generation.
-
-Each guide lists every supported release/architecture combination with links to
-package files and repository metadata. Architecture names follow the distribution's
-package manager. Packages from different distributions are not interchangeable.
+[SNode.C](https://github.com/SNodeC/snode.c) provides the C++ networking framework
+and runtime libraries. [MQTTSuite](https://github.com/SNodeC/mqttsuite) provides an
+MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
 
 ## Installation
 
-1. Open your distribution's guide in the table above.
-2. Prepare the repository: import its signing key, add the matching feed and refresh indexes.
-3. Choose full installation or individual applications. Keep official repositories enabled for dependencies.
-4. Configure application listeners, credentials and TLS before starting services.
+Choose your distribution below. Every guide includes both installation methods:
 
-Every distribution guide provides an **installation script** (full installation
-by default, **`--prepare`** for repository setup only), complete **manual setup**,
-selective installation, application configuration and updates. All use the same
-[installer](ci/install-feed.sh), which selects the distribution's package manager.
-Package names and hardware requirements are documented in each guide.
+- **Full installation:** the installer configures the signed repository and installs the complete package set.
+- **Prepare only:** `--prepare` configures the repository; you choose which packages to install afterwards.
+
+Each guide also provides complete manual setup, selective installation, updates
+and application configuration. Keep the official distribution repositories enabled
+for dependencies, and select the release and architecture installed on your device.
+
+The guides and installer use the **[production feeds](https://github.com/SNodeC/OpenWRT/tree/packages)**.
+Configure application listeners, credentials and TLS before starting services.
+
+## Distribution and architecture matrix
+
+| Distribution | Releases / suites | Architectures and installation | Production packages | Validation results |
+| --- | --- | --- | --- | --- |
+| OpenWrt | 24.10, 25.12 | [OpenWrt guide](docs/openwrt.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#openwrt) |
+| Raspberry Pi OS | bookworm, trixie | [Raspberry Pi OS guide](docs/raspberrypi.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#raspberry-pi-os) |
+| Debian | trixie, forky, sid | [Debian guide](docs/debian.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#debian) |
+| Ubuntu | noble, resolute | [Ubuntu guide](docs/ubuntu.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#ubuntu) |
+| Rocky Linux | 9, 10 | [Rocky Linux guide](docs/rocky.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#rocky-linux) |
+| Fedora | 43, 44 | [Fedora guide](docs/fedora.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora) |
+
+Every guide lists all supported release/architecture combinations with package
+and repository-index links. Architecture names follow the distribution's package
+manager. Packages from different distributions are not interchangeable.
+
+## Build and publication status
+
+The **[publication validation README](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md)**
+lists all 76 configured targets, grouped by distribution. Each row shows its
+latest build badge, published project versions, publication time and repository
+links. Click a build badge for its GitHub Actions run or **Provenance** for the
+source tags and resolved commits recorded with the packages.
+
+The validation README describes the separate **`packages-dev` channel**. Currently,
+three targets are enabled there: Debian trixie amd64, OpenWrt 25.12 x86_64 and
+Raspberry Pi OS trixie arm64. **Not built** or **Not published** in that channel
+does not mean a production package is unavailable. Use the production links
+above for installations.
+
+Build status and published versions are separate: a failed or unfinished rebuild
+leaves the previous published feed available. See also the
+[production build runs](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml).
+
+## Package catalogs
+
+For OpenWrt's individual package names and contents, see the complete catalogs:
+
+- [SNode.C packages](docs/snodec-package-options.md)
+- [MQTTSuite packages](docs/mqttsuite-package-options.md)
+
+For the other distributions, each installation guide describes its component
+packages and common selections. The `snodec` and `mqttsuite` metapackages in the
+DEB/RPM repositories install their respective complete component sets.
 
 ## Repository layout and links
 
-All paths below are relative to the `packages` branch:
+The `main` branch contains recipes and documentation. Published packages, signed
+indexes and [public keys](https://github.com/SNodeC/OpenWRT/tree/packages/keys)
+live on the `packages` branch, using these paths:
 
 | Distribution | Package files | Repository metadata |
 | --- | --- | --- |
@@ -64,42 +83,15 @@ All paths below are relative to the `packages` branch:
 | Rocky Linux | `rocky/<major>/<architecture>/Packages/` | `rocky/<major>/<architecture>/repodata/` |
 | Fedora | `fedora/<release>/<architecture>/Packages/` | `fedora/<release>/<architecture>/repodata/` |
 
-APT suites also contain signed `InRelease` and `Release.gpg` files. RPM feeds
-include signed `repomd.xml` metadata and signed packages. Public keys are in
-[`keys/`](https://github.com/SNodeC/OpenWRT/tree/packages/keys).
-
-Use **github.com links to browse directories**. Package managers use the
-**raw.githubusercontent.com URLs** shown in the guides; raw URLs serve files,
-not directory listings. Opening a raw directory URL in a browser can return 404
-although its package files and indexes exist.
-
-Existing feeds using `releases/` or `apt/` need the
-[feed URL migration](docs/package-repository.md#feed-directory-migration).
+GitHub directory links let you browse packages. Package managers use the raw file
+URLs in the installation guides; raw URLs do not provide directory listings.
 
 ## Repository troubleshooting
 
 | Symptom | What to check |
 | --- | --- |
-| Feed or index returns 404 | Verify the distribution, release and architecture; check whether its CI has published successfully. A raw directory URL is not a browsable index. |
-| Signature verification fails | Check the key, system clock and feed URL. Keep signature verification enabled. |
-| Dependencies cannot be installed | Enable the matching official repositories; on Rocky also enable CRB and EPEL as documented. Do not mix distribution releases. |
-| Download fails just after publication | Refresh metadata and retry after GitHub's raw-content caches update. |
-| Latest build is unavailable | Failed or unfinished runs retain the previous published feed. Inspect Actions and `build.json`. |
-
-## Build, validation and publication
-
-Each distribution guide describes its source tag, build matrix and validation.
-The CI configuration is authoritative for supported targets. Source-tag groups
-build independently and share the publication mechanism.
-
-CI runs upstream tests in each target build environment. These userspace tests
-do not imply validation on every physical device. All required jobs in a group
-must pass before that group publishes; publication preserves
-other distributions and uses a shared lock.
-
-The `packages` branch contains one parentless snapshot commit. Source history
-stays on development branches. Superseded packages and metadata are retained
-for 30 days, then cleaned during publication and daily maintenance.
-
-See [repository signing, CI setup, migration and retention](docs/package-repository.md)
-for the shared publication policy.
+| Feed or index returns 404 | Check the distribution, release, architecture and channel. Use GitHub links to browse directories. |
+| Signature verification fails | Check the installed public key, system clock and feed URL. Keep signature verification enabled. |
+| Dependencies cannot be installed | Keep matching official repositories enabled; on Rocky also enable CRB and EPEL as documented. |
+| Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
+| Latest rebuild failed | Check the target's published versions and feed links; the previous successful publication remains available. |

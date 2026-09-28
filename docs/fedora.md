@@ -1,6 +1,6 @@
 # Fedora
 
-[All distributions](../README.md) · [Browse repository](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
+[All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora)
 
 ## Releases, architectures and repositories
 
@@ -148,9 +148,3 @@ metadata. For missing feeds, signature errors or dependency failures, see
 | Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
 | Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
 | A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
-
-## Build and validation
-
-These targets use the independent `Linux` source tags. See
-[shared CI and publication details](linux.md#ci-and-publication) for build,
-upstream tests and publication gates.
