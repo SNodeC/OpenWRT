@@ -9,7 +9,6 @@ on:
         default: '{}'
         type: string
       result:
-        default: running
         type: string
       run_id:
         default: ''
@@ -25,6 +24,7 @@ permissions:
   actions: read
 jobs:
   write:
+    name: ${{ inputs.operation == 'finish' && format('Publish {0}', fromJSON(inputs.target).id) || format('{0} packages-dev', inputs.operation) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     concurrency:

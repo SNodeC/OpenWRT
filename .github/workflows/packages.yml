@@ -47,7 +47,7 @@ jobs:
           RECIPE_REF: refactor/distribution-packages
         run: |
           python3 feed/ci/repository.py prepare sources bundle
-          python3 feed/ci/publication.py matrix full > matrix.json
+          python3 feed/ci/publication.py matrix > matrix.json
           jq '.include' matrix.json > bundle/targets.json
           echo "value=$(jq -c . matrix.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7

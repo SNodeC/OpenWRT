@@ -11,7 +11,7 @@ import sys
 from repository import ROOT, matrix, linux_matrix, unchanged, run
 
 
-def targets(profile):
+def targets():
     rows = [dict(family='openwrt', distribution='openwrt', suite=r['series'], arch=r['arch'],
                  runner='ubuntu-24.04', build=r) for r in matrix()]
     rows += [dict(family='raspberrypi', distribution='raspberrypios', suite=suite, arch='arm64',
@@ -21,13 +21,6 @@ def targets(profile):
                   runner=r['runner'], build=r) for r in linux_matrix()]
     for row in rows:
         row['id'] = '-'.join(row[k] for k in ('distribution', 'suite', 'arch'))
-    if profile == 'development':
-        selected = {'openwrt-25.12-x86_64', 'debian-trixie-amd64', 'raspberrypios-trixie-arm64'}
-        rows = [r for r in rows if r['id'] in selected]
-        if len(rows) != 3:
-            raise RuntimeError('Development matrix no longer resolves to exactly three targets')
-    elif profile != 'full':
-        raise ValueError('Unknown matrix profile')
     return rows
 
 
@@ -57,7 +50,7 @@ def render(root, state):
     sections = {}
     colors = {'queued': '#57606a', 'running': '#0969da', 'passed': '#1a7f37', 'failed': '#cf222e',
               'cancelled': '#57606a', 'superseded': '#9a6700', 'publication failed': '#cf222e', 'not built': '#57606a'}
-    for row in targets('full'):
+    for row in targets():
         item = state['targets'].get(row['id'], {})
         status = item.get('status', 'not built')
         (badges / f"{row['id']}.svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" role="img" aria-label="{escape(status)}"><rect width="120" height="20" rx="3" fill="{colors[status]}"/><text x="60" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
@@ -150,20 +143,25 @@ def reconcile(state, run_id, attempt):
     generation = state['runs'].get(run_id)
     if not generation:
         return
-    repository = os.environ['GITHUB_REPOSITORY']
-    details = json.loads(run('gh', 'api', f'repos/{repository}/actions/runs/{run_id}'))
-    if details['status'] != 'completed' or details['run_attempt'] != attempt:
+    endpoint = f'repos/{os.environ["GITHUB_REPOSITORY"]}/actions/runs/{run_id}'
+    details = json.loads(run('gh', 'api', endpoint))
+    if details['run_attempt'] != attempt:
         return
+    lines = run('gh', 'api', '--paginate', f'{endpoint}/attempts/{attempt}/jobs?per_page=100', '--jq', '.jobs[] | [.name, .status] | @json')
+    jobs = {name.rsplit(' / ', 1)[-1]: status for name, status in map(json.loads, lines.splitlines())}
     for row in generation['targets']:
         latest = state['targets'].get(row['id'], {})
         if latest.get('run_id') == run_id and latest['status'] in {'queued', 'running'}:
-            update(state, row, generation, 'cancelled' if details['conclusion'] == 'cancelled' else 'failed', attempt)
+            status = 'running' if jobs.get(f'Build and test {row["id"]}') in {'in_progress', 'completed'} else 'queued'
+            if details['status'] == 'completed':
+                status = 'cancelled' if details['conclusion'] == 'cancelled' else 'failed'
+            update(state, row, generation, status, attempt)
 
 
 def main():
     command, *args = sys.argv[1:]
     if command == 'matrix':
-        print(json.dumps({'include': targets(args[0])}))
+        print(json.dumps({'include': targets()}))
         return
     root, bundle = (Path(p).resolve() for p in args[:2])
     if command == 'cleanup':
@@ -188,15 +186,19 @@ def main():
             output.write(f'revision={revision}\n')
     elif command == 'reconcile':
         reconcile(state, context['run_id'], int(os.environ['RECONCILE_ATTEMPT']))
-    else:
+    elif command == 'finish':
+        try:
+            reconcile(state, context['run_id'], int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
+        except Exception as error:
+            print(f'Status refresh unavailable; keeping recorded results: {error}', file=sys.stderr)
         row = json.loads(args[2])
         generation = state['runs'][context['run_id']]
         if row not in generation['targets']:
             raise RuntimeError('Unknown publication target')
         status = args[3]
-        if status not in {'running', 'success', 'failure', 'cancelled', 'skipped'}:
+        if status not in {'success', 'failure', 'cancelled', 'skipped'}:
             raise ValueError('Unknown job status')
-        if command == 'finish' and status == 'success':
+        if status == 'success':
             try:
                 publish(root, bundle, Path(args[4]).resolve(), row, generation)
                 status = 'passed'
@@ -208,9 +210,11 @@ def main():
                 run('git', '-C', str(root), 'clean', '-fd')
                 status = 'superseded' if 'superseded' in str(error).lower() else 'publication failed'
                 result = 1
-        elif command == 'finish':
+        else:
             status = 'cancelled' if status == 'cancelled' else 'failed'
         update(state, row, generation, status, int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
+    else:
+        raise ValueError(f'Unknown publication operation: {command}')
     write(root / 'status.json', state)
     render(root, state)
     sys.exit(result)

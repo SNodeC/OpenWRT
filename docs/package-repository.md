@@ -10,7 +10,7 @@ alone is not evidence that new packages are available.
 
 ## Reading the matrix
 
-- **Latest build:** click a badge to open its run. **Not built** means no build is recorded for that target in this channel.
+- **Latest build:** click a badge to open its run. **Running** includes a target awaiting publication after its build; **passed** confirms publication completed. Status is refreshed when feeds are published and when the run finishes. **Not built** means no build is recorded for that target in this channel.
 - **Published versions:** the packages currently offered by this channel, independently of the latest build result. **Not published** means this channel has no feed for the target yet.
 - **Published UTC:** when that target was last published successfully.
 - **Repository:** package files, signed metadata and the provenance manifest containing the source tags and resolved commits.

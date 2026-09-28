@@ -12,15 +12,8 @@ permissions:
   contents: write
   actions: read
 jobs:
-  running:
-    uses: ./.github/workflows/package-write.yml
-    with:
-      operation: status
-      target: ${{ inputs.target }}
-      result: running
-    secrets: inherit
   build:
-    needs: running
+    name: Build and test ${{ fromJSON(inputs.target).id }}
     runs-on: ${{ fromJSON(inputs.target).runner }}
     timeout-minutes: 360
     permissions:
@@ -88,7 +81,7 @@ jobs:
             sdk/ci-sdk.json
   finish:
     if: always()
-    needs: [running, build]
+    needs: build
     uses: ./.github/workflows/package-write.yml
     with:
       operation: finish

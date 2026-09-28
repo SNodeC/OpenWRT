@@ -287,8 +287,18 @@ selection, test execution and publication policy are unchanged.
 ## Full-matrix validation
 
 Following the successful three-target runs and publication README review, the
-development workflow selects the existing full profile: 50 OpenWrt targets,
+development workflow selects the complete matrix: 50 OpenWrt targets,
 two Raspberry Pi OS targets and 24 Linux targets. Source tags, build and test
 steps, independent publication and serialized writes are unchanged. Production
 feeds remain isolated. Monitor the complete run and report failures before
 making fixes; enabling the matrix is not evidence that all targets have passed.
+
+The first full-matrix run exposed a publication scheduling defect: per-target
+`running` status writers queued before finished builds in the same FIFO group.
+Remove those jobs so each target proceeds directly from build/tests to its own
+publication job. Read running/queued job state from GitHub while refreshing a
+publication, preserving recorded terminal results and attempt ordering. Status
+lookup failures must not prevent package publication. Only actual publications,
+revision allocation, final reconciliation and retention use the serialized writer.
+Build and publication job names include the distribution, release and architecture.
+The retired three-target selector is removed; the canonical matrix is unchanged.
