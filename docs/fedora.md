@@ -2,6 +2,8 @@
 
 [All distributions](../README.md#distribution-and-architecture-matrix) · [Production packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) · [Validation results](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md#fedora)
 
+[Architectures](#releases-architectures-and-repositories) · [Prepare only / manual setup](#prepare-the-repository) · [Full installation](#full-installation) · [Choose packages](#selective-installation) · [Configure applications](#configure-applications) · [Updates & troubleshooting](#updates-and-troubleshooting)
+
 ## Releases, architectures and repositories
 
 | Release / suite | Architecture | Package files | Signed repository metadata |
@@ -39,6 +41,10 @@ Install your chosen packages afterwards using the commands below.
 ### Manual preparation
 
 These commands configure the signed feed without installing SNode.C or MQTTSuite.
+
+APT and RPM repositories use the same signing key. Its download filename is
+`snodec-apt.asc`; the commands below install it under the RPM-specific name
+`RPM-GPG-KEY-snodec`.
 
 ```sh
 sudo install -d -m 755 /etc/pki/rpm-gpg
@@ -148,3 +154,5 @@ metadata. For missing feeds, signature errors or dependency failures, see
 | Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
 | Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
 | A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
+
+[Back to top](#fedora) · [All distributions](../README.md#distribution-and-architecture-matrix)

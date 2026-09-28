@@ -1,6 +1,6 @@
 # SNode.C and MQTTSuite — build and publication matrix
 
-[Project & installation](https://github.com/SNodeC/OpenWRT#installation) · [Production feeds](https://github.com/SNodeC/OpenWRT/tree/packages) · [Signing keys](keys/)
+[Project & installation](https://github.com/SNodeC/OpenWRT/blob/main/README.md#installation) · [Package catalogs](https://github.com/SNodeC/OpenWRT/blob/main/README.md#package-catalogs) · [Production feeds](https://github.com/SNodeC/OpenWRT/tree/packages) · [Signing keys](keys/)
 
 Find a distribution below to see every configured release and architecture.
 Published versions and links come from the repository manifests; a build badge
@@ -67,9 +67,11 @@ index, so clients with cached metadata can finish downloads.
 | --- | --- | --- | --- | --- | --- |
 <!-- targets:fedora -->
 
+[How to read the matrix](#reading-the-matrix) · [Choose a distribution](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
+
 ## Installation and repository access
 
-Use the [distribution guides](https://github.com/SNodeC/OpenWRT#distribution-and-architecture-matrix)
+Use the [distribution guides](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
 for the full installer, prepare-only mode and complete manual instructions.
 They use the production feeds and keep official repositories enabled for system
 dependencies. Select the release and package architecture installed on the device.
@@ -77,3 +79,5 @@ dependencies. Select the release and package architecture installed on the devic
 Use **Packages** and **Metadata** to browse this channel on GitHub. Package
 managers use raw file URLs; opening a raw directory URL in a browser can return
 404 even when the individual package and index files exist.
+
+[Installation guides](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix) · [Package catalogs](https://github.com/SNodeC/OpenWRT/blob/main/README.md#package-catalogs) · [Repository troubleshooting](https://github.com/SNodeC/OpenWRT/blob/main/README.md#repository-troubleshooting)
