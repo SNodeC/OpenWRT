@@ -1,8 +1,8 @@
 # SNode.C and MQTTSuite for GL-MT3000
 
 These recipes use the movable `OpenWRT` tag in both source repositories:
-SNode.C 2.0.0 and MQTTSuite 1.0.1. All integration patches live in the OpenWrt recipes; the source
-repositories are not modified.
+SNode.C 2.0.0 and MQTTSuite 1.0.1. The recipes use the upstream build systems
+without source patches.
 
 The build uses the official OpenWrt 25.12.5 `mediatek/filogic` SDK with GCC
 14.3.0 and musl, producing `aarch64_cortex-a53` APK packages. The release's
@@ -17,23 +17,6 @@ Archive: `openwrt-sdk-25.12.5-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.
 
 SHA256: `ff4a38a397caa2cfe1c39e18f84ddede14878221b3593c3f2c4cfe24e3ec4c25`
 
-## Branch ownership
-
-The tag-triggered multi-platform CI and signed binary feed are described in
-[Package repository](package-repository.md). The device-specific steps below
-remain useful for local SDK validation; CI builds both release series for all
-platforms listed in `ci/platforms.json`.
-
-| Branch | Files maintained there |
-| --- | --- |
-| `SNode.C` | `net/snode.c/`, `docs/snodec-package-options.md` |
-| `MQTTSuite` | `net/mqttsuite/`, `docs/mqttsuite-package-options.md` |
-| `main` | Shared build/verification documents, package inventory index and upstream test runner |
-| `infra` | Build, publishing and deployment orchestration |
-
-Merge project branches separately into `main`. Do not merge all of `main`
-back into a project branch: that would bring in the other recipe.
-
 ## Package selection
 
 Use **Network / SNode.C** and **Network / MQTTSuite** in `make menuconfig`.
@@ -42,7 +25,7 @@ these recipes. `m` builds an installable package; `y` also selects it for an
 image build; `n` omits it unless a selected consumer requires it. Required
 lower layers are selected automatically at the consumer's selection level.
 No second set of module booleans overrides these package selectors.
-The complete tables live with their respective branches:
+The complete package tables are:
 [SNode.C packages and options](snodec-package-options.md) and
 [MQTTSuite packages and options](mqttsuite-package-options.md).
 
@@ -96,9 +79,8 @@ make -j16 package/local/mqttsuite/compile V=s
 
 This selects all publication packages and uses the feature defaults from the
 package Makefiles and `Config.in` files. In particular, MQTTSuite's Unix-socket
-TLS options retain their default of disabled; CI does not override them.
-The example disables signing for local validation. CI enables package signing
-and supplies the publication keys.
+TLS options retain their default of disabled. The example creates unsigned
+packages for local use.
 
 MQTTSuite's build dependency builds and stages SNode.C first. MQTTSuite uses
 a separate CMake build directory so its private `lib/Log.h` cannot shadow
@@ -107,11 +89,6 @@ a checked OpenWrt download, supplied to FetchContent locally. No configure-time
 network fetch is needed. Every recipe configuration option participates in
 OpenWrt's reconfiguration stamp; SNode.C's derived CMake cache is reset when
 configuring to avoid stale defaults.
-
-The pinned SDK feed emits an unrelated libcurl/LDAP Kconfig recursion warning.
-Its SDK kernel configuration also includes prebuilt kernel modules, so the
-first dependency build packages more kernel modules than these applications
-need. Neither behavior is introduced by these recipes.
 
 ## WebSocket loading and RPATH
 
@@ -153,13 +130,4 @@ local builds). Supply all referenced local SNode.C packages or a local feed;
 installing a single meta-package alone cannot discover unpublished packages.
 Then check application help/configuration, native MQTT, WS and WSS connections,
 service restart/logging, bridge forwarding, integrator mappings, and MQTTStore
-writes. Physical router execution and hardware verification remain for the
-owner. See [QEMU VM verification](qemu-vm.md) for completed virtual-machine
-installation, MQTT/TLS/WS/WSS traffic tests and runtime observations.
-
-## Upstream tests
-
-CI runs the upstream SNode.C CTest suite for each SDK build using
-`tests/test_upstream.py`. Target executables run under QEMU with the SDK's
-libraries. Test failures block publication. This repository does not maintain
-additional application, configuration, package-audit or installation tests.
+writes.

@@ -70,7 +70,7 @@ At the start of development, run only these three representative combinations:
 
 Keep the complete matrix defined, but select this subset for development runs.
 Use an isolated publication destination so development output cannot replace
-production feeds. The exact destination is still to be chosen. Once the
+production feeds. The development destination is `packages-dev`; production `packages` is unchanged. Once the
 mechanics work, enable the full matrix for architecture and release validation.
 The subset alone cannot validate every package format, older distribution or ABI.
 
@@ -207,3 +207,31 @@ No production C++ changes are planned for the CI refactor. Upstream release
 notification and versioning changes require their own review. This document
 records the direction and outstanding decisions; it does not claim that the
 refactor, branch retirement, rename or release-versioning work is complete.
+
+## Development implementation
+
+The reusable `packages.yml` workflow selects the three development targets.
+`packages-development.yml` is the manual entry point on `main`; it accepts
+independent existing upstream tags and invokes this branch.
+`packages-maintenance.yml` handles cancelled/failed run status and retention.
+Existing production workflows and triggers remain unchanged.
+
+Each target runs its native build and upstream tests, then independently publishes
+through `package-write.yml`. This writer serializes revision allocation, status,
+publication and cleanup on `packages-dev`, uses force-with-lease and retains a
+single parentless snapshot. Revisions increase across runs; retries retain their
+revision, and conflicting or stale publications are rejected.
+
+APT publication preserves other architectures using the current per-architecture
+manifest and regenerates signed suite metadata in one place. Retained payloads
+are not automatically reintroduced into indexes. The full 76-target definition
+is preserved but not enabled by the development dispatcher.
+
+Development status and feed versions are generated in
+[packages-dev/STATUS.md](https://github.com/SNodeC/OpenWRT/blob/packages-dev/STATUS.md).
+A failed build retains the last successful feed and its published version.
+
+Local publication checks cover partial APT updates, legacy manifest import,
+identical retries, stale revisions, signed metadata and retention. GitHub
+validation of the three development builds remains required before expanding
+the matrix or enabling production publication.

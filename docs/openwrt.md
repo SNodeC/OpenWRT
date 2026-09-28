@@ -279,36 +279,3 @@ a package update does not upgrade the OpenWrt firmware or change its release ser
 | Download fails just after publication | Refresh the package index and retry; GitHub's raw-content caches can take time to update. |
 | Application does not start | Check its `--help` output, configuration and `logread`; verify that installation completed successfully. |
 | A newer build is not available | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Failed or unfinished runs do not replace the published feed. |
-
-## Build and validation
-
-Creation or movement of the upstream **`OpenWRT` tag** in SNode.C or MQTTSuite
-triggers the central build. Both projects are built from those tags using
-official OpenWrt SDKs. All 50 release/architecture builds must pass package
-configuration, dependency, architecture, symlink, RPATH and plugin checks.
-Each SDK build also compiles and executes the complete upstream SNode.C CTest
-suite through QEMU with that SDK's target libraries. Failed, missing or skipped
-tests block publication. Packages are built before test instrumentation is enabled,
-so published libraries do not contain test hooks and test binaries are not feed packages.
-CTest results and logs are retained in each build's log artifact.
-
-Four additional jobs boot clean OpenWrt VMs: x86_64 and AArch64 on both releases.
-They install all 76 packages from signed feeds, check application startup,
-exercise MQTT publish/subscribe over TCP, TLS, WebSocket and secure WebSocket,
-and check the broker service lifecycle. These are installation and runtime
-smoke tests in addition to the upstream suite on every architecture.
-The per-build QEMU checks use the runner's Linux kernel; the VM checks use
-OpenWrt kernels. Neither substitutes for testing physical hardware or drivers.
-
-Only after every gate passes are all feeds published together. Each directory
-contains packages, a signed package index and `build.json` with build provenance.
-Public signing keys live under `keys/` on the `packages` branch. Publication
-replaces that branch with a single root commit; source and recipe history stays
-on the development branches. Older package files are retained for cached indexes.
-
-Further documentation:
-
-- [Feed layout, signing and CI setup](package-repository.md)
-- [Building from the package recipes and branch ownership](openwrt-build.md)
-- [Package and build options](package-options.md)
-- [Recorded validation details](verification.md)

@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 
-from repository import ROOT, digest, run, signer, unchanged
+from repository import ROOT, digest, run, signer, unchanged, publication_needed
 
 
 def stage(row, packages, bundle, output):
@@ -16,11 +16,14 @@ def stage(row, packages, bundle, output):
     expected = {name for project in ('snodec', 'mqttsuite')
                 for name in (packages / f'{project}.packages').read_text().splitlines()}
     names = set()
+    versions = {}
     for package in packages.glob('*.rpm'):
         name, arch = run('rpm', '-qp', '--qf', '%{NAME} %{ARCH}', str(package)).split()
         if arch != row['arch'] or name in names:
             raise RuntimeError(f'Unexpected RPM: {name}/{arch}')
         names.add(name)
+        if name in {'snodec', 'mqttsuite'}:
+            versions[name] = run('rpm', '-qp', '--qf', '%{VERSION}-%{RELEASE}', str(package))
         shutil.copy2(package, pool / package.name)
     if names != expected:
         raise RuntimeError('Incomplete RPM component inventory')
@@ -35,7 +38,7 @@ def stage(row, packages, bundle, output):
         index = directory / 'repodata/repomd.xml'
         run('gpg', '--homedir', home, '--batch', '--yes', '--armor', '--output', str(index) + '.asc',
             '--detach-sign', str(index))
-    info = dict(row, packages=sorted(names), revision=os.environ['PACKAGE_RELEASE'],
+    info = dict(row, packages=sorted(names), versions=versions, revision=os.environ['PACKAGE_RELEASE'],
                 sources=json.loads((bundle / 'sources.json').read_text()),
                 context=json.loads((bundle / 'context.json').read_text()),
                 files={str(p.relative_to(directory)): digest(p) for p in directory.rglob('*') if p.is_file()})
@@ -45,6 +48,7 @@ def stage(row, packages, bundle, output):
 
 def publish(rows, incoming, checkout, bundle):
     unchanged(bundle)
+    changed = []
     for row in rows:
         relative = Path(row['distribution']) / row['suite'] / row['arch']
         directory = incoming / relative
@@ -79,9 +83,9 @@ def publish(rows, incoming, checkout, bundle):
             if sorted(names) != info['packages']:
                 raise RuntimeError('Unexpected RPM inventory')
         previous = checkout / relative / 'build.json'
-        if previous.exists() and int(json.loads(previous.read_text())['revision']) >= int(info['revision']):
-            raise RuntimeError('Refusing older/equal RPM publication')
-    for row in rows:
+        if publication_needed(previous, info):
+            changed.append(row)
+    for row in changed:
         relative = Path(row['distribution']) / row['suite'] / row['arch']
         shutil.copytree(incoming / relative, checkout / relative, dirs_exist_ok=True)
     unchanged(bundle)

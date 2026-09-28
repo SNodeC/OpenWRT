@@ -45,27 +45,3 @@ See the [MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme).
 
 The APT and RPM public signing key has fingerprint
 `8BBF D49E 3C82 6FDB 1416 C79E 6004 6744 B15B 0E05`.
-
-## CI and publication
-
-The independent `Linux` tag in **both** source repositories selects the source
-generation. Creating or moving either tag requests all 24 targets. Tags are used
-for checkout; recorded commit IDs only prove provenance. `OpenWRT` and
-`RaspberryPiOS` keep their separate roles. The matrix is maintained in
-[`ci/linux.json`](../ci/linux.json); container images use distribution release tags.
-
-x86-64 and ARM64 build natively on GitHub runners. ARM32 and RISC-V use QEMU
-where required. Build containers share the runner’s network namespace, as the Raspberry Pi OS
-chroots do. Each target creates upstream CPack component packages and runs the upstream
-SNode.C CTest suite. Failed upstream tests block publication. There are no separate installation or application runtime
-checks maintained in this repository.
-
-Publication requires the entire Linux matrix to pass. APT indexes are generated and signed only during publication,
-once per suite with one index per architecture; RPM metadata remains per release and
-architecture. RPM packages and `repomd.xml` are signed. APT uses signed `InRelease`
-and `Release.gpg` plus by-hash indexes. The existing `APT_SIGNING_KEY` secret and
-public key serve both formats; no additional signing secret is required.
-
-All feeds share the existing publication lock and parentless `packages` snapshot.
-Publication preserves other distributions. Superseded packages and metadata use
-the shared [30-day retention policy](package-repository.md#retention-and-maintenance).

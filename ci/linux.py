@@ -2,9 +2,7 @@
 import importlib
 import json
 from pathlib import Path
-import shutil
 import sys
-import tempfile
 
 from repository import linux_matrix, unchanged
 
@@ -15,11 +13,10 @@ rpm = importlib.import_module('rpm-repository')
 def stage(row, packages, bundle, output):
     if row not in linux_matrix():
         raise RuntimeError('Unknown Linux target')
-    directory = output / 'linux' / row['distribution'] / row['suite'] / row['arch']
     if row['distribution'] in {'debian', 'ubuntu'}:
         apt.stage(row['suite'], packages, bundle, output / 'linux', row['distribution'])
     else:
-        rpm.stage(row, packages, bundle, directory)
+        rpm.stage(row, packages, bundle, output / 'linux')
 
 
 def publish(incoming, checkout, bundle):
@@ -27,21 +24,14 @@ def publish(incoming, checkout, bundle):
     rows = linux_matrix()
     expected = {(r['distribution'], r['suite'], r['arch']) for r in rows}
     found = {p.relative_to(incoming / 'linux').parts for p in (incoming / 'linux').glob('*/*/*') if p.is_dir()}
-    if found != expected:
-        raise RuntimeError(f'Incomplete Linux matrix: missing={expected - found}, unexpected={found - expected}')
-    with tempfile.TemporaryDirectory() as temporary:
-        staging = Path(temporary) / 'feeds'
-        revisions = {json.loads(p.read_text())['revision'] for p in (incoming / 'linux').rglob('build.json')}
-        if len(revisions) != 1:
-            raise RuntimeError('Mixed publication revisions')
-        rpm_rows = [row for row in rows if row['distribution'] in {'rocky', 'fedora'}]
-        for row in rpm_rows:
-            relative = Path(row['distribution']) / row['suite'] / row['arch']
-            feed = incoming / 'linux' / relative / relative
-            shutil.copytree(feed, staging / relative)
-        for distribution in ['debian', 'ubuntu']:
+    if not found or not found <= expected:
+        raise RuntimeError(f'Unexpected Linux targets: {found - expected}')
+    rows = [r for r in rows if (r['distribution'], r['suite'], r['arch']) in found]
+    for distribution in ['debian', 'ubuntu']:
+        if any(r['distribution'] == distribution for r in rows):
             apt.publish(incoming / 'linux', checkout, bundle, distribution)
-        rpm.publish(rpm_rows, staging, checkout, bundle)
+    rpm_rows = [r for r in rows if r['distribution'] in {'rocky', 'fedora'}]
+    rpm.publish(rpm_rows, incoming / 'linux', checkout, bundle)
     unchanged(bundle)
 
 

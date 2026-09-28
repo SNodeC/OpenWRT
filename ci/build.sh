@@ -14,13 +14,17 @@ trap 'rm -f key-build private-key.pem' EXIT
 umask 022
 cp "$feed/ci/keys/snodec-usign.pub" key-build.pub
 cp "$feed/ci/keys/snodec-apk.pem" public-key.pem
-# These archives were made from fresh OpenWRT-tag checkouts, including submodules.
+# Archives include submodules and come from the captured tag pair.
 mkdir -p dl
-# Bind disposable recipes to the shared archives; source refs stay OpenWRT.
 for package in snode.c mqttsuite; do
     cp "$bundle/$package-"*.tar.gz dl/
-    sed -i "s/^PKG_RELEASE:=.*/PKG_RELEASE:=$PACKAGE_RELEASE\nPKG_MIRROR_HASH:=$(sha256sum "$bundle/$package-"*.tar.gz | cut -d' ' -f1)/; /^PKG_MIRROR_HASH:=/d" "$feed/net/$package/Makefile"
 done
+export SNODEC_PACKAGE_RELEASE="$PACKAGE_RELEASE" MQTTSUITE_PACKAGE_RELEASE="$PACKAGE_RELEASE"
+SNODEC_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); print(c.get("source_tags", {}).get("snode.c", c.get("source_tag", "OpenWRT")))' "$bundle/context.json")
+MQTTSUITE_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); print(c.get("source_tags", {}).get("mqttsuite", c.get("source_tag", "OpenWRT")))' "$bundle/context.json")
+SNODEC_SOURCE_HASH=$(sha256sum "$bundle/snode.c-"*.tar.gz | cut -d' ' -f1)
+MQTTSUITE_SOURCE_HASH=$(sha256sum "$bundle/mqttsuite-"*.tar.gz | cut -d' ' -f1)
+export SNODEC_SOURCE_TAG MQTTSUITE_SOURCE_TAG SNODEC_SOURCE_HASH MQTTSUITE_SOURCE_HASH
 cp feeds.conf.default feeds.conf
 printf '\nsrc-link snodec %s\n' "$feed" >> feeds.conf
 ./scripts/feeds update base packages snodec
