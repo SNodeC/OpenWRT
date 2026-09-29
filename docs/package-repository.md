@@ -72,10 +72,8 @@ Select a distribution to see its releases, architectures and published versions:
 
 ## Reading the matrix
 
-- **SNode.C status / MQTTSuite status:** independent results for each project. Click a badge to open its build or publication job. **Pending** means waiting to build or publish; **running** means building; **publishing** means the publication job is active; **published** confirms the packages were pushed. **Failed**, **cancelled**, **skipped**, and **superseded** identify unfinished releases. Badges are snapshots refreshed by publication jobs, not live monitors. **Not built** means neither a project result nor a published version is recorded.
-- **SNode.C / MQTTSuite:** the packages currently offered by this channel, independently of the latest build result. A dash means no version is recorded; a row without repository links has not been published in this channel.
-- **Published:** the UTC publication date. Click it for the complete timestamp in the build record.
-- **Repository:** **Packages** opens the package directory; **Build** opens the record containing source tags, resolved commits and publication details. Signed indexes are available in the repository directories described by each installation guide.
+- **SNode.C / MQTTSuite:** the published version appears above each project's status badge. A dash means no version is recorded. Click a badge to open its build or publication job. **Pending** means waiting to build or publish; **running** means building; **publishing** means the publication job is active; **published** confirms the packages were pushed. **Failed**, **cancelled**, **skipped**, and **superseded** identify unfinished releases. Badges are snapshots refreshed by publication jobs, not live monitors. **Not built** means neither a project result nor a published version is recorded.
+- **Published:** the UTC publication date appears above the repository links. **Packages** opens the package directory; **Build** opens the record containing the complete timestamp, source tags, resolved commits and publication details. A row without repository links has not been published in this channel. Signed indexes are available in the repository directories described by each installation guide.
 
 A failed or unfinished rebuild retains the previous successful publication.
 Superseded package files remain available for 30 days after leaving the active
