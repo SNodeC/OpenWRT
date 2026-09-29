@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from repository import ROOT, matrix, linux_matrix, run, select, project_file, digest
+from repository import ROOT, matrix, linux_matrix, run, select, project_file, digest, REPOSITORIES
 
 
 def targets():
@@ -51,13 +51,9 @@ def render(root, state):
     badges = root / 'status'
     badges.mkdir(exist_ok=True)
     sections = {}
-    colors = {'queued': '#57606a', 'running': '#0969da', 'passed': '#1a7f37', 'failed': '#cf222e',
-              'cancelled': '#57606a', 'superseded': '#9a6700', 'publication failed': '#cf222e', 'not built': '#57606a'}
+    colors = {'pending': '#57606a', 'running': '#0969da', 'publishing': '#0969da', 'published': '#1a7f37',
+              'failed': '#cf222e', 'cancelled': '#57606a', 'skipped': '#57606a', 'superseded': '#9a6700', 'not built': '#57606a'}
     for row in targets():
-        item = state['targets'].get(row['id'], {})
-        status = item.get('status', 'not built')
-        width = len(status) * 7 + 16
-        (badges / f"{row['id']}.svg").write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{escape(status)}"><rect width="{width}" height="20" rx="3" fill="{colors[status]}"/><text x="{width / 2}" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
         info, feed = published(root, row)
         versions = info.get('versions', {})
         snodec = versions.get('snodec', versions.get('snode.c'))
@@ -65,24 +61,36 @@ def render(root, state):
         date = f"[{info['published_at'][:10]}]({feed}/build.json)" if info.get('published_at') else '—'
         packages = f"{row['distribution']}/pool/{row['suite']}" if row['distribution'] in {'debian', 'ubuntu', 'raspberrypios'} else f'{feed}/Packages' if row['distribution'] in {'rocky', 'fedora'} else feed
         links = f'[Packages]({packages}/) · [Build]({feed}/build.json)' if info else '—'
-        badge = f"![{status}](status/{row['id']}.svg)"
-        badge = f"[{badge}]({item['run_url']})" if item.get('run_url') else badge
-        sections.setdefault(row['distribution'], {}).setdefault(row['suite'], []).append(f"| `{row['arch']}` | {badge} | {version_cells} | {date} | {links} |")
+        badge_cells = []
+        for project, version in zip(REPOSITORIES, (snodec, versions.get('mqttsuite'))):
+            item = state['targets'].get(f"{row['id']}/{project}", {})
+            status = item.get('status', 'published' if version else 'not built')
+            width = len(status) * 7 + 16
+            filename = f"{row['id']}-{project}.svg"
+            (badges / filename).write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{escape(project)}: {escape(status)}"><rect width="{width}" height="20" rx="3" fill="{colors[status]}"/><text x="{width / 2}" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
+            badge = f"![{project}: {status}](status/{filename})"
+            url = item.get('job_url', item.get('run_url'))
+            badge_cells.append(f'[{badge}]({url})' if url else badge)
+        (badges / f"{row['id']}.svg").unlink(missing_ok=True)
+        sections.setdefault(row['distribution'], {}).setdefault(row['suite'], []).append(f"| `{row['arch']}` | {' | '.join(badge_cells)} | {version_cells} | {date} | {links} |")
     text = (ROOT / 'docs/package-repository.md').read_text()
     for distribution, suites in sections.items():
-        tables = [f'### {suite}\n\n| Architecture | Result | SNode.C | MQTTSuite | Published | Repository |\n| --- | --- | --- | --- | --- | --- |\n' + '\n'.join(lines) for suite, lines in suites.items()]
+        tables = [f'### {suite}\n\n| Architecture | SNode.C status | MQTTSuite status | SNode.C | MQTTSuite | Published | Repository |\n| --- | --- | --- | --- | --- | --- | --- |\n' + '\n'.join(lines) for suite, lines in suites.items()]
         text = text.replace(f'<!-- targets:{distribution} -->', '\n\n'.join(tables))
     (root / 'README.md').write_text(text)
     (root / 'STATUS.md').unlink(missing_ok=True)
 
 
-def update(state, row, generation, status, attempt):
-    previous = state['targets'].get(row['id'], {})
-    order = (int(generation['revision']), attempt)
-    if order < (int(previous.get('revision', 0)), previous.get('attempt', 0)):
+def update(state, row, generation, project, status, attempt, job_url=None):
+    key = f"{row['id']}/{project}"
+    previous = state['targets'].get(key, {})
+    revision = generation['revisions'][project]
+    if (int(revision), attempt) < (int(previous.get('revision', 0)), previous.get('attempt', 0)):
         return
-    state['targets'][row['id']] = dict(target=row, revision=generation['revision'], attempt=attempt,
-                                      run_id=generation['run_id'], run_url=generation['run_url'], status=status)
+    state['targets'][key] = dict(target=row, revision=revision, attempt=attempt,
+                                run_id=generation['run_id'], run_url=generation['run_url'], status=status,
+                                job_url=job_url or (previous.get('job_url') if previous.get('run_id') == generation['run_id']
+                                                   and previous.get('attempt') == attempt else None) or generation['run_url'])
 
 
 def record_run(bundle, state, context):
@@ -99,10 +107,12 @@ def record_run(bundle, state, context):
                           targets=rows, profiles_hash=digest(bundle / 'profiles.json'), run_id=run_id, run_url=context['run_url'])
         state['runs'][run_id] = generation
     for row in rows:
-        previous = state['targets'].get(row['id'], {})
-        attempt = int(os.environ.get('GITHUB_RUN_ATTEMPT', '1'))
-        if previous.get('run_id') != run_id or previous.get('attempt', 0) < attempt:
-            update(state, row, generation, 'queued', attempt)
+        state['targets'].pop(row['id'], None)  # Replace the old combined result with project results.
+        for project in revisions:
+            previous = state['targets'].get(f"{row['id']}/{project}", {})
+            attempt = int(os.environ.get('GITHUB_RUN_ATTEMPT', '1'))
+            if previous.get('run_id') != run_id or previous.get('attempt', 0) < attempt:
+                update(state, row, generation, project, 'pending', attempt)
     return generation
 
 
@@ -173,15 +183,32 @@ def reconcile(state, run_id, attempt):
     details = json.loads(run('gh', 'api', endpoint))
     if details['run_attempt'] != attempt:
         return
-    lines = run('gh', 'api', '--paginate', f'{endpoint}/attempts/{attempt}/jobs?per_page=100', '--jq', '.jobs[] | [.name, .status] | @json')
-    jobs = {name.rsplit(' / ', 1)[-1]: status for name, status in map(json.loads, lines.splitlines())}
+    lines = run('gh', 'api', '--paginate', f'{endpoint}/attempts/{attempt}/jobs?per_page=100', '--jq',
+                '.jobs[] | {name, status, conclusion, html_url} | @json')
+    jobs = {job['name'].rsplit(' / ', 1)[-1]: job for job in map(json.loads, lines.splitlines())}
     for row in generation['targets']:
-        latest = state['targets'].get(row['id'], {})
-        if latest.get('run_id') == run_id and latest['status'] in {'queued', 'running'}:
-            status = 'running' if any(jobs.get(f'Build and test {project} · {row["id"]}') in {'in_progress', 'completed'} for project in ('snode.c', 'mqttsuite')) else 'queued'
-            if details['status'] == 'completed':
+        for project in (repo for repo in REPOSITORIES if repo in generation['revisions']):
+            latest = state['targets'].get(f"{row['id']}/{project}", {})
+            if latest.get('run_id') != run_id:
+                continue
+            publication = jobs.get(f'Publish {project} · {row["id"]}')
+            job = publication or jobs.get(f'Build and test {project} · {row["id"]}', {})
+            if latest['status'] not in {'pending', 'running', 'publishing'}:
+                update(state, row, generation, project, latest['status'], attempt, job.get('html_url'))
+                continue
+            status = 'pending'
+            if job.get('status') == 'in_progress':
+                status = 'publishing' if publication else 'running'
+            elif job.get('status') == 'completed':
+                conclusion = job.get('conclusion')
+                status = ('published' if publication else 'pending') if conclusion == 'success' else (
+                    conclusion if conclusion in {'cancelled', 'skipped'} else 'failed')
+            elif (project == 'mqttsuite' and generation['context']['release_project'] == 'snode.c'
+                  and state['targets'].get(f"{row['id']}/snode.c", {}).get('status') in {'failed', 'skipped', 'superseded'}):
+                status = 'skipped'
+            if details['status'] == 'completed' and status in {'pending', 'running', 'publishing'}:
                 status = 'cancelled' if details['conclusion'] == 'cancelled' else 'failed'
-            update(state, row, generation, status, attempt)
+            update(state, row, generation, project, status, attempt, job.get('html_url'))
 
 
 def main():
@@ -206,10 +233,6 @@ def main():
     result = 0
     if command == 'finish':
         generation = record_run(bundle, state, context)
-        try:
-            reconcile(state, context['run_id'], int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
-        except Exception as error:
-            print(f'Status refresh unavailable; keeping recorded results: {error}', file=sys.stderr)
         row = json.loads(args[2])
         project = args[5]
         if row not in generation['targets']:
@@ -220,18 +243,22 @@ def main():
         if status == 'success':
             try:
                 publish(root, bundle, Path(args[4]).resolve(), row, generation, project)
-                status = 'running' if project == 'snode.c' else 'passed'
+                status = 'published'
             except Exception as error:
                 print(f'Publication rejected: {error}', file=sys.stderr)
                 # Restore the checkout before recording failure; a partial local
                 # assembly must never be pushed by the status update.
                 run('git', '-C', str(root), 'reset', '--hard', 'HEAD')
                 run('git', '-C', str(root), 'clean', '-fd')
-                status = 'superseded' if 'superseded' in str(error).lower() else 'publication failed'
+                status = 'superseded' if 'superseded' in str(error).lower() else 'failed'
                 result = 1
         else:
             status = 'cancelled' if status == 'cancelled' else 'failed'
-        update(state, row, generation, status, int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
+        update(state, row, generation, project, status, int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
+        try:
+            reconcile(state, context['run_id'], int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
+        except Exception as error:
+            print(f'Status refresh unavailable; keeping recorded results: {error}', file=sys.stderr)
     else:
         raise ValueError(f'Unknown publication operation: {command}')
     write(root / 'status.json', state)

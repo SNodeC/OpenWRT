@@ -72,7 +72,7 @@ Select a distribution to see its releases, architectures and published versions:
 
 ## Reading the matrix
 
-- **Result:** click a badge to open its run. **Running** includes a target awaiting publication after its build; **passed** confirms publication completed. Status is refreshed when feeds are published and when the run finishes. **Not built** means no build is recorded for that target in this channel.
+- **SNode.C status / MQTTSuite status:** independent results for each project. Click a badge to open its build or publication job. **Pending** means waiting to build or publish; **running** means building; **publishing** means the publication job is active; **published** confirms the packages were pushed. **Failed**, **cancelled**, **skipped**, and **superseded** identify unfinished releases. Badges are snapshots refreshed by publication jobs, not live monitors. **Not built** means neither a project result nor a published version is recorded.
 - **SNode.C / MQTTSuite:** the packages currently offered by this channel, independently of the latest build result. A dash means no version is recorded; a row without repository links has not been published in this channel.
 - **Published:** the UTC publication date. Click it for the complete timestamp in the build record.
 - **Repository:** **Packages** opens the package directory; **Build** opens the record containing source tags, resolved commits and publication details. Signed indexes are available in the repository directories described by each installation guide.

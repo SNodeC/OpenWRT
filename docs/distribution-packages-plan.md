@@ -52,6 +52,11 @@ because its signed release metadata covers all architectures. Retention validate
 and cleans that feed only, preserving other feeds' files and retirement records.
 The atomic snapshot push remains serialized and protected by a Git lease.
 
+Each target has separate SNode.C and MQTTSuite status badges linked to their
+respective jobs. One compact row retains both published versions and repository
+links, without forced line breaks in cells. Status snapshots distinguish waiting,
+building, publishing and published packages, and refresh during publication.
+
 Package revisions derive from the entry workflow's increasing run number `N`:
 SNode.C uses `2*N`, and MQTTSuite uses `2*N+1`. Retries keep the same revisions;
 new runs receive distinct revisions without a shared allocation job. Run history
