@@ -53,7 +53,8 @@ def linux_matrix():
 def sources(tags):
     result = {}
     for repo, tag in tags.items():
-        run('git', 'check-ref-format', f'refs/tags/{tag}')
+        if not re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', tag):
+            raise ValueError(f'{repo}: select vMAJOR.MINOR.PATCH tags; use an explicit tag pair to replace a legacy baseline')
         refs = run('git', 'ls-remote', f'https://github.com/SNodeC/{repo}.git',
                    f'refs/tags/{tag}', f'refs/tags/{tag}^{{}}').splitlines()
         if not refs:
@@ -81,9 +82,6 @@ def prepare(published_root, bundle):
                 [('snode.c', 'SNODEC_TAG'), ('mqttsuite', 'MQTTSUITE_TAG')]}
     if changed and changed not in REPOSITORIES:
         raise ValueError('Unknown release project')
-    requested = [tag] if changed else list(explicit.values())
-    if not all(re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', t) for t in requested):
-        raise ValueError('Select release tags in vMAJOR.MINOR.PATCH format')
     context = dict(recipe_ref=os.environ.get('RECIPE_REF', 'main'),
                    recipe_commit=run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
                    destination=os.environ.get('PACKAGE_BRANCH', 'packages'),
@@ -116,7 +114,7 @@ def prepare(published_root, bundle):
                     # Older published releases used a literal project VERSION.
                     version = version_file.read_text().strip() if version_file.exists() else re.search(
                         r'\bVERSION\s+([0-9]+\.[0-9]+\.[0-9]+)', (source / 'CMakeLists.txt').read_text())[1]
-                    if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version) or (source_tag.startswith('v') and source_tag != f'v{version}'):
+                    if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version) or source_tag != f'v{version}':
                         raise RuntimeError(f'{repo}: release tag and VERSION disagree')
                     name = f'{repo}-{version}'
                     archive = f'{name}-{commit}.tar.gz'

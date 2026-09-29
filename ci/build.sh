@@ -20,8 +20,8 @@ for package in snode.c mqttsuite; do
     cp "$bundle/$package-"*.tar.gz dl/
 done
 export SNODEC_PACKAGE_RELEASE="$PACKAGE_RELEASE" MQTTSUITE_PACKAGE_RELEASE="$PACKAGE_RELEASE"
-SNODEC_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); print(c.get("source_tags", {}).get("snode.c", c.get("source_tag", "OpenWRT")))' "$bundle/context.json")
-MQTTSUITE_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); print(c.get("source_tags", {}).get("mqttsuite", c.get("source_tag", "OpenWRT")))' "$bundle/context.json")
+SNODEC_SOURCE_TAG=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_tags"]["snode.c"])' "$bundle/context.json")
+MQTTSUITE_SOURCE_TAG=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_tags"]["mqttsuite"])' "$bundle/context.json")
 SNODEC_SOURCE_HASH=$(sha256sum "$bundle/snode.c-"*.tar.gz | cut -d' ' -f1)
 MQTTSUITE_SOURCE_HASH=$(sha256sum "$bundle/mqttsuite-"*.tar.gz | cut -d' ' -f1)
 SNODEC_PACKAGE_VERSION=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["versions"]["snode.c"])' "$bundle/context.json")

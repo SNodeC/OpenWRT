@@ -54,8 +54,9 @@ If SNode.C changed during the build, publication rejects that stale result.
 Rollout: land the build-system and notification changes in both upstream projects
 and the orchestration changes here before creating new release tags. Do not move
 existing versioned tags. No release tags are created by this implementation.
-A first explicit tag-pair build can replace the current legacy-tag baseline;
-automatic builds can also reuse it while those recorded tags remain unchanged.
+All selected source tags, including published counterparts, must use
+`vMAJOR.MINOR.PATCH`. An explicit tag-pair build replaces a legacy-tag baseline
+before automatic releases can reuse that counterpart.
 The full 76-target matrix and immediate per-target publication are retained.
 
 ## Production cutover — 29 September 2026

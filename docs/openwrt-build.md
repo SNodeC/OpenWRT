@@ -1,6 +1,6 @@
 # SNode.C and MQTTSuite for GL-MT3000
 
-These recipes default to the existing `OpenWRT` tag in both source repositories.
+These recipes default to SNode.C `v2.0.0` and MQTTSuite `v1.0.1`.
 For a release build, export `SNODEC_SOURCE_TAG=vX.Y.Z` and
 `MQTTSUITE_SOURCE_TAG=vA.B.C` before running the SDK commands; each recipe derives
 its package version from its selected release tag. CI selects and records these
