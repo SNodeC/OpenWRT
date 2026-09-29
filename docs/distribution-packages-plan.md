@@ -38,10 +38,19 @@ source selectors. A moved counterpart tag or a tag/VERSION disagreement fails
 preparation instead of silently changing the dependency.
 
 Linux and Raspberry Pi OS install the exact published SNode.C component packages,
-including development files, for MQTTSuite-only builds. OpenWrt uses its normal SDK
-recipe dependency build: SNode.C can compile and its upstream tests still run.
-Before indexing, the build restores the previously published SNode.C binaries.
-No dependency cache, source patches or custom development-package format is added.
+including development files, for MQTTSuite-only builds. OpenWrt publishes the SDK's
+installed headers, libraries and package dependency metadata as a checksummed
+`snode.c-sdk-<version>-r<revision>.tar.zst` beside the runtime packages. It contains
+no source tree, build tree or build stamps. MQTTSuite-only builds restore this
+development dependency into the identical SDK release and architecture, relocate
+SDK paths in installed CMake/pkg-config metadata, and skip the SNode.C compile
+target and its tests. Other build dependencies retain the normal SDK build rules.
+Full builds compile and test SNode.C first, then build MQTTSuite. No upstream
+source changes or patches are involved.
+
+An existing OpenWrt feed needs one full explicit-tag-pair build to publish its
+development dependency. Missing development files or an SDK mismatch fail with a
+request for that full build; an MQTTSuite-only run never silently rebuilds SNode.C.
 
 Reused packages retain their original bytes, versions and signatures. Only the
 newly built packages get the new package revision. Each target artifact still

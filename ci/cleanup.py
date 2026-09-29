@@ -20,6 +20,7 @@ def cleanup(root, now=None):
             manifests.append((directory / 'build.json', directory))
             candidates.update(directory.glob('*.ipk'))
             candidates.update(directory.glob('*.apk'))
+            candidates.update(directory.glob('snode.c-sdk-*.tar.zst'))
     for distribution in ['raspberrypios', 'debian', 'ubuntu']:
         base = root / distribution
         suites = {p.name for part in ['pool', 'dists'] for p in (base / part).glob('*') if p.is_dir()}

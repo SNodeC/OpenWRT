@@ -148,7 +148,7 @@ def select(bundle, target):
 
 def snodec_file(name):
     filename = Path(name).name
-    return filename.endswith(('.deb', '.rpm', '.ipk', '.apk')) and filename.startswith(('snodec_', 'snodec-', 'snode.c_', 'snode.c-'))
+    return filename.endswith(('.deb', '.rpm', '.ipk', '.apk', '.tar.zst')) and filename.startswith(('snodec_', 'snodec-', 'snode.c_', 'snode.c-'))
 
 
 def reuse(bundle, target, destination):
@@ -157,6 +157,8 @@ def reuse(bundle, target, destination):
         return
     row = next(r for r in json.loads((bundle / 'targets.json').read_text()) if r['id'] == target)
     info = profile['baseline']
+    if row['family'] == 'openwrt' and len([n for n in info['files'] if n.startswith('snode.c-sdk-') and n.endswith('.tar.zst')]) != 1:
+        raise RuntimeError(f'{target}: published SNode.C development files are missing; first run a full build with an explicit version-tag pair')
     destination.mkdir(parents=True, exist_ok=True)
     for name, checksum in info['files'].items():
         filename = Path(name).name
@@ -206,7 +208,10 @@ def stage(sdk, bundle, output):
     destination = output / 'openwrt' / info['series'] / info['arch']
     destination.mkdir(parents=True)
     indexes = ['Packages', 'Packages.gz', 'Packages.sig'] if extension == '.ipk' else ['packages.adb']
-    for path in packages + [feed / name for name in indexes]:
+    development = list(sdk.glob('snode.c-sdk-*.tar.zst'))
+    if len(development) != 1:
+        raise RuntimeError('Expected one SNode.C development archive')
+    for path in packages + [feed / name for name in indexes] + development:
         shutil.copy2(path, destination / path.name)
     files = {p.name: digest(p)
              for p in destination.iterdir()}
@@ -219,6 +224,42 @@ def stage(sdk, bundle, output):
     if baseline:
         info['versions']['snode.c'] = baseline['versions']['snode.c']
     (destination / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
+
+
+def sdk_dependency(sdk, bundle, dependencies):
+    """Export/reuse the SDK's installed development files, never build trees or stamps."""
+    info = json.loads((sdk / 'ci-sdk.json').read_text())
+    baseline = json.loads((bundle / 'baseline.json').read_text())
+    if baseline:
+        if any(baseline[key] != info[key] for key in ('release', 'target', 'arch', 'sha256')):
+            raise RuntimeError('Published SNode.C requires a different OpenWrt SDK; run a full version-tag pair build')
+        name, = (n for n in baseline['files'] if n.startswith('snode.c-sdk-') and n.endswith('.tar.zst'))
+        archive = dependencies / name
+        if digest(archive) != baseline['files'][name]:
+            raise RuntimeError('SNode.C development archive checksum mismatch')
+        with tempfile.TemporaryDirectory(dir=sdk) as tmp:
+            root = Path(tmp)
+            run('tar', '--zstd', '-xf', str(archive), '-C', tmp)
+            origin = json.loads((root / 'sdk-development.json').read_text())
+            if origin['sdk'] != info:
+                raise RuntimeError('SNode.C development archive SDK mismatch')
+            # CMake and pkg-config exports can contain SDK-absolute dependency paths.
+            # Relocate installed metadata only; sources and binary files stay untouched.
+            for path in (root / 'staging_dir').rglob('*'):
+                if path.is_file() and not path.is_symlink() and path.suffix in {'.cmake', '.pc', '.la'}:
+                    path.write_text(path.read_text().replace(origin['path'] + '/', str(sdk) + '/'))
+            run('cp', '-a', str(root / 'staging_dir') + '/.', str(sdk / 'staging_dir'))
+        shutil.copy2(archive, sdk / name)
+    else:
+        target, = sdk.glob('staging_dir/target-*')
+        context = json.loads((bundle / 'context.json').read_text())
+        archive = sdk / f'snode.c-sdk-{context["versions"]["snode.c"]}-r{os.environ["PACKAGE_RELEASE"]}.tar.zst'
+        with tempfile.TemporaryDirectory(dir=sdk) as tmp:
+            (Path(tmp) / 'sdk-development.json').write_text(json.dumps(dict(sdk=info, path=str(sdk))))
+            run('tar', '--zstd', '-cf', str(archive), '-C', tmp, 'sdk-development.json',
+                '-C', str(sdk), str(target.relative_to(sdk) / 'usr/include'),
+                str(target.relative_to(sdk) / 'usr/lib'),
+                *(str(p.relative_to(sdk)) for p in sorted((target / 'pkginfo').glob('*.provides'))))
 
 
 def publication_needed(previous, incoming):
@@ -269,5 +310,6 @@ if __name__ == '__main__':
     elif command == 'reuse':
         reuse(Path(args[0]).resolve(), args[1], Path(args[2]).resolve())
     else:
-        {'prepare': prepare, 'check': unchanged, 'stage': stage, 'publish': publish}[command](
+        {'prepare': prepare, 'check': unchanged, 'stage': stage, 'publish': publish,
+         'sdk-dependency': sdk_dependency}[command](
             *(Path(arg).resolve() for arg in args))

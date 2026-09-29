@@ -44,14 +44,18 @@ CONFIG_PACKAGE_snode.c-control=m
 CONFIG_PACKAGE_mqttsuite-full=m
 EOF
 make defconfig
-make -j"$(nproc)" package/mqttsuite/compile V=s BUILD_LOG=1
-python3 "$feed/tests/test_upstream.py" "$sdk"
+if [ "${RELEASE_PROJECT:-}" != mqttsuite ]; then
+    make -j"$(nproc)" package/snode.c/compile V=s BUILD_LOG=1
+    python3 "$feed/tests/test_upstream.py" "$sdk"
+fi
+python3 "$feed/ci/repository.py" sdk-dependency "$sdk" "$bundle" "$feed/../dependencies"
+# SNode.C is either built above or restored from its published development files.
+# Keep all other dependencies under the SDK's normal dependency graph.
+make -j"$(nproc)" MAKE="make -o package/feeds/snodec/snode.c/compile" package/mqttsuite/compile V=s BUILD_LOG=1
 arch=$(sed -n 's/^CONFIG_TARGET_ARCH_PACKAGES="\(.*\)"/\1/p' .config)
 repository="bin/packages/$arch/snodec"
 if [ "${RELEASE_PROJECT:-}" = mqttsuite ]; then
-    # The SDK builds dependencies normally; retain the already published SNode.C binaries.
-    find "$repository" -maxdepth 1 -type f \( -name 'snode.c*.ipk' -o -name 'snode.c*.apk' \) -delete
-    cp "$feed/../dependencies/"* "$repository/"
+    find "$feed/../dependencies" -maxdepth 1 -type f \( -name '*.ipk' -o -name '*.apk' \) -exec cp -t "$repository" {} +
 fi
 make package/index V=s
 if [ -f "$repository/packages.adb" ]; then
