@@ -16,6 +16,7 @@ jobs:
       contents: read
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
+      revisions: ${{ steps.matrix.outputs.revisions }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -39,6 +40,7 @@ jobs:
         run: |
           export RELEASE_TAG="${RELEASE_TAG#refs/tags/}"
           python3 feed/ci/repository.py prepare published bundle
+          echo "revisions=$(jq -c . bundle/revisions.json)" >> "$GITHUB_OUTPUT"
           python3 feed/ci/publication.py matrix > matrix.json
           echo "value=$(jq -c . matrix.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
@@ -47,21 +49,15 @@ jobs:
           path: bundle/
           if-no-files-found: error
           overwrite: true
-  allocate:
-    needs: prepare
-    uses: ./.github/workflows/package-write.yml
-    with:
-      operation: allocate
-    secrets: inherit
   target:
     name: ${{ matrix.distribution }} · ${{ matrix.suite }} · ${{ matrix.arch }}
-    needs: [prepare, allocate]
+    needs: prepare
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     uses: ./.github/workflows/package-target.yml
     with:
       target: ${{ toJSON(matrix) }}
-      revisions: ${{ needs.allocate.outputs.revisions }}
+      revisions: ${{ needs.prepare.outputs.revisions }}
       release_project: ${{ inputs.release_project }}
     secrets: inherit

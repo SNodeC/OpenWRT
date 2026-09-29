@@ -2,9 +2,6 @@ name: Serialized package snapshot writer
 on:
   workflow_call:
     inputs:
-      operation:
-        required: true
-        type: string
       target:
         default: '{}'
         type: string
@@ -12,23 +9,19 @@ on:
         type: string
       project:
         type: string
-    outputs:
-      revisions:
-        value: ${{ jobs.write.outputs.revisions }}
 permissions:
   contents: write
   actions: read
 jobs:
   write:
-    name: ${{ inputs.operation == 'finish' && format('Publish {0} · {1}', inputs.project, fromJSON(inputs.target).id) || format('{0} packages', inputs.operation) }}
+    name: Publish ${{ inputs.project }} · ${{ fromJSON(inputs.target).id }}
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     concurrency:
       group: package-publication
       cancel-in-progress: false
       queue: max
-    outputs:
-      revisions: ${{ steps.write.outputs.revisions }}
     steps:
       - uses: actions/download-artifact@v8
         id: bundle
@@ -36,7 +29,7 @@ jobs:
           name: source-pair
           path: bundle
       - uses: actions/download-artifact@v8
-        if: inputs.operation == 'finish' && inputs.result == 'success'
+        if: inputs.result == 'success'
         with:
           name: packages-${{ inputs.project }}-${{ fromJSON(inputs.target).id }}
           path: incoming
@@ -47,17 +40,16 @@ jobs:
       - name: Update the package snapshot
         id: write
         env:
-          OPERATION: ${{ inputs.operation }}
           TARGET: ${{ inputs.target }}
           RESULT: ${{ inputs.result }}
           BUILD_PROJECT: ${{ inputs.project }}
           GH_TOKEN: ${{ github.token }}
-          APT_SIGNING_KEY: ${{ inputs.operation == 'finish' && inputs.result == 'success' && secrets.APT_SIGNING_KEY || '' }}
+          APT_SIGNING_KEY: ${{ inputs.result == 'success' && secrets.APT_SIGNING_KEY || '' }}
         run: |
           set -euo pipefail
           mkdir feed
           tar -xzf bundle/feed.tar.gz -C feed
-          if [ "$OPERATION" = finish ] && [ "$RESULT" = success ]; then
+          if [ "$RESULT" = success ]; then
             sudo apt-get update
             sudo apt-get install -y apt-utils gnupg rpm createrepo-c
           fi
@@ -71,6 +63,6 @@ jobs:
             git -C published rm -rf .
           fi
           result=0
-          python3 feed/ci/publication.py "$OPERATION" published bundle "$TARGET" "$RESULT" incoming "$BUILD_PROJECT" || result=$?
-          bash feed/ci/push-packages.sh published "$previous" "Update packages: $OPERATION"
+          python3 feed/ci/publication.py finish published bundle "$TARGET" "$RESULT" incoming "$BUILD_PROJECT" || result=$?
+          bash feed/ci/push-packages.sh published "$previous" "Update packages: $BUILD_PROJECT"
           exit "$result"

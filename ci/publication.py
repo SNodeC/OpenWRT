@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from repository import ROOT, matrix, linux_matrix, unchanged, run, select, project_file, digest
+from repository import ROOT, matrix, linux_matrix, run, select, project_file, digest
 
 
 def targets():
@@ -82,21 +82,16 @@ def update(state, row, generation, status, attempt):
                                       run_id=generation['run_id'], run_url=generation['run_url'], status=status)
 
 
-def allocate(root, bundle, state, context):
-    unchanged(bundle)
+def record_run(bundle, state, context):
     run_id = context['run_id']
     rows = read(bundle / 'targets.json')
+    revisions = read(bundle / 'revisions.json')
     generation = state['runs'].get(run_id)
     if generation:
-        if (generation['context'] != context or generation['sources'] != read(bundle / 'sources.json')
+        if (generation['revisions'] != revisions or generation['context'] != context or generation['sources'] != read(bundle / 'sources.json')
                 or generation['targets'] != rows or generation['profiles_hash'] != digest(bundle / 'profiles.json')):
             raise RuntimeError('A retry cannot change its captured sources or matrix')
     else:
-        maximum = max([int(g['revision']) for g in state['runs'].values()] + [0])
-        for manifest in root.rglob('build.json'):
-            maximum = max(maximum, int(read(manifest)['revision']))
-        projects = ['snode.c', 'mqttsuite'] if context['release_project'] == 'snode.c' else ['mqttsuite']
-        revisions = {project: str(maximum + index + 1) for index, project in enumerate(projects)}
         generation = dict(revision=revisions['mqttsuite'], revisions=revisions, context=context, sources=read(bundle / 'sources.json'),
                           targets=rows, profiles_hash=digest(bundle / 'profiles.json'), run_id=run_id, run_url=context['run_url'])
         state['runs'][run_id] = generation
@@ -105,7 +100,7 @@ def allocate(root, bundle, state, context):
         attempt = int(os.environ.get('GITHUB_RUN_ATTEMPT', '1'))
         if previous.get('run_id') != run_id or previous.get('attempt', 0) < attempt:
             update(state, row, generation, 'queued', attempt)
-    return generation['revisions']
+    return generation
 
 
 def publish(root, bundle, incoming, row, generation, project):
@@ -199,18 +194,14 @@ def main():
     if context['destination'] != state['branch']:
         raise RuntimeError('Publication destination mismatch')
     result = 0
-    if command == 'allocate':
-        revisions = allocate(root, bundle, state, context)
-        with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-            output.write('revisions=' + json.dumps(revisions) + '\n')
-    elif command == 'finish':
+    if command == 'finish':
+        generation = record_run(bundle, state, context)
         try:
             reconcile(state, context['run_id'], int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
         except Exception as error:
             print(f'Status refresh unavailable; keeping recorded results: {error}', file=sys.stderr)
         row = json.loads(args[2])
         project = args[5]
-        generation = state['runs'][context['run_id']]
         if row not in generation['targets']:
             raise RuntimeError('Unknown publication target')
         status = args[3]

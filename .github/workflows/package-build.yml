@@ -84,7 +84,7 @@ jobs:
           if-no-files-found: error
           overwrite: true
       - uses: actions/upload-artifact@v7
-        if: always()
+        if: ${{ !cancelled() }}
         with:
           name: logs-${{ inputs.project }}-${{ fromJSON(inputs.target).id }}
           include-hidden-files: true
@@ -96,11 +96,10 @@ jobs:
             sdk/ci-sdk.json
   finish:
     name: Publish ${{ inputs.project }} · ${{ fromJSON(inputs.target).id }}
-    if: always()
+    if: ${{ !cancelled() }}
     needs: build
     uses: ./.github/workflows/package-write.yml
     with:
-      operation: finish
       project: ${{ inputs.project }}
       target: ${{ inputs.target }}
       result: ${{ needs.build.result }}

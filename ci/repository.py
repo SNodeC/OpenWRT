@@ -83,6 +83,9 @@ def prepare(published_root, bundle):
     tag = os.environ.get('RELEASE_TAG', '')
     if changed not in REPOSITORIES:
         raise ValueError('Unknown release project')
+    # The entry workflow's increasing run number replaces shared revision allocation.
+    revisions = {repo: str(2 * int(os.environ['GITHUB_RUN_NUMBER']) + index)
+                 for index, repo in enumerate(REPOSITORIES) if changed == 'snode.c' or repo == changed}
     context = dict(recipe_ref=os.environ.get('RECIPE_REF', 'main'),
                    recipe_commit=run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
                    destination=os.environ.get('PACKAGE_BRANCH', 'packages'),
@@ -135,7 +138,8 @@ def prepare(published_root, bundle):
             profile['archives'][repo] = archive
             observed.setdefault(repo, {}).update(refs)
         profiles[row['id']] = profile
-    for name, data in [('profiles', profiles), ('sources', observed), ('context', context), ('targets', targets())]:
+    for name, data in [('profiles', profiles), ('sources', observed), ('context', context),
+                       ('targets', targets()), ('revisions', revisions)]:
         (bundle / f'{name}.json').write_text(json.dumps(data, indent=2) + '\n')
     run('tar', '-czf', str(bundle / 'feed.tar.gz'), '--exclude=.git', '--exclude=__pycache__', '-C', str(ROOT), '.')
     unchanged(bundle)

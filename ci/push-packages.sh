@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Both publishers and maintenance hold the package-publication job lock.
+# Publication writers hold the package-publication job lock.
 set -euo pipefail
 cd "$1"
 previous=$2

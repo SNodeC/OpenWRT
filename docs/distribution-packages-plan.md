@@ -40,9 +40,14 @@ Each distribution/version/architecture has its own independent chain:
 No target waits for another architecture. If the MQTTSuite build fails, the already
 published SNode.C remains available. If SNode.C publication fails, that target's
 MQTTSuite build does not start. Package-branch writes are serialized to prevent
-conflicting pushes; builds have no whole-matrix publication barrier.
+conflicting pushes; builds have no whole-matrix publication barrier. New runs
+start building after source preparation without entering the publication queue.
+Cancellation stops pending publication and log-upload work as well as builds.
 
-Each project publication receives its own increasing package revision. Existing
+Package revisions derive from the entry workflow's increasing run number `N`:
+SNode.C uses `2*N`, and MQTTSuite uses `2*N+1`. Retries keep the same revisions;
+new runs receive distinct revisions without a shared allocation job. Run history
+is recorded on the first target result, rather than before compilation. Existing
 counterpart packages retain their exact bytes, version and source provenance until
 that project's own build succeeds. The publisher rejects stale dependencies and
 verifies each artifact against the captured source selection. Recorded commit IDs
