@@ -50,11 +50,6 @@ def linux_matrix():
             for row in json.loads((ROOT / 'ci/linux.json').read_text()) for arch in row['architectures']]
 
 
-def source_tags():
-    return {repo: os.environ.get(variable, os.environ.get('SOURCE_TAG', 'OpenWRT'))
-            for repo, variable in [('snode.c', 'SNODEC_TAG'), ('mqttsuite', 'MQTTSUITE_TAG')]}
-
-
 def sources(tags):
     result = {}
     for repo, tag in tags.items():
@@ -68,43 +63,114 @@ def sources(tags):
 
 
 def unchanged(bundle):
-    context = json.loads((bundle / 'context.json').read_text())
-    tags = context.get('source_tags') or {repo: context['source_tag'] for repo in REPOSITORIES}
-    if sources(tags) != json.loads((bundle / 'sources.json').read_text()):
-        raise RuntimeError('Source tags changed: refusing superseded build')
+    for repo, expected in json.loads((bundle / 'sources.json').read_text()).items():
+        observed = dict(line.split()[::-1] for line in run(
+            'git', 'ls-remote', f'https://github.com/SNodeC/{repo}.git', *expected).splitlines())
+        if observed != expected:
+            raise RuntimeError('Source tags changed: refusing superseded build')
 
 
-def prepare(source_dir, bundle):
+def prepare(published_root, bundle):
+    from publication import targets, published
     bundle.mkdir(parents=True)
-    tags = source_tags()
-    observed = sources(tags)
-    versions = {}
-    for repo in REPOSITORIES:
-        tag = tags[repo]
-        ref = observed[repo].get(f'refs/tags/{tag}^{{}}', observed[repo][f'refs/tags/{tag}'])
-        if run('git', '-C', str(source_dir / repo), 'rev-parse', 'HEAD') != ref:
-            raise RuntimeError(f'{repo}: checkout no longer matches {tag}')
-        recipe = (ROOT / 'net' / repo / 'Makefile').read_text()
-        version = re.search(r'^PKG_VERSION:=(.+)$', recipe, re.M)[1]
-        project = (source_dir / repo / 'CMakeLists.txt').read_text()
-        project_version = re.search(r'\bVERSION\s+([0-9]+\.[0-9]+\.[0-9]+)', project)
-        if not project_version or project_version[1] != version:
-            raise RuntimeError(f'{repo}: source version does not match recipe version {version}')
-        versions[repo] = version
-        name = f'{repo}-{version}'
-        run('tar', '-czf', str(bundle / f'{name}.tar.gz'), '--exclude=.git',
-            f'--transform=s,^,{name}/,', '-C', str(source_dir / repo), '.')
-    (bundle / 'sources.json').write_text(json.dumps(observed, indent=2) + '\n')
-    (bundle / 'context.json').write_text(json.dumps({
-        'source_tags': tags, 'versions': versions,
-        'recipe_ref': os.environ.get('RECIPE_REF', 'main'),
-        'recipe_commit': run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
-        'destination': os.environ.get('PACKAGE_BRANCH', 'packages'),
-        'run_id': os.environ.get('GITHUB_RUN_ID', 'local'),
-        'run_url': f'https://github.com/{os.environ.get("GITHUB_REPOSITORY", "SNodeC/OpenWRT")}/actions/runs/{os.environ.get("GITHUB_RUN_ID", "local")}'
-    }))
+    archives = bundle / 'archives'
+    archives.mkdir()
+    changed = os.environ.get('RELEASE_PROJECT', '')
+    tag = os.environ.get('RELEASE_TAG', '')
+    explicit = {repo: os.environ.get(variable, '') for repo, variable in
+                [('snode.c', 'SNODEC_TAG'), ('mqttsuite', 'MQTTSUITE_TAG')]}
+    if changed and changed not in REPOSITORIES:
+        raise ValueError('Unknown release project')
+    requested = [tag] if changed else list(explicit.values())
+    if not all(re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', t) for t in requested):
+        raise ValueError('Select release tags in vMAJOR.MINOR.PATCH format')
+    context = dict(recipe_ref=os.environ.get('RECIPE_REF', 'main'),
+                   recipe_commit=run('git', '-C', str(ROOT), 'rev-parse', 'HEAD'),
+                   destination=os.environ.get('PACKAGE_BRANCH', 'packages'),
+                   release_project=changed, run_id=os.environ.get('GITHUB_RUN_ID', 'local'),
+                   run_url=f'https://github.com/{os.environ.get("GITHUB_REPOSITORY", "SNodeC/OpenWRT")}/actions/runs/{os.environ.get("GITHUB_RUN_ID", "local")}')
+    profiles, captured, observed = {}, {}, {repo: {} for repo in REPOSITORIES}
+    for row in targets():
+        baseline, directory = published(published_root, row)
+        tags = dict(baseline.get('context', {}).get('source_tags', {})) if changed else dict(explicit)
+        if changed:
+            tags[changed] = tag
+        if set(tags) != set(REPOSITORIES):
+            raise RuntimeError(f'{row["id"]}: no published counterpart; first build an explicit tag pair')
+        profile = dict(context=context | dict(source_tags=tags, versions={}), sources={}, archives={})
+        if changed == 'mqttsuite':
+            profile['baseline'] = baseline
+            profile['directory'] = directory
+        for repo, source_tag in tags.items():
+            key = (repo, source_tag)
+            if key not in captured:
+                refs = sources({repo: source_tag})[repo]
+                commit = refs.get(f'refs/tags/{source_tag}^{{}}', refs[f'refs/tags/{source_tag}'])
+                with tempfile.TemporaryDirectory() as tmp:
+                    source = Path(tmp) / repo
+                    run('git', 'clone', '--depth', '1', '--branch', source_tag, '--recurse-submodules',
+                        f'https://github.com/SNodeC/{repo}.git', str(source))
+                    if run('git', '-C', str(source), 'rev-parse', 'HEAD') != commit:
+                        raise RuntimeError('Source tag changed during capture')
+                    version_file = source / 'VERSION'
+                    # Older published releases used a literal project VERSION.
+                    version = version_file.read_text().strip() if version_file.exists() else re.search(
+                        r'\bVERSION\s+([0-9]+\.[0-9]+\.[0-9]+)', (source / 'CMakeLists.txt').read_text())[1]
+                    if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version) or (source_tag.startswith('v') and source_tag != f'v{version}'):
+                        raise RuntimeError(f'{repo}: release tag and VERSION disagree')
+                    name = f'{repo}-{version}'
+                    archive = f'{name}-{commit}.tar.gz'
+                    run('tar', '-czf', str(archives / archive), '--exclude=.git',
+                        f'--transform=s,^,{name}/,', '-C', str(source), '.')
+                captured[key] = (version, refs, archive)
+            version, refs, archive = captured[key]
+            if changed and repo != changed and refs != baseline['sources'][repo]:
+                raise RuntimeError(f'{row["id"]}: published counterpart tag moved')
+            profile['context']['versions'][repo] = version
+            profile['sources'][repo] = refs
+            profile['archives'][repo] = archive
+            observed[repo].update(refs)
+        profiles[row['id']] = profile
+    for name, data in [('profiles', profiles), ('sources', observed), ('context', context), ('targets', targets())]:
+        (bundle / f'{name}.json').write_text(json.dumps(data, indent=2) + '\n')
     run('tar', '-czf', str(bundle / 'feed.tar.gz'), '--exclude=.git', '--exclude=__pycache__', '-C', str(ROOT), '.')
     unchanged(bundle)
+
+
+def select(bundle, target):
+    profile = json.loads((bundle / 'profiles.json').read_text())[target]
+    for key in ['context', 'sources']:
+        (bundle / f'{key}.json').write_text(json.dumps(profile[key], indent=2) + '\n')
+    (bundle / 'baseline.json').write_text(json.dumps(profile.get('baseline', {})))
+    for repo, archive in profile['archives'].items():
+        destination = bundle / f'{repo}-{profile["context"]["versions"][repo]}.tar.gz'
+        shutil.copy2(bundle / 'archives' / archive, destination)
+    return profile
+
+
+def snodec_file(name):
+    filename = Path(name).name
+    return filename.endswith(('.deb', '.rpm', '.ipk', '.apk')) and filename.startswith(('snodec_', 'snodec-', 'snode.c_', 'snode.c-'))
+
+
+def reuse(bundle, target, destination):
+    profile = json.loads((bundle / 'profiles.json').read_text())[target]
+    if 'baseline' not in profile:
+        return
+    row = next(r for r in json.loads((bundle / 'targets.json').read_text()) if r['id'] == target)
+    info = profile['baseline']
+    destination.mkdir(parents=True, exist_ok=True)
+    for name, checksum in info['files'].items():
+        filename = Path(name).name
+        if not snodec_file(filename):
+            continue
+        directory = f'{row["distribution"]}/pool/{row["suite"]}' if filename.endswith('.deb') else profile['directory']
+        path = destination / filename
+        urllib.request.urlretrieve(f'https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/{directory}/{name}', path)
+        if digest(path) != checksum:
+            raise RuntimeError(f'Published dependency checksum mismatch: {name}')
+    if row['family'] != 'openwrt':
+        (destination / 'snodec.packages').write_text('\n'.join(n for n in info['packages'] if n == 'snodec' or n.startswith('snodec-')) + '\n')
 
 
 def fetch(url):
@@ -151,6 +217,9 @@ def stage(sdk, bundle, output):
                 context=json.loads((bundle / 'context.json').read_text()))
     info['versions'] = {repo: f"{version}-r{info['revision']}"
                         for repo, version in info['context']['versions'].items()}
+    baseline = json.loads((bundle / 'baseline.json').read_text())
+    if baseline:
+        info['versions']['snode.c'] = baseline['versions']['snode.c']
     (destination / 'build.json').write_text(json.dumps(info, indent=2) + '\n')
 
 
@@ -197,6 +266,10 @@ if __name__ == '__main__':
         print(json.dumps({'include': linux_matrix()}))
     elif command == 'sdk':
         download_sdk(json.loads(args[0]), Path(args[1]).resolve())
+    elif command == 'select':
+        select(Path(args[0]).resolve(), args[1])
+    elif command == 'reuse':
+        reuse(Path(args[0]).resolve(), args[1], Path(args[2]).resolve())
     else:
         {'prepare': prepare, 'check': unchanged, 'stage': stage, 'publish': publish}[command](
             *(Path(arg).resolve() for arg in args))

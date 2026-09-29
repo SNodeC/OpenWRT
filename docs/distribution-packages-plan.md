@@ -3,6 +3,61 @@
 Recorded on 28 September 2026. This document tracks the agreed design and
 implementation status. Installation instructions live in the distribution guides.
 
+## Release-tag implementation — 29 September 2026
+
+Release builds use independent, immutable `vMAJOR.MINOR.PATCH` tags. Creating a
+matching tag in either upstream repository replaces the former OpenWRT,
+RaspberryPiOS and Linux notifications. Moving or deleting a tag does not request
+a new release. Prerelease suffixes are not accepted by this production workflow.
+
+Before tagging, commit the intended version to the upstream `VERSION` file.
+CMake uses the reachable release tag with the fewest intervening commits,
+breaking ties by highest semantic version. Uncommitted changes are allowed.
+Release CI verifies that the selected tag matches the committed VERSION file.
+Archives and clones without a reachable release tag use VERSION; no generated file needs to be inserted into GitHub's automatic archives.
+Development checkouts keep the selected tag's numeric version and SONAME,
+without an inferred Git-distance suffix. ABI-breaking development must account
+for that retained ABI version. Reconfigure after changing tags. Existing submodule
+requirements still apply when building a source archive.
+
+Library VERSION follows each project's release. Its own libraries retain the
+existing major-number SOVERSION policy: incompatible ABI changes require a major
+version increment. MQTTSuite's SNode.C WebSocket plugins retain SNode.C's ABI major,
+not MQTTSuite's major.
+
+| Trigger | Source selection | Build and publication |
+| --- | --- | --- |
+| New SNode.C tag | New SNode.C plus each target's published MQTTSuite tag | Build both; publish both after that target succeeds |
+| New MQTTSuite tag | New MQTTSuite plus each target's published SNode.C tag | Reuse SNode.C packages; build and publish new MQTTSuite packages |
+| Manual workflow | Two explicitly supplied release tags | Build and publish both; also bootstraps a new target |
+
+The source pair is captured per target, because independent publication can leave
+targets on different releases. Archives are captured once per distinct project/tag
+pair. Recorded commit IDs verify the selected tags; they do not replace tags as
+source selectors. A moved counterpart tag or a tag/VERSION disagreement fails
+preparation instead of silently changing the dependency.
+
+Linux and Raspberry Pi OS install the exact published SNode.C component packages,
+including development files, for MQTTSuite-only builds. OpenWrt uses its normal SDK
+recipe dependency build: SNode.C can compile and its upstream tests still run.
+Before indexing, the build restores the previously published SNode.C binaries.
+No dependency cache, source patches or custom development-package format is added.
+
+Reused packages retain their original bytes, versions and signatures. Only the
+newly built packages get the new package revision. Each target artifact still
+contains a complete feed inventory so the existing native index generators and
+retention logic remain the sole publication authorities. Before publishing an
+MQTTSuite-only result, the writer verifies that the published SNode.C inventory
+still matches the captured dependency and that the artifact preserved it exactly.
+If SNode.C changed during the build, publication rejects that stale result.
+
+Rollout: land the build-system and notification changes in both upstream projects
+and the orchestration changes here before creating new release tags. Do not move
+existing versioned tags. No release tags are created by this implementation.
+A first explicit tag-pair build can replace the current legacy-tag baseline;
+automatic builds can also reuse it while those recorded tags remain unchanged.
+The full 76-target matrix and immediate per-target publication are retained.
+
 ## Production cutover — 29 September 2026
 
 The full 76-target validation run [36406257089](https://github.com/SNodeC/OpenWRT/actions/runs/36406257089)

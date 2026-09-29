@@ -3,10 +3,14 @@ on:
   workflow_call:
     inputs:
       snodec_tag:
-        required: true
+        required: false
         type: string
       mqttsuite_tag:
-        required: true
+        required: false
+        type: string
+      release_project:
+        type: string
+      release_tag:
         type: string
 permissions:
   contents: write
@@ -26,29 +30,24 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v6
         with:
-          repository: SNodeC/snode.c
-          ref: refs/tags/${{ inputs.snodec_tag }}
-          submodules: recursive
-          path: sources/snode.c
-          persist-credentials: false
-      - uses: actions/checkout@v6
-        with:
-          repository: SNodeC/mqttsuite
-          ref: refs/tags/${{ inputs.mqttsuite_tag }}
-          submodules: recursive
-          path: sources/mqttsuite
+          ref: packages
+          path: published
+          sparse-checkout: '**/build.json'
+          sparse-checkout-cone-mode: false
           persist-credentials: false
       - name: Capture the source pair and full matrix
         id: matrix
         env:
           SNODEC_TAG: ${{ inputs.snodec_tag }}
           MQTTSUITE_TAG: ${{ inputs.mqttsuite_tag }}
+          RELEASE_PROJECT: ${{ inputs.release_project }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
           PACKAGE_BRANCH: packages
           RECIPE_REF: main
         run: |
-          python3 feed/ci/repository.py prepare sources bundle
+          export RELEASE_TAG="${RELEASE_TAG#refs/tags/}"
+          python3 feed/ci/repository.py prepare published bundle
           python3 feed/ci/publication.py matrix > matrix.json
-          jq '.include' matrix.json > bundle/targets.json
           echo "value=$(jq -c . matrix.json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v7
         with:

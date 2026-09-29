@@ -1,17 +1,15 @@
 name: Distribution packages
 on:
   repository_dispatch:
-    types: [OpenWRT-tag-changed, RaspberryPiOS-tag-changed, Linux-tag-changed]
+    types: [release-tag-created]
   workflow_dispatch:
     inputs:
       snodec_tag:
         description: Existing SNode.C source tag
-        default: OpenWRT
         required: true
         type: string
       mqttsuite_tag:
         description: Existing MQTTSuite source tag
-        default: OpenWRT
         required: true
         type: string
 permissions:
@@ -21,15 +19,16 @@ jobs:
   packages:
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      (((github.event.action == 'OpenWRT-tag-changed' && github.event.client_payload.ref == 'refs/tags/OpenWRT') ||
-        (github.event.action == 'RaspberryPiOS-tag-changed' && github.event.client_payload.ref == 'refs/tags/RaspberryPiOS') ||
-        (github.event.action == 'Linux-tag-changed' && github.event.client_payload.ref == 'refs/tags/Linux')) &&
-       github.event.client_payload.before != github.event.client_payload.after &&
+      (github.event.action == 'release-tag-created' &&
+       startsWith(github.event.client_payload.ref, 'refs/tags/v') &&
+       github.event.client_payload.before == '0000000000000000000000000000000000000000' &&
        github.event.client_payload.deleted == false &&
        (github.event.client_payload.repository == 'SNodeC/snode.c' ||
         github.event.client_payload.repository == 'SNodeC/mqttsuite'))
     uses: ./.github/workflows/packages.yml
     with:
-      snodec_tag: ${{ inputs.snodec_tag || (github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT') }}
-      mqttsuite_tag: ${{ inputs.mqttsuite_tag || (github.event.client_payload.ref == 'refs/tags/Linux' && 'Linux' || github.event.client_payload.ref == 'refs/tags/RaspberryPiOS' && 'RaspberryPiOS' || 'OpenWRT') }}
+      snodec_tag: ${{ inputs.snodec_tag }}
+      mqttsuite_tag: ${{ inputs.mqttsuite_tag }}
+      release_project: ${{ github.event_name == 'repository_dispatch' && (github.event.client_payload.repository == 'SNodeC/snode.c' && 'snode.c' || 'mqttsuite') || '' }}
+      release_tag: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.ref || '' }}
     secrets: inherit

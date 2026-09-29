@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=snode.c
-PKG_VERSION:=2.0.0
+PKG_VERSION:=$(or $(SNODEC_PACKAGE_VERSION),$(patsubst v%,%,$(filter v%,$(SNODEC_SOURCE_TAG))),2.0.0)
 PKG_RELEASE:=$(or $(SNODEC_PACKAGE_RELEASE),1)
 PKG_MIRROR_HASH:=$(or $(SNODEC_SOURCE_HASH),skip)
 

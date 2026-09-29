@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from repository import ROOT, matrix, linux_matrix, unchanged, run
+from repository import ROOT, matrix, linux_matrix, unchanged, run, select, snodec_file, digest
 
 
 def targets():
@@ -88,14 +88,15 @@ def allocate(root, bundle, state, context):
     rows = read(bundle / 'targets.json')
     generation = state['runs'].get(run_id)
     if generation:
-        if generation['context'] != context or generation['sources'] != read(bundle / 'sources.json') or generation['targets'] != rows:
+        if (generation['context'] != context or generation['sources'] != read(bundle / 'sources.json')
+                or generation['targets'] != rows or generation['profiles_hash'] != digest(bundle / 'profiles.json')):
             raise RuntimeError('A retry cannot change its captured sources or matrix')
     else:
         maximum = max([int(g['revision']) for g in state['runs'].values()] + [0])
         for manifest in root.rglob('build.json'):
             maximum = max(maximum, int(read(manifest)['revision']))
         generation = dict(revision=str(maximum + 1), context=context, sources=read(bundle / 'sources.json'),
-                          targets=rows, run_id=run_id, run_url=context['run_url'])
+                          targets=rows, profiles_hash=digest(bundle / 'profiles.json'), run_id=run_id, run_url=context['run_url'])
         state['runs'][run_id] = generation
     for row in rows:
         previous = state['targets'].get(row['id'], {})
@@ -106,12 +107,26 @@ def allocate(root, bundle, state, context):
 
 
 def publish(root, bundle, incoming, row, generation):
+    profile = read(bundle / 'profiles.json')[row['id']]
+    if digest(bundle / 'profiles.json') != generation['profiles_hash']:
+        raise RuntimeError('Target source selection changed')
+    if 'baseline' in profile:
+        current, _ = published(root, row)
+        old = profile['baseline']
+        dependency_files = lambda info: {k: v for k, v in info.get('files', {}).items()
+                                         if snodec_file(k)}
+        if (current.get('sources', {}).get('snode.c') != old['sources']['snode.c']
+                or dependency_files(current) != dependency_files(old)):
+            raise RuntimeError('Superseded build: published SNode.C dependency changed')
+    select(bundle, row['id'])
     manifests = list(incoming.rglob('build.json'))
     if len(manifests) != 1:
         raise RuntimeError('A publisher must receive exactly one target artifact')
     metadata = read(manifests[0])
-    if (metadata['revision'] != generation['revision'] or metadata['sources'] != generation['sources']
-            or metadata['context'] != generation['context']):
+    if 'baseline' in profile and dependency_files(metadata) != dependency_files(profile['baseline']):
+        raise RuntimeError('Artifact changed the published SNode.C packages')
+    if (metadata['revision'] != generation['revision'] or metadata['sources'] != profile['sources']
+            or metadata['context'] != profile['context']):
         raise RuntimeError('Artifact does not belong to this build generation')
     if row['family'] == 'openwrt':
         expected = incoming / 'openwrt' / row['suite'] / row['arch'] / 'build.json'

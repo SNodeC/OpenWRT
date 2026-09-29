@@ -20,6 +20,7 @@ jobs:
       contents: read
     env:
       PACKAGE_RELEASE: ${{ inputs.revision }}
+      TARGET_ID: ${{ fromJSON(inputs.target).id }}
     steps:
       - uses: actions/download-artifact@v8
         with:
@@ -29,6 +30,9 @@ jobs:
         run: |
           mkdir feed
           tar -xzf bundle/feed.tar.gz -C feed
+          python3 feed/ci/repository.py select bundle "$TARGET_ID"
+          python3 feed/ci/repository.py reuse bundle "$TARGET_ID" dependencies
+          echo "RELEASE_PROJECT=$(jq -r .release_project bundle/context.json)" >> "$GITHUB_ENV"
       - uses: docker/setup-qemu-action@v4
         if: fromJSON(inputs.target).family == 'linux' && contains(fromJSON('["armhf", "riscv64"]'), fromJSON(inputs.target).arch)
         with:

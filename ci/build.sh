@@ -24,7 +24,9 @@ SNODEC_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1]));
 MQTTSUITE_SOURCE_TAG=$(python3 -c 'import json,sys; c=json.load(open(sys.argv[1])); print(c.get("source_tags", {}).get("mqttsuite", c.get("source_tag", "OpenWRT")))' "$bundle/context.json")
 SNODEC_SOURCE_HASH=$(sha256sum "$bundle/snode.c-"*.tar.gz | cut -d' ' -f1)
 MQTTSUITE_SOURCE_HASH=$(sha256sum "$bundle/mqttsuite-"*.tar.gz | cut -d' ' -f1)
-export SNODEC_SOURCE_TAG MQTTSUITE_SOURCE_TAG SNODEC_SOURCE_HASH MQTTSUITE_SOURCE_HASH
+SNODEC_PACKAGE_VERSION=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["versions"]["snode.c"])' "$bundle/context.json")
+MQTTSUITE_PACKAGE_VERSION=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["versions"]["mqttsuite"])' "$bundle/context.json")
+export SNODEC_SOURCE_TAG MQTTSUITE_SOURCE_TAG SNODEC_SOURCE_HASH MQTTSUITE_SOURCE_HASH SNODEC_PACKAGE_VERSION MQTTSUITE_PACKAGE_VERSION
 cp feeds.conf.default feeds.conf
 printf '\nsrc-link snodec %s\n' "$feed" >> feeds.conf
 ./scripts/feeds update base packages snodec
@@ -44,9 +46,14 @@ EOF
 make defconfig
 make -j"$(nproc)" package/mqttsuite/compile V=s BUILD_LOG=1
 python3 "$feed/tests/test_upstream.py" "$sdk"
-make package/index V=s
 arch=$(sed -n 's/^CONFIG_TARGET_ARCH_PACKAGES="\(.*\)"/\1/p' .config)
 repository="bin/packages/$arch/snodec"
+if [ "${RELEASE_PROJECT:-}" = mqttsuite ]; then
+    # The SDK builds dependencies normally; retain the already published SNode.C binaries.
+    find "$repository" -maxdepth 1 -type f \( -name 'snode.c*.ipk' -o -name 'snode.c*.apk' \) -delete
+    cp "$feed/../dependencies/"* "$repository/"
+fi
+make package/index V=s
 if [ -f "$repository/packages.adb" ]; then
     staging_dir/host/bin/apk verify --keys-dir "$feed/ci/keys" "$repository/packages.adb"
 else

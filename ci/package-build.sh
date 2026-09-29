@@ -32,12 +32,6 @@ for project in snode.c mqttsuite; do
     mkdir "sources/$project"
     tar -xzf bundle/"$project"-*.tar.gz --strip-components=1 -C "sources/$project"
 done
-cmake -S sources/snode.c -B build-snodec -G Ninja \
-    -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR="$libdir" -DCMAKE_INSTALL_SYSCONFDIR=/etc \
-    -DSNODEC_BUILD_TESTS=ON -DSNODEC_BUILD_APPS=ON \
-    -DSPDLOG_SYSTEM_INCLUDES=ON
-cmake --build build-snodec --parallel 4
 package() {
     local build=$1 version
     version=$(sed -n 's/^set(CPACK_PACKAGE_VERSION "\([^" ]*\)")/\1/p' "$build/CPackConfig.cmake")
@@ -52,7 +46,17 @@ package() {
     (cd "$build" && cpack -G "$format" "${options[@]}")
     cp "$build"/_packages/*."${format,,}" "$build"/_packages/*.packages packages/
 }
-package build-snodec
+if [ "${RELEASE_PROJECT:-}" = mqttsuite ]; then
+    cp dependencies/* packages/
+else
+    cmake -S sources/snode.c -B build-snodec -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR="$libdir" -DCMAKE_INSTALL_SYSCONFDIR=/etc \
+        -DSNODEC_BUILD_TESTS=ON -DSNODEC_BUILD_APPS=ON \
+        -DSPDLOG_SYSTEM_INCLUDES=ON
+    cmake --build build-snodec --parallel 4
+    package build-snodec
+fi
 if [ "$format" = DEB ]; then
     apt-get install -y /work/packages/*.deb
 else
@@ -60,8 +64,10 @@ else
 fi
 ldconfig
 useradd --system --user-group --create-home snodec-test
-chown -R snodec-test:snodec-test build-snodec
-runuser -u snodec-test -- ctest --test-dir build-snodec --output-on-failure
+if [ "${RELEASE_PROJECT:-}" != mqttsuite ]; then
+    chown -R snodec-test:snodec-test build-snodec
+    runuser -u snodec-test -- ctest --test-dir build-snodec --output-on-failure
+fi
 cmake -S sources/mqttsuite -B build-mqttsuite -G Ninja \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_INSTALL_LIBDIR="$libdir" -DCMAKE_INSTALL_SYSCONFDIR=/etc

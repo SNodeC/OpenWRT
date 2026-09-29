@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 
-from repository import ROOT, digest, run, signer, unchanged, publication_needed
+from repository import ROOT, digest, run, signer, unchanged, publication_needed, snodec_file
 
 
 def stage(row, packages, bundle, output):
@@ -31,6 +31,8 @@ def stage(row, packages, bundle, output):
         key = next(line.split(':')[9] for line in run('gpg', '--homedir', home, '--with-colons',
                                                      '--list-secret-keys').splitlines() if line.startswith('fpr:'))
         for package in pool.glob('*.rpm'):
+            if json.loads((bundle / 'baseline.json').read_text()) and snodec_file(package.name):
+                continue
             run('rpmsign', '--define', f'_gpg_name {key}', '--define', f'_gpg_path {home}',
                 '--define', '_gpgbin /usr/bin/gpg', '--define', '_gpg_digest_algo sha256',
                 '--addsign', str(package))
