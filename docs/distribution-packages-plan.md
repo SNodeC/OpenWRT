@@ -57,9 +57,9 @@ and cleans that feed only, preserving other feeds' files and retirement records.
 The atomic snapshot push remains serialized and protected by a Git lease.
 
 Each target has separate SNode.C and MQTTSuite status badges linked to their
-respective jobs. Four naturally sized columns show the architecture, each
-project's version above its badge, and the publication date above repository
-links. Status snapshots distinguish waiting,
+respective jobs. Separate project READMEs use flat tables with distribution, release,
+architecture, version, status, publication date and package links. Each project
+has its own installation guide; distribution guides own shared repository setup. Status snapshots distinguish waiting,
 building, publishing and published packages, and refresh during publication.
 
 Package revisions derive from the entry workflow's increasing run number `N`:

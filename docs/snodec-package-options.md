@@ -1,17 +1,13 @@
 # SNode.C package catalog
 
-These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
-to prepare the feed and install packages with `opkg` or `apk`.
+These package names apply to **OpenWrt**.
 
-## Install packages
+## Installation and build results
 
-[Prepare the OpenWrt feed and install individual packages](openwrt.md#selective-installation).
-
-## Related package catalogs
-
-- [Browse the MQTTSuite package catalog](mqttsuite-package-options.md)
-- [Find DEB and RPM component packages](linux.md#component-packages)
-- [Return to the package catalog overview](../README.md#package-catalogs)
+- [Install SNode.C, including repository setup](install-snodec.md)
+- [DEB and RPM component packages](install-snodec.md#deb-and-rpm-components)
+- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
+- [Return to the repository overview](../README.md)
 
 ## Packages: 67
 

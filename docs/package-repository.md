@@ -1,98 +1,32 @@
 # SNode.C and MQTTSuite packages
 
-Find a distribution below to see every configured release and architecture.
-Published versions and links come from the repository manifests; a build badge
-alone is not evidence that new packages are available.
+Signed packages for OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and
+Fedora. Choose a project for its published versions, build results and installation
+instructions.
 
-## Installation
+## SNode.C
 
-- [Choose your distribution and install packages](https://github.com/SNodeC/OpenWRT/blob/main/README.md#installation)
-- [Browse the production package repository](https://github.com/SNodeC/OpenWRT/tree/packages)
+C++ networking framework, runtime libraries, development headers and tools.
 
-## Package catalogs
+- [Published packages and build results](snodec/README.md)
+- [Install SNode.C](https://github.com/SNodeC/OpenWRT/blob/main/docs/install-snodec.md)
+- [OpenWrt package catalog](https://github.com/SNodeC/OpenWRT/blob/main/docs/snodec-package-options.md)
 
-- [SNode.C packages for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/snodec-package-options.md)
-- [MQTTSuite packages for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/mqttsuite-package-options.md)
-- [DEB and RPM component packages](https://github.com/SNodeC/OpenWRT/blob/main/docs/linux.md#component-packages)
+## MQTTSuite
 
-## Build and publication results
+MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
 
-Select a distribution to see its releases, architectures and published versions:
+- [Published packages and build results](mqttsuite/README.md)
+- [Install MQTTSuite](https://github.com/SNodeC/OpenWRT/blob/main/docs/install-mqttsuite.md)
+- [OpenWrt package catalog](https://github.com/SNodeC/OpenWRT/blob/main/docs/mqttsuite-package-options.md)
 
-- [OpenWrt](#openwrt)
-- [Raspberry Pi OS](#raspberry-pi-os)
-- [Debian](#debian)
-- [Ubuntu](#ubuntu)
-- [Rocky Linux](#rocky-linux)
-- [Fedora](#fedora)
+## Repository setup and help
 
-[Understand the status badges and publication columns](#reading-the-matrix).
-
-## OpenWrt
-
-- [Install packages on OpenWrt](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md)
-- [Browse production packages for OpenWrt](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
-
-<!-- targets:openwrt -->
-
-## Raspberry Pi OS
-
-- [Install packages on Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md)
-- [Browse production packages for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
-
-<!-- targets:raspberrypios -->
-
-## Debian
-
-- [Install packages on Debian](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md)
-- [Browse production packages for Debian](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
-
-<!-- targets:debian -->
-
-## Ubuntu
-
-- [Install packages on Ubuntu](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md)
-- [Browse production packages for Ubuntu](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
-
-<!-- targets:ubuntu -->
-
-## Rocky Linux
-
-- [Install packages on Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md)
-- [Browse production packages for Rocky Linux](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
-
-<!-- targets:rocky -->
-
-## Fedora
-
-- [Install packages on Fedora](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md)
-- [Browse production packages for Fedora](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
-
-<!-- targets:fedora -->
-
-## Reading the matrix
-
-- **SNode.C / MQTTSuite:** the published version appears above each project's status badge. A dash means no version is recorded. Click a badge to open its build or publication job. **Pending** means waiting to build or publish; **running** means building; **publishing** means the publication job is active; **published** confirms the packages were pushed. **Failed**, **cancelled**, **skipped**, and **superseded** identify unfinished releases. Badges are snapshots refreshed by publication jobs, not live monitors. **Not built** means neither a project result nor a published version is recorded.
-- **Published:** the UTC publication date appears above the repository links. **Packages** opens the package directory; **Build** opens the record containing the complete timestamp, source tags, resolved commits and publication details. A row without repository links has not been published in this channel. Signed indexes are available in the repository directories described by each installation guide.
-
-A failed or unfinished rebuild retains the previous successful publication.
-Superseded package files remain available for 30 days after leaving the active
-index, so clients with cached metadata can finish downloads.
-
-## Installation and repository access
-
-Use the [distribution guides](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
-for the full installer, prepare-only mode and complete manual instructions.
-They use the production feeds and keep official repositories enabled for system
-dependencies. Select the release and package architecture installed on the device.
-
-Use **Packages** to browse this channel on GitHub and **Build** for the
-publication record. Package
-managers use raw file URLs; opening a raw directory URL in a browser can return
-404 even when the individual package and index files exist.
-
-## Repository help
-
+- [Choose your distribution and architecture](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
 - [Inspect the public signing keys](keys/)
 - [Troubleshoot repository access](https://github.com/SNodeC/OpenWRT/blob/main/README.md#repository-troubleshooting)
-- [Return to the project overview](https://github.com/SNodeC/OpenWRT/blob/main/README.md)
+- [Return to the repository overview](https://github.com/SNodeC/OpenWRT/blob/main/README.md)
+
+Each successful project build publishes independently for its target. Failed or
+unfinished rebuilds leave previously published packages available. The project
+pages distinguish the latest build status from the version available to install.

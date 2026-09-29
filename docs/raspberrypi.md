@@ -4,15 +4,15 @@
 
 - [Find supported releases and architectures](#releases-architectures-and-repositories)
 - [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install the complete package set](#full-installation)
-- [Choose individual packages](#selective-installation)
-- [Configure applications](#configure-applications)
+- [Install and configure SNode.C](install-snodec.md)
+- [Install and configure MQTTSuite](install-mqttsuite.md)
 - [Update packages and troubleshoot](#updates-and-troubleshooting)
 
 ## Package repository
 
 - [Browse production packages for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios)
-- [Check build results and published versions for Raspberry Pi OS](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#raspberry-pi-os)
+- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
+- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
 
 ## Releases, architectures and repositories
 
@@ -47,7 +47,7 @@ curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed
 sudo sh /tmp/snodec-install-feed.sh --prepare
 ```
 
-Install your chosen packages afterwards using the commands below.
+Continue with the [project installation instructions](#install-packages).
 
 ### Manual preparation
 
@@ -70,92 +70,21 @@ printf 'deb [arch=arm64 signed-by=/etc/apt/keyrings/snodec.asc] https://raw.gith
 sudo apt-get update
 ```
 
-## Full installation
+## Install packages
 
-### Installation script
+### SNode.C
 
-Without options, the installer prepares the feed and installs **all SNode.C and
-MQTTSuite components** through the `snodec` and `mqttsuite` metapackages:
+[Full installation, individual components, configuration and updates](install-snodec.md).
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
-  -o /tmp/snodec-install-feed.sh &&
-sudo sh /tmp/snodec-install-feed.sh
-```
+### MQTTSuite
 
-### Manual installation
-
-After preparing the repository, install the full system:
-
-```sh
-sudo apt-get install snodec mqttsuite
-```
-
-## Selective installation
-
-For a broker and command-line client only:
-
-```sh
-sudo apt-get install mqttsuite-broker mqttsuite-cli
-```
-
-APT installs the required SNode.C components automatically. It does not install
-other MQTTSuite applications or all of SNode.C merely to run the broker.
-
-See the shared [component package guide](linux.md#component-packages) for
-individual package names and contents.
-
-The complete package names, versions and dependencies are in the
-[Bookworm index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/bookworm/main/binary-arm64/Packages)
-and [Trixie index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/trixie/main/binary-arm64/Packages).
-
-**Common choices:**
-
-| Package | Contents |
-| --- | --- |
-| `mqttsuite-broker` | Broker, its library, WebSocket plugin and web assets |
-| `mqttsuite-bridge` | Bridge, its library, WebSocket plugin and web assets |
-| `mqttsuite-integrator` | Integrator, its library and WebSocket plugin |
-| `mqttsuite-cli` | Command-line client, its library and WebSocket plugin |
-| `mqttsuite-store` | Store, its library and WebSocket plugin |
-| `mqttsuite-mapping-double` | Double mapping plugin |
-| `mqttsuite-mapping-storage` | Storage mapping plugin |
-| `mqttsuite` | All seven MQTTSuite components |
-| `snodec` | All SNode.C components, including headers, examples and control tool |
-
-SNode.C package names follow its upstream CPack components: for example,
-`snodec-core`, `snodec-http-server`, `snodec-mqtt-server` and `snodec-apps`.
-The upstream `Unspecified` component is published as `snodec-unspecified` and
-includes `snodec-control`. List all available framework packages with:
-
-```sh
-apt-cache pkgnames snodec- | sort
-```
-
-## Configure applications
-
-Installation creates the `snodec` system group and installs executables in
-`/usr/bin`; it does not start network services. Inspect `mqttbroker --help`,
-`mqttcli --help` and `snodec-control --help`. Configure listeners, credentials and
-TLS certificates for your deployment, then start a foreground broker:
-
-```sh
-mqttbroker --daemonize=false
-```
-
-For persistent operation, configure a systemd service with the desired user and
-arguments. The store requires a configured database. See the
-[MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme) for options
-and client examples.
+[Full installation, individual components, configuration and updates](install-mqttsuite.md).
 
 ## Updates and troubleshooting
 
-To upgrade an existing combined-package installation, run
-`sudo apt-get update && sudo apt-get install snodec mqttsuite`. This installs the
-new component dependencies as well as updating the two full-install metapackages.
-`apt-get upgrade` alone can hold back this transition because it requires new
-packages. Component packages declare replacement of files from older combined
-packages; subsequent updates use the normal APT update process.
+Use your project's installation guide above for update commands. After a distribution
+upgrade, select the matching supported repository release and refresh its indexes.
+Keep signature verification and the official repositories enabled.
 
 | Symptom | What to check |
 | --- | --- |

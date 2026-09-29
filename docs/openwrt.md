@@ -4,15 +4,15 @@
 
 - [Find supported releases and architectures](#releases-architectures-and-repositories)
 - [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install the complete package set](#full-installation)
-- [Choose individual packages](#selective-installation)
-- [Configure applications](#configure-applications)
+- [Install and configure SNode.C](install-snodec.md)
+- [Install and configure MQTTSuite](install-mqttsuite.md)
 - [Update packages and troubleshoot](#updates-and-troubleshooting)
 
 ## Package repository
 
 - [Browse production packages for OpenWrt](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt)
-- [Check build results and published versions for OpenWrt](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt)
+- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
+- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
 
 ## Releases, architectures and repositories
 
@@ -113,8 +113,7 @@ sh /tmp/snodec-install-feed.sh --prepare
 ```
 
 This imports the signing key, configures the feed and refreshes package lists.
-You then [install the packages you want](#selective-installation) yourself.
-Running without an option still installs the complete selection above.
+Continue with the [project installation instructions](#install-packages).
 
 ### Manual preparation
 
@@ -180,113 +179,21 @@ Import the corresponding signing key as shown above. For other devices, use
 their `DISTRIB_ARCH`; each architecture has its own directory. After an OpenWrt
 release-series upgrade, reconfigure this feed for the new series.
 
-## Full installation
+## Install packages
 
-### Installation script
+### SNode.C
 
-For a complete installation, run the following on the device as `root`:
+[Full installation, individual components, configuration and updates](install-snodec.md).
 
-```sh
-wget -O /tmp/snodec-install-feed.sh \
-  https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh &&
-sh /tmp/snodec-install-feed.sh
-```
+### MQTTSuite
 
-The [installer](../ci/install-feed.sh) detects the release and architecture, checks
-that the feed exists, imports its public signing key, adds the feed and refreshes
-the package lists. It then installs **`mqttsuite-full`, `snode.c-full`,
-`snode.c-apps` and `snode.c-control`**, including their dependencies.
-
-### Manual installation
-
-For the complete selection used by the installer:
-
-```sh
-# OpenWrt 24.10
-opkg install mqttsuite-full snode.c-full snode.c-apps snode.c-control
-```
-
-```sh
-# OpenWrt 25.12
-apk add mqttsuite-full snode.c-full snode.c-apps snode.c-control
-```
-
-## Selective installation
-
-For a broker and command-line client:
-
-```sh
-# OpenWrt 24.10
-opkg install mqttsuite-broker mqttsuite-cli
-```
-
-```sh
-# OpenWrt 25.12
-apk add mqttsuite-broker mqttsuite-cli
-```
-
-**Complete package catalogs:**
-
-- [SNode.C — all 67 packages](snodec-package-options.md)
-- [MQTTSuite — all 9 packages](mqttsuite-package-options.md)
-
-The catalogs list individual package names and their contents.
-
-**Common choices:**
-
-| Package | What it installs |
-| --- | --- |
-| `mqttsuite-broker` | MQTT broker and its service |
-| `mqttsuite-cli` | MQTT publish/subscribe command-line client |
-| `mqttsuite-bridge` | MQTT bridge |
-| `mqttsuite-integrator` | MQTT integrator |
-| `mqttsuite-store` | MQTT store with MariaDB support |
-| `mqttsuite-full` | All five applications and both mapping plugins |
-| `snode.c-full` | All SNode.C runtime modules |
-| `snode.c-apps` | SNode.C demonstration applications |
-| `snode.c-control` | SNode.C control utility |
-
-Application packages select their required SNode.C modules automatically.
-Installing `snode.c-full` separately is optional when you only want a particular
-MQTTSuite application. The store still requires a configured database service.
-
-## Configure applications
-
-Inspect `mqttbroker --help` and configure `/etc/snode.c/mqttbroker.conf` for your
-listeners and, where applicable, TLS certificates. Refer to the
-[MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme) for options
-and client examples. Then enable the service at boot and start it:
-
-```sh
-/etc/init.d/mqttbroker enable
-/etc/init.d/mqttbroker start
-pidof mqttbroker
-logread -e mqttbroker
-```
-
-After changing its configuration, run `/etc/init.d/mqttbroker restart`.
-The bridge and integrator also provide services named `mqttbridge` and
-`mqttintegrator`; configure each application before enabling it.
+[Full installation, individual components, configuration and updates](install-mqttsuite.md).
 
 ## Updates and troubleshooting
 
-Refresh indexes and inspect available updates:
-
-```sh
-# OpenWrt 24.10
-opkg update
-opkg list-upgradable
-```
-
-```sh
-# OpenWrt 25.12
-apk update
-apk list --upgradable
-```
-
-Upgrade selected packages with `opkg upgrade <package> ...` or
-`apk upgrade <package> ...`. Review related SNode.C and MQTTSuite updates together;
-a package update does not upgrade the OpenWrt firmware or change its release series.
+Use your project's installation guide above for update commands. After a distribution
+upgrade, select the matching supported repository release and refresh its indexes.
+Keep signature verification and the official repositories enabled.
 
 | Symptom | What to check |
 | --- | --- |

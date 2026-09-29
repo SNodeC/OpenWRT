@@ -1,17 +1,13 @@
 # MQTTSuite package catalog
 
-These package names apply to **OpenWrt**. Use the [OpenWrt guide](openwrt.md)
-to prepare the feed and install packages with `opkg` or `apk`.
+These package names apply to **OpenWrt**.
 
-## Install packages
+## Installation and build results
 
-[Prepare the OpenWrt feed and install individual packages](openwrt.md#selective-installation).
-
-## Related package catalogs
-
-- [Browse the SNode.C package catalog](snodec-package-options.md)
-- [Find DEB and RPM component packages](linux.md#component-packages)
-- [Return to the package catalog overview](../README.md#package-catalogs)
+- [Install MQTTSuite, including repository setup](install-mqttsuite.md)
+- [DEB and RPM component packages](install-mqttsuite.md#components)
+- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
+- [Return to the repository overview](../README.md)
 
 ## Packages: 9
 
@@ -22,7 +18,7 @@ to prepare the feed and install packages with `opkg` or `apk`.
 | `mqttsuite-integrator` | mqttintegrator, libmqtt-integrator.so.1, optional client plugin, procd service |
 | `mqttsuite-bridge` | mqttbridge, libmqtt-bridge.so.1, optional client plugin, web assets, procd service |
 | `mqttsuite-cli` | mqttcli, libmqtt-cli.so.1, optional client plugin |
-| `mqttsuite-store` | mqttstore, libmqtt-store.so.1, optional client plugin; requires SNode.C MariaDB |
+| `mqttsuite-store` | mqttstore, libmqtt-store.so.1, optional client plugin; requires MariaDB support |
 | `mqttsuite-mapping-double` | /usr/lib/libmqtt-mapping-plugin-double.so |
 | `mqttsuite-mapping-storage` | /usr/lib/libmqtt-mapping-plugin-storage.so |
 | `mqttsuite-full` | Meta-package: all five applications and both mapping plugins |

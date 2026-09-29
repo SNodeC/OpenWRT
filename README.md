@@ -13,7 +13,7 @@ MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
 ### Install packages
 
 - [Choose your distribution and architecture](#distribution-and-architecture-matrix)
-- [Compare full installation and preparation only](#installation)
+- [Choose the project to install](#installation)
 
 ### Available packages and build results
 
@@ -27,28 +27,32 @@ MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
 
 ## Installation
 
-Choose your distribution below. Every guide includes both installation methods:
+### SNode.C
 
-- **Full installation:** the installer configures the signed repository and installs the complete package set.
-- **Prepare only:** `--prepare` configures the repository; you choose which packages to install afterwards.
+[Install the framework and tools](docs/install-snodec.md), or choose individual components.
 
-Each guide also provides complete manual setup, selective installation, updates
-and application configuration. Keep the official distribution repositories enabled
-for dependencies, and select the release and architecture installed on your device.
+### MQTTSuite
 
-The guides and installer use the **[production feeds](https://github.com/SNodeC/OpenWRT/tree/packages)**.
-Configure application listeners, credentials and TLS before starting services.
+[Install the applications](docs/install-mqttsuite.md), or select only those you need.
+
+Both project guides provide full and selective installation, configuration and
+updates. Use **prepare only** (`--prepare`) to configure the repository without
+installing packages, then install your chosen project. The distribution guides
+below retain complete manual repository setup instructions.
+
+The installer without `--prepare` still installs both complete project sets.
+Keep matching official repositories enabled for dependencies.
 
 ## Distribution and architecture matrix
 
-| Distribution | Releases / suites | Architectures and installation | Production packages | Build results |
-| --- | --- | --- | --- | --- |
-| OpenWrt | 24.10, 25.12 | [OpenWrt guide](docs/openwrt.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt) |
-| Raspberry Pi OS | bookworm, trixie | [Raspberry Pi OS guide](docs/raspberrypi.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#raspberry-pi-os) |
-| Debian | trixie, forky, sid | [Debian guide](docs/debian.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#debian) |
-| Ubuntu | noble, resolute | [Ubuntu guide](docs/ubuntu.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#ubuntu) |
-| Rocky Linux | 9, 10 | [Rocky Linux guide](docs/rocky.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#rocky-linux) |
-| Fedora | 43, 44 | [Fedora guide](docs/fedora.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) | [All targets](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#fedora) |
+| Distribution | Releases / suites | Architectures and installation | Production packages |
+| --- | --- | --- | --- |
+| OpenWrt | 24.10, 25.12 | [OpenWrt guide](docs/openwrt.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt) |
+| Raspberry Pi OS | bookworm, trixie | [Raspberry Pi OS guide](docs/raspberrypi.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios) |
+| Debian | trixie, forky, sid | [Debian guide](docs/debian.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian) |
+| Ubuntu | noble, resolute | [Ubuntu guide](docs/ubuntu.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu) |
+| Rocky Linux | 9, 10 | [Rocky Linux guide](docs/rocky.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky) |
+| Fedora | 43, 44 | [Fedora guide](docs/fedora.md) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora) |
 
 Every guide lists all supported release/architecture combinations with package
 and repository-index links. Architecture names follow the distribution's package
@@ -56,31 +60,30 @@ manager. Packages from different distributions are not interchangeable.
 
 ## Build and publication status
 
-The **[package publication README](https://github.com/SNodeC/OpenWRT/blob/packages/README.md)**
-lists all 76 configured targets, grouped by distribution. Each row shows its
-latest build badge, published project versions, publication date and repository
-links. Click a build badge for its GitHub Actions run or **Build** for the
-source tags and resolved commits recorded with the packages.
+### SNode.C
 
-Each successful target publishes independently to the production repository.
-The listed versions are the packages currently available for installation.
+[Check published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md).
 
-Build status and published versions are separate: a failed or unfinished rebuild
-leaves the previous published feed available. See also the
-[production build runs](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml).
+### MQTTSuite
+
+[Check published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md).
+
+Each project page lists all 76 configured targets in a flat table with its own
+version and status badge. Each successful project build publishes independently
+for its target. An unfinished or failed rebuild leaves the previous published
+packages available.
 
 ## Package catalogs
 
-For OpenWrt's individual package names and contents, see the complete catalogs:
+### SNode.C
 
-- [SNode.C packages](docs/snodec-package-options.md)
-- [MQTTSuite packages](docs/mqttsuite-package-options.md)
+- [OpenWrt package names and contents](docs/snodec-package-options.md)
+- [DEB and RPM components](docs/install-snodec.md#deb-and-rpm-components)
 
-For Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and Fedora, see the shared
-[DEB/RPM component package guide](docs/linux.md#component-packages). Each
-distribution guide provides the installation commands and common selections.
-The `snodec` and `mqttsuite` metapackages in the DEB/RPM repositories install
-their respective complete component sets.
+### MQTTSuite
+
+- [OpenWrt package names and contents](docs/mqttsuite-package-options.md)
+- [DEB and RPM components](docs/install-mqttsuite.md#components)
 
 ## Repository layout and links
 

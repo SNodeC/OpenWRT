@@ -4,15 +4,15 @@
 
 - [Find supported releases and architectures](#releases-architectures-and-repositories)
 - [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install the complete package set](#full-installation)
-- [Choose individual packages](#selective-installation)
-- [Configure applications](#configure-applications)
+- [Install and configure SNode.C](install-snodec.md)
+- [Install and configure MQTTSuite](install-mqttsuite.md)
 - [Update packages and troubleshoot](#updates-and-troubleshooting)
 
 ## Package repository
 
 - [Browse production packages for Rocky Linux](https://github.com/SNodeC/OpenWRT/tree/packages/rocky)
-- [Check build results and published versions for Rocky Linux](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#rocky-linux)
+- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
+- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
 
 ## Releases, architectures and repositories
 
@@ -56,7 +56,7 @@ curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed
 sudo sh /tmp/snodec-install-feed.sh --prepare
 ```
 
-Install your chosen packages afterwards using the commands below.
+Continue with the [project installation instructions](#install-packages).
 
 ### Manual preparation
 
@@ -87,84 +87,21 @@ The quoted `REPO` delimiter preserves `$releasever` and `$basearch`; DNF expands
 them for the installed system. Both RPM packages and repository metadata are
 signature-checked.
 
-## Full installation
+## Install packages
 
-### Installation script
+### SNode.C
 
-Without options, the installer prepares the feed and installs **all SNode.C and
-MQTTSuite components** through the `snodec` and `mqttsuite` metapackages:
+[Full installation, individual components, configuration and updates](install-snodec.md).
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
-  -o /tmp/snodec-install-feed.sh &&
-sudo sh /tmp/snodec-install-feed.sh
-```
+### MQTTSuite
 
-### Manual installation
-
-```sh
-sudo dnf install snodec mqttsuite
-```
-
-## Selective installation
-
-For only the broker and command-line client:
-
-```sh
-sudo dnf install mqttsuite-broker mqttsuite-cli
-```
-
-Required SNode.C components are installed automatically. See the shared
-[component package guide](linux.md#component-packages) for package names and contents.
-
-**Common choices:**
-
-| Package | Contents |
-| --- | --- |
-| `mqttsuite-broker` | Broker, its library, WebSocket plugin and web assets |
-| `mqttsuite-bridge` | Bridge, its library, WebSocket plugin and web assets |
-| `mqttsuite-integrator` | Integrator, its library and WebSocket plugin |
-| `mqttsuite-cli` | Command-line client, its library and WebSocket plugin |
-| `mqttsuite-store` | Store, its library and WebSocket plugin |
-| `mqttsuite-mapping-double` | Double mapping plugin |
-| `mqttsuite-mapping-storage` | Storage mapping plugin |
-| `mqttsuite` | All seven MQTTSuite components |
-| `snodec` | All SNode.C components, including headers, examples and control tool |
-
-SNode.C package names follow its upstream CPack components: for example,
-`snodec-core`, `snodec-http-server`, `snodec-mqtt-server` and `snodec-apps`.
-The upstream `Unspecified` component is published as `snodec-unspecified` and
-includes `snodec-control`. List all available framework packages with:
-
-```sh
-dnf list --available 'snodec-*'
-```
-
-## Configure applications
-
-Installation creates the `snodec` system group and installs executables in
-`/usr/bin`; it does not start network services. Inspect `mqttbroker --help`,
-`mqttcli --help` and `snodec-control --help`. Configure listeners, credentials and
-TLS certificates for your deployment, then start a foreground broker:
-
-```sh
-mqttbroker --daemonize=false
-```
-
-For persistent operation, configure a systemd service with the desired user and
-arguments. The store requires a configured database. See the
-[MQTTSuite documentation](https://github.com/SNodeC/mqttsuite#readme) for options
-and client examples.
+[Full installation, individual components, configuration and updates](install-mqttsuite.md).
 
 ## Updates and troubleshooting
 
-```sh
-sudo dnf upgrade 'snodec*' 'mqttsuite*'
-```
-
-After a distribution upgrade, select a supported matching release and refresh
-metadata. For missing feeds, signature errors or dependency failures, see
-[repository troubleshooting](../README.md#repository-troubleshooting).
+Use your project's installation guide above for update commands. After a distribution
+upgrade, select the matching supported repository release and refresh its indexes.
+Keep signature verification and the official repositories enabled.
 
 | Symptom | What to check |
 | --- | --- |
