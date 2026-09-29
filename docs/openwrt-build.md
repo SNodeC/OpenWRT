@@ -1,13 +1,13 @@
 # SNode.C and MQTTSuite for GL-MT3000
 
-These recipes default to SNode.C `v2.0.0` and MQTTSuite `v1.0.1`.
+These recipes default to SNode.C `v2.0.0` and MQTTSuite `v1.0.2`.
 For a release build, export `SNODEC_SOURCE_TAG=vX.Y.Z` and
 `MQTTSUITE_SOURCE_TAG=vA.B.C` before running the SDK commands; each recipe derives
 its package version from its selected release tag. CI selects and records these
 versions automatically.
 
 Source repositories:
-SNode.C 2.0.0 and MQTTSuite 1.0.1. The recipes use the upstream build systems
+SNode.C 2.0.0 and MQTTSuite 1.0.2. The recipes use the upstream build systems
 without source patches.
 
 The build uses the official OpenWrt 25.12.5 `mediatek/filogic` SDK with GCC
