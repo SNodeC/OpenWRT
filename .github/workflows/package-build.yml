@@ -22,6 +22,10 @@ jobs:
     name: Build and test ${{ inputs.project }} · ${{ fromJSON(inputs.target).id }}
     runs-on: ${{ fromJSON(inputs.target).runner }}
     timeout-minutes: 360
+    concurrency:
+      group: package-build-${{ github.run_id }}-${{ fromJSON(inputs.target).build_slot }}
+      cancel-in-progress: false
+      queue: max
     permissions:
       contents: read
     env:

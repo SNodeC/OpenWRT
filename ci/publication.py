@@ -19,8 +19,9 @@ def targets():
              for suite in json.loads((ROOT / 'ci/raspberrypi.json').read_text())]
     rows += [dict(family='linux', distribution=r['distribution'], suite=r['suite'], arch=r['arch'],
                   runner=r['runner'], build=r) for r in linux_matrix()]
-    for row in rows:
+    for index, row in enumerate(rows):
         row['id'] = '-'.join(row[k] for k in ('distribution', 'suite', 'arch'))
+        row['build_slot'] = index % 19
     return rows
 
 

@@ -44,9 +44,13 @@ conflicting pushes; builds have no whole-matrix publication barrier. New runs
 start building after source preparation without entering the publication queue.
 Cancellation stops pending publication and log-upload work as well as builds.
 
-Each run admits at most 19 target pipelines so its builds do not consume all
-20 observed runner slots. This is a per-run limit, not a reservation across
-overlapping runs. Publication checks out only the affected feed and shared
+All 76 target workflows expand after preparation. Their build jobs use 19 native
+GitHub concurrency groups per run, so waiting builds remain queued as actual
+jobs instead of being hidden behind an outer matrix admission limit. A target's
+SNode.C and MQTTSuite builds share its assigned group. Publication uses its own
+writer group. The 19-build limit leaves headroom under the 20 observed runner
+slots for one run; it is not a reservation across overlapping runs. Publication
+checks out only the affected feed and shared
 metadata using Git's partial and sparse checkout. APT includes the whole suite
 because its signed release metadata covers all architectures. Retention validates
 and cleans that feed only, preserving other feeds' files and retirement records.
