@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       target:
-        default: '{}'
+        required: true
         type: string
       result:
         type: string
@@ -33,10 +33,22 @@ jobs:
         with:
           name: packages-${{ inputs.project }}-${{ fromJSON(inputs.target).id }}
           path: incoming
+      - name: Select the affected feed
+        id: scope
+        env:
+          TARGET: ${{ inputs.target }}
+        run: |
+          mkdir feed
+          tar -xzf bundle/feed.tar.gz -C feed
+          echo 'paths<<EOF' >> "$GITHUB_OUTPUT"
+          python3 feed/ci/publication.py scope "$TARGET" >> "$GITHUB_OUTPUT"
+          echo EOF >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v6
         with:
-          ref: main
+          ref: packages
           path: published
+          sparse-checkout: ${{ steps.scope.outputs.paths }}
+          sparse-checkout-cone-mode: false
       - name: Update the package snapshot
         id: write
         env:
@@ -47,21 +59,11 @@ jobs:
           APT_SIGNING_KEY: ${{ inputs.result == 'success' && secrets.APT_SIGNING_KEY || '' }}
         run: |
           set -euo pipefail
-          mkdir feed
-          tar -xzf bundle/feed.tar.gz -C feed
-          if [ "$RESULT" = success ]; then
+          if [ "$RESULT" = success ] && [ "$(jq -r .family <<< "$TARGET")" != openwrt ]; then
             sudo apt-get update
-            sudo apt-get install -y apt-utils gnupg rpm createrepo-c
+            sudo apt-get install -y apt-utils gnupg rpm
           fi
-          previous=
-          if git -C published ls-remote --exit-code origin refs/heads/packages >/dev/null; then
-            git -C published fetch origin packages
-            previous=$(git -C published rev-parse FETCH_HEAD)
-            git -C published checkout --detach "$previous"
-          else
-            git -C published checkout --orphan packages
-            git -C published rm -rf .
-          fi
+          previous=$(git -C published rev-parse HEAD)
           result=0
           python3 feed/ci/publication.py finish published bundle "$TARGET" "$RESULT" incoming "$BUILD_PROJECT" || result=$?
           bash feed/ci/push-packages.sh published "$previous" "Update packages: $BUILD_PROJECT"

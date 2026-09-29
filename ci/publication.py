@@ -33,14 +33,17 @@ def write(path, value):
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + '\n')
 
 
-def published(root, row):
+def feed_paths(row):
     if row['distribution'] in {'debian', 'ubuntu', 'raspberrypios'}:
-        path = root / row['distribution'] / 'dists' / row['suite'] / 'build.json'
-        info = read(path, {})
+        return [f"{row['distribution']}/{part}/{row['suite']}" for part in ('dists', 'pool')]
+    return [f"{row['distribution']}/{row['suite']}/{row['arch']}"]
+
+
+def published(root, row):
+    path = root / feed_paths(row)[0] / 'build.json'
+    info = read(path, {})
+    if len(feed_paths(row)) == 2:
         info = info.get('targets', {}).get(row['arch'], info if row['arch'] in info.get('architectures', []) else {})
-    else:
-        path = root / row['distribution'] / row['suite'] / row['arch'] / 'build.json'
-        info = read(path, {})
     return info, path.parent.relative_to(root).as_posix()
 
 
@@ -159,7 +162,7 @@ def publish(root, bundle, incoming, row, generation, project):
             aggregate = info
         write(manifest, aggregate)
     shutil.copytree(ROOT / 'ci/keys', root / 'keys', dirs_exist_ok=True)
-    importlib.import_module('cleanup').cleanup(root)
+    importlib.import_module('cleanup').cleanup(root, row)
 
 
 def reconcile(state, run_id, attempt):
@@ -185,6 +188,13 @@ def main():
     command, *args = sys.argv[1:]
     if command == 'matrix':
         print(json.dumps({'include': targets()}))
+        return
+    if command == 'scope':
+        row = json.loads(args[0])
+        if row not in targets():
+            raise ValueError('Unknown publication target')
+        print('\n'.join(['**/build.json', '/README.md', '/status.json', '/retention.json', '/status/', '/keys/']
+                        + [f'/{path}/' for path in feed_paths(row)]))
         return
     root, bundle = (Path(p).resolve() for p in args[:2])
     state = read(root / 'status.json', dict(branch='packages', runs={}, targets={}))

@@ -44,6 +44,14 @@ conflicting pushes; builds have no whole-matrix publication barrier. New runs
 start building after source preparation without entering the publication queue.
 Cancellation stops pending publication and log-upload work as well as builds.
 
+Each run admits at most 16 target pipelines so its builds do not consume all
+20 observed runner slots. This is a per-run limit, not a reservation across
+overlapping runs. Publication checks out only the affected feed and shared
+metadata using Git's partial and sparse checkout. APT includes the whole suite
+because its signed release metadata covers all architectures. Retention validates
+and cleans that feed only, preserving other feeds' files and retirement records.
+The atomic snapshot push remains serialized and protected by a Git lease.
+
 Package revisions derive from the entry workflow's increasing run number `N`:
 SNode.C uses `2*N`, and MQTTSuite uses `2*N+1`. Retries keep the same revisions;
 new runs receive distinct revisions without a shared allocation job. Run history
