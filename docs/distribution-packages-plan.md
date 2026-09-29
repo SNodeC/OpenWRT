@@ -5,10 +5,10 @@ implementation status. Installation instructions live in the distribution guides
 
 ## Release-tag implementation — 29 September 2026
 
-Release builds use independent, immutable `vMAJOR.MINOR.PATCH` tags. Creating a
-matching tag in either upstream repository replaces the former OpenWRT,
-RaspberryPiOS and Linux notifications. Moving or deleting a tag does not request
-a new release. Prerelease suffixes are not accepted by this production workflow.
+Release builds use independent `vMAJOR.MINOR.PATCH` tags. Creating or moving a
+matching tag in either upstream repository requests a build through the
+`release-tag-changed` event, replacing the former OpenWRT, RaspberryPiOS and Linux
+notifications. Deleting a tag does not request a build. Prerelease suffixes are not accepted by this production workflow.
 
 Before tagging, commit the intended version to the upstream `VERSION` file.
 CMake uses the reachable release tag with the fewest intervening commits,
@@ -27,8 +27,8 @@ not MQTTSuite's major.
 
 | Trigger | Source selection | Build and publication |
 | --- | --- | --- |
-| New SNode.C tag | New SNode.C plus each target's published MQTTSuite tag | Build both; publish both after that target succeeds |
-| New MQTTSuite tag | New MQTTSuite plus each target's published SNode.C tag | Reuse SNode.C packages; build and publish new MQTTSuite packages |
+| Created or moved SNode.C tag | New SNode.C plus each target's published MQTTSuite tag | Build both; publish both after that target succeeds |
+| Created or moved MQTTSuite tag | New MQTTSuite plus each target's published SNode.C tag | Reuse SNode.C packages; build and publish new MQTTSuite packages |
 | Manual workflow | Two explicitly supplied release tags | Build and publish both; also bootstraps a new target |
 
 The source pair is captured per target, because independent publication can leave
@@ -52,8 +52,9 @@ still matches the captured dependency and that the artifact preserved it exactly
 If SNode.C changed during the build, publication rejects that stale result.
 
 Rollout: land the build-system and notification changes in both upstream projects
-and the orchestration changes here before creating new release tags. Do not move
-existing versioned tags. No release tags are created by this implementation.
+and the orchestration changes here before creating or moving release tags. Tag
+creation, movement and pushes require explicit user approval; this implementation
+does not perform any tag changes.
 All selected source tags, including published counterparts, must use
 `vMAJOR.MINOR.PATCH`. An explicit tag-pair build replaces a legacy-tag baseline
 before automatic releases can reuse that counterpart.
