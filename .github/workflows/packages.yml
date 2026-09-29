@@ -63,7 +63,7 @@ jobs:
       operation: allocate
     secrets: inherit
   target:
-    name: ${{ matrix.id }}
+    name: ${{ matrix.distribution }} · ${{ matrix.suite }} · ${{ matrix.arch }}
     needs: [prepare, allocate]
     strategy:
       fail-fast: false

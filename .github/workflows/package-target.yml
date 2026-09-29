@@ -80,6 +80,7 @@ jobs:
             sdk/.config
             sdk/ci-sdk.json
   finish:
+    name: Publish ${{ fromJSON(inputs.target).id }}
     if: always()
     needs: build
     uses: ./.github/workflows/package-write.yml
