@@ -2,12 +2,6 @@ name: Unified distribution packages
 on:
   workflow_call:
     inputs:
-      snodec_tag:
-        required: false
-        type: string
-      mqttsuite_tag:
-        required: false
-        type: string
       release_project:
         type: string
       release_tag:
@@ -38,8 +32,6 @@ jobs:
       - name: Capture the source pair and full matrix
         id: matrix
         env:
-          SNODEC_TAG: ${{ inputs.snodec_tag }}
-          MQTTSUITE_TAG: ${{ inputs.mqttsuite_tag }}
           RELEASE_PROJECT: ${{ inputs.release_project }}
           RELEASE_TAG: ${{ inputs.release_tag }}
           PACKAGE_BRANCH: packages
@@ -70,5 +62,6 @@ jobs:
     uses: ./.github/workflows/package-target.yml
     with:
       target: ${{ toJSON(matrix) }}
-      revision: ${{ needs.allocate.outputs.revision }}
+      revisions: ${{ needs.allocate.outputs.revisions }}
+      release_project: ${{ inputs.release_project }}
     secrets: inherit

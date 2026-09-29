@@ -27,47 +27,44 @@ not MQTTSuite's major.
 
 | Trigger | Source selection | Build and publication |
 | --- | --- | --- |
-| Created or moved SNode.C tag | New SNode.C plus each target's published MQTTSuite tag | Build both; publish both after that target succeeds |
-| Created or moved MQTTSuite tag | New MQTTSuite plus each target's published SNode.C tag | Reuse SNode.C packages; build and publish new MQTTSuite packages |
-| Manual workflow | Two explicitly supplied release tags | Build and publish both; also bootstraps a new target |
+| Created or moved SNode.C tag | New SNode.C, then the highest stable `vMAJOR.MINOR.PATCH` MQTTSuite tag | Publish SNode.C first; only then build and publish the corresponding MQTTSuite target |
+| Created or moved MQTTSuite tag | New MQTTSuite plus each target's published SNode.C | Build and publish MQTTSuite only |
 
-The source pair is captured per target, because independent publication can leave
-targets on different releases. Archives are captured once per distinct project/tag
-pair. Recorded commit IDs verify the selected tags; they do not replace tags as
-source selectors. A moved counterpart tag or a tag/VERSION disagreement fails
-preparation instead of silently changing the dependency.
+Each distribution/version/architecture has its own independent chain:
 
-Linux and Raspberry Pi OS install the exact published SNode.C component packages,
-including development files, for MQTTSuite-only builds. OpenWrt publishes the SDK's
-installed headers, libraries and package dependency metadata as a checksummed
-`snode.c-sdk-<version>-r<revision>.tar.zst` beside the runtime packages. It contains
-no source tree, build tree or build stamps. MQTTSuite-only builds restore this
-development dependency into the identical SDK release and architecture, relocate
-SDK paths in installed CMake/pkg-config metadata, and skip the SNode.C compile
-target and its tests. Other build dependencies retain the normal SDK build rules.
-Full builds compile and test SNode.C first, then build MQTTSuite. No upstream
-source changes or patches are involved.
+1. Build and test SNode.C.
+2. Push its packages and signed indexes to `packages` immediately.
+3. After that push succeeds, build MQTTSuite against those published SNode.C packages.
+4. Push MQTTSuite's packages and signed indexes immediately.
 
-An existing OpenWrt feed needs one full explicit-tag-pair build to publish its
-development dependency. Missing development files or an SDK mismatch fail with a
-request for that full build; an MQTTSuite-only run never silently rebuilds SNode.C.
+No target waits for another architecture. If the MQTTSuite build fails, the already
+published SNode.C remains available. If SNode.C publication fails, that target's
+MQTTSuite build does not start. Package-branch writes are serialized to prevent
+conflicting pushes; builds have no whole-matrix publication barrier.
 
-Reused packages retain their original bytes, versions and signatures. Only the
-newly built packages get the new package revision. Each target artifact still
-contains a complete feed inventory so the existing native index generators and
-retention logic remain the sole publication authorities. Before publishing an
-MQTTSuite-only result, the writer verifies that the published SNode.C inventory
-still matches the captured dependency and that the artifact preserved it exactly.
-If SNode.C changed during the build, publication rejects that stale result.
+Each project publication receives its own increasing package revision. Existing
+counterpart packages retain their exact bytes, version and source provenance until
+that project's own build succeeds. The publisher rejects stale dependencies and
+verifies each artifact against the captured source selection. Recorded commit IDs
+verify version tags; they are not source selectors.
 
-Rollout: land the build-system and notification changes in both upstream projects
-and the orchestration changes here before creating or moving release tags. Tag
-creation, movement and pushes require explicit user approval; this implementation
-does not perform any tag changes.
-All selected source tags, including published counterparts, must use
-`vMAJOR.MINOR.PATCH`. An explicit tag-pair build replaces a legacy-tag baseline
-before automatic releases can reuse that counterpart.
-The full 76-target matrix and immediate per-target publication are retained.
+Linux and Raspberry Pi OS install the published SNode.C development packages.
+OpenWrt also publishes `snode.c-sdk-<version>-r<revision>.tar.zst`, containing the
+SDK's installed headers, libraries and library dependency metadata. It contains no
+source tree, build tree or build stamps. MQTTSuite restores these files into the
+same SDK release and architecture, relocates installed CMake/pkg-config metadata,
+and skips SNode.C compilation and tests. Missing development files require a
+SNode.C release first; an application-only release never rebuilds the library.
+
+The upstream repositories have only README TOC updates and version-tag
+notifications. This repository accepts only those release notifications and uses
+internal reusable workflows. There are no manual build entry points, scheduled
+cleanup workflows or separate completion-triggered status workflows. Retention
+cleanup and publication-status updates run within the publication writer.
+
+Version-tag creation, movement and pushes require explicit user approval. CI must
+not be started by the assistant without an explicit instruction. The 76-target
+matrix is retained.
 
 ## Production cutover — 29 September 2026
 

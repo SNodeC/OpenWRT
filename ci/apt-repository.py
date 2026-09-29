@@ -39,8 +39,11 @@ def stage(suite, packages, bundle, output, distribution='raspberrypios'):
         by_arch.setdefault(architecture, set()).add(name)
         if architecture not in architectures(distribution, suite):
             raise RuntimeError(f'Unexpected architecture: {architecture}')
-    expected = {name for project in ('snodec', 'mqttsuite')
-                for name in (packages / f'{project}.packages').read_text().splitlines()}
+    project = json.loads((bundle / 'context.json').read_text())['build_project']
+    required = packages / ('snodec.packages' if project == 'snode.c' else 'mqttsuite.packages')
+    if not required.is_file():
+        raise RuntimeError('Missing built project package inventory')
+    expected = {name for inventory in packages.glob('*.packages') for name in inventory.read_text().splitlines()}
     if not by_arch or any(names != expected for names in by_arch.values()):
         raise RuntimeError(f'Incomplete Debian package set: {names}')
     if len(by_arch) != 1:

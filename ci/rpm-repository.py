@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 
-from repository import ROOT, digest, run, signer, unchanged, publication_needed, snodec_file
+from repository import ROOT, digest, run, signer, unchanged, publication_needed, project_file
 
 
 def stage(row, packages, bundle, output):
@@ -13,8 +13,11 @@ def stage(row, packages, bundle, output):
     directory = output / row['distribution'] / row['suite'] / row['arch']
     pool = directory / 'Packages'
     pool.mkdir(parents=True)
-    expected = {name for project in ('snodec', 'mqttsuite')
-                for name in (packages / f'{project}.packages').read_text().splitlines()}
+    project = json.loads((bundle / 'context.json').read_text())['build_project']
+    required = packages / ('snodec.packages' if project == 'snode.c' else 'mqttsuite.packages')
+    if not required.is_file():
+        raise RuntimeError('Missing built project package inventory')
+    expected = {name for inventory in packages.glob('*.packages') for name in inventory.read_text().splitlines()}
     names = set()
     versions = {}
     for package in packages.glob('*.rpm'):
@@ -31,7 +34,7 @@ def stage(row, packages, bundle, output):
         key = next(line.split(':')[9] for line in run('gpg', '--homedir', home, '--with-colons',
                                                      '--list-secret-keys').splitlines() if line.startswith('fpr:'))
         for package in pool.glob('*.rpm'):
-            if json.loads((bundle / 'baseline.json').read_text()) and snodec_file(package.name):
+            if not project_file(package.name, project):
                 continue
             run('rpmsign', '--define', f'_gpg_name {key}', '--define', f'_gpg_path {home}',
                 '--define', '_gpgbin /usr/bin/gpg', '--define', '_gpg_digest_algo sha256',

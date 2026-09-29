@@ -2,23 +2,12 @@ name: Distribution packages
 on:
   repository_dispatch:
     types: [release-tag-changed]
-  workflow_dispatch:
-    inputs:
-      snodec_tag:
-        description: Existing SNode.C source tag
-        required: true
-        type: string
-      mqttsuite_tag:
-        description: Existing MQTTSuite source tag
-        required: true
-        type: string
 permissions:
   contents: write
   actions: read
 jobs:
   packages:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
       (github.event.action == 'release-tag-changed' &&
        startsWith(github.event.client_payload.ref, 'refs/tags/v') &&
        github.event.client_payload.deleted == false &&
@@ -26,8 +15,6 @@ jobs:
         github.event.client_payload.repository == 'SNodeC/mqttsuite'))
     uses: ./.github/workflows/packages.yml
     with:
-      snodec_tag: ${{ inputs.snodec_tag }}
-      mqttsuite_tag: ${{ inputs.mqttsuite_tag }}
-      release_project: ${{ github.event_name == 'repository_dispatch' && (github.event.client_payload.repository == 'SNodeC/snode.c' && 'snode.c' || 'mqttsuite') || '' }}
-      release_tag: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.ref || '' }}
+      release_project: ${{ github.event.client_payload.repository == 'SNodeC/snode.c' && 'snode.c' || 'mqttsuite' }}
+      release_tag: ${{ github.event.client_payload.ref }}
     secrets: inherit

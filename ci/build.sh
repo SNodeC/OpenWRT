@@ -16,17 +16,19 @@ cp "$feed/ci/keys/snodec-usign.pub" key-build.pub
 cp "$feed/ci/keys/snodec-apk.pem" public-key.pem
 # Archives include submodules and come from the captured tag pair.
 mkdir -p dl
-for package in snode.c mqttsuite; do
+for package in "$BUILD_PROJECT"; do
     cp "$bundle/$package-"*.tar.gz dl/
 done
 export SNODEC_PACKAGE_RELEASE="$PACKAGE_RELEASE" MQTTSUITE_PACKAGE_RELEASE="$PACKAGE_RELEASE"
-SNODEC_SOURCE_TAG=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_tags"]["snode.c"])' "$bundle/context.json")
-MQTTSUITE_SOURCE_TAG=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["source_tags"]["mqttsuite"])' "$bundle/context.json")
-SNODEC_SOURCE_HASH=$(sha256sum "$bundle/snode.c-"*.tar.gz | cut -d' ' -f1)
-MQTTSUITE_SOURCE_HASH=$(sha256sum "$bundle/mqttsuite-"*.tar.gz | cut -d' ' -f1)
-SNODEC_PACKAGE_VERSION=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["versions"]["snode.c"])' "$bundle/context.json")
-MQTTSUITE_PACKAGE_VERSION=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["versions"]["mqttsuite"])' "$bundle/context.json")
-export SNODEC_SOURCE_TAG MQTTSUITE_SOURCE_TAG SNODEC_SOURCE_HASH MQTTSUITE_SOURCE_HASH SNODEC_PACKAGE_VERSION MQTTSUITE_PACKAGE_VERSION
+if [ "$BUILD_PROJECT" = snode.c ]; then
+    export SNODEC_SOURCE_TAG=$(jq -r '.source_tags["snode.c"]' "$bundle/context.json")
+    export SNODEC_PACKAGE_VERSION=$(jq -r '.versions["snode.c"]' "$bundle/context.json")
+    export SNODEC_SOURCE_HASH=$(sha256sum "$bundle/snode.c-"*.tar.gz | cut -d' ' -f1)
+else
+    export MQTTSUITE_SOURCE_TAG=$(jq -r '.source_tags.mqttsuite' "$bundle/context.json")
+    export MQTTSUITE_PACKAGE_VERSION=$(jq -r '.versions.mqttsuite' "$bundle/context.json")
+    export MQTTSUITE_SOURCE_HASH=$(sha256sum "$bundle/mqttsuite-"*.tar.gz | cut -d' ' -f1)
+fi
 cp feeds.conf.default feeds.conf
 printf '\nsrc-link snodec %s\n' "$feed" >> feeds.conf
 ./scripts/feeds update base packages snodec
@@ -44,19 +46,18 @@ CONFIG_PACKAGE_snode.c-control=m
 CONFIG_PACKAGE_mqttsuite-full=m
 EOF
 make defconfig
-if [ "${RELEASE_PROJECT:-}" != mqttsuite ]; then
+if [ "$BUILD_PROJECT" = snode.c ]; then
     make -j"$(nproc)" package/snode.c/compile V=s BUILD_LOG=1
     python3 "$feed/tests/test_upstream.py" "$sdk"
 fi
 python3 "$feed/ci/repository.py" sdk-dependency "$sdk" "$bundle" "$feed/../dependencies"
-# SNode.C is either built above or restored from its published development files.
-# Keep all other dependencies under the SDK's normal dependency graph.
-make -j"$(nproc)" MAKE="make -o package/feeds/snodec/snode.c/compile" package/mqttsuite/compile V=s BUILD_LOG=1
+if [ "$BUILD_PROJECT" = mqttsuite ]; then
+    # The matching SNode.C job has already published, or this is an application-only release.
+    make -j"$(nproc)" MAKE="make -o package/feeds/snodec/snode.c/compile" package/mqttsuite/compile V=s BUILD_LOG=1
+fi
 arch=$(sed -n 's/^CONFIG_TARGET_ARCH_PACKAGES="\(.*\)"/\1/p' .config)
 repository="bin/packages/$arch/snodec"
-if [ "${RELEASE_PROJECT:-}" = mqttsuite ]; then
-    find "$feed/../dependencies" -maxdepth 1 -type f \( -name '*.ipk' -o -name '*.apk' \) -exec cp -t "$repository" {} +
-fi
+find "$feed/../dependencies" -maxdepth 1 -type f \( -name '*.ipk' -o -name '*.apk' \) -exec cp -t "$repository" {} +
 make package/index V=s
 if [ -f "$repository/packages.adb" ]; then
     staging_dir/host/bin/apk verify --keys-dir "$feed/ci/keys" "$repository/packages.adb"

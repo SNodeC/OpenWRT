@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 import sys
 
-from repository import ROOT, matrix, linux_matrix, unchanged, run, select, snodec_file, digest
+from repository import ROOT, matrix, linux_matrix, unchanged, run, select, project_file, digest
 
 
 def targets():
@@ -95,7 +95,9 @@ def allocate(root, bundle, state, context):
         maximum = max([int(g['revision']) for g in state['runs'].values()] + [0])
         for manifest in root.rglob('build.json'):
             maximum = max(maximum, int(read(manifest)['revision']))
-        generation = dict(revision=str(maximum + 1), context=context, sources=read(bundle / 'sources.json'),
+        projects = ['snode.c', 'mqttsuite'] if context['release_project'] == 'snode.c' else ['mqttsuite']
+        revisions = {project: str(maximum + index + 1) for index, project in enumerate(projects)}
+        generation = dict(revision=revisions['mqttsuite'], revisions=revisions, context=context, sources=read(bundle / 'sources.json'),
                           targets=rows, profiles_hash=digest(bundle / 'profiles.json'), run_id=run_id, run_url=context['run_url'])
         state['runs'][run_id] = generation
     for row in rows:
@@ -103,31 +105,40 @@ def allocate(root, bundle, state, context):
         attempt = int(os.environ.get('GITHUB_RUN_ATTEMPT', '1'))
         if previous.get('run_id') != run_id or previous.get('attempt', 0) < attempt:
             update(state, row, generation, 'queued', attempt)
-    return generation['revision']
+    return generation['revisions']
 
 
-def publish(root, bundle, incoming, row, generation):
-    profile = read(bundle / 'profiles.json')[row['id']]
+def publish(root, bundle, incoming, row, generation, project):
+    original = read(bundle / 'profiles.json')[row['id']]
     if digest(bundle / 'profiles.json') != generation['profiles_hash']:
         raise RuntimeError('Target source selection changed')
-    if 'baseline' in profile:
-        current, _ = published(root, row)
-        old = profile['baseline']
-        dependency_files = lambda info: {k: v for k, v in info.get('files', {}).items()
-                                         if snodec_file(k)}
-        if (current.get('sources', {}).get('snode.c') != old['sources']['snode.c']
-                or dependency_files(current) != dependency_files(old)):
-            raise RuntimeError('Superseded build: published SNode.C dependency changed')
-    select(bundle, row['id'])
+    if project not in generation['revisions']:
+        raise RuntimeError('Project is not selected for this release')
+    current, _ = published(root, row)
+    baseline = original['baseline']
+    if project == 'mqttsuite' and original['context']['release_project'] == 'snode.c':
+        # The application must follow this target's successful library publication.
+        # Allow an idempotent retry of this application's own completed publication.
+        if (current.get('context', {}).get('run_id') != generation['run_id']
+                or current.get('revision') not in generation['revisions'].values()
+                or current.get('sources', {}).get('snode.c') != original['sources']['snode.c']):
+            raise RuntimeError('Corresponding SNode.C release has not been published or was superseded')
+        baseline = current
+    other = 'mqttsuite' if project == 'snode.c' else 'snode.c'
+    dependency_files = lambda info: {k: v for k, v in info.get('files', {}).items() if project_file(k, other)}
+    if (current.get('sources', {}).get(other) != baseline.get('sources', {}).get(other)
+            or dependency_files(current) != dependency_files(baseline)):
+        raise RuntimeError('Superseded build: published counterpart changed')
+    profile = select(bundle, row['id'], project, baseline)
     manifests = list(incoming.rglob('build.json'))
     if len(manifests) != 1:
         raise RuntimeError('A publisher must receive exactly one target artifact')
     metadata = read(manifests[0])
-    if 'baseline' in profile and dependency_files(metadata) != dependency_files(profile['baseline']):
-        raise RuntimeError('Artifact changed the published SNode.C packages')
-    if (metadata['revision'] != generation['revision'] or metadata['sources'] != profile['sources']
+    if dependency_files(metadata) != dependency_files(baseline):
+        raise RuntimeError('Artifact changed the published counterpart packages')
+    if (metadata['revision'] != generation['revisions'][project] or metadata['sources'] != profile['sources']
             or metadata['context'] != profile['context']):
-        raise RuntimeError('Artifact does not belong to this build generation')
+        raise RuntimeError('Artifact does not belong to this project build generation')
     if row['family'] == 'openwrt':
         expected = incoming / 'openwrt' / row['suite'] / row['arch'] / 'build.json'
     elif row['family'] == 'raspberrypi':
@@ -169,7 +180,7 @@ def reconcile(state, run_id, attempt):
     for row in generation['targets']:
         latest = state['targets'].get(row['id'], {})
         if latest.get('run_id') == run_id and latest['status'] in {'queued', 'running'}:
-            status = 'running' if jobs.get(f'Build and test {row["id"]}') in {'in_progress', 'completed'} else 'queued'
+            status = 'running' if any(jobs.get(f'Build and test {project} · {row["id"]}') in {'in_progress', 'completed'} for project in ('snode.c', 'mqttsuite')) else 'queued'
             if details['status'] == 'completed':
                 status = 'cancelled' if details['conclusion'] == 'cancelled' else 'failed'
             update(state, row, generation, status, attempt)
@@ -184,27 +195,21 @@ def main():
     state = read(root / 'status.json', dict(branch='packages', runs={}, targets={}))
     if state['branch'] != 'packages':
         raise RuntimeError('Publication destination mismatch')
-    if command == 'cleanup':
-        if any(root.rglob('build.json')):
-            importlib.import_module('cleanup').cleanup(root)
-        render(root, state)
-        return
     context = read(bundle / 'context.json')
     if context['destination'] != state['branch']:
         raise RuntimeError('Publication destination mismatch')
     result = 0
     if command == 'allocate':
-        revision = allocate(root, bundle, state, context)
+        revisions = allocate(root, bundle, state, context)
         with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-            output.write(f'revision={revision}\n')
-    elif command == 'reconcile':
-        reconcile(state, context['run_id'], int(os.environ['RECONCILE_ATTEMPT']))
+            output.write('revisions=' + json.dumps(revisions) + '\n')
     elif command == 'finish':
         try:
             reconcile(state, context['run_id'], int(os.environ.get('GITHUB_RUN_ATTEMPT', '1')))
         except Exception as error:
             print(f'Status refresh unavailable; keeping recorded results: {error}', file=sys.stderr)
         row = json.loads(args[2])
+        project = args[5]
         generation = state['runs'][context['run_id']]
         if row not in generation['targets']:
             raise RuntimeError('Unknown publication target')
@@ -213,8 +218,8 @@ def main():
             raise ValueError('Unknown job status')
         if status == 'success':
             try:
-                publish(root, bundle, Path(args[4]).resolve(), row, generation)
-                status = 'passed'
+                publish(root, bundle, Path(args[4]).resolve(), row, generation, project)
+                status = 'running' if project == 'snode.c' else 'passed'
             except Exception as error:
                 print(f'Publication rejected: {error}', file=sys.stderr)
                 # Restore the checkout before recording failure; a partial local

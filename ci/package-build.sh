@@ -28,7 +28,7 @@ case "${DISTRIBUTION:-raspberrypios}" in
         ;;
 esac
 mkdir -p sources packages
-for project in snode.c mqttsuite; do
+for project in "$BUILD_PROJECT"; do
     mkdir "sources/$project"
     tar -xzf bundle/"$project"-*.tar.gz --strip-components=1 -C "sources/$project"
 done
@@ -46,7 +46,7 @@ package() {
     (cd "$build" && cpack -G "$format" "${options[@]}")
     cp "$build"/_packages/*."${format,,}" "$build"/_packages/*.packages packages/
 }
-if [ "${RELEASE_PROJECT:-}" = mqttsuite ]; then
+if [ "$BUILD_PROJECT" = mqttsuite ]; then
     cp dependencies/* packages/
 else
     cmake -S sources/snode.c -B build-snodec -G Ninja \
@@ -64,9 +64,11 @@ else
 fi
 ldconfig
 useradd --system --user-group --create-home snodec-test
-if [ "${RELEASE_PROJECT:-}" != mqttsuite ]; then
+if [ "$BUILD_PROJECT" = snode.c ]; then
     chown -R snodec-test:snodec-test build-snodec
     runuser -u snodec-test -- ctest --test-dir build-snodec --output-on-failure
+    find dependencies -maxdepth 1 -type f -exec cp -t packages {} +
+    exit 0
 fi
 cmake -S sources/mqttsuite -B build-mqttsuite -G Ninja \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
