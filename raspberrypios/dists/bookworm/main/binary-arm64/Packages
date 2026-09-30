@@ -1,0 +1,1350 @@
+Package: mqttsuite-bridge
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 4332
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), snodec-core (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-http-server (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), snodec-mqtt-client-websocket (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-bridge_1.0.2-121~bookworm_arm64.deb
+Size: 784802
+MD5sum: bae3a32a02b48d7e018a17fed9222430
+SHA1: 8b0305b7dc97fa29617104e6347062d5ce290d83
+SHA256: 819e87315a59f98bd4750b467a9801dcac2f273fd993f21a4f40436cb3a08deb
+SHA512: acc0fdd76188ede54bec73c56b080ad8a4e0d94f18daf0005465560e7a9031dfb0db78174123401b94c34c7cee44ced2967a96070eee582231c337a4f6517710
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-broker
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 6130
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), snodec-core (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-http-server (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in6 (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-un (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in6 (= 2.0.0-120~bookworm), snodec-http-server-express-tls-un (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-mqtt-server (= 2.0.0-120~bookworm), snodec-mqtt-server-websocket (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-broker_1.0.2-121~bookworm_arm64.deb
+Size: 1074060
+MD5sum: efa49e222639306e096b66ea845c4a20
+SHA1: f60db1637f62f6d58f6ff3260c40a17466a80910
+SHA256: ef51f76a228601c536a99025cb61ebe3f1ba06e102350b5af22f864e4f19edb0
+SHA512: b77d2e0a5e2220e3e271e5752035bf2645296bb158a0772d5b06d4ede352fdec081b8d656f14a4ca8cdf764c581e0c0f9cfa03a9c932fc2e12038965bb82c4a1
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-cli
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2945
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), snodec-core (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), snodec-mqtt-client-websocket (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-cli_1.0.2-121~bookworm_arm64.deb
+Size: 476198
+MD5sum: bb0c1202c2de6137b91ceff2c9d477f5
+SHA1: b8c51b3cc90cba06f46825ada5225805a63b4765
+SHA256: 10ec874da8b0cd1682e1ad2e8b12a9cbd88b03bb1f77d7c0643f2166190b5b55
+SHA512: aa75d1e08741e89e92d74a0ce9e990e8dae10937f69c36267a570a736a56834ba2081e872e9528d48e036c78850052c0fba655bed3effbbdd226d36c74a5c191
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-integrator
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 5004
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), snodec-core (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), snodec-mqtt-client-websocket (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-integrator_1.0.2-121~bookworm_arm64.deb
+Size: 861634
+MD5sum: 1f88ff6df50c46a5087178d95bab63e2
+SHA1: 6ef2d1491e19957967a0e1baff0f949002fa8ce5
+SHA256: 27eb9e6a6103d37a17dbe8b246cea2744ebc96d27b50cd879ddd97cb0924cd5a
+SHA512: b1d242bec7ffdb4af965ba3e18aca36d24ac98b66077ef7095e84e4df1699c9881f0354b4671fed87bbeacfb7120b83cac488ae9e665a7971d46cb4149f3eebc
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-double
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 75
+Depends: libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-mapping-double_1.0.2-121~bookworm_arm64.deb
+Size: 10044
+MD5sum: d23d568cbc97cf52200cfa9b525da8dd
+SHA1: 46b08243246ecc64f7d882e03ecb847dc2ba83ab
+SHA256: a1dccb2856b918ec5b1fff2a8db5fada44b3c327e4bb852013f1211471ca9e0d
+SHA512: d5336c60bf565a3cea4f4010df464e93baa2e53fb90cd04c63756707e674775b357fbff3d3bd6c26a94fadea45abb8b950c20c03826251a84ebeaf03eb41d5da
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-storage
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 75
+Depends: libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-mapping-storage_1.0.2-121~bookworm_arm64.deb
+Size: 19968
+MD5sum: 61645e20a32e7350a2aca64bfe13df97
+SHA1: 59c9ff8f5e0de650df292cdc77ef0b3d32adc240
+SHA256: cc5369656d64a02feb575ffa720ac7493e5d17e4a41c8ca3c3b2ca9e1861eaa0
+SHA512: ddb2d50655e6292ef2c08d43f0f31ccecd1eb6d03d4eec458c62beffbe71aa44b771ce54f53165e85c46aa751f0e76b422f206e509e9f2e19c12286b5f87d86a
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-store
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 4490
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11), snodec-core (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-db-mariadb (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), snodec-mqtt-client-websocket (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite-store_1.0.2-121~bookworm_arm64.deb
+Size: 697334
+MD5sum: eb2559d86942b4f85d0bb919c5648a31
+SHA1: fab2a8d525c6f815d2780aa22829027686f52ad0
+SHA256: 99a9db6b416a0a425c825a9e2b7adf2640189887c64ea051fb1010c7790b61fc
+SHA512: b3717af55c9e63bcad186773bc1313d6c54dca89456a72251025da217cc8748dd5819ea348624004bc7b6d2e0671f731b232381c7cec9d902d7ff1cbba3d840e
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite
+Architecture: arm64
+Version: 1.0.2-121~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: mqttsuite-store (= 1.0.2-121~bookworm), mqttsuite-mapping-storage (= 1.0.2-121~bookworm), mqttsuite-mapping-double (= 1.0.2-121~bookworm), mqttsuite-integrator (= 1.0.2-121~bookworm), mqttsuite-cli (= 1.0.2-121~bookworm), mqttsuite-broker (= 1.0.2-121~bookworm), mqttsuite-bridge (= 1.0.2-121~bookworm)
+Breaks: mqttsuite (<< 1.0.2-121~bookworm)
+Replaces: mqttsuite (<< 1.0.2-121~bookworm)
+Filename: pool/bookworm/mqttsuite_1.0.2-121~bookworm_arm64.deb
+Size: 1076
+MD5sum: d6ab5337cc127f80d4f4c73e9d4f2399
+SHA1: e3e8fe64ef41aa8f8e320512cb2aaa3df72e08f7
+SHA256: 613e3dc778e3d9314b51977b66e0e35c0bd4d9033dd63b4459baf136134db3d8
+SHA512: 1b2d7a1c16a1d5709b299c29fb663f8dd770edd80a5d5bc72dc850cc72751cb7434a3c73f7803e23bf0ead091fbbcc3c51e09801089a5f3b4111a70ef5f1e2a2
+Description: A lightweight MQTT Integration System
+
+Package: snodec-apps
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 20992
+Depends: snodec-db-mariadb (= 2.0.0-120~bookworm), snodec-websocket-client (= 2.0.0-120~bookworm), snodec-websocket-server (= 2.0.0-120~bookworm), snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-rc-stream-legacy (= 2.0.0-120~bookworm), snodec-net-l2-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-net-rc-stream-tls (= 2.0.0-120~bookworm), snodec-net-l2-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-apps_2.0.0-120~bookworm_arm64.deb
+Size: 7623076
+MD5sum: 1e17682ffc23ca6a49e4d43358346283
+SHA1: f96378c06c629046efabfd47b9f3bebf01f5e7e1
+SHA256: 54799396e2549e8d322e2ea48cc17686b33d46d01d9a51ccd1ac77312dbe5dbb
+SHA512: adb6eee89b381d1c43710d53bae20aecd480e13281e5370110ef5fa83785cb5c1e8361622cd32b44403436440c8486697fcc2cbabf95aaf9e75cfc961ad02989
+Description: Simple Node in C++, a Slim Network Framework
+ We install Applications
+
+Package: snodec-core-socket-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 273
+Depends: snodec-core-socket-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-core-socket-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 10552
+MD5sum: ca94f13e1b4eb8d17ad9735c65ba23d7
+SHA1: 7037be8e67739a94298af491eb10427de16a1941
+SHA256: 41cc154b1cfc8dabc814b9382c166e251294975abd934f3c8e8ed34b580d6d9f
+SHA512: ca4af2867da1ea2f679ce8292803661ae4a0e616d86b3c447604115c970155c0086a3e919317e456aba602a205cde1a2e8fe56f970e3d4ea02eef2e9130f5576
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 525
+Depends: snodec-core-socket-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 9)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-core-socket-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 58762
+MD5sum: a5bf5926b81d49d9e050925b038f1e58
+SHA1: d1080dbeb3914a49c923677f935efae77262d863
+SHA256: 9092e9b7ea4ca87546a7a121244a359e803cc69b976dd2a12385f8a6a3df3289
+SHA512: e531370293a0b06faaddbd2c653eb2b981ce465795a3a89747ae3aaeb841af51e5c03aa6e54f7720d16c61df26cca2c30034fe81f10e605ea0d7aebac96298a5
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1361
+Depends: snodec-core-socket (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-core-socket-stream_2.0.0-120~bookworm_arm64.deb
+Size: 158226
+MD5sum: d84ab1119bc455863f1cc0177231db84
+SHA1: fec5e3032571f7946d10331498a35454a516acd4
+SHA256: 98cc51319577f3118014134949f884a3053e3aa9cda6c031c7d50ec484205024
+SHA512: 7edbcb37cc3d5742ae1d684f7ec9ecd1091c8f32c951d4a7f1c90c6ae720804e6721f34d6b8ffb391ae63b8ba36ea8955d94c00a39acb29de1686a285d29a3ce
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 252
+Depends: snodec-core (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-core-socket_2.0.0-120~bookworm_arm64.deb
+Size: 14020
+MD5sum: 1011cd48509cdcd9618d4b16d7d7c6c8
+SHA1: 8d8f6929b5fe5d16088a641ae9b10ae6b3e54abe
+SHA256: dc59632b2c26abbcf41f225861fa6031d6c62fd466946ced4691ae2ab12e5325
+SHA512: ef2d7c39f3e497bdbea6232be77970973f0b77ea148a67258e2c2319c47a548e1465530a283c5c03c1f111a626fe3a65954cdb1fe63816af2d82d44baba77e5c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1522
+Depends: snodec-utils (= 2.0.0-120~bookworm), snodec-mux-epoll (= 2.0.0-120~bookworm), adduser, libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-core_2.0.0-120~bookworm_arm64.deb
+Size: 185132
+MD5sum: ff8ea6e835d41ec3aad3c436d4d1e69a
+SHA1: e5080712e507ce69dc94e36ca5487667f439d221
+SHA256: dc13fe2429b68b1c8a2c9d5b14c6c86411ab7eac151c2d58cadbb62f185535f3
+SHA512: 7a8e17b367ae0b39f78082f3c713589f30d427fc6c26825c2db03f35828735402d3585124fd138b550d295e9251571fa68bae293fcef7225090884c66babd4b8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-db-mariadb
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 510
+Depends: snodec-core (= 2.0.0-120~bookworm), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libmariadb3 (>= 3.0.19), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-db-mariadb_2.0.0-120~bookworm_arm64.deb
+Size: 50160
+MD5sum: 94a39eba26205df1ec6bcba70c00377e
+SHA1: 3869b2962433fe1c23b431abeb416f32298a387b
+SHA256: e3bc30291665487ed89cfe1636044af2ae83100f97a6c755fc9ac3c28ab9f9ac
+SHA512: 736b5b10aff12f0f6e52006882456361c572eebe962eec723ce92926bc366ca2dabf78838af2d3580913eafc8b89f322649c6739df17423050eaed0627a13a15
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-client
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2001
+Depends: snodec-http (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-client_2.0.0-120~bookworm_arm64.deb
+Size: 232856
+MD5sum: 4a89a73020372f65f5ae282092cbaec6
+SHA1: 1df6fc0d3d73f4f786084141138b2fa7c4c3bc40
+SHA256: 66c752331dbef9f9436ea48477ae93cdbcfb88944601138ace9e23f09f26ffa5
+SHA512: 50c62fa2eece108276f63677a4ba7662875390dca2c392bb6abb9900b10912f0823ef3703421e9b3399a050970e427f05900fa58426edd22f15039040e0bf2b1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in6
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-legacy-in6_2.0.0-120~bookworm_arm64.deb
+Size: 123098
+MD5sum: 99eee2201c3e76a1855895054f80314f
+SHA1: 4cfeb36b5e302ad08dc1ddb577e65a82859b254f
+SHA256: 90c43eb18c9ec153d799a99e793f7474e4d731f53f7a2c0e59b6350c0d840681
+SHA512: 3b50d6145724d840a65f58a4042ae556a3c1c94403a202fd6d8d7cb3cac2722972cf15573f6b21b90223620cbfebed9be07335c7b2542b2173db34dfa279ed2d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-legacy-in_2.0.0-120~bookworm_arm64.deb
+Size: 123024
+MD5sum: bbeb0f275078abba2e73fe1c467cbc0c
+SHA1: 23db6d006fb67238336618252a4d9279bea3cc34
+SHA256: 2db26398b979c5276d9c504a4ca57b8762fecf56cb6f45aa9e873c245724ab7f
+SHA512: 19442b5e3aa0be0f7c83d69f9a151af5beec1b258dbba51b2588fc09c251e55b6dc146f6e8801de4e2dfd75b2eb40f0c1d2dcaa8bc2cce7b6c8acf5f4f9dc66f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-rc
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-rc-stream-legacy (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-legacy-rc_2.0.0-120~bookworm_arm64.deb
+Size: 122958
+MD5sum: f9c1677e079f18fc0cc0d356fe196cb6
+SHA1: 10dff6e7cf0b6b7027fa52e009eecc4bbb0fecae
+SHA256: 654720f1dce739977ce1f7e066a6a6d3d3f9ebcab150ca404d2902af5086d967
+SHA512: ef583b315da3c3f52c3ce5f34b2f21d90865429cf870c3d803cf91fd9510a129abf7ba0d8a6e6d86e9ec1297781a5e903fe54be17dc89ce64a5d96d3d8632158
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-un
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-legacy-un_2.0.0-120~bookworm_arm64.deb
+Size: 122968
+MD5sum: a323dbccad7f3239b488a6bc292e61f7
+SHA1: 75c1fc34d015b6eaa5ef4cacc199268e0fd0cb34
+SHA256: 75752ca13103eb0dd9edc177f789df99b985f03dc397d75df36cfa46ac050631
+SHA512: 407ba780f58131f467a7488fd83f28d1abb18166daa517f3814afea8680668e26b3712a05b05d1e3f9a6eb91057995f7a9df12828a6d5d8b3194202f9289804f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in6
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-tls-in6_2.0.0-120~bookworm_arm64.deb
+Size: 123044
+MD5sum: eacd796720f816caa235875e2fa74108
+SHA1: 0fa54eb382ad1aba16ae568cda6d32a7726163e9
+SHA256: 5cc07ab8e41a908b91cfa9807b331280dce83691eeb7be53fc4271da22feb1e6
+SHA512: d7e92fce3b31888415f768009802f0b9a59fb94043c86a56b9ad5431a30c32177dd7f2fa627f763a9ec213bfc942bdd1a89cf7f4680550580ed8f22bdc218773
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-tls-in_2.0.0-120~bookworm_arm64.deb
+Size: 123050
+MD5sum: a3882ec68c72997f8a82648c30b5b1f8
+SHA1: 74fa3f8ff7bc581086d944bb10194644bf43646c
+SHA256: 746e80a6b6fa147e8717076de133f13806e1cadb7834afa0b02df9a4ecc4da25
+SHA512: 88e8bfc7c14248fe42758e06b4b5e5acbcd5733ad45b5e19199962fe4c10bca712d9a765b97345626f3e0be79ab0eb009a55cc3d6adb1f25ad93df974805fcf4
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-rc
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-rc-stream-tls (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-tls-rc_2.0.0-120~bookworm_arm64.deb
+Size: 122952
+MD5sum: 768ead85b3e3b1b3a77d7df2af7fe46a
+SHA1: 543aa21f6fa1ca5ff8ad7a7b7ce0338b47187fdd
+SHA256: 5f74ee7dc5ddcee33cf1dbc4fd26ff58507b0639b7b2070aec41dabce2c28b6d
+SHA512: 0f4ff0beac2fa580702329e23ee21923a9f5330e360238a3e6048e5ec46961105b3b00eaae595cdad360ba44a0667a50122b0e570b4d44f2c49e7a732179ef3b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-un
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1033
+Depends: snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express-tls-un_2.0.0-120~bookworm_arm64.deb
+Size: 122912
+MD5sum: 081009b77f83178bb189496be115632d
+SHA1: 24e713f35557a10b7a62d29a14d1cb0d33ec22c9
+SHA256: 745a0eaf1fcf4fd565d543a7c40d9daa8c81999d22e8608ef9f99e2a6e7ce637
+SHA512: 03078c9c01a6c1c5a6b06ab6f3e0ab0552b2806d9826d3cfc213e639ee3fc58255049c1e263812bcbbc1a6f31a66bb29ab5349108f4fc2f0af5056380882a2c7
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2672
+Depends: snodec-http-server (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server-express_2.0.0-120~bookworm_arm64.deb
+Size: 303518
+MD5sum: 9cfe2484b6dd7438b9a7952090f3c330
+SHA1: 3efbc814eebb6b9cdaaf3bd00b379d3cdce8807b
+SHA256: 90bd62e3a8dbd7ddb48a96bf7d78248c76129c35d63b50ed1e56a7d39ee6d528
+SHA512: 33811ff3ebcdf89401ed13dfbc03a281cc8c02a1ffb6e07cd973a7bb72bbfb404778fc3115de6aa0a5af5aecbaaeacd7a22e006d6621ba6bae14e391d6006c5e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1703
+Depends: snodec-http (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http-server_2.0.0-120~bookworm_arm64.deb
+Size: 209148
+MD5sum: f623b39ae70cdfc55f57117269bf8e41
+SHA1: a5d0e0999c635fe167e08719e16d572a7313d755
+SHA256: 099d7a384f778a87c426333296678dda8b361e77b1dde666c1223329d0c372a1
+SHA512: 3e9abc0345ad10c5b53eebb811be96fe6358d7125ef77aefa04d94537722658be691079b4a3ab6bdbbb50b2d66d3547daaa68f11b3ca62b4e70a1e867e8f9770
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1681
+Depends: snodec-core-socket-stream (= 2.0.0-120~bookworm), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libmagic1 (>= 5.12), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-http_2.0.0-120~bookworm_arm64.deb
+Size: 210810
+MD5sum: f234028c3353d812dbf46533bf74b00c
+SHA1: 1f18c1d9da2abfc416afe2b76511f591e1d500ac
+SHA256: e13a9d7018d4da9dd9443cd48ad532f809352cf767cb83976ec1d5050626917a
+SHA512: 15db692608ee2a90fe9d18ed76aa55bca82ddbcd17c567360323cb6668d93d5a3af9f8753be68875fdfb2833d5ae946631ffcd50041622e0f5ab8144e6d19475
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-logger
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1827
+Depends: libc6 (>= 2.33), libgcc-s1 (>= 4.5), libstdc++6 (>= 12)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-logger_2.0.0-120~bookworm_arm64.deb
+Size: 223418
+MD5sum: f63a28e893d2640e7a4b97a8ddeb85b8
+SHA1: 00bb1ea859ff82564b16296b80a0c44b9880fad6
+SHA256: ed621b48a8a8bdb9d9a13355f927614699b4bfa9a26eb83bc8bf548614016f7e
+SHA512: 09e8ed8b727d6512b21510431c0f7281bc3a5f9c46fe64d9b33996b6ab4cd9d8f9c4b087261a0dd19ed7c5fa3675334a526d38b8d8a65111a239a14cb46855b6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client-websocket
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 256
+Depends: snodec-websocket-client (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mqtt-client-websocket_2.0.0-120~bookworm_arm64.deb
+Size: 15224
+MD5sum: 7fd5fd3791c9a88f9e21b88363354898
+SHA1: a55756d301a8aded5ba92a0441bc381aa9ed7445
+SHA256: 1e1572ba20b601579f8ce8160f691a1331afb126ccdff9c540a1c89464b4b122
+SHA512: b48aed3da0425bab86425301bf816be4b1194485c09e6d0304f32d9325a5a9b4c2d571ca2ae2a36807562b6a4e8276ff4dc358d4d1f0ab945d8203e014112a72
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 869
+Depends: snodec-mqtt (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mqtt-client_2.0.0-120~bookworm_arm64.deb
+Size: 89086
+MD5sum: 643d33d25b5bdbfdbca606a90180f068
+SHA1: 7afa504b3cc7bbd3e161cc94b994a375c29b0ff7
+SHA256: f859d3eb8c4495cd588eb11b7f6c94d9c4eb67e06de10e31dd54d50c160a1287
+SHA512: 1d9336962768c0f77339cac66b2ba8cf81461d28699eba5767533fbe2dc10f81e3f870e9f4d822acc32d6fdfa8667c85859b5f524d0f7610b7f4a99c29ab05e4
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server-websocket
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 256
+Depends: snodec-websocket-server (= 2.0.0-120~bookworm), snodec-mqtt-server (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mqtt-server-websocket_2.0.0-120~bookworm_arm64.deb
+Size: 15192
+MD5sum: 48c1565b6c04ba9fc124ce0587a43066
+SHA1: ecd775b2ca0454bd53916a1fed9ae16d2faf3ffd
+SHA256: ca887e483f399460e07c13d1f8bd4a2ae026abb144a29db4022b39f65375d6cf
+SHA512: 040adec69463d8c95462a78e1e03a0b723eb33d7f02552f23ab7e121b4752919ea4238ad7cce8553bd1dd05d9706dc4a5444c2def794c407201853b2250f1a5b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1483
+Depends: snodec-mqtt (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mqtt-server_2.0.0-120~bookworm_arm64.deb
+Size: 175300
+MD5sum: 9750a45087c2994c64f64ad006fbe0c9
+SHA1: 9594a294b66f74e41af0c1c747a24f597c707f54
+SHA256: ef6f1c5d4dfcec1f6519c807d1223437dfa9793ab3b985294fc8da8ec4686314
+SHA512: 4d9e93548b69b54e781c108e9236685bdb7461509f764d3f816e5ca06d0125a542e12a22e0199ef58b7f17303c73eec007a992b2a94424b51eac1fce6d524116
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 758
+Depends: snodec-core-socket-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mqtt_2.0.0-120~bookworm_arm64.deb
+Size: 76330
+MD5sum: 4debf131eff064e80382b78b1700de37
+SHA1: 2bd7cf6edf200059935ee3b31d06b322339a8afb
+SHA256: e26cdcfc5d6757a75473420046fffb8f61f904997f3f563672fab06968d417e3
+SHA512: 7503d18e86ecd513e1faa64caf8bea2c226a78dbb0c51708a7721d9ad74de2530f49184714f7f0fb2d97523458341fc10d51eb12547d2b7df8649c1d94d6a5d2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-epoll
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 221
+Depends: libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mux-epoll_2.0.0-120~bookworm_arm64.deb
+Size: 20908
+MD5sum: b9479a347fdbd4ead20abedebf1f120a
+SHA1: 11d21903b8d1d66096ff8b3d97cb9d4e5b4ec330
+SHA256: c2d67f59637196f580df8e043be4a0a8c0ae3ad736dbe09a32e9ea63e638cf37
+SHA512: b86228397de0785a4fb14cf7ec7858b3cd01528fcd0f98603ad259c1fbca23b3c0b7687817d4fcf858df65f7d600d2a4ff0741bb65e37e2530f5de559b162792
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-poll
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 221
+Depends: libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mux-poll_2.0.0-120~bookworm_arm64.deb
+Size: 13482
+MD5sum: b09fe1d42262f4d6f1c4ee76430a9ba4
+SHA1: 23c355e5c49c593967a47d1fa2f62d335093ca68
+SHA256: 94fe669578647689432f32a0717162f786d3e98c598fbb58cfcac5fb48c544bd
+SHA512: 4b6c958045d3bc87a88cc98f0f871ec05b7e1df063f0f4c85e696cbbf391769442785be0289183ef0393b4fa331448fd4d5a15921e0399255e87803354362734
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-select
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 221
+Depends: libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-mux-select_2.0.0-120~bookworm_arm64.deb
+Size: 9722
+MD5sum: 2c0713c9086081c86825c424af0adfa3
+SHA1: b5e7d645362bb9eb419690356ea006146b722c4f
+SHA256: 2add6a88280c8b52bd973bf865ae010660ed5338f4846e9adcf224dfedd0a298
+SHA512: 10525c92667611bf6962615ebbdee518fd688273ba455f5c5a53ae69957344594d811a2389233b9ddbc46f716b9eed549190f16483df3e2c3d71e5a5ce4bc344
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 256
+Depends: snodec-net-in-phy (= 2.0.0-120~bookworm), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in-phy-stream_2.0.0-120~bookworm_arm64.deb
+Size: 9504
+MD5sum: d968ab4e75d7c9a2529734997ed601f4
+SHA1: 4073ca2dc398ea03bf3b62423b5628143873fba2
+SHA256: b4ff7d0e7c05ce65e2082f7d370b3a15c27c2fe7d2ac5543a44bcfcb8ebf2bc7
+SHA512: 5a5bc5d50c80650dc77fe01b870feed04e89bafff100f5c42ce6a3d702d4351d17220fbae91fd46eec4bdab1e0e1fc4495fb1314ef6520b81ba7666778abece4
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 246
+Depends: snodec-net-in (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in-phy_2.0.0-120~bookworm_arm64.deb
+Size: 11896
+MD5sum: fb9a7c22c06183bc2d2d761245457ea4
+SHA1: 91b7c3041c27fe7bfead1ff2f70c7dce5f003c58
+SHA256: 2e074777efd1b57ed272882d764089c3b3e1d61675369bfa23d9f9d6e05c4380
+SHA512: 2d20bd0c51cff2d39f35075b6cb4c8a031ccec77a13adee60712de93f929ff8c7e165ef6d2ebd2d28534de92d6189e857a229d0c6e9ce1d80ffac19dfd2bf911
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1810
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 182232
+MD5sum: 007e98e05fc52431f03bce1a4fc0cc71
+SHA1: 6abddfb4c23a71c0316885433a9eb3a71319ca79
+SHA256: 55e8c0b749e77f01be4c498ab0f722a7eb7a6dcac24d04b0846acf73444c24bd
+SHA512: 2f26b657507384d244ca5ddff271dad0cb5d89d4637d83d3c273bdb239df721feb103d2552a81f533a122e8f2f102bc7fe51205be07d8ac27a0aa471dad0ecac
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2196
+Depends: snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 225444
+MD5sum: 0ac97eaf1d19df06046825a05cd3bc6a
+SHA1: 372cfe5b44c67a217178c5d7939376383a959b89
+SHA256: dad01164c99a53fc31f6c042a1c412a424c68794e7bfa637ad6b6fa5e07c393a
+SHA512: 4b52a1b29a5a91cdda3feb6326d63ce0bdf09267d28cd1e679485b3f86ec79dfc432d9ba28b5599c5b7d6609127dca6b6ba9ecaa06aa9c82eb0d4be69cf05f61
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1034
+Depends: snodec-net-in-phy-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in-stream_2.0.0-120~bookworm_arm64.deb
+Size: 123556
+MD5sum: c292ac5d81fd8432fa8d3283e9d60b84
+SHA1: 338bd8613c11bc6c71cb5dd36ef994b2295a614e
+SHA256: 7c9faa5696ea27b5b7d3fa28dda6a267166539b3eb4167f5765db85f2d85d113
+SHA512: 77ca298d0f4f1ae3cd290415cf59d6ce1f1264221c896487cce2a9c01edfc92fefd39e972508e23c98984047089b53db1d5c627e55e0554509f891b849a7205d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-in6-phy (= 2.0.0-120~bookworm)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6-phy-stream_2.0.0-120~bookworm_arm64.deb
+Size: 4548
+MD5sum: 29f5118b7e0aa4f6bef9e295b794b8b3
+SHA1: 5353017fcc7ad2e1951f30770f1dda810fb58761
+SHA256: a7a570b8ae555f632b298adc99bff5769deed0f852ab84a1679d0e8c4e010634
+SHA512: f4ae5fdde4571efcebb26fac525184c0628c91f6eb1dd4619a813b56d16c0a4e3fd0376e8c777c0018d99f77080c50a5265e1649062ba353e6e2a4eaabced1f1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 247
+Depends: snodec-net-in6 (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6-phy_2.0.0-120~bookworm_arm64.deb
+Size: 11902
+MD5sum: a55edac34289f8b8be3fc184342fe554
+SHA1: 7dca9253817780a123b79ca74c493a9fc69ccd63
+SHA256: e8cb99493db8447ebf2fdd8749135e9b586a099df2c80ac12a188258ce38ba45
+SHA512: 0ff68452ddf40cdbf1c4735c061dc00b67494960db2d1bc2c3509154446542158073ab43f3555609402aba5f694baf5e70aa9e132b730680df627cd72ebc3be5
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1810
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 182418
+MD5sum: 5351eaf0c9ca323aa03ee3366fe71dfe
+SHA1: 270501c38d7dfafae510f344e84d0f03044807af
+SHA256: 2c8d8b0acc49323b45012f5f1bf7b66ed08577adccac6548a16596251bdae71d
+SHA512: d235e4c5cf8b753abfea33d07169e28eda2aebe05e2cab44bab1dfaa5ca4563a980a50aa4beb74f8f65a4a5f9042941f3f693d7b9c5615dce9a3952b052a741e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2196
+Depends: snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 225442
+MD5sum: d0d8830cde48359f2c77d8554b870b83
+SHA1: 282a5a2e5046ad02b1195b5bd3f19a6b8252450a
+SHA256: 973fadd4e4ef463e30ee28e0dbe73f73f8abb3932d08a2825ab7ab3f74bee0d2
+SHA512: a6e9035708d30e930376f28ffd9c1f7d153042ab3453f5d448fd47b896ffc16ee1774e5fc6691853e9c0840c74b58bd40411c1ac40c7772d7dde53edc5eb39d9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1232
+Depends: snodec-net-in6-phy-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6-stream_2.0.0-120~bookworm_arm64.deb
+Size: 129162
+MD5sum: 17086a6259a0b1b0846166b3abf3dbae
+SHA1: 97601fd31fec65c6a4440af3e5f8155cb88cf60e
+SHA256: 110ca7790f7495925cfa742c902219f58a227e19118132164b30df933b88af84
+SHA512: 690356d963f2ff4dcd7bdcf46b2cb7123740a6e1f514ce057ab59146aff0b47d5ee251e51d293ce4dc945cfcdbb2326b4798ca5e7b868ca8a2fbada9a70968c0
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1218
+Depends: snodec-net (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in6_2.0.0-120~bookworm_arm64.deb
+Size: 138254
+MD5sum: 9bccc391e5107fba89f40368ee647543
+SHA1: bf8369d267005f098bf48c6fd72166020c57e4a7
+SHA256: 67213899d0de55537be9f5fa9a04127f3952bbeea6960333da1a466bc9e3f30a
+SHA512: 185efa1da3d2020e34913096377ccb8334799c796a3e1bacd758eabda91f79e0a7ef2e3b3e43abc7799c0924bea8085f04d6f12c2d549deb07382e0ea1c81bcf
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1218
+Depends: snodec-net (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-in_2.0.0-120~bookworm_arm64.deb
+Size: 138002
+MD5sum: e65c3690c76cd42ed1743eec8a6430b0
+SHA1: 4592f8e55b895003bdb607f5a7a6b843198fbebd
+SHA256: 00b1a682b2050117e99efa47740e903432e3975c5ede378e4fe4870c324e7f86
+SHA512: 6f5b69f547a65593e8d915898199ef8eea006d2b2b946570d0f29f73597ffb2530f680531d094625904d89fe21d484a839235709a282cb100b236231b90a8894
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-l2-phy (= 2.0.0-120~bookworm)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2-phy-stream_2.0.0-120~bookworm_arm64.deb
+Size: 4666
+MD5sum: 086d9814c6d5577c829a982494467f3a
+SHA1: b7f4c5208a2395ad71de90e871b0f06a99b3a43d
+SHA256: 19c3ca013eb2931f216a2bc9289284bb0bd1b28332ccc4a4c22cd662ae3770d2
+SHA512: 85dcee721ba6c976ab2eca4884f8758a9da78c76398f5c99182f9325af548a3cf2f0dfd122414e9f554f31c0424adbeee87e8c4e5e345d8a6321a4e672ebfe64
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 246
+Depends: snodec-net-l2 (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2-phy_2.0.0-120~bookworm_arm64.deb
+Size: 10302
+MD5sum: 40fa551003f1eb5d70e0ca2f5f52f8ab
+SHA1: 83cbafc990d24d40c6e86bb40fd636472636e328
+SHA256: c320864046a5b6a77438ec3270aed186425e051c0e7930c2b89945def0685b1e
+SHA512: 83874a878caf6fb435295eb811f383c55ef984ffdd27e7c522fb9b3fcf78dbaf1db3b7ac1eaa2ceb9df4289da9675d99b57f66d005abbb58e1bad41fc8675874
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1810
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-l2-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 182136
+MD5sum: 5a65c78711a2cbda4680725abdf2e5d9
+SHA1: 04a8ca16c91b94847d19753d62a586282f4f6458
+SHA256: a5ecf902ac4692eb906909810e27c84ee731b077d8083b81ae10b8dc0f74d348
+SHA512: b06bc4b7edae1b4d326ed5224c41d95db006597cae1115004c744980595316ab39151102be88dd7e57c37132c212222768a6b6fac7b654fae4ebf90810f8626b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2196
+Depends: snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-net-l2-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 225178
+MD5sum: 0082100d9de2f0387ba45afb39f234eb
+SHA1: 1467f38b979262c4eaa4d273ca76be7a02c0d2f5
+SHA256: 11324dc87aceb02b00da30cba179b8238862d17de84ed6e1fff03d7405b2dd0c
+SHA512: 13ac2135f97543cb4ae7dce89efecac224ee451a4b738d7dd7028fba8059da3a2bd7599fb6d0d300662d4c5721a645b8e510e18f5f94031779535b919d293e4d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1231
+Depends: snodec-net-l2-phy-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2-stream_2.0.0-120~bookworm_arm64.deb
+Size: 114694
+MD5sum: 834e1a03748166f1b9c591b060e5e521
+SHA1: 7aeab55e5e11fbd6d759e5e0c9cf9189de037832
+SHA256: d2180e73e9c7cf8565d7858de5213da49270ba28bc6ca158aaeac71b0b429336
+SHA512: 586b728539e93b42fc1b342e7834a09756298a4fcdfe7ea710d7995e371d2957f8cce5c18422eb0da7418a6dd505e0fcbd02dca02da24cd3d6c6da254690bc4d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1411
+Depends: snodec-net (= 2.0.0-120~bookworm), libbluetooth3 (>= 4.91), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-l2_2.0.0-120~bookworm_arm64.deb
+Size: 163600
+MD5sum: 0a1cfb97e1b896c59b3a26d6f1d134f5
+SHA1: 8cbfe01727721bf5b9a1d3ad464b4c08ac41ac7e
+SHA256: 8ac4a39110313b3fd3dc182a6f48a09372a35e1f0a01fcedff4f6b96a55eca02
+SHA512: 91bc0883e24d5b21a8f39ec0d4bdeae349bd980e13b66b1d55aa359976c2f7b381a44b3bb00d47c9b59f536c192f5e5caadb033dfa587afe89283bd39f111173
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-rc-phy (= 2.0.0-120~bookworm)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc-phy-stream_2.0.0-120~bookworm_arm64.deb
+Size: 4546
+MD5sum: 818033937bc650416fdf17d5596b9280
+SHA1: c9a7d4b709e362703aa084fc4b93d51b1849ed76
+SHA256: 82f95bd024e66466de8f2e79cbeaf9386b554f24323c3e5f10ba9e8b8f12166f
+SHA512: 11f885d06b316a540b7b08d24f637d8210c4d99d178cd7bd8dd9c158f7477aebfac8f75897624040ff55152d2ea9fa45713b9873ea16e60b8ef56b896c6965b8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 246
+Depends: snodec-net-rc (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc-phy_2.0.0-120~bookworm_arm64.deb
+Size: 10288
+MD5sum: d4784088674e54bf02b3d22df87570f2
+SHA1: 92c155d90f304d75b491ef0e681c7c003b88bb11
+SHA256: d6b50db86edcb4a7fc622ae20d3ac2e39fff0d2195a56a53e136d5701cedd59d
+SHA512: 898fe1feba87b8614effd8f79962bad44526ab32387320f19c8c01463826b6d8e0850ae15ca5b349b755ea57db191aebd9426cbed22b20214b1d1be2b2c457cb
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1810
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-rc-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 181812
+MD5sum: 708946a5307d560cd7536f7238bc68ba
+SHA1: f2d7c4e0756a2c0421a2903c75dd58d99bef8a8f
+SHA256: ea4b6efcdb913635ad600253d07e600981939e122ea83daa96e1e96782fcd1c7
+SHA512: 37afc136a38ea60a7af2798729d55ee6bc313b6539528d2cf58a105dbe6d9bb86f55d32ad398e675d7e0fe0840e14f3071b0bf4fa0237f17e1a375318d73ef01
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2196
+Depends: snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-net-rc-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 224946
+MD5sum: 59dcaa630726c575b0eb3afe510b64ed
+SHA1: 298993636987d7a9f6174c6cfc339a3e670fa7ca
+SHA256: 3fbc2ca27df1abb72f2f4819066c8cf6e524b2a04db39683003293be8700e4ba
+SHA512: bed494e85ed5cb327bc0d4876dc0fdbfb58517b2d2f263d9d84d791ca90cbf2a2399c1a9f6463bf6cf7900050b6047eafd5a37729c5a4a3e28b88d473f3d250d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1231
+Depends: snodec-net-rc-phy-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc-stream_2.0.0-120~bookworm_arm64.deb
+Size: 114638
+MD5sum: 7d8b5cbbcd299b4c7ce7182912dfb559
+SHA1: 0bfaedb0d0474e9d3a0bffe3a75f831cda40db2d
+SHA256: eeb93d15e859a8d57ecce3393ef1f77d56bf6dcbb292a9c7de1bc888276c9748
+SHA512: ab03bc5385a909a269b50521398a61af0857e0b64f38e5cae239271c4f21ea645b0c19f2dd02770caaff7061fdc1afeee90ae38ff8a457187d068322d3b2b90c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1411
+Depends: snodec-net (= 2.0.0-120~bookworm), libbluetooth3 (>= 4.91), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-rc_2.0.0-120~bookworm_arm64.deb
+Size: 164002
+MD5sum: 91ff54d743790140047eec5e97a7ddbe
+SHA1: c4a75f001c956a1d2a384a8ac41e5d35f157be3f
+SHA256: c685799ea3ddf4fa6bcb488f9142457b10849a840b2746ede9fc87a46044c521
+SHA512: 83b1ef5c5b6127c2ed712f0d3932995a7f8df14c038ed996cde1cae16273af5c5d47b09c147df55e73179b32b33a32fcb4c1db36b135e8cb9e1fadd339e7e5cc
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-dgram
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 245
+Depends: snodec-net-un-phy (= 2.0.0-120~bookworm), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-dgram_2.0.0-120~bookworm_arm64.deb
+Size: 20056
+MD5sum: b97cb60c6d4f9778d3f56e2e0bd0db29
+SHA1: 604705cc3a467a14797a821a37a87c79303ab519
+SHA256: c05798b267f158d89d834ad9de8fb49a2affed4508a9771a364665ee931a1107
+SHA512: d1371f289ff8e46638f21d57f7c1b744675d5150d56dcb84611cc27ce440e1dc638734c7eaa7d339fa39dcb4af317d5e40197ce7bda76b2d28610b81aaa05e6a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 243
+Depends: snodec-net-un-phy (= 2.0.0-120~bookworm), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-phy-stream_2.0.0-120~bookworm_arm64.deb
+Size: 22048
+MD5sum: 98f54a10bddeb097dc85463258452225
+SHA1: 215a8f898780924c4cc90d8d6cb787bcad863cf2
+SHA256: 9c5e8cc45783d2d6555fe90e8f305decdf941f394289d3eb6f3e1c77f3a8396a
+SHA512: a9966ef616829bb83fc3ff39b772fed48480c8199d9146b1e8a1ae433dd425a360d2a979d9570602d0495fc16b5ae61be7b1a3b6086199d8cd69f9466f9e923f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 266
+Depends: snodec-net-un (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-phy_2.0.0-120~bookworm_arm64.deb
+Size: 13784
+MD5sum: f199b49094476d0e1e2dc1e0741d8e68
+SHA1: 3c2171dc2d16d47d396954ae075caf31e1d16dd4
+SHA256: 134b0409f62e5b0b0cf001910f6266d74a18d7759be80e89538a49961374759f
+SHA512: 3f2899fd3c3a0c55c0c8f8bc32fe173b4d4de62f208a2d7ef30e6874b7ce8546d8196526f1eb0b921a4aa1fdb48ca73d23ab7146dc2774a6e751243c87de1667
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-sphy-tream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 23
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-sphy-tream_2.0.0-120~bookworm_arm64.deb
+Size: 2600
+MD5sum: 065cc13fd8b1601c948cc53eb9029d5a
+SHA1: 79f6e30a837368914fbce5ac9849917038fea129
+SHA256: b851b9b5ed4aaeaef9e4af03301f5c9e418fa43e57c0586f41ddd1acb0603ec3
+SHA512: 3c87a9fef93dd67a6e28dc3f67ae1bbdd8ae180c596c05f3926047699eab13b24a78574d9ecb02e7868ce5a12ce360ebc3649f5b29b95baac11d72d9b37774f2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-legacy
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1810
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-stream-legacy_2.0.0-120~bookworm_arm64.deb
+Size: 181682
+MD5sum: 58184e782f9b5790049f52d5cac03478
+SHA1: d369cd065670cb00a5d914a147f9756fc6ceac83
+SHA256: ea5b34141a67e3d786e56081b7a4abb0c098fc23e378c65cdbefdb499dbae8bc
+SHA512: 66da2c7665776a2d463f84c877711e51b868c10db1401afa7c018f145a22c56301e2f886512cfc592f041bc4762f84bd80721a7d12943e9a1b1208fb847b1c8b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-tls
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2196
+Depends: snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-net-un-stream (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libssl3 (>= 3.0.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-stream-tls_2.0.0-120~bookworm_arm64.deb
+Size: 225270
+MD5sum: 1d597e5f8779744143da20e604525932
+SHA1: 9ffe5feaa54338eb95970737fd125f39791c588b
+SHA256: 99a09a202eb9c63c0ec2866b8130268eb596ebd3badb67fe56e839c057e1b9e2
+SHA512: 5ab33530aa8f593758fb0fb2695698a8c45d5c01f61694822bf1117d9131d223729cc2873796fc9bb56772315749f2d0637e76f7628795a8dce1a22a97009c61
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1030
+Depends: snodec-net-un-phy-stream (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un-stream_2.0.0-120~bookworm_arm64.deb
+Size: 110080
+MD5sum: d7de85d4738188ed82174f5f36e55703
+SHA1: 343e1f0296ae1593e9cfd2882dd76c02bfbfcae7
+SHA256: b1eca56f64905a9b36915f15c9c6384b69b5065d8a2555df8b190b2472ecc41e
+SHA512: 11931f76b3a7691103385730119eb20b5ebe524725c50c9ede70cf4f5cf5858c8b64b0fe0b3709ef2eed07651e8afb502cbda1b3c1afdbcf357dbd269eddd95e
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1023
+Depends: snodec-net (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net-un_2.0.0-120~bookworm_arm64.deb
+Size: 115676
+MD5sum: 7fd2809b4066924439efe2fce37978f3
+SHA1: 23d5d8169113edb257528b68bb2c63dbc4ec04d7
+SHA256: b2ec67bb3a92eb24e23a76c786fa3fe8ffcbe319b38b335b1e274e174820b52d
+SHA512: be60d3cf4fc4234507adcf62bb4589ab496874baabd050f0b1f1dc11310ef6afc41e154ced0d51c90b7f6bc5602cd50289e79bfb5f206e9cd52706d8afa109fa
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2342
+Depends: snodec-core-socket (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-net_2.0.0-120~bookworm_arm64.deb
+Size: 250730
+MD5sum: 3ec806817438956d3df3a0b4b72e19b4
+SHA1: dcec85dc7e85dcaed8109322ca302258f5a88921
+SHA256: 5e5171919863e0a387cbce7625f66f75729feb22d4378ec0b1a8f9a93ac2a1af
+SHA512: 35cbf0492c57c51d68b5cd1b55fd32423e513152b9967b88233a887e81ece305117d61686dc60528820c12cc2fb5ffca34444cdcf0ea4eb8e666028614ec4639
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-unspecified
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 589
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libncurses6 (>= 6), libstdc++6 (>= 11), libtinfo6 (>= 6)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-unspecified_2.0.0-120~bookworm_arm64.deb
+Size: 262538
+MD5sum: 8ade84f1e13ed119237d5ac09420a061
+SHA1: dcae389b85262f8f6867a35a964f60b9f6609266
+SHA256: 8c3e7bf2b63c8981feae512a45c9c229dd41cca216c70921fa938e143214291f
+SHA512: c8086176ab2a63ff254a0fb114371290f3f56bb3f5089ffdc9cc421c6c7a12671784294012cb5cd5047649696d4b0047da52b75b4f406c8ace68e88da01a5a15
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-utils
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2888
+Depends: snodec-logger (= 2.0.0-120~bookworm), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-utils_2.0.0-120~bookworm_arm64.deb
+Size: 430198
+MD5sum: a4cb3367a54cd13e07932f4b69cecdb7
+SHA1: 87700566cd3a6e969e9a27b77158474c5d3d2b96
+SHA256: 210e146a5af1fd9651ed0bcabcdf9a38dd4e15f71fddd39fe21f0d26dd481b38
+SHA512: 060a30ef9f1881a259d993d4cb870ed3b21980cd0cdef569ae5a347f959aa650974443f7aa5380ff4ff8f1c11cfcb121bcecd6f8e923c2bc3c96253bade1c4e9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-client
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1044
+Depends: snodec-http-client (= 2.0.0-120~bookworm), snodec-websocket (= 2.0.0-120~bookworm), libc6 (>= 2.25), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-websocket-client_2.0.0-120~bookworm_arm64.deb
+Size: 129448
+MD5sum: c1edd1069b56be50284f3f45b18aaf5d
+SHA1: fa65fae85a3ef8c8acd9706e2d30d69f06f144a2
+SHA256: 525f8258fd80a489775fa92aa2970abe546a775908e8a15e331677cf39df6e61
+SHA512: 15c597ad791b21d95e249d2fbfe037547188fc9eb7f09300d8487514c666548a9b8f33f172fc564fd107965650fdda690d71793b2d681fe5a3e60fa5f709b9f2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-server
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1242
+Depends: snodec-http-server (= 2.0.0-120~bookworm), snodec-websocket (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-websocket-server_2.0.0-120~bookworm_arm64.deb
+Size: 138804
+MD5sum: d932b954a2ff5297d19b2d6a3519775c
+SHA1: 9f14632b5030639a46e01a59822fa6b389b09afa
+SHA256: c1dcc92227f03e86f854ba3bf8691e653fe6719773c988c1a3d9fa5a71fe59d5
+SHA512: 7a456a9165f6660f3eadcb33dc105e7cbc3eda6596d4824372300b50ad8fcd1639c875cec58d9d889402cc2b95afd75704b1d2b32ef16de78c2b21e2429e68d8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 320
+Depends: snodec-utils (= 2.0.0-120~bookworm), libc6 (>= 2.17), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec-websocket_2.0.0-120~bookworm_arm64.deb
+Size: 23812
+MD5sum: 536e0013e61df70615fa9d2ec9e9d016
+SHA1: 59b118c85282c4b4249c99427569aa6692eeb299
+SHA256: 706abb912bff29311572add128b015a8620336749feec5428da52e46d7b92918
+SHA512: 7199fe75d0917e2e628aab34dd72f1adf345e8dce9c16879d0b87890ab17e80410716a7d3ac4f2991b4a01d39aa7e406c33534f87f96a766c6e70630863c76bf
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec
+Architecture: arm64
+Version: 2.0.0-120~bookworm
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: snodec-websocket-server (= 2.0.0-120~bookworm), snodec-websocket-client (= 2.0.0-120~bookworm), snodec-websocket (= 2.0.0-120~bookworm), snodec-utils (= 2.0.0-120~bookworm), snodec-net-un-stream-tls (= 2.0.0-120~bookworm), snodec-net-un-stream-legacy (= 2.0.0-120~bookworm), snodec-net-un-stream (= 2.0.0-120~bookworm), snodec-net-un-sphy-tream (= 2.0.0-120~bookworm), snodec-net-un-phy-stream (= 2.0.0-120~bookworm), snodec-net-un-phy (= 2.0.0-120~bookworm), snodec-net-un-dgram (= 2.0.0-120~bookworm), snodec-net-un (= 2.0.0-120~bookworm), snodec-net-rc-stream-tls (= 2.0.0-120~bookworm), snodec-net-rc-stream-legacy (= 2.0.0-120~bookworm), snodec-net-rc-stream (= 2.0.0-120~bookworm), snodec-net-rc-phy-stream (= 2.0.0-120~bookworm), snodec-net-rc-phy (= 2.0.0-120~bookworm), snodec-net-rc (= 2.0.0-120~bookworm), snodec-net-l2-stream-tls (= 2.0.0-120~bookworm), snodec-net-l2-stream-legacy (= 2.0.0-120~bookworm), snodec-net-l2-stream (= 2.0.0-120~bookworm), snodec-net-l2-phy-stream (= 2.0.0-120~bookworm), snodec-net-l2-phy (= 2.0.0-120~bookworm), snodec-net-l2 (= 2.0.0-120~bookworm), snodec-net-in6-stream-tls (= 2.0.0-120~bookworm), snodec-net-in6-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in6-stream (= 2.0.0-120~bookworm), snodec-net-in6-phy-stream (= 2.0.0-120~bookworm), snodec-net-in6-phy (= 2.0.0-120~bookworm), snodec-net-in6 (= 2.0.0-120~bookworm), snodec-net-in-stream-tls (= 2.0.0-120~bookworm), snodec-net-in-stream-legacy (= 2.0.0-120~bookworm), snodec-net-in-stream (= 2.0.0-120~bookworm), snodec-net-in-phy-stream (= 2.0.0-120~bookworm), snodec-net-in-phy (= 2.0.0-120~bookworm), snodec-net-in (= 2.0.0-120~bookworm), snodec-net (= 2.0.0-120~bookworm), snodec-mux-select (= 2.0.0-120~bookworm), snodec-mux-poll (= 2.0.0-120~bookworm), snodec-mux-epoll (= 2.0.0-120~bookworm), snodec-mqtt-server-websocket (= 2.0.0-120~bookworm), snodec-mqtt-server (= 2.0.0-120~bookworm), snodec-mqtt-client-websocket (= 2.0.0-120~bookworm), snodec-mqtt-client (= 2.0.0-120~bookworm), snodec-mqtt (= 2.0.0-120~bookworm), snodec-logger (= 2.0.0-120~bookworm), snodec-http-server-express-tls-un (= 2.0.0-120~bookworm), snodec-http-server-express-tls-rc (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in6 (= 2.0.0-120~bookworm), snodec-http-server-express-tls-in (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-un (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-rc (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in6 (= 2.0.0-120~bookworm), snodec-http-server-express-legacy-in (= 2.0.0-120~bookworm), snodec-http-server-express (= 2.0.0-120~bookworm), snodec-http-server (= 2.0.0-120~bookworm), snodec-http-client (= 2.0.0-120~bookworm), snodec-http (= 2.0.0-120~bookworm), snodec-db-mariadb (= 2.0.0-120~bookworm), snodec-core-socket-stream-tls (= 2.0.0-120~bookworm), snodec-core-socket-stream-legacy (= 2.0.0-120~bookworm), snodec-core-socket-stream (= 2.0.0-120~bookworm), snodec-core-socket (= 2.0.0-120~bookworm), snodec-core (= 2.0.0-120~bookworm), snodec-apps (= 2.0.0-120~bookworm), snodec-unspecified (= 2.0.0-120~bookworm)
+Breaks: snodec (<< 2.0.0-120~bookworm)
+Replaces: snodec (<< 2.0.0-120~bookworm)
+Filename: pool/bookworm/snodec_2.0.0-120~bookworm_arm64.deb
+Size: 1322
+MD5sum: 577d0fb0a250c2bf79d05bf5ea099312
+SHA1: c840bf1bc00b2007284528ff3808c24694dcb4d5
+SHA256: 51ef38e48b1ade933370b8f5eeb132c6a97539b25c08cb04d092223c46e69eff
+SHA512: 26d294644dedad24d68519bf576576fbbd6c9892fffdae877ad0946192d8c48ea5831cd26127517d4de7012ab313605296c589619948a722d1eb0d40fbeb47d3
+Description: Simple Node in C++, a Slim Network Framework
+

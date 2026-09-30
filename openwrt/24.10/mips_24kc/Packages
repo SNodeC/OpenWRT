@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 2344960
+Filename: mqttsuite-bridge_1.0.2-r121_mips_24kc.ipk
+Size: 591795
+SHA256sum: c4a96797f493b16bc2163c21d1d32c2497e9de7a7199f96e3f13652af329c6f9
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 2805760
+Filename: mqttsuite-broker_1.0.2-r121_mips_24kc.ipk
+Size: 808279
+SHA256sum: 98b3a498b164edc9b1e6daa3bd2b5cb4e592b1a6702358892fa47065369ef8b7
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 1402880
+Filename: mqttsuite-cli_1.0.2-r121_mips_24kc.ipk
+Size: 332724
+SHA256sum: e9cfb93529aca6519e94710ce4d7d7ff05a28749c5e228359c820f96b4d0fbbd
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.2-r121
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.2-r121_mips_24kc.ipk
+Size: 945
+SHA256sum: 71abfc1942a7f923cb2965e977d554a22e1a23f867b9b748da29f8089234ec49
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 2396160
+Filename: mqttsuite-integrator_1.0.2-r121_mips_24kc.ipk
+Size: 599036
+SHA256sum: cdb6bf3a7c5fe706f6e67b6b654dae20a6eae27362e9ce9235bc164c50b882a6
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: mqttsuite-mapping-double_1.0.2-r121_mips_24kc.ipk
+Size: 8823
+SHA256sum: b811f0ec3e4cc87b71e4e85d2319848a825308e34c82598073bc612bae2660fa
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: mqttsuite-mapping-storage_1.0.2-r121_mips_24kc.ipk
+Size: 14136
+SHA256sum: 79e4ec66bc8a7426a53e80b39851217e012e8c0c404ec47f478cbe9c714d7a9e
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 1863680
+Filename: mqttsuite-store_1.0.2-r121_mips_24kc.ipk
+Size: 475257
+SHA256sum: 19744226f263919d64bcb261e0fcde66704e5b1e940467f0e97c7ae32ef4e150
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.2-r121
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: mips_24kc
+Installed-Size: 10240
+Filename: mqttsuite_1.0.2-r121_mips_24kc.ipk
+Size: 886
+SHA256sum: cbb5ef982fb79416d468e1671253e3073662b411c5bdd3d567a29f4773bdf3ee
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 18196480
+Filename: snode.c-apps_2.0.0-r120_mips_24kc.ipk
+Size: 5542715
+SHA256sum: 737a67cbb6e8160034223f7728e83e4d41314cfccfda3a7e8182416c6fbc7716
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 337920
+Filename: snode.c-control_2.0.0-r120_mips_24kc.ipk
+Size: 103394
+SHA256sum: 7fb39fc54f85118844715e358c00f5ef35a682d1b7d0957a2dcdee09fff3efce
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-core-mux-epoll_2.0.0-r120_mips_24kc.ipk
+Size: 12903
+SHA256sum: 87deac83857063117631805138132c392115002ed9bf8327076544ece1f5e886
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-core-mux-poll_2.0.0-r120_mips_24kc.ipk
+Size: 10780
+SHA256sum: 37ff251288629c4ec5849a946909361316fd978925d3d04a6a814cb48cb33a19
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-core-mux-select_2.0.0-r120_mips_24kc.ipk
+Size: 7221
+SHA256sum: db2134d0caa7f132daa7746cd7edce77949c481789099705a29d0babf8389826
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 5286
+SHA256sum: c125df06d9869f120cde65ca3f09dbcae4c1f4d54058514079bee219cac4f2c2
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 143360
+Filename: snode.c-core-socket-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 30732
+SHA256sum: d260d9d141bf268e08944b9579a803fb50aa9ec9e3c16b0e8db237731c73ac16
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-core-socket-stream_2.0.0-r120_mips_24kc.ipk
+Size: 93312
+SHA256sum: e0abde52578f22808c843b9c93abeef7f8bdf70b5e4e3ce05f66adb94df33491
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r120
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-core-socket_2.0.0-r120_mips_24kc.ipk
+Size: 7136
+SHA256sum: af377dca2f1b6a755f8c27a5ebc273524841619e9f4726f8084b5213e2448b9b
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 337920
+Filename: snode.c-core_2.0.0-r120_mips_24kc.ipk
+Size: 120456
+SHA256sum: 0a064c4fe6b1013c8f8949a1e1b9c729aceec4fdfd6f0aec4a81d55c3785111f
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r120
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 143360
+Filename: snode.c-db-mariadb_2.0.0-r120_mips_24kc.ipk
+Size: 31651
+SHA256sum: 8fc064a8e0dbba7c74e5f0375c278e89ddecc88a0ea853fdc2e0215dbebafa43
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r120_mips_24kc.ipk
+Size: 1108
+SHA256sum: 34e8549db1cc8f666421a60f4efde659eb9f222c7c78c9f3a4361e67aa62a5b3
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 409600
+Filename: snode.c-http-client_2.0.0-r120_mips_24kc.ipk
+Size: 137266
+SHA256sum: 37b637563cb6262cd2f91737324751af74358dc0e65676cb51dffb74d9e98723
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r120_mips_24kc.ipk
+Size: 85901
+SHA256sum: 223dd0610769f9ba1f4b96d0c0cf965d87658d52c65193372ac02bbc36034e95
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r120_mips_24kc.ipk
+Size: 85807
+SHA256sum: bd760d89de58cbba6ed13d0b17b44a3df5cd5ff89548ca74e06c9403664b900a
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r120_mips_24kc.ipk
+Size: 85777
+SHA256sum: 5090f38ff32850d40061fd108eabe4f08699dfffcf0010495916a72a1ab1baaa
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r120_mips_24kc.ipk
+Size: 85761
+SHA256sum: c4ed2c087897bc667fe5c5dc1cc4e1687aafd273429fd0b93e9b7faf3684aa1f
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r120_mips_24kc.ipk
+Size: 85843
+SHA256sum: dfbe5f91fad889162d68db47dcfbf92e761df16009f2b5ba86312bee4bef6a7e
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-tls-in_2.0.0-r120_mips_24kc.ipk
+Size: 85809
+SHA256sum: 7c3d6389345b7bb287410deed9494d27ea6ef15b66d3bea0ec69002e76f38100
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r120_mips_24kc.ipk
+Size: 85745
+SHA256sum: 2fdb5dda19748a2e1eaf34d4960c689bfeb2a90d1e22757786cb7a6d547c1f96
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-http-server-express-tls-un_2.0.0-r120_mips_24kc.ipk
+Size: 85715
+SHA256sum: 92a82ea0ace2d8f818cc40f27aba7c796ebeadae896c101abd7816fb9df59b91
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 675840
+Filename: snode.c-http-server-express_2.0.0-r120_mips_24kc.ipk
+Size: 198378
+SHA256sum: 6d50191e2e13e5c96b444a21b26ff2b133963873483c870d9a7d77f7e09446f1
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 409600
+Filename: snode.c-http-server_2.0.0-r120_mips_24kc.ipk
+Size: 127920
+SHA256sum: 7172d8a17114d39fa63c445542bb26c5e3d0d8ef7c487be38abbb17f86fde530
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 409600
+Filename: snode.c-http_2.0.0-r120_mips_24kc.ipk
+Size: 134061
+SHA256sum: 2a75768c6a30854bcc1407fa06b8c0da22fbdc341f736c83713cb9b62da30860
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 409600
+Filename: snode.c-logger_2.0.0-r120_mips_24kc.ipk
+Size: 139439
+SHA256sum: 38b473b464533f99c8ca0220c0ab1922e28b3e7446f2a4002643d4b97378b557
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-mqtt-client-websocket_2.0.0-r120_mips_24kc.ipk
+Size: 9660
+SHA256sum: ade2032ecdca62c1b1cc4a61969a53191d6817d16a3305d12e3c206a78c80b4c
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 204800
+Filename: snode.c-mqtt-client_2.0.0-r120_mips_24kc.ipk
+Size: 64737
+SHA256sum: 48bea84b6fd7b6e405f218d0a48c9386d35b44adb994f8780bff91b4affd5548
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-mqtt-server-websocket_2.0.0-r120_mips_24kc.ipk
+Size: 9678
+SHA256sum: cd6aa354aaf58d7c066fa21cd5db0156a5aa1b0ca1af2ba8ad83af173aff8978
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 337920
+Filename: snode.c-mqtt-server_2.0.0-r120_mips_24kc.ipk
+Size: 110597
+SHA256sum: 6a1de371bf81b360eda40e172fc84009743a348a70ba96756c1b33c72e8290c0
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 204800
+Filename: snode.c-mqtt_2.0.0-r120_mips_24kc.ipk
+Size: 48925
+SHA256sum: 5d454cbf930ae5e631d2f71090266f647518d4c881171516298ca14b65e46b24
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-in-phy-stream_2.0.0-r120_mips_24kc.ipk
+Size: 4401
+SHA256sum: 91a03045c7e547685109ecaf97804cddf1030af605692af852fc079b7b11aab2
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-in-phy_2.0.0-r120_mips_24kc.ipk
+Size: 5995
+SHA256sum: 1a4e479a716b79551c5d925d17a7872471a8ba60cd96a41701febcef13301ff9
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 471040
+Filename: snode.c-net-in-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 126010
+SHA256sum: 4d40c8de4a36ab7d2e04cce91eb3a0147f4525b3e345822acbce710e7e406fdd
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-net-in-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 163983
+SHA256sum: abac7c968c90dafd63a5374221b1f29463d027e2bf6bee421e719be8488add22
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-net-in-stream_2.0.0-r120_mips_24kc.ipk
+Size: 80359
+SHA256sum: b122413d2f6c8297d10b17d48f8982be3f673b60527ca5e4969eb03526316c8a
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy-stream_2.0.0-r120_mips_24kc.ipk
+Size: 4398
+SHA256sum: 2ab74ddb07bb6f5e99c9ee835a5bbb6d50f9e1ee98fca7ef760c96bbcc59adb3
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-in6-phy_2.0.0-r120_mips_24kc.ipk
+Size: 6019
+SHA256sum: 3c567f04e8024c1343f34e0b18e9476461d56bf1e08201dfbc40b80a32281972
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 471040
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 126155
+SHA256sum: 5b511fdc3fb2c10738d285c5e5bdc88da37168867b660bf2fed8243e259e6773
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-net-in6-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 163908
+SHA256sum: ad2d85bedd367cbd98d160a4e5d7d3a02287b030724c06191090a141c8c9081b
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-net-in6-stream_2.0.0-r120_mips_24kc.ipk
+Size: 80677
+SHA256sum: 4ca88a354b91d12bc8613185a2eeff773b3097b97f34e61ef4db577c19f6236c
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-net-in6_2.0.0-r120_mips_24kc.ipk
+Size: 89146
+SHA256sum: f3cba01f3047c43e28e79516ef1bfdc2ecaaafa54d1f437647055b7c73b66537
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-net-in_2.0.0-r120_mips_24kc.ipk
+Size: 88799
+SHA256sum: db93329ff33fa8271d60c67ef19eccbd781892b5a5fe46ba1c1bcc8fe3a32f4b
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy-stream_2.0.0-r120_mips_24kc.ipk
+Size: 4485
+SHA256sum: ace2da8edfcd51ad482eafcfc359d812958a87e9a1ac55dbc114f7d506e29753
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-l2-phy_2.0.0-r120_mips_24kc.ipk
+Size: 5436
+SHA256sum: e4d329dcbbb8fd7d5eaf5fbe3751592b71b03f1e5733c852519027331f09a24b
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 471040
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 125359
+SHA256sum: 3972b94de389f0b0112bbef3af31b671361bbc4d8cf83d45ccba28542b9a23b4
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-net-l2-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 163426
+SHA256sum: ea50c51a9235730351d87f6e9dd828c5450426b7a5e1dcb6cffd906d3e026807
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 204800
+Filename: snode.c-net-l2-stream_2.0.0-r120_mips_24kc.ipk
+Size: 72340
+SHA256sum: d0d56e34a6e96924644e67a0ad21efc93413bd11373906a53526cee2f751d348
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 337920
+Filename: snode.c-net-l2_2.0.0-r120_mips_24kc.ipk
+Size: 113114
+SHA256sum: 4c76bb5bc46cadf0c8288f7e0c02579af0771ff661b2862e1933a34126e4ed31
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy-stream_2.0.0-r120_mips_24kc.ipk
+Size: 4392
+SHA256sum: 970d560cdda29a5fc28eda3e242258f8220619853b43faacdca6e2851ee2e842
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-rc-phy_2.0.0-r120_mips_24kc.ipk
+Size: 5439
+SHA256sum: 62fc16171af42f1d9d269a94fbf27d6ddbcd98d7e5dd6ea4040bd364396a8237
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 471040
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 125383
+SHA256sum: c97a33e79805a5def9eac93c7a90745b2c820afa12d9386599223a626bda3aaa
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-net-rc-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 162857
+SHA256sum: 6849afecd12da05a0334878164bb79c1e79f9269393c0cb155092be00fcfda0d
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 204800
+Filename: snode.c-net-rc-stream_2.0.0-r120_mips_24kc.ipk
+Size: 72323
+SHA256sum: 96a70d9f62e08146943d7b4fbce3ea0c4336f0e6da4ebe9e81e900a94f309a39
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 337920
+Filename: snode.c-net-rc_2.0.0-r120_mips_24kc.ipk
+Size: 113541
+SHA256sum: 3aebe4e47ca2294e15e870bb060f9113bffd9aa6f2003b3b68f9430a93ba933d
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-un-dgram_2.0.0-r120_mips_24kc.ipk
+Size: 12760
+SHA256sum: a253f65f64b08347f465310825c6ebaba369813efba79881b1bea801cb7af436
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-un-phy-stream_2.0.0-r120_mips_24kc.ipk
+Size: 14787
+SHA256sum: 42bda75ab4cf27e049ffbe721b8613d0d1d017c6302ddda4c1df8c201c8f98fd
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-net-un-phy_2.0.0-r120_mips_24kc.ipk
+Size: 5496
+SHA256sum: 9bd544a17e11e65f836af7d4aa68bdef9cd291e4ffe763fd55873dbc1208acdf
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 471040
+Filename: snode.c-net-un-stream-legacy_2.0.0-r120_mips_24kc.ipk
+Size: 125251
+SHA256sum: 49e2016cc2111540146109ef9f4c19145bc3920458898720b99f58eaa33db774
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-net-un-stream-tls_2.0.0-r120_mips_24kc.ipk
+Size: 163083
+SHA256sum: 40c239d49c2b40daefe93695b6501428c14116662506bfa571c591b1201c229e
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 204800
+Filename: snode.c-net-un-stream_2.0.0-r120_mips_24kc.ipk
+Size: 72223
+SHA256sum: 179125dfe8a1a4af9bba285ef2c06b4aaf036fff9674955dcc1bc7e53f786851
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-net-un_2.0.0-r120_mips_24kc.ipk
+Size: 76232
+SHA256sum: 767fa090dea8173adaf93014ceca66e2d2d3caea3b8147007fef567bc7eb5a50
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 532480
+Filename: snode.c-net_2.0.0-r120_mips_24kc.ipk
+Size: 148044
+SHA256sum: e8062282c33a891abf7082316878c3432acee1d4de78873f3ccbf90a4a1542eb
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 604160
+Filename: snode.c-utils_2.0.0-r120_mips_24kc.ipk
+Size: 215165
+SHA256sum: dcb841c8f624183633155b7e248861537724ed652e1584227fcf8e4018fbe92c
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-websocket-client_2.0.0-r120_mips_24kc.ipk
+Size: 87069
+SHA256sum: abf45ab9a5f92542c6619375987d469929617e93d330547e7b4d0ae64d7fd962
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 276480
+Filename: snode.c-websocket-server_2.0.0-r120_mips_24kc.ipk
+Size: 91617
+SHA256sum: 6e0a794a10bb455fab4ddeb33125515b98f777d68403cee49e9d2d7608a1f39c
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 71680
+Filename: snode.c-websocket_2.0.0-r120_mips_24kc.ipk
+Size: 11191
+SHA256sum: 5f3c0249c3f83f851e978892df192430a6865d32c9619b92bbfd899e5db0a7a2
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r120
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: mips_24kc
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r120_mips_24kc.ipk
+Size: 1105
+SHA256sum: e83647669d32b0e2fd1b687a6aea7e47a08c44aaca7675663abee35c4035759e
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+

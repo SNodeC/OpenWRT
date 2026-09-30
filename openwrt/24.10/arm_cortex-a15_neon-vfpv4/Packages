@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 1607680
+Filename: mqttsuite-bridge_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 505166
+SHA256sum: 32cd68bfaab2e520eacc031fd01965632fed71d58f7deca943090b3a68d35942
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 2181120
+Filename: mqttsuite-broker_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 689868
+SHA256sum: 780d013aca52da70446d865613735bec72754f63a8438c5af123907ec778d561
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 727040
+Filename: mqttsuite-cli_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 213003
+SHA256sum: 8675c6bedf348cbe487c2f00a77b61a1338342e2f39677d14e92550ef2af41d0
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.2-r121
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 964
+SHA256sum: 6558b0ce4455d3ccac61453a6a1cd99a3ba83fbd8263a85fa8dcd2597270b3df
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 1576960
+Filename: mqttsuite-integrator_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 512640
+SHA256sum: 07b029f9c6fc4ed1fa3a7c6db314b73711b933a661d72c12c30a6691bf97bdfe
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 30720
+Filename: mqttsuite-mapping-double_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 8196
+SHA256sum: d97551f652909f4c8bc29c19aee76cfc69d60853dd7afc84d922d1e57f443014
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 51200
+Filename: mqttsuite-mapping-storage_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 13470
+SHA256sum: 610e54acbd16f07d2e3d57949b8e418573df3d009171c8a7dd4c4d33c7cd1292
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 1116160
+Filename: mqttsuite-store_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 357187
+SHA256sum: bc624e70a7c0d28c46b84734682a0b91a55480eab7365f6f49aee6c5f3b1d803
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.2-r121
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 10240
+Filename: mqttsuite_1.0.2-r121_arm_cortex-a15_neon-vfpv4.ipk
+Size: 902
+SHA256sum: 2025bf848a3d7fb8d5421e8c2312640b63c537642477f639f3835b468f6b80f3
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 8294400
+Filename: snode.c-apps_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 2881039
+SHA256sum: a7fe0bcf50802cbe6b46b20c760f741c6359194d8f98b02f65af7894f6c1af1b
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 204800
+Filename: snode.c-control_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 88987
+SHA256sum: 87adf2204ccc485445f46abc0796800ea839ffc32e63c5f3f381de3210cd4f7d
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 40960
+Filename: snode.c-core-mux-epoll_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 12774
+SHA256sum: 831638ecf7d8d2ea95b100e3b3f92e66d3938242c832d2c293d379aa8eed4d82
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 30720
+Filename: snode.c-core-mux-poll_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 10049
+SHA256sum: 229a72a049008dd2507f25a2f05801c7b42b99c0eaeebb7b50f56f720d0c540f
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-core-mux-select_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 6835
+SHA256sum: d8ccf5d6a44f99274a3d91f2a7c4279717b4364e2ebb8ff1e750932043e65886
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 4689
+SHA256sum: 0a296151a732797a073d52e52d73d0403c752239cc5f599ad7d23aa484cb9d9d
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 81920
+Filename: snode.c-core-socket-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 29210
+SHA256sum: 44214d6b6047002a6ae64b68159149b206b06c7bb2da034564f1b1f75dd41cab
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-core-socket-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 49288
+SHA256sum: 5385291b848dc5525b4c09e56764d3b7ac7ccfc47f95f294ec5374e3ce2d7698
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r120
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-core-socket_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 6609
+SHA256sum: b89a0c5171c6706b9a69eeefc358c2bc92fd58eae21f5a0870e4dea6a4b3bc90
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 204800
+Filename: snode.c-core_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72403
+SHA256sum: c8d207aa7592b0a841e185dea3b9f7e0ac2213521251d3cdbdaa68bbad51d73f
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r120
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 92160
+Filename: snode.c-db-mariadb_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 29137
+SHA256sum: bf243fadf5e26f5133c38b6043b5081bc4d82a9f674bbfa267386924961d73e5
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 1121
+SHA256sum: 5a349dcde10183812a687212fe7942310ac16ee061cf9db7b063a7323dc86cc1
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 286720
+Filename: snode.c-http-client_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 102888
+SHA256sum: 1771ba398fd8971c864be3f0e5c74049f6dbede59b2bf5a3845adfd7c0d98af4
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 163840
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 40200
+SHA256sum: 77261b77b8cd31346c086fb552fa03f16ede15be8e6d9542fef0b4c72b3e74f8
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 163840
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 40071
+SHA256sum: 1600e00e0891fc781ccec75152766323c16d4ce2adae8303c753ba096dd0b721
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 39938
+SHA256sum: b0877410c3dd3997f94719c3a7b3598953abd5cb87ec142f84b2568781e3debd
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 39947
+SHA256sum: 47cad1eaf21a8d6461c8e023c2b2035a3ff34eb4a8ad43e3585fb1ebf3769ece
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 40045
+SHA256sum: 9fed386eb749f42abc2f130c31db3a199459ebb5aff3960c4f5be6b898f32cec
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-tls-in_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 40079
+SHA256sum: 6b7c8e03fae16df57b33f08e3a6ee57a0f1c65ada16d07e8bd45c0f469376038
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 39921
+SHA256sum: 1c3d7aa6c162e9fcccabbd2878eeb3bae8bfb96a74987b2a594e1988b0dcc939
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 153600
+Filename: snode.c-http-server-express-tls-un_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 39946
+SHA256sum: 5787a2d4617c3f1de939013164bedec4340e4bc360139735cc2219ecab27dd36
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 450560
+Filename: snode.c-http-server-express_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 146559
+SHA256sum: 34f5e06c75380f0e605713b8a9bebf9a55d6d10901ea87fb068b5d219ac8cb52
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 256000
+Filename: snode.c-http-server_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 92597
+SHA256sum: 413a43c27769629c9fa398fb4b7e7170060f29b915f960cfd96489c498fb5aa2
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 276480
+Filename: snode.c-http_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 101155
+SHA256sum: 7a7c7e143a310bd393cba71d52519abef5b8cf1571fd7d7ef57e79b9046193cf
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 368640
+Filename: snode.c-logger_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 132942
+SHA256sum: 2292e9a94fd97bb8970f4123286d1ae6dfb8ba913d1e30ddf5b7d0901e8cb531
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 30720
+Filename: snode.c-mqtt-client-websocket_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 9159
+SHA256sum: 6b45a7ac7b3c29e048077f3143041ec58041a95a1c854d110d8238d9d6ddded4
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 184320
+Filename: snode.c-mqtt-client_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 61853
+SHA256sum: 014f5358a09f0d97d99081d6afa21d570ef4ec48785ab741901df852f102832c
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 30720
+Filename: snode.c-mqtt-server-websocket_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 9156
+SHA256sum: d437b19fe74995238a53ffba11da1f7e2735cbff3f6684847dda4d29a772f598
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 296960
+Filename: snode.c-mqtt-server_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 105297
+SHA256sum: 15cc4ca867a695631f08f110c0a995e50bfc3a6598bc00d2426cc2eb9148acd3
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 133120
+Filename: snode.c-mqtt_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 46708
+SHA256sum: 4ecc3740351b4b94c7c0533e05b1f4897cf07af0497c79fda95c548573fd400e
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-in-phy-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 4390
+SHA256sum: 61f9cae1ffae4436ec669a7c33dd3f029b24137d1cfff989ebc821aa1d5e989d
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-in-phy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 5472
+SHA256sum: 1021896b5a7c525b9ad8d6b6c0d03cbd858d3c1d274aec5d25374320997acb7c
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 266240
+Filename: snode.c-net-in-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72969
+SHA256sum: f4d167770cc99223112282a77cf81e758b3ad674a00e9d8cb4cb4a8928300c47
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 399360
+Filename: snode.c-net-in-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 108170
+SHA256sum: 83256e9278619054cf4be31b12a1d16d9f0c20ffdb01b8474863afedbd78b3c8
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 133120
+Filename: snode.c-net-in-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 48486
+SHA256sum: 5ac2283902e92747a1ff393f5aa555bab2fe87653f83dc7d5f82f8863ecf23fb
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-in6-phy-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 4387
+SHA256sum: 28007e91e14e6cc0440bd49a36f0d32e236f851233131e1a45ef879d0653a79c
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-in6-phy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 5489
+SHA256sum: 11d27b8b9a0ca822cc0bdb6f9151c5b8532b8f7a5760074dcaf24eb817121a11
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 266240
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72948
+SHA256sum: ff4ec31a530a07a1c9c083437e1ea651418bf823c56ff93192ba1beee9ec8f84
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 399360
+Filename: snode.c-net-in6-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 108295
+SHA256sum: 93cc3bb4ada2156d58a4c44d124030cfd2648c029e698b170d3a5a5d533c2fde
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 143360
+Filename: snode.c-net-in6-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 49575
+SHA256sum: 04b3233b3e00fd967a30eb42685217eb7fd0ef19120ece49ba88bb6064f1ceac
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 174080
+Filename: snode.c-net-in6_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 59929
+SHA256sum: dfc2abc2f1f982c6737119e26ab8176a2dfb3cd68ebe596d9d1556bc0e31bbfe
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 174080
+Filename: snode.c-net-in_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 59385
+SHA256sum: bd106117f449d187f6e4d3b8176afe673f4b4460ed7616c024c39ee714b204ee
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-l2-phy-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 4483
+SHA256sum: abee79e9891d2cbdf8ee37beb8ea31a91fb62170a5d4e8923306303fc8d83226
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-l2-phy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 5098
+SHA256sum: 67abe4356599047d61f32cf8740f6194e199912736a6dc1db12644afeb7acba9
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 266240
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72451
+SHA256sum: d76fd6c2bfe444a4898e7a22df789ca8030386519955adb1a8d9cbf72dbf7413
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 399360
+Filename: snode.c-net-l2-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 107574
+SHA256sum: 87f5d54e7ee83c40323daa8688110811f0e2b1d87fd4038b0e87d28eb021e0f9
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 81920
+Filename: snode.c-net-l2-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 23533
+SHA256sum: 85fc17a5388e21ed370f78f4ea0fa5dc36ba9e4ff1ab18c51a361cd08ff49a29
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 256000
+Filename: snode.c-net-l2_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 83591
+SHA256sum: 616b0feed3764c2261c3512c938a50e38ca6fb351f348d759766a9a03268c05d
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-rc-phy-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 4407
+SHA256sum: ee3c537a1964defa003dd3245c727bd52537b9fac985725af5c491d6aa8fa9e7
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-rc-phy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 5106
+SHA256sum: eea0b1341523ccd9da3d0c2b9966a3cc7f9cd8f2a89ac64970212f101a7b23d1
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 266240
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72221
+SHA256sum: af4ff6b8d57e5b4c303cdf9e9cc3a262b1fb2568e8929e15526b7dcf9c099cb5
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 399360
+Filename: snode.c-net-rc-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 107708
+SHA256sum: deb99c4c47d0d6e43410da28e81d075c1d4ade3cb567bd7e36452dd6c82715c0
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 81920
+Filename: snode.c-net-rc-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 23537
+SHA256sum: a17411f55ca6a2c8ca46f461d32140b12812e0bde742581a2f65a0467b8359ad
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 256000
+Filename: snode.c-net-rc_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 83842
+SHA256sum: 8a7108ce13d8bed37a00bd3a0c26ded715db00b7df9bdb42ffe690b8830e78f8
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 40960
+Filename: snode.c-net-un-dgram_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 12514
+SHA256sum: c81fe4f98f275711e0a27fa5471722d93b34d44673805941d75a7b0dc5568f68
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 51200
+Filename: snode.c-net-un-phy-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 15414
+SHA256sum: d5b13aecd5e1c837fa0fb4e8fd695989184eb856b13f991ed28e54dff4621b22
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 20480
+Filename: snode.c-net-un-phy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 5142
+SHA256sum: 983f0450086e7a79a3d808b05e8493f1746727ae14abd282a99af44a5fb635af
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 266240
+Filename: snode.c-net-un-stream-legacy_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 72310
+SHA256sum: 7194c4f187a800b8509efee936aa50872a691cb261f737de6b888f0a3122ad0f
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 399360
+Filename: snode.c-net-un-stream-tls_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 107811
+SHA256sum: 05b7fc695857a167213aa58758713a43082fe95838f0188c0c4ed1a2794ed80c
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 81920
+Filename: snode.c-net-un-stream_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 23524
+SHA256sum: 1d6d1778f842c8e2c3fa9ca9d14c536f3426e323298839cab03d12f8c04455c0
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 122880
+Filename: snode.c-net-un_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 43194
+SHA256sum: 5dab3fdb6849a5ad4ad8df59011857abc32d954d44d5d992fbdec41639b2d0aa
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 337920
+Filename: snode.c-net_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 117240
+SHA256sum: 7abeb9cfbbf2711d9a8c818cee38a887d52950cc00caebf319bdc3b2e3133b6f
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 542720
+Filename: snode.c-utils_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 219390
+SHA256sum: 7bc1626c843f5f1dad2ee594d0914152a13b71d2f7868d78743312e214c4d064
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 122880
+Filename: snode.c-websocket-client_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 38751
+SHA256sum: 1b702342eb3ce47b84b6c7b71464de31e7a7978f6202e87419e0c8cbd6a0bb15
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 133120
+Filename: snode.c-websocket-server_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 43069
+SHA256sum: ee839c156d83f2129b3c30b54e9a2dc1948b10a322ad333f433158ab0dd435e0
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 30720
+Filename: snode.c-websocket_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 10986
+SHA256sum: 853d89b3a76db97bd17f188fd13de377306db7f8491d777d77241b7b210e0987
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r120
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: arm_cortex-a15_neon-vfpv4
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r120_arm_cortex-a15_neon-vfpv4.ipk
+Size: 1116
+SHA256sum: 5d6aa45b1f1445085cb0901329f87594fa9cbb041e1b0880b4b71f0558896836
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+

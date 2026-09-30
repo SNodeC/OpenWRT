@@ -1,0 +1,1350 @@
+Package: mqttsuite-bridge
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 4448
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-http-server (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in (= 2.0.0-3~trixie), snodec-http-server-express-tls-in (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), snodec-mqtt-client-websocket (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-bridge_1.0.1-3~trixie_amd64.deb
+Size: 844974
+MD5sum: 02293010cf7d2f49ab0cbfe6305c3fab
+SHA1: eb2d7848e5c83612466f16bd5ee1de7653cc2187
+SHA256: d61252449d8bf4fb62288e3eb737518a88eb416767a8990f1a5037b9a9f4c2e0
+SHA512: 774831d7b8c05c4014517de0dfad18085372809b5d3b3d2aeac02c9b2598400964db610bb1ba5687b8a69bbc5caa4426f5e94d357b9b60b54f55f5a18cc090c4
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-broker
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 6419
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-http-server (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in6 (= 2.0.0-3~trixie), snodec-http-server-express-legacy-un (= 2.0.0-3~trixie), snodec-http-server-express-tls-in (= 2.0.0-3~trixie), snodec-http-server-express-tls-in6 (= 2.0.0-3~trixie), snodec-http-server-express-tls-un (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-mqtt-server (= 2.0.0-3~trixie), snodec-mqtt-server-websocket (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-broker_1.0.1-3~trixie_amd64.deb
+Size: 1147322
+MD5sum: d57eb80e7cc16abc9b84c421c2062779
+SHA1: f9a27c0c724a67339cfad6775e87822ac10f3306
+SHA256: 5de774548be1840b68169da270858bef6bd5c208500188e8bf0a2a933a9c4540
+SHA512: 11c9e49c2e3b3e8a43648f512d397c7204ef5feff3250f190d693552ed75a9717229a8aecca72ab335cc5a53796baee39adff54bb5f7671fad4c1b34ead3d3bd
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-cli
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2866
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), snodec-mqtt-client-websocket (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-cli_1.0.1-3~trixie_amd64.deb
+Size: 510154
+MD5sum: 7de6437ee490b8f3d78701f39ce45abd
+SHA1: 62b81b0fd9d841db9174996062a492e0fea57ace
+SHA256: 23b5afff925b97998db5d8ed2ef33895325092d6447313646ccf71aea2aca3f4
+SHA512: afbc089ff73d7aaca9aeffc25bcf08b5ad8255a448f5fccfc0636bf780c0364e320bd6832c2002f8a1d3e6a2300bf209fc16334bd6a3ebec0a758deec50b2eb2
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-integrator
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 5241
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in (= 2.0.0-3~trixie), snodec-http-server-express-tls-in (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), snodec-mqtt-client-websocket (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-integrator_1.0.1-3~trixie_amd64.deb
+Size: 932814
+MD5sum: 42ede5af58d2359ad70e68b87614a257
+SHA1: 744bf4319b138f9048ab0aaab4595f2e52ad5be0
+SHA256: 5b8c18e6f4ed1cd548df66a2b056428f159a0b7ff79e6cdc0850427e41083396
+SHA512: 6eb18c180ba5b4635a8075f6cd606d9e1d40b9d05ca5a79b9cef33540f9982b7fbe5c3397de4e963cfe2d4176fbc7c153415f09d0879aa24a7f299215329a571
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-double
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 31
+Depends: libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-mapping-double_1.0.1-3~trixie_amd64.deb
+Size: 9160
+MD5sum: 1b99883bf3d5753c387ab5bb320fbbb8
+SHA1: 6217dbde09cffe80a80d6113ca253abfff918825
+SHA256: 57804669f716aed1e6289b9e23974d4c04ad36aa317c3b757b5ab90cd84ee753
+SHA512: f689303e6a6b264c01e866a07b5e20754320cc13d01d012c1b7efcb790586d6920726edd04bbb8f11f5f6f6f47d8ca2de9982d767d2df2d6debbc95680bba9e7
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-mapping-storage
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 63
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-mapping-storage_1.0.1-3~trixie_amd64.deb
+Size: 20596
+MD5sum: eb5c08e1616e8cbbbc0848f6a97bbbd1
+SHA1: 9cc715d3eeaa4ddb03936300cec992bcebaac04f
+SHA256: b88ed2878b37181418cf8cb21d42ccb1601975bc1d609f5507552995fe849d51
+SHA512: ef320205b3c07c7de40b49387b155ec26b6ae8f61bd1006c3d1202e367c89a5d976f1a9de88966edc7c7ff475cd59ebc96bbb762187b7d1c3b70452f929cd614
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite-store
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 4631
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14), snodec-core (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-db-mariadb (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), snodec-mqtt-client-websocket (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite-store_1.0.1-3~trixie_amd64.deb
+Size: 754966
+MD5sum: 1b3794752c6c381f0d67d54483e058f7
+SHA1: f6e191c8cf7c2151fd4920d8095f47af14de8832
+SHA256: e655624b7004ae64716bf562cfe5f9397cf6264057d9b3c1272a2d06ad80d95e
+SHA512: a2d99b94301adc90cbf29db6c842426a320e993547c820afeee4eace385b41ee3b122d18e6c0a418d132bc3a8efe2119eb1977dc1dec472eaf39f63ce4bde62a
+Description: A lightweight MQTT Integration System
+
+Package: mqttsuite
+Architecture: amd64
+Version: 1.0.1-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: mqttsuite-store (= 1.0.1-3~trixie), mqttsuite-mapping-storage (= 1.0.1-3~trixie), mqttsuite-mapping-double (= 1.0.1-3~trixie), mqttsuite-integrator (= 1.0.1-3~trixie), mqttsuite-cli (= 1.0.1-3~trixie), mqttsuite-broker (= 1.0.1-3~trixie), mqttsuite-bridge (= 1.0.1-3~trixie)
+Breaks: mqttsuite (<< 1.0.1-3~trixie)
+Replaces: mqttsuite (<< 1.0.1-3~trixie)
+Filename: pool/trixie/mqttsuite_1.0.1-3~trixie_amd64.deb
+Size: 1064
+MD5sum: 13f34c904aaca8123847af1f5a725bc3
+SHA1: 73ad74ccf76920afa8af965f9c4b86a3ed0c8e82
+SHA256: 569da5e5f1647640eee08a9b5a1f6c482a69a6ed9f6f525ed2f7db67c768f0ad
+SHA512: 48ee7e6ac1dea74edfbac53bbc6f9f19566f3fe3e149972debb6b46da45991ba5d66928f49c97e64e4488f8430ae556422d2a6b15436d82f5f07816934b791a9
+Description: A lightweight MQTT Integration System
+
+Package: snodec-apps
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 20123
+Depends: snodec-db-mariadb (= 2.0.0-3~trixie), snodec-websocket-client (= 2.0.0-3~trixie), snodec-websocket-server (= 2.0.0-3~trixie), snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-rc-stream-legacy (= 2.0.0-3~trixie), snodec-net-l2-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-net-rc-stream-tls (= 2.0.0-3~trixie), snodec-net-l2-stream-tls (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-apps_2.0.0-3~trixie_amd64.deb
+Size: 8288188
+MD5sum: 2f0d0c1b57d6582b893b8e4dbe1a0a70
+SHA1: dff02c4615619c0fe3fc69186ea810783851adbc
+SHA256: 67d6472ac7c79e0513097a5c0eb8fd6ce343c23ae449ac37a38c0ab2b59a03a8
+SHA512: 41ea57bb28cecf4d686b6a25e7d65614447fd0bcffcd9c51abe08d617357e62687c1a73705ae8ced4bc1d635d254ce31fa18d5f65b75987cbc066b16a6fe645f
+Description: Simple Node in C++, a Slim Network Framework
+ We install Applications
+
+Package: snodec-core-socket-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 128
+Depends: snodec-core-socket-stream (= 2.0.0-3~trixie), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-core-socket-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 10050
+MD5sum: 0574b586707ce53cc597ac36087b8d67
+SHA1: b49c94f5e2b9ef0774ee71e63ce7c9d15ab1e28e
+SHA256: ccdaba25b421cb9a0a14211d709b91087c67cf6b4331eee8d1efe07e7425d588
+SHA512: ee52db47cf271d614ac7bb448b6d15f86e715946d32f6a505a27ac7eede79b7c8a24394ac06bf718e041743d0ca06a5a9e89da9ee491fdde03ec63adc4eb009a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 584
+Depends: snodec-core-socket-stream (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-core-socket-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 66866
+MD5sum: 7342680d2eeb3b0481d1ec3b4b20904e
+SHA1: ec9c67062e5e864281169ea66f37aefe6fb155cb
+SHA256: b559831311c24f623347f481bc1bf1087baba8f42c8552305a296177ab3439dc
+SHA512: 5ae29166e55f11b05f46357eff5529ade0fdb357f6b1ead5252f6518623de360294e18cfcf84f805d40411d5f4a4110ba5cae0858c8b2975c26280355de2d820
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1350
+Depends: snodec-core-socket (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-core-socket-stream_2.0.0-3~trixie_amd64.deb
+Size: 170698
+MD5sum: d90ce342ce212d2e5f6250e9249a4521
+SHA1: fad4c73596230aac1c7d4a615e4b35c84b7893f1
+SHA256: 47a0d2d8b501fdc3c635d9d5794ce06a2088762b7572bc5c526eae0995131b1f
+SHA512: 6b7b01316f29f384f95f696dec3bf93a02b89a1323bd64d0f7df7aa3d34f0e3c8e91d222b4f77883dfa365e71922ec2100e9ed2460a69bf937a4381ae91c65cc
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core-socket
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 133
+Depends: snodec-core (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-core-socket_2.0.0-3~trixie_amd64.deb
+Size: 15238
+MD5sum: 7c98b728e7fa84cd42799ce5730dacdb
+SHA1: dbdd722066fc883baceb34e46c695c23727d15bc
+SHA256: 4eb1d830d891717d4aabe394d0c117ac04b3b51291db941f3f38b3346d396a16
+SHA512: dcaeda2a0c2206fb0cb923476cad76908b23e1e91b653dbddba6f189d9479285f82d495d811723dbef35daa2944e8e27c0d717867ea47801f2e1976bc5c4bfe6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-core
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1523
+Depends: snodec-utils (= 2.0.0-3~trixie), snodec-mux-epoll (= 2.0.0-3~trixie), adduser, libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-core_2.0.0-3~trixie_amd64.deb
+Size: 201086
+MD5sum: d26c215eb84784b154286c33796167a8
+SHA1: 38ad3175b419594c412b801fb55a71206deaee62
+SHA256: 594b3836630b3fb1b3acb99d1a4c311409b9c3410a41234dec231e45bcdf4a43
+SHA512: cf6a4a7f40671bcd00b460e4975c9d711f59e72cc4a11a9bb6c2b787e64b3d3638c7776132c67b76073423f91de8bc60404d0eb40efe9c9d99a61d2955050ed6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-db-mariadb
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 534
+Depends: snodec-core (= 2.0.0-3~trixie), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libmariadb3 (>= 3.0.19), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-db-mariadb_2.0.0-3~trixie_amd64.deb
+Size: 55842
+MD5sum: 2bb8a9d647b0b3e26ef297453440f1e6
+SHA1: 602d5ac8818e253e3459ce729bf1e6b937cfc66f
+SHA256: 1a921016fdbceb7d711873c10d757958da550b5aa5b04ace2566efe606c0caa2
+SHA512: 1fefed958188b9f757a40c918ae6643e218ee3ce6ede036ee06c7f94af0d30d7e7e27c2b45354f38e33710923e385efeb236d6045abab6bbd25a0e9b5984447a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-client
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1989
+Depends: snodec-http (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-client_2.0.0-3~trixie_amd64.deb
+Size: 259338
+MD5sum: 8f5024b8caf392ab40d565bba48b97fb
+SHA1: 2e38a82cb9168e2356e0822a7e050d54cb054de4
+SHA256: 40fb21c8c7542f48873368d36c9f72b1f8be1a2fa242d983834f9f627014edba
+SHA512: 5ce815f4b7b6e5de46705f0f48cf3e35a3fd1bf7c67bc78c10ad20e16ae3e770833ea9f2461eed3523c4833f409c06ecc1e10cc2a1b6bd7f09494518683314f6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in6
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1082
+Depends: snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-legacy-in6_2.0.0-3~trixie_amd64.deb
+Size: 131724
+MD5sum: f34b53b2114eb6f723a2f2e4f07952d0
+SHA1: 89676252e5c7c7dfe9fdbfbcc73802367ec5368a
+SHA256: 95bc8985fe02829e6529bfde09b706f6d1be5bd9cae738737d514b5c8fbd25dc
+SHA512: 88f4fbb6ccdab2b250ab07b3e860ff02121b45586f677172f164aadc5d000b801cb93f4fa3f438e2ff0f3f0f0fbfecc98adda54c32f9426c3e3deaa12e23ff16
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-in
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1082
+Depends: snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-legacy-in_2.0.0-3~trixie_amd64.deb
+Size: 131658
+MD5sum: 59ad0a5b30c7a4f050965ba8587e9395
+SHA1: 2c04b9d05e77f3ee6a5e27328511dab09bbf5991
+SHA256: 6ba6ffbd7d3ef7e28d2e46abe8bad427fcca08fa989f5308777774310bf59c5b
+SHA512: e50b948b88703e5ac0827d5e8e9836fb572d811dd8cb721c1eda4159500cd838609c7ffab837b4efcc9aa07cea02b21739fe42abae74f7a22ab4dcfb0e0586b6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-rc
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1082
+Depends: snodec-net-rc-stream-legacy (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-legacy-rc_2.0.0-3~trixie_amd64.deb
+Size: 131632
+MD5sum: efa53a7ca1272fe98ec2a4e3bb521aa0
+SHA1: da96c7c1e6d645ca30dcc2c992f3e87ff0085647
+SHA256: 4909b24415f2ca2c1fb2f80dc1c1aa3c3b666232696b46e0bbdc05b2048f8fcd
+SHA512: 696e05526f2393754ebab343828a746394fc333348fa31505f3af056988ee5d2dfd90542d1c5f5adc7dbcb1f13331f3a7a19f4f300528827401f1195cd9783d5
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-legacy-un
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1082
+Depends: snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-legacy-un_2.0.0-3~trixie_amd64.deb
+Size: 131574
+MD5sum: 44c7c21b9a228c12006f8c5fce01b42e
+SHA1: 21440cf04e54296f905eb00500f1185fcaa75740
+SHA256: ab62c9b90bfbe8069475be5fe03fea2bb712ef88b196fd5d25ca8355ecc60070
+SHA512: 94f3e06bd4b12ab77496fbbc6f3e6b083823613afb1fe5a756dbaa1d4cc5d66b4145730c707b24d7c2753a55e39935da3751e3592ba9731e4a22f9350377d881
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in6
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1070
+Depends: snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-tls-in6_2.0.0-3~trixie_amd64.deb
+Size: 131648
+MD5sum: ce0d2ff6dd7130604f3a1dca54bbaf80
+SHA1: c3da32ba9fadc1bd453b489e7b361b7d783e6d89
+SHA256: f31ce9902f7f566dc2dae75f79dfe1d2bf9900affe3469ab785d8346ba1334ed
+SHA512: d50292064a97241e1e4dd35997c506939109812ecb7b7092fa089ac047a828ea0f27cb05991a54debe60a009acc9e1bdd87d00b676b67a0e3b599a0dd4b9143a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-in
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1070
+Depends: snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-tls-in_2.0.0-3~trixie_amd64.deb
+Size: 131638
+MD5sum: 543f937aba226227af646ff427c6f085
+SHA1: a33bf960371f40bbd068303603b6fb70d1a766ff
+SHA256: f0d35662e37c0ab0435e764be19f8a9014233896493577c1c0be0d11f444ecb1
+SHA512: c4778d7a34062e74bab304df09fbb697c02056591e47e5a9c3edaf8280080b5bc26259dbc69fc5a55fb27761520fa56063d4cc8155b0c04d9bfa7f2b22a11a0c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-rc
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1070
+Depends: snodec-net-rc-stream-tls (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-tls-rc_2.0.0-3~trixie_amd64.deb
+Size: 131578
+MD5sum: 3a3aac01471152c8e0a5c61c4c5fc497
+SHA1: ac24030c307079d4cf19589288cd313ea5235907
+SHA256: 4a7dbfd768014e3dbe2854162f818bc7220b6d8445503d66dfa295ed1aac4f31
+SHA512: f33346c4a77f9cfaf7e519e502e4d2c53bce2af58df71c4a9c29b3fcf2b7c79e83f31d6d152a01a521f1272bf1f061fbb5b237ac380fefbb8e966d60888e65a8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express-tls-un
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1070
+Depends: snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express-tls-un_2.0.0-3~trixie_amd64.deb
+Size: 131542
+MD5sum: 6c85ddfd165c539831e93804b981932a
+SHA1: bfc74bf61a3012475eafc6b704c11551efad2275
+SHA256: cc9be924c1d761312328335b0db6f79bc7f6e6adc2af2fd46b910af5729df15f
+SHA512: 8580351f09e592601861cf2ec44712d526ce37068ccad1999c1b80a58f9fdac443acf4b47105b7f4e6fa4186cb926d676d6c6761f84957913adc2d833a4c949a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server-express
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2733
+Depends: snodec-http-server (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server-express_2.0.0-3~trixie_amd64.deb
+Size: 333232
+MD5sum: fdf86c6ebadf8e592804cd40a9f099ca
+SHA1: 88e9a9129d0b2bf4d93c5964291baf18254d0ff4
+SHA256: 8166f3aa2aeb4e5b54685e98ab7d3dc29244e97c2889815e94411905256dbb1d
+SHA512: 6bcbb001983ee57b0fd35f14a3da5b42a49eda162f90dbd7cf38dc1c271ce6d115ca26a00bdd92a4345a83080063e44f1fc781de68c5098b81169db0277dc523
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http-server
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1764
+Depends: snodec-http (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http-server_2.0.0-3~trixie_amd64.deb
+Size: 231258
+MD5sum: 785c75b0243418efc95e089b1a4091c5
+SHA1: 58022c8fb314999611cb8b0924cf75bff076a0f7
+SHA256: d99b6976c6ca1cdac168cb926d336e3fcc62189bffeb95388c89e9a25c76eb75
+SHA512: a04a5684ca63d8ecfe9af3fbac27cb966c56164bd8995f0bee853422411ef2c31c48dbd114ec3e86ae6053ec940a1e0b07555d5074df2ade4b4fb88bb407ebf9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-http
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1682
+Depends: snodec-core-socket-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libmagic1t64 (>= 5.12), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-http_2.0.0-3~trixie_amd64.deb
+Size: 222508
+MD5sum: 3eb6b2fd52f9cfb666e0968b3a10b1f2
+SHA1: 8951cc6a8c8942abdb4620bf54a737182761e0fc
+SHA256: 986406bff0bb37b5747daa756ca69029e339e94ac671bf933581d267b7758565
+SHA512: 10e7cd942123715d5f1e3124deaad463c994ee27e666a83f8e552b27c80e1b62c11cd9bef9114a501cd1f91476d83e85fcfcfce1738dbe0a8013204552bacc55
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-logger
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1934
+Depends: libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-logger_2.0.0-3~trixie_amd64.deb
+Size: 245586
+MD5sum: d5f821e155a1a6a61b0eacf15eb34f00
+SHA1: 3e3060c046a5003e0a3bf9b6c71f07c6715b1808
+SHA256: c5931ad587a1e671832437f2686ec2ac041823916eac7fad1fb7509db523f478
+SHA512: be96eae9f830d89ca1bd1cad150ce21f1af4b009287840723410e5076b1a0078abe1dfe69f2f0f724638359d9d310bddcb2e436f1ed7b9fc26d37be623a24f98
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client-websocket
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 160
+Depends: snodec-websocket-client (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mqtt-client-websocket_2.0.0-3~trixie_amd64.deb
+Size: 15956
+MD5sum: 96057d35f89f84d632528967d73ca91d
+SHA1: a545feb112166fcc8b76ea1e3bad46df28bb1855
+SHA256: b5b2ea7764f7218ae80efa7245be3710dcab4ab40dfa1a78002ad89cf97fbe82
+SHA512: 7ae41b9304ff156c22332781b4911fc6294c7b409ce849b45ce0a65596da62bcd26e30702fbed067dbefe139c865dfe713208f591f1fa90ab1b7005a333951e8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-client
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 797
+Depends: snodec-mqtt (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mqtt-client_2.0.0-3~trixie_amd64.deb
+Size: 96220
+MD5sum: b2aaa890fe4f595d22a840b0c06f1667
+SHA1: b968dde6d6488aa8a94301b5f8377d1fbf71b2c9
+SHA256: 1c3288c02df9179fb070e647ef7baf54e25d20420dd38bef370407a0dbe9d2b9
+SHA512: 544688e3b186876104dda3be640d65c169bf5508d944657266a31a833adaf8f96145d64077ccd99d13aa2f7460f6b061d3057196403f780c481c969bcba01e6d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server-websocket
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 160
+Depends: snodec-websocket-server (= 2.0.0-3~trixie), snodec-mqtt-server (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mqtt-server-websocket_2.0.0-3~trixie_amd64.deb
+Size: 15954
+MD5sum: 663115bba3b7fc18bb0f3ae2439edb3d
+SHA1: 94a9b59f2682bac6c1858d8d170eb40a7d974b6f
+SHA256: 67fe4b05f7de20f5bd8ec4fa4ac36d64bd7e1e03a0948953922bf6f091e360eb
+SHA512: 69777f82d9a02b312f7b01962c620fa8766f5b067210080c3f6ebbf200fc95be5685e91a707247124b4eb95dffc607005a9872923562580dcf53dd705891fe24
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt-server
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1482
+Depends: snodec-mqtt (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mqtt-server_2.0.0-3~trixie_amd64.deb
+Size: 191518
+MD5sum: 69d9ebe37512398c54bfa2db6f00a2bb
+SHA1: 75cafde5f3c96d5c515f6a3d245efd26eef41cac
+SHA256: b15a0ba25a4c89545cff7cf0b4fab1a7cd7ba9171bdbac42480d2fac08d3020f
+SHA512: 45fbc83c8da6444dfd6bb9623a879f765db84a8e98dc70429f6825c0b590813703cef2692f03d450aff21fbce9fcd13bc8777fa5ed4ddff9c73c87d8854f9963
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mqtt
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 722
+Depends: snodec-core-socket-stream (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mqtt_2.0.0-3~trixie_amd64.deb
+Size: 84512
+MD5sum: 3f9152cf29fda4c7adda171fea4f19bb
+SHA1: 21fc766fa1d0980bbdae21ec042f50976e64afdb
+SHA256: 6f45c453a81a982c5618e40e8bae6f73838a5fe850e2e5e7c2c866df60fe1724
+SHA512: 3099d80186b47f03f457603d3bca63223183b49da9458d4a6b01969491fb4856e1d5e4e81783d7b6b875621f1d04f4bf24b85a25ffe4cf65cfd7070db12eb667
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-epoll
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 209
+Depends: libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mux-epoll_2.0.0-3~trixie_amd64.deb
+Size: 25670
+MD5sum: c007a09745148c555baef81a727ca747
+SHA1: cf9ac3ffb4e67cadb98cd0802dd83de387315eb3
+SHA256: f35a58dbc69cf3a369dfb6b115d08d4a8486e94f4ba1711fa0771550e740db17
+SHA512: b5ed697d1db5601be4f344b65aea862361290a58a85b4a88dcbbd576b60d815835000c297af761691f341cd4c340f593790a32bf46ba8c142323fb495ef0cac2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-poll
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 113
+Depends: libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mux-poll_2.0.0-3~trixie_amd64.deb
+Size: 13954
+MD5sum: 3671be9358ab2d96ddea3d243538ba4b
+SHA1: d7ebaa15c5702c7c1167a1c4e418cb5fcc97f206
+SHA256: 05b12f1bd271fc861df6b0797c182a74767c283c58c140b1892eee592ae3faa7
+SHA512: ce5af228b5ec47c1c161708b3e8d595dc74c7756ee9e7839809139d5057c6100770a7f30d940b1988d41e29e97af7204287871eb0d22157fff2056123d3b9658
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-mux-select
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 101
+Depends: libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-mux-select_2.0.0-3~trixie_amd64.deb
+Size: 9996
+MD5sum: 04c67b86e078c883bf94375374a8c325
+SHA1: a82a809fb42daa058b03856d05b2ca41275d63d5
+SHA256: e85591440749e469346a2a5a4e7175e595aad77ea94e3a1b8e8c19e7361000ce
+SHA512: fce44e042949db06cfe6edc266e1cddfcc3363c9ea361e4f22a3febead88a89d1cd72af3c454c5d83a3c3e8cbc4ea034c63c5a5fcb7f0aa4d60f602b4cfba02f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 124
+Depends: snodec-net-in-phy (= 2.0.0-3~trixie), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in-phy-stream_2.0.0-3~trixie_amd64.deb
+Size: 9430
+MD5sum: c431f04413e024555535ebfb50723a1e
+SHA1: 57aadff94a3038f7f97ce0e33c7c9378b78c65b0
+SHA256: 8af39927fd8d9f6d2d1426954ff8d4365cea8a731c3bd8ce496b27e0e394cdfd
+SHA512: 05be566e3a23930d27eff83a40ae36babc2d569470495e772264d29eacc26c747570393e3051a78b3623840f8d1c64bcf554b278fdab4bb4c403cb89967ea6a9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-phy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 115
+Depends: snodec-net-in (= 2.0.0-3~trixie), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in-phy_2.0.0-3~trixie_amd64.deb
+Size: 11810
+MD5sum: 37cd099782ac129cdd4dc2f202e3a749
+SHA1: 0fb4f0e0d7f2018e1be5b0044956e4d5afb7216e
+SHA256: e2ec5d46ba507393c5c4eab6d5ddb6a2f63870963ad5030b361b4ee70b1b5887
+SHA512: f0ba4ad5cad3f5a32db3771f4f3971a58950bffc0dede7775c1f1656b9d0ee3ab3a1c36ef43b17d01d12cbcb8c872f9584976d65e3d75602278de2df7a38fea8
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1738
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 197530
+MD5sum: c4347e9b664ab2735b3a354413e71ce3
+SHA1: 2370a209e5af1a4048e480e20437009875ccf8fa
+SHA256: 516589e84a29550e49262e1b0baef96c3bdd8189f5c81f681c0133521057d732
+SHA512: 507b105117c2545670dfa60ff7507121c898059f9fd55ca76f21f1fd05fb9214c5a31aaa55629062901cc0b5a46e82c25f1ad6f59852d6534839f20447f12c32
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2232
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 244402
+MD5sum: fef158d1e298fc7b3eee7ea5d467a081
+SHA1: 0a09736c10f3247e699aa3e850ce41b9afeb3d15
+SHA256: 42ff8a345be4b2579f52b1241be189b6b55a2c4dc5fae21bbbf1761205ac5fa9
+SHA512: 028a305ac7597579d99b0e0657bdda90a35e4bf7582b12b41e5fb958829872c7386f146eb925d2b62f0abd1b13c35c52e50e22e5a876d4615da358719bcd607f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 998
+Depends: snodec-net-in-phy-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in-stream_2.0.0-3~trixie_amd64.deb
+Size: 130962
+MD5sum: c7a3edaa24ece852cd19107d8a0bcd59
+SHA1: d1214737de97877d7c7cb2c6627f04fde05983e2
+SHA256: 14a284e35a1fa30171ca357c50ae87e726fe4a128652f4bd1f20f9e11250f828
+SHA512: 512b701f7831530b535c885c11881f62a15a12c74894c8f4156d51070126a5dc1574e69c4325b21ec1eac28b01f959e415c6cc2a0495bfb457ea0d56453fe4be
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-in6-phy (= 2.0.0-3~trixie)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6-phy-stream_2.0.0-3~trixie_amd64.deb
+Size: 4556
+MD5sum: b5ee981dfdcbfe5563a4ba2c887ed7d9
+SHA1: e87df6b3fe50ddf770bbf73725a47eb3dc208bc3
+SHA256: 67b613ff51831d95b085c1eeb292c9a70d361355e24f8bf9f48202688d2e49e3
+SHA512: 28a28aaf144ea200666002d71535f5c946fc886f11f9df2f16e183eb9e5aac3c55676aac883577069e01dc3cfa692842eee1a159a2659ad5bdacbab6fd71a1a1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-phy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 115
+Depends: snodec-net-in6 (= 2.0.0-3~trixie), libc6 (>= 2.32), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6-phy_2.0.0-3~trixie_amd64.deb
+Size: 11844
+MD5sum: bbf7de4ffa42f1ab342ce03f8ee2e8f3
+SHA1: 545660ca1101fcfb985b3cbeca313d65eea1a879
+SHA256: c931c0f59c5e35b075e131aa140da38e31f3256bc6a80125911cd476240d7385
+SHA512: 7c3637b8f5dcc3c4c5cbc85203193f44c0462f3b1240f40da90a6e88004d104f138ad3856607ebf5dd7a012b6054c04e8b5287aa8b31a61f666e7f587867b4a2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1738
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 197560
+MD5sum: e9392b27d932c25fa8fe2d5b8f0f94ec
+SHA1: 50b04a3af60840657772f91086ae63657c714bbf
+SHA256: 7f465457c782e5a51d77a407e477eab9318f466c3cc99f87021f6510a120e369
+SHA512: 7ee08335ab274cdc18fd9ba43fdd02838c0aab97c121c9a1aab25cfc6e8677e5b69f78f73cd1a0890cfde86ad556ca856a282d89a13bae4f71379e2598f1d089
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2232
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 244432
+MD5sum: d542917c2044c045d32158bac47fdebe
+SHA1: 6ef4e5740bd0b35f27293f75c9fe530e4b9cbc54
+SHA256: 11d3a78b1e4c79a41d329732f7b8c5bd0be3dad90c7d58156bb3a82692e3255c
+SHA512: f2e22f328b6361b602c10b630c1eca9cbddc1594667846348ab87281a2527e41afcaf92d7c2fac1ba00e5a4e270160965740fda3d0ae6039c9914451e99ca959
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1065
+Depends: snodec-net-in6-phy-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6-stream_2.0.0-3~trixie_amd64.deb
+Size: 136292
+MD5sum: bca99e0c09adac201a3fd9153e04e413
+SHA1: e64469772b75b15bde731698390250db954612e3
+SHA256: a14b805f5202fdceeded6a5811cccb75ec16ba37bb33b0db644044329b742781
+SHA512: 6dd4dfa1883cc5662de1dd9760bf72eca2338ade859bd6bf1cb6fcc39d00eea2f2a3d5098aab69c327f4818fc2c120df23a92a27faf8a21baf88e2686b071744
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in6
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1111
+Depends: snodec-net (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in6_2.0.0-3~trixie_amd64.deb
+Size: 147482
+MD5sum: c0404eaeb575219542ef4665bc0555de
+SHA1: 2f32ae82ffc93ab6fe8b93416731cc147488da20
+SHA256: 956526262bafd97e9c9a7c30f7519710cffac5b119b07550a2a4fe2cc6490f6f
+SHA512: f3d435237507efe5fa125647f1f6938ea11ace04f0d66c7530505aaa2268c8fcd26aa2c3dc17c551ed77e8e128457dee07d723fb5d7b3b2d4dcefe17261014c1
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-in
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1099
+Depends: snodec-net (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-in_2.0.0-3~trixie_amd64.deb
+Size: 147714
+MD5sum: c42cf2678aa0cb8dd25169c0fb61bec1
+SHA1: 440be87695e260868f24025196df99464b07b2b9
+SHA256: cff24b7d7d2bed6f1199ecff2dfcd538e4cd73d07b47dc088aab8462a7707afc
+SHA512: b111f286428fa3108ad229675149c0b8a87e366c7b24b22efb5c328dcf59034a3a638aff130a615598ba47f13694b53cf51d94a93df9b83a581be76c0964b4dc
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-l2-phy (= 2.0.0-3~trixie)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2-phy-stream_2.0.0-3~trixie_amd64.deb
+Size: 4672
+MD5sum: 25e655350d76d6784566d14f830f3806
+SHA1: ce97c89cabc558de6ed0e1dbdff566960d4859d8
+SHA256: 8ba1dd352e5472572c3d39edbfb927747c8205ef16f2e2f51cf148723003690e
+SHA512: 85b42410d8050efc9ad14d8ba6fc0382fee3f3ed92566eb02828b78e7260a0c6a7025d8530da778fdf40bd866bfdc3c8b6918133b17d5c58e375f42e78389b3c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-phy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 103
+Depends: snodec-net-l2 (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2-phy_2.0.0-3~trixie_amd64.deb
+Size: 10234
+MD5sum: 83e1eeab2c91781a05be68fd4a409291
+SHA1: f8df2094655d51b0f6236624fc9470418e20c821
+SHA256: 0e392008c480def9362b12360c52f7d72d0d26af5be56af746e3604c7c5946ff
+SHA512: 146a723c2d8627d9ff850440f5275b50c3374ea0d02c9d0b5634dadb4abf402318e13145dcb4214a431905f044a0c5a6ffc6d09d3710906f53b473bdee18e08d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1750
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-l2-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 198278
+MD5sum: 2bd8adc3fa229010ef720c76924e0d93
+SHA1: 31b713c7ac1e0eb8cc8c8abab7add08a20911a74
+SHA256: a54e6052e1ca749e5291828df55bd28ce44891d1df4ae9fac442d69d0e082b59
+SHA512: 2ac99abef3423761dfed90aaeb6e0bb85fb7a75d7836fe67b5d6fcca47051e8c7b35257d06a47d9e08a891dfac7c9dff473390d89b8d6ac1a1d38f8aab587e44
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2232
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-net-l2-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 245538
+MD5sum: e8f2fbc9a7c9ae983e1f2bbf420adaaf
+SHA1: f45b0005bf02f436e8d49a8afb008b7d0a17f81b
+SHA256: d57de8342ed41a58e578a7e419a52ffc79990ec1441f7f781a65b0a344ad9eef
+SHA512: b2eb24b0b4eceac3fcb63b938b4a357de235e09f336f8ec0257a8e1da71fb83494095052eadf40227e7a401a416a8c11735554fcd0ff26aa26a215d29fa91ad9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 967
+Depends: snodec-net-l2-phy-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2-stream_2.0.0-3~trixie_amd64.deb
+Size: 122674
+MD5sum: d34a465727e37fe6a4bc7e5dea70ebac
+SHA1: 01393fa6d3f43200a93c627950fd849c38812964
+SHA256: fd5761b71853c0e9d6df027f6b4a1f1083759e7df98ab7de13ba2824563582c6
+SHA512: 050d221dadea29676b16dd3d157867731b0687392331654189458e6dd3cd0220d232ec13d9c9fabbadae7b9b778dffa181d822713489db1c4f4456e3c6819d37
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-l2
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1340
+Depends: snodec-net (= 2.0.0-3~trixie), libbluetooth3 (>= 4.91), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-l2_2.0.0-3~trixie_amd64.deb
+Size: 172852
+MD5sum: e14397c8f8e6520096ebc6a0c5dd9439
+SHA1: 11c0d996bfa7640fe8e9e6f6378036612586d2ee
+SHA256: 7c50cc62c8f1adf24526fdb7e4c46166fdbb89500085d2524b497b5925a31f9e
+SHA512: 67bbdffe09566d9bfc46fe069152a90ae47b774ef19697cd7223f17af2e6a8936069ed3ac814865e9c992400d8949aee8ca4d3e45b55576dbbea43020222734a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 58
+Depends: snodec-net-rc-phy (= 2.0.0-3~trixie)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc-phy-stream_2.0.0-3~trixie_amd64.deb
+Size: 4556
+MD5sum: 3887338e52853a4d57f7c4787deca2f3
+SHA1: 4d95fefe9a1447ab8efe77ad4a084f93cead3cb3
+SHA256: 96640ee1daaee3f6c07b2cf84ee4a7c65c6bc7139cafff3374e820c594d0b7ad
+SHA512: f8dcda01ffd816ca959672a57eb6f13d30e864ed17596115483315bb914d4bc31790c9e8036c64ff853aed7072ad1e1d57dadb6eb7174f81e1b28072b8c2a5f6
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-phy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 103
+Depends: snodec-net-rc (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc-phy_2.0.0-3~trixie_amd64.deb
+Size: 10222
+MD5sum: 1c0aa854273caf22e7ee4af67cd9073a
+SHA1: 6ae66c16780b6a1c5bbeb77d27ec56c76acf7d49
+SHA256: cfd67cf9cd089c25077e7ad0a092c264357f5b3bc6858817748c0c7b2d44e277
+SHA512: ca3665ae8d54302fbafe6a03d5652490093b308e031c7c68075caf823aa11afcd250b3ef54c916cc916036bd1dd1023f40134a7353c876a265978f4c221df2d3
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1750
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-rc-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 198160
+MD5sum: 321c52221fe9e9a486218f9955d89a4c
+SHA1: d308718ddfd7d1c14a3eb046d5f46d1792e2f015
+SHA256: 69bd9372dbb36f32c2929f34bb324b4328de1d76724c8f3b58242b76ae3ff34b
+SHA512: 2bb1071f705bb024f8ead855f885d0fe2197e7f6c4c87f103019c48dba669deb7f20cbd11c24cca762d5c270b63f10ddd1e2fe4aeaf7270cf1b474a7b0ba2a59
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2232
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-net-rc-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 245336
+MD5sum: 8fcfd636f64f7496059e4bda840f15e7
+SHA1: e7c0c65c2c0c40ce5fbd2eb218e80e36c50f3300
+SHA256: 7c2da07e8c2ca6cba95b7aee6276918fac8ca0a85394d9132b5b9d0287d80bde
+SHA512: ccbdf58958127214b0802a6c8071d674e1be4668524c1e2e9eb5dcb157c4cd5f1eb6c2d262f9b5e2fa7d1a8b2534a657dd31d81d91853d01f95232f1686470db
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 968
+Depends: snodec-net-rc-phy-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc-stream_2.0.0-3~trixie_amd64.deb
+Size: 122586
+MD5sum: 4e16b23ee2ecc5fa369e7783f5318aa9
+SHA1: c38097d383f7389501f34407687631e9d5b568f4
+SHA256: 4d0b14300846574c7e58637bc52e7fc86d14f598e49ae97ee5b24a346cdd5d7f
+SHA512: 792e85d9366079e2b2dff0d4a0ea394ad484c9b8855d3f4451c95ae7eb9e0417098952c302ddb15c82b2aefc7a01c7499b645677eb64cd720b9979265e5c35f3
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-rc
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1340
+Depends: snodec-net (= 2.0.0-3~trixie), libbluetooth3 (>= 4.91), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-rc_2.0.0-3~trixie_amd64.deb
+Size: 172806
+MD5sum: 4ab402e5f4753615bdb30345ab1b9cdf
+SHA1: 65659785e49240b9f332db87fe03abaae6aa083f
+SHA256: 02e40d6b7f26e0c3fc363915e8ab920ccaa597f718a49150016b109c91787db5
+SHA512: 92102c1294e42dc12cfe9f80c908210a1aba58a79375f98a15141868f6365acbfc86146b81e76b8cd6ad9da9c849451e6c7bb8e60d9697d1558d985c10e0860c
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-dgram
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 209
+Depends: snodec-net-un-phy (= 2.0.0-3~trixie), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-dgram_2.0.0-3~trixie_amd64.deb
+Size: 24410
+MD5sum: c1bf109028fc3b89df244fcf9830edc0
+SHA1: 4f0a070b5252a8c5b0e40c282bd6aab6f6b46d79
+SHA256: 3e800198532875980527bbe2a8478167c7c7582ac055619d5a92b3d0217978be
+SHA512: 3c4a3b4f338953b061800c66c0017e4891fa203799ead371ff614ce288385d1e0caea8b78b4e75738238908e571ee46a5c0e6ac0dc50e2e2234cc3384e9f0ae7
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 291
+Depends: snodec-net-un-phy (= 2.0.0-3~trixie), libc6 (>= 2.33), libgcc-s1 (>= 3.0), libstdc++6 (>= 13)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-phy-stream_2.0.0-3~trixie_amd64.deb
+Size: 26932
+MD5sum: 232020d61bd1f808f3184f1565d439a6
+SHA1: d81893ce989f07059a8cae192ccc76ce874cb1ea
+SHA256: 890b1ddef0d1bd13ec93e361cfcb5891744a36fb5e61baab8d4c2c69bb53b4ad
+SHA512: 9c27d3acecb0d0b8743cebb764395adf629f93cb9d534035ca3d0a18372fa0690eec430bf5393bd402887b962fdd0572f5530a7f570e5020d268ab621b2e21cb
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-phy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 122
+Depends: snodec-net-un (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 5)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-phy_2.0.0-3~trixie_amd64.deb
+Size: 13744
+MD5sum: f9325907f3693977a230c284fffddc23
+SHA1: 51080aee43cb77206487905602ce4ed3a5156892
+SHA256: 3b85e38f1e5b179a5a57b6a08ec11a3c077e8e406f799ba4b3ed0363f44228d2
+SHA512: bb2cb76e1f5bd437d27fa81c871ce4bf295db7da36e51fdfa09b85e6f33e5c1473bff7176bca23c7fdae28c6cb19bdecffe4dbe62650a9fc43f6d50eaa6e5d7a
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-sphy-tream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 23
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-sphy-tream_2.0.0-3~trixie_amd64.deb
+Size: 2612
+MD5sum: 702621e2d5ffeb4fd139c8f84b1791a9
+SHA1: 17cfec73357a4ca45595e80d4e2147fcafe32d5f
+SHA256: 8c46fc706f0ba286dda43cfab92c222cba6919225d97b5548bd4eac423307179
+SHA512: 61c51cec2f97487fcad445578b794e6dced4cfbd0797303ec0b09fc9950ad96de6f6c19881266017ca60d71c4dc6eeb088541f6cd8285ab35d3c565913d720f3
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-legacy
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1750
+Depends: snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-stream-legacy_2.0.0-3~trixie_amd64.deb
+Size: 197920
+MD5sum: a9548a9b083eb6877d3114ccd109ce9a
+SHA1: 2b11eb57dce1c968c8103c0a449576e5215c6b97
+SHA256: 68e82b8a88181ee2e9ca08366a1014e90e9dcf5b4ecb91cd696216716932e172
+SHA512: 4ca86f8badd6b771fbe87f70324bd72588910e08d6b17889b162d17840ce2b6ba83c83512bc0c9ab0d652670ac3779f3855b59cde84b6f14046e75194730b06b
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream-tls
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2232
+Depends: snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-net-un-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-stream-tls_2.0.0-3~trixie_amd64.deb
+Size: 245300
+MD5sum: da9c5125f579620570f777a69b04ad1d
+SHA1: 6fcddf5f0e51f066623700992057b64bc9d417a1
+SHA256: 706f4a2f591075b557ff0707fb246da2ceb07d8d3513abfec6c0fd9f8d048c64
+SHA512: 876346e3256c126adc96f8a19fa4a5e35bedeb013df95593da80f2ce5c94c8160d11fba9734c4042913decb3a31dba7736366443956a38936b01c5c5d0c17bae
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un-stream
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 899
+Depends: snodec-net-un-phy-stream (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un-stream_2.0.0-3~trixie_amd64.deb
+Size: 118200
+MD5sum: 1c43411b1adba5a672ee4b2a2acbb859
+SHA1: 77b513f459879f4dd4b242f1d40e6b1c093a9b28
+SHA256: 64d2fca463cd8f58ad110013063a0888e66f884274cf0bf50de33a20f5e9d415
+SHA512: 013c810364b6350d2084f9f06a8f8b5219a9be690fa2b238de28330cefdd79805661689728ced2dab6204740964d87fec443662723bdfcd9af2e88d2b5106bdd
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net-un
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 904
+Depends: snodec-net (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net-un_2.0.0-3~trixie_amd64.deb
+Size: 120418
+MD5sum: 1a209f08df32213c80959e831f2c42e4
+SHA1: 22fd9b9ed3cd96f4470501f16008b8b21818f5aa
+SHA256: 853b4df88ff5f4ba084f04e6de27f6da0082aec301558eee5760b90f0e834dfe
+SHA512: b587180b839ed72a94f03d4f8395ea5e94596f3c834badb4fc02ca942afa6cd110303dbf4ebc0a7baf043eb0a66444d5ed00a4ffa0ae8ed93dfa1b6ef64ec8f4
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-net
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2271
+Depends: snodec-core-socket (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-net_2.0.0-3~trixie_amd64.deb
+Size: 264148
+MD5sum: 5dfd3a320a11853cefa03ed40099f0c0
+SHA1: 85c79321896670fe401a1f2637c00199c9166935
+SHA256: fb852950db4e1d246898603e115893883c0acfa28fa27a89cddd66a1aeeea184
+SHA512: d398cd5a14f8b1a87e3567eb1d96621a3bbe7dbde8f0d9f7187a5c492dfa3e523564f40b77db4afe998445462b413fa7d359d63049968cbd7e98343e76024b0d
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-unspecified
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 717
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libncurses6 (>= 6), libstdc++6 (>= 13.1), libtinfo6 (>= 6)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-unspecified_2.0.0-3~trixie_amd64.deb
+Size: 327354
+MD5sum: d1e86978e3bbc5ef4e20b0575d2f0353
+SHA1: 99307b53642d062f8496a776f4596d04cd72a925
+SHA256: 8e5dcbbdbeec9048a3f7c579a031a8f9e090c8853bbf426e8fff7cc619641d98
+SHA512: 445b036cb71ccb6d059c3351e975dbe919f2db43e6246c8cf5dc0ac8edaae50f2be8607f8c5e533c05122f90919bf03539b6219c4785c46f7436003f1c1e6af9
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-utils
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 2997
+Depends: snodec-logger (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-utils_2.0.0-3~trixie_amd64.deb
+Size: 455450
+MD5sum: ca96276e82ced2fd5f6b815df5a8c7e6
+SHA1: 35f18ebb4439e18c9026cf29a85fefa9c40dafda
+SHA256: da67b19498c0aa7184b7612043d9c13973bd97b00415ec1493e09e905c090e5e
+SHA512: fa6c8555e5039b93dce8b1a91b56e40379efec52f8439d6949d5328d0d21cfae5f10adeee8580c2313b03e210c04213feed2189f45b0072474f411c280f7e3ef
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-client
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1069
+Depends: snodec-http-client (= 2.0.0-3~trixie), snodec-websocket (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-websocket-client_2.0.0-3~trixie_amd64.deb
+Size: 138130
+MD5sum: 6058c8ec98eb376ee963631e6bf259f7
+SHA1: 511369d80155c5c4d9477ea2e034645670c4d015
+SHA256: 90c27487ad12c0c65b5cc0d37d6a47455862795278c1abd776e29df2c9c08080
+SHA512: d16b5812299cdc2fc3b89f97c249942c787642898a3947bda8da7a7555b4e64554c25ac0d198f434bea9109be12a4d7095d4743bdca6155df98b38ae9da289e2
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket-server
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 1135
+Depends: snodec-http-server (= 2.0.0-3~trixie), snodec-websocket (= 2.0.0-3~trixie), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 14)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-websocket-server_2.0.0-3~trixie_amd64.deb
+Size: 147504
+MD5sum: 570a1914d2922ad52e3facc9bab298c3
+SHA1: 1847e4efe7be9bd40e32f0b45a79482165022b48
+SHA256: 41db2732729439fd06ac1ac30610cc72b02f25480b1a4b5c032a4556cbba22cf
+SHA512: d97a7e717e778f8bc1cf80160866df4499772d5cd896f9747fbaceacc06430467e4d6b2b2a137096c31b35575be0c032efcb715ef465e896b971fc23f6f0f7fa
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec-websocket
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 236
+Depends: snodec-utils (= 2.0.0-3~trixie), libc6 (>= 2.14), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec-websocket_2.0.0-3~trixie_amd64.deb
+Size: 24540
+MD5sum: 2fd4dd9fd75caa6c923c3f86b4e09793
+SHA1: 061268a009062dd3a1f03aab6ab2199642360907
+SHA256: b9b37afa949f384338d8f5b4ac9002805954a83c9a13d1c50999dad4c682d78a
+SHA512: 81e68ebfac7b5414f061aa97a880e7080d2cc2ac96be032fad0a17d8817c8459e5cc27196208f5d52c1b410123d659552033e6db842860b42d045f83d43dfc1f
+Description: Simple Node in C++, a Slim Network Framework
+
+Package: snodec
+Architecture: amd64
+Version: 2.0.0-3~trixie
+Priority: optional
+Section: devel
+Maintainer: Volker Christian <me@vchrist.at>
+Installed-Size: 17
+Depends: snodec-websocket-server (= 2.0.0-3~trixie), snodec-websocket-client (= 2.0.0-3~trixie), snodec-websocket (= 2.0.0-3~trixie), snodec-utils (= 2.0.0-3~trixie), snodec-net-un-stream-tls (= 2.0.0-3~trixie), snodec-net-un-stream-legacy (= 2.0.0-3~trixie), snodec-net-un-stream (= 2.0.0-3~trixie), snodec-net-un-sphy-tream (= 2.0.0-3~trixie), snodec-net-un-phy-stream (= 2.0.0-3~trixie), snodec-net-un-phy (= 2.0.0-3~trixie), snodec-net-un-dgram (= 2.0.0-3~trixie), snodec-net-un (= 2.0.0-3~trixie), snodec-net-rc-stream-tls (= 2.0.0-3~trixie), snodec-net-rc-stream-legacy (= 2.0.0-3~trixie), snodec-net-rc-stream (= 2.0.0-3~trixie), snodec-net-rc-phy-stream (= 2.0.0-3~trixie), snodec-net-rc-phy (= 2.0.0-3~trixie), snodec-net-rc (= 2.0.0-3~trixie), snodec-net-l2-stream-tls (= 2.0.0-3~trixie), snodec-net-l2-stream-legacy (= 2.0.0-3~trixie), snodec-net-l2-stream (= 2.0.0-3~trixie), snodec-net-l2-phy-stream (= 2.0.0-3~trixie), snodec-net-l2-phy (= 2.0.0-3~trixie), snodec-net-l2 (= 2.0.0-3~trixie), snodec-net-in6-stream-tls (= 2.0.0-3~trixie), snodec-net-in6-stream-legacy (= 2.0.0-3~trixie), snodec-net-in6-stream (= 2.0.0-3~trixie), snodec-net-in6-phy-stream (= 2.0.0-3~trixie), snodec-net-in6-phy (= 2.0.0-3~trixie), snodec-net-in6 (= 2.0.0-3~trixie), snodec-net-in-stream-tls (= 2.0.0-3~trixie), snodec-net-in-stream-legacy (= 2.0.0-3~trixie), snodec-net-in-stream (= 2.0.0-3~trixie), snodec-net-in-phy-stream (= 2.0.0-3~trixie), snodec-net-in-phy (= 2.0.0-3~trixie), snodec-net-in (= 2.0.0-3~trixie), snodec-net (= 2.0.0-3~trixie), snodec-mux-select (= 2.0.0-3~trixie), snodec-mux-poll (= 2.0.0-3~trixie), snodec-mux-epoll (= 2.0.0-3~trixie), snodec-mqtt-server-websocket (= 2.0.0-3~trixie), snodec-mqtt-server (= 2.0.0-3~trixie), snodec-mqtt-client-websocket (= 2.0.0-3~trixie), snodec-mqtt-client (= 2.0.0-3~trixie), snodec-mqtt (= 2.0.0-3~trixie), snodec-logger (= 2.0.0-3~trixie), snodec-http-server-express-tls-un (= 2.0.0-3~trixie), snodec-http-server-express-tls-rc (= 2.0.0-3~trixie), snodec-http-server-express-tls-in6 (= 2.0.0-3~trixie), snodec-http-server-express-tls-in (= 2.0.0-3~trixie), snodec-http-server-express-legacy-un (= 2.0.0-3~trixie), snodec-http-server-express-legacy-rc (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in6 (= 2.0.0-3~trixie), snodec-http-server-express-legacy-in (= 2.0.0-3~trixie), snodec-http-server-express (= 2.0.0-3~trixie), snodec-http-server (= 2.0.0-3~trixie), snodec-http-client (= 2.0.0-3~trixie), snodec-http (= 2.0.0-3~trixie), snodec-db-mariadb (= 2.0.0-3~trixie), snodec-core-socket-stream-tls (= 2.0.0-3~trixie), snodec-core-socket-stream-legacy (= 2.0.0-3~trixie), snodec-core-socket-stream (= 2.0.0-3~trixie), snodec-core-socket (= 2.0.0-3~trixie), snodec-core (= 2.0.0-3~trixie), snodec-apps (= 2.0.0-3~trixie), snodec-unspecified (= 2.0.0-3~trixie)
+Breaks: snodec (<< 2.0.0-3~trixie)
+Replaces: snodec (<< 2.0.0-3~trixie)
+Filename: pool/trixie/snodec_2.0.0-3~trixie_amd64.deb
+Size: 1312
+MD5sum: cf6bc0a6aee6b9540e2957c9166cbe38
+SHA1: 62a610469bbe97c731fed1d3315efbc1c574cc76
+SHA256: 0fdbfe8961add5cd6f5dad8684fe068284857f8b8c015952531cf7cc5ffeb24c
+SHA512: ae814ec78f3bb65c10809357926c57941f4cf448f1a8148bab80322ad8d94a59fa764e0547bd92aee42107f7a1113e0939f1b4a38545ca1161693bf5810f7da1
+Description: Simple Node in C++, a Slim Network Framework
+

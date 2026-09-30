@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 1925120
+Filename: mqttsuite-bridge_1.0.2-r121_i386_pentium4.ipk
+Size: 611464
+SHA256sum: 8b47db1ab62a197054b01db4bb6ccf654812578ef6dfadf90c11ae08361572c6
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 2621440
+Filename: mqttsuite-broker_1.0.2-r121_i386_pentium4.ipk
+Size: 847831
+SHA256sum: c386a06a41fa2c789e3d12a90697e0db57a75a53fcd2f88ce6bffc7824d8dd18
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 1085440
+Filename: mqttsuite-cli_1.0.2-r121_i386_pentium4.ipk
+Size: 341919
+SHA256sum: 111dc038457f6c4e65948bef690b756e9ae2ec834cfd756e656cda3a7e3745d3
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.2-r121
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.2-r121_i386_pentium4.ipk
+Size: 953
+SHA256sum: d5789b34014ff974104cc83d18594440735d1c1c87402265672d55165d3c0d76
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 1955840
+Filename: mqttsuite-integrator_1.0.2-r121_i386_pentium4.ipk
+Size: 628586
+SHA256sum: 1f046fc694c0f4a9b2593ca0019c6fbb6d9fb51f56c6725fec30faeaad68e231
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: mqttsuite-mapping-double_1.0.2-r121_i386_pentium4.ipk
+Size: 8924
+SHA256sum: dfc0ac3a58b5aeb7c980c0b50f2bf8118afb4a59220fa625dcb2f954a7a40bf5
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 51200
+Filename: mqttsuite-mapping-storage_1.0.2-r121_i386_pentium4.ipk
+Size: 14517
+SHA256sum: d817cd269a28e16171b675886e9a7944f3feeff0b6ad42eecb1e8c377446eedc
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 1515520
+Filename: mqttsuite-store_1.0.2-r121_i386_pentium4.ipk
+Size: 496124
+SHA256sum: 97bebbebf42434b43f8017cce646e5db0501dd79a3428fb48d428cbf089a1bf1
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.2-r121
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: i386_pentium4
+Installed-Size: 10240
+Filename: mqttsuite_1.0.2-r121_i386_pentium4.ipk
+Size: 888
+SHA256sum: 9d15850414fceb0333792a944636115e586aacfe5050beb0ed7ef2bf00345020
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 14909440
+Filename: snode.c-apps_2.0.0-r120_i386_pentium4.ipk
+Size: 5555054
+SHA256sum: a78f3a1d06e222dba03f69829ccdd3ec0dbf31a3f0f7060ee4ce050fe98bc91e
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 235520
+Filename: snode.c-control_2.0.0-r120_i386_pentium4.ipk
+Size: 96638
+SHA256sum: 27fe88c89653ffc2bec7ff5e3e009d5a1a9260fe9cf1df6b55bd476666b4ee71
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 40960
+Filename: snode.c-core-mux-epoll_2.0.0-r120_i386_pentium4.ipk
+Size: 13154
+SHA256sum: 7a66c1a289e0eb0be820c30a386c6248ef5a0363beba7505ae2010f9c52c05ad
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-core-mux-poll_2.0.0-r120_i386_pentium4.ipk
+Size: 10698
+SHA256sum: 086b06d6cc49cf99dc5314c122005fa54304300025b739ed8f5229ad339fee9f
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-core-mux-select_2.0.0-r120_i386_pentium4.ipk
+Size: 7329
+SHA256sum: 08f69476297fd82ec253d38d3d50e7217fc73fda2107d210fec409d5196fbdc3
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 5363
+SHA256sum: 18471b55aa6f938b0b71ab402fe8c23836ddda482e3d9dd0db0c9d75789b475f
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 92160
+Filename: snode.c-core-socket-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 31036
+SHA256sum: e373d04cc6416eeba4aae6fb1988d6fa2c1a8b7991560e29bdaa7bed8194066d
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-core-socket-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 99327
+SHA256sum: 58bcbe66c7863034a21b6d4841f67872e14463e7f359488b7b2b7d83c6e840e4
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r120
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-core-socket_2.0.0-r120_i386_pentium4.ipk
+Size: 7295
+SHA256sum: 40fca36a9c0c9e2e3dde445e009e0cd1280146c4187ff4d6e352340fd89608b5
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 337920
+Filename: snode.c-core_2.0.0-r120_i386_pentium4.ipk
+Size: 126389
+SHA256sum: 2be2f1fdabf0d1357c472905bfbd85024b4644c1f482d72adff87cec66febab7
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r120
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 112640
+Filename: snode.c-db-mariadb_2.0.0-r120_i386_pentium4.ipk
+Size: 33167
+SHA256sum: 174bd0d4c09f55a37ddcdcb3804d583c25fa41486a86fc09cd957561b8b1c060
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r120_i386_pentium4.ipk
+Size: 1114
+SHA256sum: dbcc3e09ae6072f1db15a1f309e241d5895be15c96a2d67f629685eca905bcef
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 399360
+Filename: snode.c-http-client_2.0.0-r120_i386_pentium4.ipk
+Size: 145390
+SHA256sum: d7ec247b291aca7ed5e25bba642900048eb3ab54e0936260b09647e486d0bca4
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r120_i386_pentium4.ipk
+Size: 91143
+SHA256sum: bf188914de99760a4512b82f079b27a6dd3869829e7c4abe373c2908c34c2484
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r120_i386_pentium4.ipk
+Size: 91112
+SHA256sum: ca96d79efc60cd22fd4fa5667199f94d60c86f173d59595ad6809045f2f470ed
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r120_i386_pentium4.ipk
+Size: 91055
+SHA256sum: 503f7d2223ba063421129dbe47f5f8270d05e8d59c0a37e7abdb92de1ff1a9c0
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r120_i386_pentium4.ipk
+Size: 91068
+SHA256sum: 1bd153df503098cfcab5ea984c93e5bdebd40a22a27eaa9890e37cca6fe5d54e
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r120_i386_pentium4.ipk
+Size: 91080
+SHA256sum: b317957f4e8d23492a080aa61ebeedb6188d7678575f8049e878db1c5b1985dd
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-tls-in_2.0.0-r120_i386_pentium4.ipk
+Size: 91083
+SHA256sum: ac7a0bef53ab6f4137a9026d3df5706733d09f79453b2e2c36962ecddff7f94e
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r120_i386_pentium4.ipk
+Size: 90992
+SHA256sum: e54b1d9b97ac45600119b7edfd8b6bc4c17a66cf276aff8f3f7f212e3f591f99
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 286720
+Filename: snode.c-http-server-express-tls-un_2.0.0-r120_i386_pentium4.ipk
+Size: 91061
+SHA256sum: bf5f8e0e636aec4590145ff452c1b760fa9ade7ac90e7f98ce6967d7d9f076a8
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 645120
+Filename: snode.c-http-server-express_2.0.0-r120_i386_pentium4.ipk
+Size: 214884
+SHA256sum: 30f34784a79c84fb7dc35f70c299578086e8d70a53fc3fb2dacb749437fbcb0e
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 378880
+Filename: snode.c-http-server_2.0.0-r120_i386_pentium4.ipk
+Size: 136900
+SHA256sum: 456a59857e717d60933cff59ca948039263689a4fac7831018eb6a17da050faa
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 378880
+Filename: snode.c-http_2.0.0-r120_i386_pentium4.ipk
+Size: 141876
+SHA256sum: 41063408f9e5c686f70cf60d84a4df3c786e777737da91b9f4e25599f084b974
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 419840
+Filename: snode.c-logger_2.0.0-r120_i386_pentium4.ipk
+Size: 148129
+SHA256sum: 39eebe6f3d18ae54153d7e278bd877f645b68100e74b0e3ab8459d76b623e9ae
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-mqtt-client-websocket_2.0.0-r120_i386_pentium4.ipk
+Size: 9722
+SHA256sum: b2f69e528e3dea500fdf375dcb6f0c4f0a7f1689f4e81761edc15434c2e36426
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 204800
+Filename: snode.c-mqtt-client_2.0.0-r120_i386_pentium4.ipk
+Size: 67753
+SHA256sum: 4fbc657b551503cd33d8f1c44b472275c81c0ee82941264036466f175ed2143b
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-mqtt-server-websocket_2.0.0-r120_i386_pentium4.ipk
+Size: 9726
+SHA256sum: 00890ae5dd76750fca66805247e8416ae4d467a0800335c59553d36076e50ea7
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 337920
+Filename: snode.c-mqtt-server_2.0.0-r120_i386_pentium4.ipk
+Size: 117167
+SHA256sum: f053c7ca8558773eadeda3275f18212f04d5041ac33aa394244015f69fd54ff1
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 153600
+Filename: snode.c-mqtt_2.0.0-r120_i386_pentium4.ipk
+Size: 52008
+SHA256sum: 388bdeb777a3563f8916171d6377ad762e5c14810b2543a2e843eb725a5495c1
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-net-in-phy-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 4780
+SHA256sum: 37fb82cff398ee8d044378446bb1abdaad012e66ca2266402c3bc0998ffba26b
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-net-in-phy_2.0.0-r120_i386_pentium4.ipk
+Size: 5823
+SHA256sum: ba69380b00ea9b88dfef086e29f47d35641298e01cf381e93084676e597c1723
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 430080
+Filename: snode.c-net-in-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 132554
+SHA256sum: 1d2eeb708d8769ecdffe4f410b4f3368c63360f230c2a64e110fe5234a5b5d56
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 583680
+Filename: snode.c-net-in-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 172126
+SHA256sum: 7b85bc24259e131e518984ba4fd243c9d8b649ad489adb3bd932fab64a5a3409
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 235520
+Filename: snode.c-net-in-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 85012
+SHA256sum: 2d794ccb597efc6ef9aae34c0faafc82430e91dd54387b36252c931ec774077c
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-net-in6-phy-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 4799
+SHA256sum: c4fe448bfa9e4cee7107de5ccb4b38d529551ca5079314e10f6b204ab7e8ec34
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-net-in6-phy_2.0.0-r120_i386_pentium4.ipk
+Size: 5835
+SHA256sum: 856242d1a7e9ae0e04c2c6878ad0a36b822ab6f4c4fc5eee0a70ca443e284a84
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 430080
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 132438
+SHA256sum: d78ecb2dd822e043f70cc9005764ff69950bac111546b05376a0e6efbd52fc38
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 583680
+Filename: snode.c-net-in6-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 172023
+SHA256sum: 6846572ea59499fd565a258ab090fd0975d856f886e4a0f1ab4bf0f6b9437eb7
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 235520
+Filename: snode.c-net-in6-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 85523
+SHA256sum: f673702e05a370181c68decf75c9b4379bb20dd528968cc42398efc0f3614930
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 266240
+Filename: snode.c-net-in6_2.0.0-r120_i386_pentium4.ipk
+Size: 95778
+SHA256sum: 1be3210af99aab9726357e05ae0bffc9d0b8653a93b30c78258fe0ac2368680f
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 266240
+Filename: snode.c-net-in_2.0.0-r120_i386_pentium4.ipk
+Size: 95080
+SHA256sum: 29a7651e919625400b3bb4ea5a4dcf2a64ec4d092f8a47156260d593faa96efc
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-net-l2-phy-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 4911
+SHA256sum: b66d7ec020be957df77ccf80ed101fc9d5d418679ccae976770f9c96221b712d
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-net-l2-phy_2.0.0-r120_i386_pentium4.ipk
+Size: 5354
+SHA256sum: d2c5c2944ef52e91c55b05281a4867a9e511f0a73089fd071c798a7992cdf150
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 430080
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 131691
+SHA256sum: 5fd453c68065ac23d05953fb08a0199a17ede9fa9cb77c9ff4ddf81d44a199e1
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 583680
+Filename: snode.c-net-l2-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 171570
+SHA256sum: cbc39fbfda191044e909a4e3251a3641f9ca5c6a749510cc74811c2e8fd115c2
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 215040
+Filename: snode.c-net-l2-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 76590
+SHA256sum: 57e7c3cc8964635715aab6f91502affcfade9ddb4cf7e604b154321c0fef25b0
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 348160
+Filename: snode.c-net-l2_2.0.0-r120_i386_pentium4.ipk
+Size: 122156
+SHA256sum: 3cc182cdf3caeaebdb963242b7e2c70463d693c9beeb127500de3a0db9e2db7d
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 30720
+Filename: snode.c-net-rc-phy-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 4799
+SHA256sum: 76d8fd8721d16037734706e1e91fef781b4d30d4f371ae290db49c4564ba1dc5
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-net-rc-phy_2.0.0-r120_i386_pentium4.ipk
+Size: 5349
+SHA256sum: 2e9823df32ff7e61af807dde56f63ab510b6ff2d4c2df41a01d2a2e2e3f32934
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 430080
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 131632
+SHA256sum: 40eed66dce72fb80556cb04c6dc317492a8bc06bea9c147766b35a054e520aad
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 583680
+Filename: snode.c-net-rc-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 171557
+SHA256sum: eadfc9e491f86433298efffbfd1eaf7f612a7508b862f16644f0a00aa555b4c2
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 215040
+Filename: snode.c-net-rc-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 76611
+SHA256sum: d474cac3f8c9aa9a2e25dae4e71767977547685e0af5e36f2d50506d725953c8
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 348160
+Filename: snode.c-net-rc_2.0.0-r120_i386_pentium4.ipk
+Size: 122646
+SHA256sum: 9100649f23b1547020ee8fff284059d8ed196aa4bea40dda45a6a16d5212ac3b
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 40960
+Filename: snode.c-net-un-dgram_2.0.0-r120_i386_pentium4.ipk
+Size: 12871
+SHA256sum: 01864efa3b9c4c94ce989dc7b23d2c24bd4d8f9e18323612228db320354ffe7f
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 61440
+Filename: snode.c-net-un-phy-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 15937
+SHA256sum: 21020cb0580d98cd6f5ea7ec5013898bc00661f5ee46d4730455fda52d703332
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 20480
+Filename: snode.c-net-un-phy_2.0.0-r120_i386_pentium4.ipk
+Size: 5453
+SHA256sum: 76648caee36cf67cfe1207f241c04d85ec3fbbcbe5cf4105c8f5c934986b570f
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 430080
+Filename: snode.c-net-un-stream-legacy_2.0.0-r120_i386_pentium4.ipk
+Size: 131418
+SHA256sum: ae926befe87568adefb3de9c14e39feeef2cabeb4971c2bea1390d9fcca9dc0e
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 583680
+Filename: snode.c-net-un-stream-tls_2.0.0-r120_i386_pentium4.ipk
+Size: 171422
+SHA256sum: cbeabd8a7a4d7fd7d09935e90ccc4306349f953ee9df55edfd01f4aeaed7edbc
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 215040
+Filename: snode.c-net-un-stream_2.0.0-r120_i386_pentium4.ipk
+Size: 76572
+SHA256sum: 12739fe29268c0cc927e81fd1c707b1467b8c721b6a583f9936c46e1a9403d39
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 225280
+Filename: snode.c-net-un_2.0.0-r120_i386_pentium4.ipk
+Size: 81562
+SHA256sum: 7526821eb04634d3d494ebe1346807f8a9a802bcd1d584e6dafe4fa1f507c5c0
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 491520
+Filename: snode.c-net_2.0.0-r120_i386_pentium4.ipk
+Size: 160734
+SHA256sum: 83c5ddf6e12ab97f3f10f1db361561cde3544608a8f0d1f180b00f2e343eb1db
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 593920
+Filename: snode.c-utils_2.0.0-r120_i386_pentium4.ipk
+Size: 231507
+SHA256sum: c473ead3bf379bbe10ebb3af9deb3b4ba1b1a72335efa32cdeb4af8145aac7ff
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 256000
+Filename: snode.c-websocket-client_2.0.0-r120_i386_pentium4.ipk
+Size: 91800
+SHA256sum: 7d6e41bd251763e752befe64b0466534f64e473f87d2907a9afbd04858609d68
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 266240
+Filename: snode.c-websocket-server_2.0.0-r120_i386_pentium4.ipk
+Size: 96444
+SHA256sum: 100ced042e5054e10e0ffaf3eada3b4e067d0e1b2b1214c6a1c43640e0ae4f75
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 40960
+Filename: snode.c-websocket_2.0.0-r120_i386_pentium4.ipk
+Size: 11802
+SHA256sum: 927b61bafbb841735061bbb2441a0e5816cbf1b29206f31fcb58805d8955cc51
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r120
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: i386_pentium4
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r120_i386_pentium4.ipk
+Size: 1101
+SHA256sum: 3b6bfe07b212e6e5bfc6ddf559342332c716f5a62f97bfe693fbaa108d042f92
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+

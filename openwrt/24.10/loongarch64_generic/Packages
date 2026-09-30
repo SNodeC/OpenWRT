@@ -1,0 +1,990 @@
+Package: mqttsuite-bridge
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 2365440
+Filename: mqttsuite-bridge_1.0.2-r121_loongarch64_generic.ipk
+Size: 745247
+SHA256sum: 502c842e23c609d4a80de2e2e2a0bc4e55886a00905caa45a37235ffd66b348b
+Description:  MQTT bridge
+
+Package: mqttsuite-broker
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-server, snode.c-net-in-stream-legacy, snode.c-http-server-express-legacy-in, snode.c-net-in-stream-tls, snode.c-http-server-express-tls-in, snode.c-net-in6-stream-legacy, snode.c-http-server-express-legacy-in6, snode.c-net-in6-stream-tls, snode.c-http-server-express-tls-in6, snode.c-net-un-stream-legacy, snode.c-http-server-express-legacy-un, snode.c-mqtt-server-websocket, snode.c-mqtt-server-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 3184640
+Filename: mqttsuite-broker_1.0.2-r121_loongarch64_generic.ipk
+Size: 1045320
+SHA256sum: 62cfcb946c5efd0ee4f1701210ab7eb08f9ae3b51a8a4be5725b6277d3305396
+Description:  MQTT broker
+
+Package: mqttsuite-cli
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 1402880
+Filename: mqttsuite-cli_1.0.2-r121_loongarch64_generic.ipk
+Size: 435688
+SHA256sum: 3a07987b95a2a092237e14b68a3b571bc65f46f62d1a4fb9257b459dd601c3a2
+Description:  MQTT cli
+
+Package: mqttsuite-full
+Version: 1.0.2-r121
+Depends: libc, mqttsuite-broker, mqttsuite-integrator, mqttsuite-bridge, mqttsuite-cli, mqttsuite-store, mqttsuite-mapping-double, mqttsuite-mapping-storage
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 10240
+Filename: mqttsuite-full_1.0.2-r121_loongarch64_generic.ipk
+Size: 954
+SHA256sum: a28b918e4bbd5e793e1415a1012dfb0ed396b04d661a45864b82fbcdd29ad6c5
+Description:  All MQTTSuite applications and mapping plugins
+
+Package: mqttsuite-integrator
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-http-server-express-legacy-in, snode.c-http-server-express-tls-in, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 2539520
+Filename: mqttsuite-integrator_1.0.2-r121_loongarch64_generic.ipk
+Size: 816116
+SHA256sum: 50bba01089ebfc9616b80a1c9a562ec738a9e320649002fff34d7e77137f0253
+Description:  MQTT integrator
+
+Package: mqttsuite-mapping-double
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: mqttsuite-mapping-double_1.0.2-r121_loongarch64_generic.ipk
+Size: 7975
+SHA256sum: 9999920ad8cb094d4b6617f1c21c6652b2ce90836965ea901e05c285482a840a
+Description:  MQTT mapping plugin: double
+
+Package: mqttsuite-mapping-storage
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, libstdcpp6
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 61440
+Filename: mqttsuite-mapping-storage_1.0.2-r121_loongarch64_generic.ipk
+Size: 17072
+SHA256sum: 356f56fbce7a332ee36ad35fbb587e2e064e4aae6697881dfc76df8c4623128d
+Description:  MQTT mapping plugin: storage
+
+Package: mqttsuite-store
+Version: 1.0.2-r121
+Depends: libc, mqttsuite, snode.c-mqtt-client, snode.c-db-mariadb, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-un-stream-legacy, snode.c-mqtt-client-websocket, snode.c-mqtt-client-websocket
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 1996800
+Filename: mqttsuite-store_1.0.2-r121_loongarch64_generic.ipk
+Size: 652979
+SHA256sum: feb8a5c26743d454d7dff261b86cbecef23f581ae6532d03294c3f750412e79a
+Description:  MQTT store
+
+Package: mqttsuite
+Version: 1.0.2-r121
+Depends: libc
+License: GPL-3.0-or-later
+Section: net
+URL: https://github.com/SNodeC/mqttsuite
+Architecture: loongarch64_generic
+Installed-Size: 10240
+Filename: mqttsuite_1.0.2-r121_loongarch64_generic.ipk
+Size: 895
+SHA256sum: 18cead5266c6ef1449bc6ae2e55d3729ab1326337ad08de7c0770a57cd1909fc
+Description:  MQTTSuite configuration and application base
+
+Package: snode.c-apps
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-http-server-express, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server, snode.c-mqtt-client, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 19496960
+Filename: snode.c-apps_2.0.0-r120_loongarch64_generic.ipk
+Size: 7179324
+SHA256sum: 806d5d2760d2db8aad2664f08c8f98948af5f5ed18dcf9ebea8bb7da4a8d3121
+Description:  This package contains all demo applications of SNode.C.
+ 
+
+Package: snode.c-control
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 450560
+Filename: snode.c-control_2.0.0-r120_loongarch64_generic.ipk
+Size: 187632
+SHA256sum: 378b45780cfe6c1c98a16c32be617479ce4b684fe0bca08fdf0336f06b01ee94
+Description:  SNode.C control socket client
+
+Package: snode.c-core-mux-epoll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 61440
+Filename: snode.c-core-mux-epoll_2.0.0-r120_loongarch64_generic.ipk
+Size: 17315
+SHA256sum: 2da94eb73a73f08a697408cb92a5fb226fe06765f4ae3e2a4ec99a56f86f4aa3
+Description:  This package contains the module 'core-mux-epoll' of SNode.C
+ 
+
+Package: snode.c-core-mux-poll
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-core-mux-poll_2.0.0-r120_loongarch64_generic.ipk
+Size: 11993
+SHA256sum: 41f2c364759ea8ba47162797fa8cd7227820ad6f66a449a30b14b992e505478a
+Description:  This package contains the module 'core-mux-poll' of SNode.C
+ 
+
+Package: snode.c-core-mux-select
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-core-mux-select_2.0.0-r120_loongarch64_generic.ipk
+Size: 8048
+SHA256sum: be0e79dfb874cef3e453a316f8ad4cbf7d8a9fa2f60cb71582285b3f1c8ef0b3
+Description:  This package contains the module 'core-mux-select' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-core-socket-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 4225
+SHA256sum: dcd7441562bafe676130a8e9a9f41aa9217d9169f67fbd55bb89e8b3dd1d1d30
+Description:  This package contains the module 'core-socket-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libopenssl3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 143360
+Filename: snode.c-core-socket-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 45056
+SHA256sum: 6ef42c4201a0173398e6ff010113fe2080a0cfde7ff5f93532708b6782682546
+Description:  This package contains the module 'core-socket-stream-tls' of SNode.C
+ 
+
+Package: snode.c-core-socket-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 368640
+Filename: snode.c-core-socket-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 127947
+SHA256sum: c8a28bfdb03a4acba038fef5720abc655f78ae25768739ba533a8e55c022ab4d
+Description:  This package contains the module 'core-socket-stream' of SNode.C
+ 
+
+Package: snode.c-core-socket
+Version: 2.0.0-r120
+Depends: libc, snode.c-core
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-core-socket_2.0.0-r120_loongarch64_generic.ipk
+Size: 8353
+SHA256sum: 90ea25e3572af7be58e4d1ddc6b38d5737a1af3195db3346ebcc8c8cb1bde48e
+Description:  This package contains the module 'core-socket' of SNode.C
+ 
+
+Package: snode.c-core
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils, libatomic1, snode.c-core-mux-epoll
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 471040
+Filename: snode.c-core_2.0.0-r120_loongarch64_generic.ipk
+Size: 167474
+SHA256sum: fb504b25b5c8374b40019a85ca8d96594fa26ffbdaf242d89ba78943ecf4307a
+Description:  This package contains the module 'core' of SNode.C
+ 
+
+Package: snode.c-db-mariadb
+Version: 2.0.0-r120
+Depends: libc, snode.c-core, libmariadb3
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 143360
+Filename: snode.c-db-mariadb_2.0.0-r120_loongarch64_generic.ipk
+Size: 42445
+SHA256sum: b0bbbff8113dce1760c3cd8fbd4467b40080de3d1f2fad8492074f56e00e1700
+Description:  This package contains the module 'db-mariadb' of SNode.C
+ 
+
+Package: snode.c-full
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-mux-epoll, snode.c-core-mux-poll, snode.c-core-mux-select, snode.c-net-in-stream-legacy, snode.c-net-in-stream-tls, snode.c-net-in6-stream-legacy, snode.c-net-in6-stream-tls, snode.c-net-l2-stream-legacy, snode.c-net-l2-stream-tls, snode.c-net-rc-stream-legacy, snode.c-net-rc-stream-tls, snode.c-net-un-stream-legacy, snode.c-net-un-stream-tls, snode.c-net-un-dgram, snode.c-http-server-express, snode.c-http-server-express-legacy-in, snode.c-http-server-express-legacy-in6, snode.c-http-server-express-legacy-rc, snode.c-http-server-express-legacy-un, snode.c-http-server-express-tls-in, snode.c-http-server-express-tls-in6, snode.c-http-server-express-tls-rc, snode.c-http-server-express-tls-un, snode.c-http-client, snode.c-websocket-server, snode.c-websocket-client, snode.c-mqtt-server-websocket, snode.c-mqtt-client-websocket, snode.c-db-mariadb
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 10240
+Filename: snode.c-full_2.0.0-r120_loongarch64_generic.ipk
+Size: 1120
+SHA256sum: fc20f714f9a7b3f23e5c0ff8a0939cadd8da33a3963359b78ed00815f72033e6
+Description:  This meta-package contains dependencies for all of the SNode.C modules.
+ Note that the demo applications are not part of that dependency.
+ 
+
+Package: snode.c-http-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 573440
+Filename: snode.c-http-client_2.0.0-r120_loongarch64_generic.ipk
+Size: 205402
+SHA256sum: 9ae1db999ac3212c43fa5946be9fa309abaa7a7e8a4736440bafd081a9e5a640
+Description:  This package contains the module 'http-client' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in6-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-legacy-in6_2.0.0-r120_loongarch64_generic.ipk
+Size: 115138
+SHA256sum: 38f7545b4cdc21bd1b68aedce65059e143c7eb142e29ee3dcadc618a3c25759f
+Description:  This package contains the module 'http-server-express-legacy-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-in-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-legacy-in_2.0.0-r120_loongarch64_generic.ipk
+Size: 115128
+SHA256sum: fe40329e66e760046b5e4ae4af9a6a4a50640a68acd54544cf5e756e5f48b821
+Description:  This package contains the module 'http-server-express-legacy-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-rc-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-legacy-rc_2.0.0-r120_loongarch64_generic.ipk
+Size: 114689
+SHA256sum: dd8f7f3d802da1887679a00529ed431707d0b26161fa182ded1585b4475449f2
+Description:  This package contains the module 'http-server-express-legacy-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-legacy-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server-express, snode.c-net-un-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-legacy-un_2.0.0-r120_loongarch64_generic.ipk
+Size: 114698
+SHA256sum: 5d7f2e59ecb8eadbe31e05e451840d48f2409ccceebe7373d96e185c5e223395
+Description:  This package contains the module 'http-server-express-legacy-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in6-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-tls-in6_2.0.0-r120_loongarch64_generic.ipk
+Size: 114856
+SHA256sum: f3afbb3063b4df1d8056124e460a80b8280206466400fa190381bedeb220d6ff
+Description:  This package contains the module 'http-server-express-tls-in6' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-in-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-tls-in_2.0.0-r120_loongarch64_generic.ipk
+Size: 114834
+SHA256sum: 45e88c99cb7999853ff6717ce4c34e659ccdeeb95022a95e5823b6df84565926
+Description:  This package contains the module 'http-server-express-tls-in' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-rc-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-tls-rc_2.0.0-r120_loongarch64_generic.ipk
+Size: 114675
+SHA256sum: 326c2fccebc2c1f8630e72ff673b1d3b3cc10952495e720f2232f42989ef586c
+Description:  This package contains the module 'http-server-express-tls-rc' of SNode.C
+ 
+
+Package: snode.c-http-server-express-tls-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server, snode.c-http-server-express, snode.c-net-un-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-http-server-express-tls-un_2.0.0-r120_loongarch64_generic.ipk
+Size: 114643
+SHA256sum: b0c8629be61f7a178601d110b275722343ad300e20c0587b7f63b81c012fa2ec
+Description:  This package contains the module 'http-server-express-tls-un' of SNode.C
+ 
+
+Package: snode.c-http-server-express
+Version: 2.0.0-r120
+Depends: libc, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 931840
+Filename: snode.c-http-server-express_2.0.0-r120_loongarch64_generic.ipk
+Size: 289016
+SHA256sum: b3afb95313edcaac7036fc16e8bda19fa1cba70c49796c58e9fc7ba09d126828
+Description:  This package contains the module 'http-server-express' of SNode.C
+ 
+
+Package: snode.c-http-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-http
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 552960
+Filename: snode.c-http-server_2.0.0-r120_loongarch64_generic.ipk
+Size: 190311
+SHA256sum: 1e7a6173088a8a221967dcfd6489718db81feab98d9b0b34e0c4140d5f0433f1
+Description:  This package contains the module 'http-server' of SNode.C
+ 
+
+Package: snode.c-http
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream, libmagic
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 552960
+Filename: snode.c-http_2.0.0-r120_loongarch64_generic.ipk
+Size: 195517
+SHA256sum: a7c14f3b111ac7beda1eeb2b57011ccf34090c10f740f49e51d366566d2d3729
+Description:  This package contains the module 'http' of SNode.C
+ 
+
+Package: snode.c-logger
+Version: 2.0.0-r120
+Depends: libc, snode.c
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 573440
+Filename: snode.c-logger_2.0.0-r120_loongarch64_generic.ipk
+Size: 200477
+SHA256sum: 6d11b667dc6f02d4fc9ee9454197970764354c193d67b890551a11a08e0edb42
+Description:  This package contains the module 'logger' of SNode.C
+ 
+
+Package: snode.c-mqtt-client-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-client, snode.c-websocket-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-mqtt-client-websocket_2.0.0-r120_loongarch64_generic.ipk
+Size: 11402
+SHA256sum: b98375b42ee0f88c7f19be945a6c8d6631aebb2460f925e63c5b96d8efeda170
+Description:  This package contains the module 'mqtt-client-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 256000
+Filename: snode.c-mqtt-client_2.0.0-r120_loongarch64_generic.ipk
+Size: 82379
+SHA256sum: 852b1c4b1e8f76722aff460ab2ddccfbabcdc6073ffde35526811e72ebed560b
+Description:  This package contains the module 'mqtt-client' of SNode.C
+ 
+
+Package: snode.c-mqtt-server-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt-server, snode.c-websocket-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-mqtt-server-websocket_2.0.0-r120_loongarch64_generic.ipk
+Size: 11379
+SHA256sum: ea20d7bf73cbba457375e46dc9c1d81cd767c2539239e8d0f82d51dfabd05603
+Description:  This package contains the module 'mqtt-server-websocket' of SNode.C
+ 
+
+Package: snode.c-mqtt-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-mqtt
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 460800
+Filename: snode.c-mqtt-server_2.0.0-r120_loongarch64_generic.ipk
+Size: 155735
+SHA256sum: dd5bd7c5189fac4f01d75e6915ddd2c6fc3b81bc6f95352b64d6443c8fc9b546
+Description:  This package contains the module 'mqtt-server' of SNode.C
+ 
+
+Package: snode.c-mqtt
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 194560
+Filename: snode.c-mqtt_2.0.0-r120_loongarch64_generic.ipk
+Size: 61088
+SHA256sum: bdb6b2ca51aec65acf1a94b6bd882db08c72be287c965ead21642a1b6ae055d3
+Description:  This package contains the module 'mqtt' of SNode.C
+ 
+
+Package: snode.c-net-in-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-in-phy-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 4704
+SHA256sum: 1ebeb47a1638119a344fc7b3a0b45602efb6001a2b69fc56f251f6e745d1d090
+Description:  This package contains the module 'net-in-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-in-phy_2.0.0-r120_loongarch64_generic.ipk
+Size: 7186
+SHA256sum: d7f68d6c5857bd95bbf6e306990968333381733fa74c68698942be4c9871aa14
+Description:  This package contains the module 'net-in-phy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 604160
+Filename: snode.c-net-in-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 176564
+SHA256sum: c6156c0f27c169610f4002da719e0dc6228507efce0af3b67502543ae4a630fb
+Description:  This package contains the module 'net-in-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 768000
+Filename: snode.c-net-in-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 219569
+SHA256sum: e7ecf6d873fe18cc9793fa6089ec623b5d45df838de4653a706771518e9d5d0a
+Description:  This package contains the module 'net-in-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 337920
+Filename: snode.c-net-in-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 114843
+SHA256sum: 3caaba9bf444b5eeb4984320dad2de239069731d3d7f052de2072b0e1b1df19d
+Description:  This package contains the module 'net-in-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-in6-phy-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 4725
+SHA256sum: 46461ccc1f82ea18a52be9ed153cf1fb8b2cbc01ca969d204c1487089cc65a39
+Description:  This package contains the module 'net-in6-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-in6-phy_2.0.0-r120_loongarch64_generic.ipk
+Size: 7206
+SHA256sum: 26247bc775bfff63bb2df666fbcbd2a0d1c59035e46828854c17784731d12bd5
+Description:  This package contains the module 'net-in6-phy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 604160
+Filename: snode.c-net-in6-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 176346
+SHA256sum: f2f5e6d0032fbf6a2f5efe7d50ad8944bf07e113081b410b51a000d89cc51f31
+Description:  This package contains the module 'net-in6-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 788480
+Filename: snode.c-net-in6-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 219742
+SHA256sum: 6425d6913d9f13e45a18552834492272f38e7b27ee5babd89206e94e47dbc09d
+Description:  This package contains the module 'net-in6-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-in6-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-in6-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 337920
+Filename: snode.c-net-in6-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 115910
+SHA256sum: 2d2dc57b32a373dca1d5e7909eafd2fb99d86edbb9cb8ef05bce4ebcf331a8fe
+Description:  This package contains the module 'net-in6-stream' of SNode.C
+ 
+
+Package: snode.c-net-in6
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-net-in6_2.0.0-r120_loongarch64_generic.ipk
+Size: 127478
+SHA256sum: f52926e1d8f08960454175ec85311584395e9f9a3cecaf04354c38c324d85914
+Description:  This package contains the module 'net-in6' of SNode.C
+ 
+
+Package: snode.c-net-in
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-net-in_2.0.0-r120_loongarch64_generic.ipk
+Size: 127246
+SHA256sum: fc5a19e63b78020bdc60ca7f2901c3196b3404da82e4e35d9b3144f2686fbd7d
+Description:  This package contains the module 'net-in' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-l2-phy-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 4806
+SHA256sum: dfe3ec8b4edcce91259827acde64e74c46456fcd300eab842c3b0e0f8d9e435b
+Description:  This package contains the module 'net-l2-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-l2-phy_2.0.0-r120_loongarch64_generic.ipk
+Size: 5710
+SHA256sum: f5ffba427cd5134b6b487a4e7c34a84dc8f0a5f43dc8aeb6e6c4e831d97e7386
+Description:  This package contains the module 'net-l2-phy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 604160
+Filename: snode.c-net-l2-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 176422
+SHA256sum: eebb56abeb551d7ebdf15155af8d2854a043cc96b8000f6e88fd17cc1d3ba40f
+Description:  This package contains the module 'net-l2-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 768000
+Filename: snode.c-net-l2-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 218966
+SHA256sum: e597721a553c353a17baf62d960aeb6af0e2c123e68b75afadc2e9af2c8d8947
+Description:  This package contains the module 'net-l2-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-l2-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-l2-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 307200
+Filename: snode.c-net-l2-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 103270
+SHA256sum: f38eaa958eb751ab04357c81c400b9212bceed0de5ca4a7c96fe7b9dd1d44e1b
+Description:  This package contains the module 'net-l2-stream' of SNode.C
+ 
+
+Package: snode.c-net-l2
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 460800
+Filename: snode.c-net-l2_2.0.0-r120_loongarch64_generic.ipk
+Size: 156467
+SHA256sum: d267857530ce7d96161bf2d1374702cb9465d1bfaf592d6a16939175fc8b7782
+Description:  This package contains the module 'net-l2' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-rc-phy-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 4706
+SHA256sum: 54768e1c21ca3116a0ccc01199d7ce403034e6425a3d2b18b5ee50daf0c2f98a
+Description:  This package contains the module 'net-rc-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-rc-phy_2.0.0-r120_loongarch64_generic.ipk
+Size: 5713
+SHA256sum: cbe7adb241151ae33c4b6c612441c7f6b26b26c198298c788e56ec95373c5ab1
+Description:  This package contains the module 'net-rc-phy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 604160
+Filename: snode.c-net-rc-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 176148
+SHA256sum: 7b785aaf56b2fed2c65868a4496b2e5bbd4956da7f871747d68d6b26c0403d85
+Description:  This package contains the module 'net-rc-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 768000
+Filename: snode.c-net-rc-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 218844
+SHA256sum: c7e145578c60b630c3dde82c5406a6404b2bf06eb5aa1728a4a963ddc10999b6
+Description:  This package contains the module 'net-rc-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-rc-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-rc-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 307200
+Filename: snode.c-net-rc-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 103313
+SHA256sum: c2990110c31fbfcdc987b35c8ea5046551b783b971bf17c48905baa439c60d2c
+Description:  This package contains the module 'net-rc-stream' of SNode.C
+ 
+
+Package: snode.c-net-rc
+Version: 2.0.0-r120
+Depends: libc, snode.c-net, bluez-libs
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 460800
+Filename: snode.c-net-rc_2.0.0-r120_loongarch64_generic.ipk
+Size: 156630
+SHA256sum: 009dc1ea53de5b3cd31f9140841a703758a7e3107ab47a09543f5f9bbf714edd
+Description:  This package contains the module 'net-rc' of SNode.C
+ 
+
+Package: snode.c-net-un-dgram
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 61440
+Filename: snode.c-net-un-dgram_2.0.0-r120_loongarch64_generic.ipk
+Size: 16266
+SHA256sum: b919c4202afbfb7419e53c3e864e10c86947fbce862aa7505e57420c86a62aa8
+Description:  This package contains the module 'net-un-dgram' of SNode.C
+ 
+
+Package: snode.c-net-un-phy-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 71680
+Filename: snode.c-net-un-phy-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 19825
+SHA256sum: 8885b00a1a082632c7038e1783a2567f48521f7c69b95b1c1b1143feaebb9adb
+Description:  This package contains the module 'net-un-phy-stream' of SNode.C
+ 
+
+Package: snode.c-net-un-phy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 20480
+Filename: snode.c-net-un-phy_2.0.0-r120_loongarch64_generic.ipk
+Size: 5703
+SHA256sum: a491ec9a58e9103ad8fc8bacfffb518246d32fbec4fc945124d31709640d2de0
+Description:  This package contains the module 'net-un-phy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-legacy
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-legacy
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 604160
+Filename: snode.c-net-un-stream-legacy_2.0.0-r120_loongarch64_generic.ipk
+Size: 176139
+SHA256sum: 11246f3fa0d358b8f233874712b0eee95cb8599af2b33ba54ec59b75fc9eec33
+Description:  This package contains the module 'net-un-stream-legacy' of SNode.C
+ 
+
+Package: snode.c-net-un-stream-tls
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-stream, snode.c-core-socket-stream-tls
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 788480
+Filename: snode.c-net-un-stream-tls_2.0.0-r120_loongarch64_generic.ipk
+Size: 219714
+SHA256sum: 349f81b7c6f0d2031aa72807cd70834017680acbcf2b2013a91507d7025cbc17
+Description:  This package contains the module 'net-un-stream-tls' of SNode.C
+ 
+
+Package: snode.c-net-un-stream
+Version: 2.0.0-r120
+Depends: libc, snode.c-net-un-phy-stream
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 307200
+Filename: snode.c-net-un-stream_2.0.0-r120_loongarch64_generic.ipk
+Size: 103266
+SHA256sum: 4f9b7ee0b1ab5d57c38c8aefb53f8840d0521634961393d1fccacf44c8ed1120
+Description:  This package contains the module 'net-un-stream' of SNode.C
+ 
+
+Package: snode.c-net-un
+Version: 2.0.0-r120
+Depends: libc, snode.c-net
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 307200
+Filename: snode.c-net-un_2.0.0-r120_loongarch64_generic.ipk
+Size: 107683
+SHA256sum: 86c99e2c0df03df5e8dd59adfeaae40dd7a133be5959986d68b8aa0c22e9a200
+Description:  This package contains the module 'net-un' of SNode.C
+ 
+
+Package: snode.c-net
+Version: 2.0.0-r120
+Depends: libc, snode.c-core-socket
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 798720
+Filename: snode.c-net_2.0.0-r120_loongarch64_generic.ipk
+Size: 222627
+SHA256sum: b0471df7d52461e1920a0aefdec261fa2455e3a8ae37fa218a67853e31560582
+Description:  This package contains the module 'net' of SNode.C
+ 
+
+Package: snode.c-utils
+Version: 2.0.0-r120
+Depends: libc, snode.c-logger
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 819200
+Filename: snode.c-utils_2.0.0-r120_loongarch64_generic.ipk
+Size: 302821
+SHA256sum: 62695a90468fe5b0e829926ebe58273a4ae7385e4a3497aa45b01986b4cb3b1a
+Description:  This package contains the module 'utils' of SNode.C
+ 
+
+Package: snode.c-websocket-client
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-client
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 358400
+Filename: snode.c-websocket-client_2.0.0-r120_loongarch64_generic.ipk
+Size: 124021
+SHA256sum: ce6f52c0100eb9f894198cf0e55a502706490ebe14868d18d4d15b5f2e7472b1
+Description:  This package contains the module 'websocket-client' of SNode.C
+ 
+
+Package: snode.c-websocket-server
+Version: 2.0.0-r120
+Depends: libc, snode.c-websocket, snode.c-http-server
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 389120
+Filename: snode.c-websocket-server_2.0.0-r120_loongarch64_generic.ipk
+Size: 130906
+SHA256sum: 36b7d0e98380f777ed25d86ca45d8f7ae2156c690f5edc39f86bb24578536b7c
+Description:  This package contains the module 'websocket-server' of SNode.C
+ 
+
+Package: snode.c-websocket
+Version: 2.0.0-r120
+Depends: libc, snode.c-utils
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 40960
+Filename: snode.c-websocket_2.0.0-r120_loongarch64_generic.ipk
+Size: 12785
+SHA256sum: c49d6546cd8f54e0f6fda98050f961dee652a7a61d713641ebb82daf654398c0
+Description:  This package contains the module 'websocket' of SNode.C
+ 
+
+Package: snode.c
+Version: 2.0.0-r120
+Depends: libc, libstdcpp6
+License: LGPL-3.0-or-later
+Section: net
+Architecture: loongarch64_generic
+Installed-Size: 10240
+Filename: snode.c_2.0.0-r120_loongarch64_generic.ipk
+Size: 1105
+SHA256sum: 4b2ea81dc281d9149513c8907723053bc17b36a14bd37331444e2c441e689720
+Description:  SNode.C is a very simple to use lightweight highly extendable event
+ driven layer-based framework for network applications in the spirit
+ of node.js written entirely in C++.
+ 
+
