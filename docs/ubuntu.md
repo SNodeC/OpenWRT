@@ -1,49 +1,43 @@
 # Ubuntu
 
-## Installation and configuration
+[← All distributions](../README.md#distributions)
 
-- [Find supported releases and architectures](#releases-architectures-and-repositories)
-- [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install and configure SNode.C](install-snodec.md)
-- [Install and configure MQTTSuite](install-mqttsuite.md)
-- [Update packages and troubleshoot](#updates-and-troubleshooting)
+[Requirements](#requirements) · [Quick install](#quick-install) · [Choose packages](#choose-packages) · [Configure and run](#configure-and-run) · [Updates](#updates) · [Manual repository setup](#manual-repository-setup) · [Reference](#reference) · [Troubleshooting](#troubleshooting)
 
-## Package repository
+## Requirements
 
-- [Browse production packages for Ubuntu](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu)
-- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
-- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
+Supported releases: `noble`, `resolute`. Match the release and package architecture installed on your device. Keep official repositories enabled for dependencies.
 
-## Releases, architectures and repositories
+Use an account with `sudo`, or run administrative commands directly as root.
+Install `curl` and CA certificates before downloading the installer.
 
-| Release / suite | Architecture | Package files | Signed repository metadata |
-| --- | --- | --- | --- |
-| `noble` | `amd64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/noble) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-amd64) |
-| `noble` | `arm64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/noble) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-arm64) |
-| `resolute` | `amd64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/resolute) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/resolute/main/binary-amd64) |
-| `resolute` | `arm64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/resolute) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/resolute/main/binary-arm64) |
+```sh
+. /etc/os-release
+printf 'Distribution: %s\nRelease: %s\n' "$ID" "$VERSION_ID"
+dpkg --print-architecture
+```
 
-Keep the official distribution repositories enabled for dependencies. Use the
-feed matching the installed distribution and release; matching CPU architectures
-alone do not make packages interchangeable between distributions.
+```sh
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+```
 
-Noble is Ubuntu 24.04 LTS; Resolute is Ubuntu 26.04 LTS. Coverage policy is the
-two latest LTS releases plus the latest stable interim release when newer. New
-releases require an explicit matrix update and successful validation.
+## Quick install
 
-## Prepare the repository
+```sh
+curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
+  -o /tmp/snodec-install-feed.sh &&
+sudo sh /tmp/snodec-install-feed.sh
+```
 
-The installer requires `curl` or `wget` and system CA certificates. Install these with
-`sudo apt-get update && sudo apt-get install ca-certificates curl` if needed.
+The installer detects the distribution, release and package architecture, checks
+that an index exists, installs the signing key, configures the repository
+and installs the complete package set. Configure applications before starting them.
+Prefer manual setup? Use [Manual repository setup](#manual-repository-setup).
 
-The [installer](../ci/install-feed.sh) detects the distribution, release and
-package architecture, verifies that the feed exists, imports the public key,
-configures the repository and refreshes indexes. Run it with `sudo`; it does not
-configure application listeners or certificates. Use `--help` for usage.
+## Choose packages
 
-### Preparation script
-
-Pass **`--prepare`** to configure the feed without installing any packages:
+Prepare the repository without installing packages:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
@@ -51,11 +45,63 @@ curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed
 sudo sh /tmp/snodec-install-feed.sh --prepare
 ```
 
-Continue with the [project installation instructions](#install-packages).
+For only the broker and command-line client:
 
-### Manual preparation
+```sh
+sudo apt-get install mqttsuite-broker mqttsuite-cli
+```
 
-These commands configure the signed feed without installing SNode.C or MQTTSuite.
+Dependencies are installed automatically. For the full selection after manual
+preparation, install the complete-project packages listed below.
+
+| Package | Contents |
+| --- | --- |
+| `snodec` | All framework components, headers, examples and configuration tool |
+| `snodec-apps` | Demonstration applications |
+| `snodec-unspecified` | Component containing `snodec-control` |
+| `mqttsuite` | All five applications and both mapping plugins |
+| `mqttsuite-broker` | MQTT broker |
+| `mqttsuite-cli` | Publish/subscribe command-line client |
+
+See the [DEB/RPM component catalog](linux.md#component-packages) for all common choices.
+
+```sh
+sudo apt-get install snodec mqttsuite
+```
+
+## Configure and run
+
+Inspect `mqttbroker --help`, `mqttcli --help` and `snodec-control --help`. Configure
+listeners, credentials and TLS certificates before starting services. The store
+requires a configured database. Consult the [application documentation](https://github.com/SNodeC/mqttsuite#readme)
+and [framework documentation](https://github.com/SNodeC/snode.c#readme) for options.
+
+Executables are installed in `/usr/bin`. Administrative configuration lives in
+`/etc/snode.c`; non-root processes use their per-user configuration directories.
+Installation creates the `snodec` system group but does not start network services.
+To start a foreground broker:
+
+```sh
+mqttbroker --daemonize=false
+```
+
+For persistent operation, configure a systemd service with the desired user and
+arguments; these packages do not supply systemd service units.
+
+## Updates
+
+```sh
+sudo apt-get update
+sudo apt-get install snodec mqttsuite
+```
+
+For selective installations, name the installed components rather than adding
+the complete metapackages. After a distribution upgrade, configure the repository
+for its new supported release and refresh metadata.
+
+## Manual repository setup
+
+These commands configure the signed repository without installing SNode.C or MQTTSuite.
 
 Select your suite below (`noble` is the example), then run the block:
 
@@ -81,32 +127,39 @@ Select your suite below (`noble` is the example), then run the block:
 APT selects packages from the index for your native architecture. Package files
 for all architectures share the suite’s `pool/` directory.
 
-## Install packages
+Then [choose packages](#choose-packages) to install.
 
-### SNode.C
+## Reference
 
-[Full installation, individual components, configuration and updates](install-snodec.md).
+<details>
+<summary>Supported releases, package architectures and indexes</summary>
 
-### MQTTSuite
+### noble
 
-[Full installation, individual components, configuration and updates](install-mqttsuite.md).
+[Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/noble). APT selects the native architecture’s index.
 
-## Updates and troubleshooting
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| noble | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/noble/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-amd64) |
+| noble | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/noble/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-arm64) |
+### resolute
 
-Use your project's installation guide above for update commands. After a distribution
-upgrade, select the matching supported repository release and refresh its indexes.
-Keep signature verification and the official repositories enabled.
+[Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/resolute). APT selects the native architecture’s index.
+
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| resolute | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/resolute/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/resolute/main/binary-amd64) |
+| resolute | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/resolute/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/resolute/main/binary-arm64) |
+
+</details>
+
+## Troubleshooting
+
+See [common problems and fixes](troubleshooting.md) for download, signature,
+dependency and application errors.
 
 | Symptom | What to check |
 | --- | --- |
-| Feed returns 404 | Check the release and package architecture against the table above and the published repository. |
-| Signature verification fails | Check the installed public key, device clock and feed URL. Keep signature checks enabled. |
-| Dependencies cannot be installed | Keep the official repositories enabled for the installed release, including any prerequisites listed above. |
-| Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
-| Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
-| A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
+| Installed suite is not listed | Use a supported Ubuntu suite; do not substitute Debian repositories or another Ubuntu release. |
 
-## Related navigation
-
-- [Choose another distribution](../README.md#distribution-and-architecture-matrix)
-- [Return to the top of this guide](#ubuntu)
+[Back to top](#ubuntu) · [All distributions](../README.md#distributions) · [Package status](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#ubuntu)

@@ -1,61 +1,48 @@
 # Debian
 
-## Installation and configuration
+[← All distributions](../README.md#distributions)
 
-- [Find supported releases and architectures](#releases-architectures-and-repositories)
-- [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install and configure SNode.C](install-snodec.md)
-- [Install and configure MQTTSuite](install-mqttsuite.md)
-- [Update packages and troubleshoot](#updates-and-troubleshooting)
+[Requirements](#requirements) · [Quick install](#quick-install) · [Choose packages](#choose-packages) · [Configure and run](#configure-and-run) · [Updates](#updates) · [Manual repository setup](#manual-repository-setup) · [Reference](#reference) · [Troubleshooting](#troubleshooting)
 
-## Package repository
+## Requirements
 
-- [Browse production packages for Debian](https://github.com/SNodeC/OpenWRT/tree/packages/debian)
-- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
-- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
+Supported releases: `trixie`, `forky`, `sid`. Match the release and package architecture installed on your device. Keep official repositories enabled for dependencies.
 
-## Releases, architectures and repositories
+Use an account with `sudo`, or run administrative commands directly as root.
+Install `curl` and CA certificates before downloading the installer.
 
-| Release / suite | Architecture | Package files | Signed repository metadata |
-| --- | --- | --- | --- |
-| `trixie` | `amd64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/trixie) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-amd64) |
-| `trixie` | `arm64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/trixie) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-arm64) |
-| `trixie` | `armhf` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/trixie) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-armhf) |
-| `trixie` | `riscv64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/trixie) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-riscv64) |
-| `forky` | `amd64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-amd64) |
-| `forky` | `arm64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-arm64) |
-| `forky` | `armhf` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-armhf) |
-| `forky` | `riscv64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-riscv64) |
-| `sid` | `amd64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-amd64) |
-| `sid` | `arm64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-arm64) |
-| `sid` | `armhf` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-armhf) |
-| `sid` | `riscv64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-riscv64) |
+```sh
+. /etc/os-release
+printf 'Distribution: %s\nRelease: %s\n' "$ID" "$VERSION_ID"
+dpkg --print-architecture
+```
 
-Keep the official distribution repositories enabled for dependencies. Use the
-feed matching the installed distribution and release; matching CPU architectures
-alone do not make packages interchangeable between distributions.
+```sh
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+```
 
-Trixie is the stable series, Forky the testing series and Sid unstable in this
-matrix. Use these explicit suite names instead of moving stable/testing aliases.
-For Sid, select `sid` explicitly; `/etc/os-release` may identify a testing codename.
+Use the installed suite’s name, not a moving `stable` or `testing` alias. For
+Sid, append `--suite sid` to the installer command; `/etc/os-release` may report
+a testing codename. Use `--suite forky` if Forky is not detected. This selects a
+repository; it does not upgrade the operating system.
 
-## Prepare the repository
+## Quick install
 
-The installer requires `curl` or `wget` and system CA certificates. Install these with
-`sudo apt-get update && sudo apt-get install ca-certificates curl` if needed.
+```sh
+curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
+  -o /tmp/snodec-install-feed.sh &&
+sudo sh /tmp/snodec-install-feed.sh
+```
 
-The [installer](../ci/install-feed.sh) detects the distribution, release and
-package architecture, verifies that the feed exists, imports the public key,
-configures the repository and refreshes indexes. Run it with `sudo`; it does not
-configure application listeners or certificates. Use `--help` for usage.
+The installer detects the distribution, release and package architecture, checks
+that an index exists, installs the signing key, configures the repository
+and installs the complete package set. Configure applications before starting them.
+Prefer manual setup? Use [Manual repository setup](#manual-repository-setup).
 
-On Debian Sid, append `--suite sid` to the installer invocation below.
-For testing, use `--suite forky` if the release cannot be detected. The option
-selects the installed suite; it does not upgrade the operating system.
+## Choose packages
 
-### Preparation script
-
-Pass **`--prepare`** to configure the feed without installing any packages:
+Prepare the repository without installing packages:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
@@ -63,11 +50,63 @@ curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed
 sudo sh /tmp/snodec-install-feed.sh --prepare
 ```
 
-Continue with the [project installation instructions](#install-packages).
+For only the broker and command-line client:
 
-### Manual preparation
+```sh
+sudo apt-get install mqttsuite-broker mqttsuite-cli
+```
 
-These commands configure the signed feed without installing SNode.C or MQTTSuite.
+Dependencies are installed automatically. For the full selection after manual
+preparation, install the complete-project packages listed below.
+
+| Package | Contents |
+| --- | --- |
+| `snodec` | All framework components, headers, examples and configuration tool |
+| `snodec-apps` | Demonstration applications |
+| `snodec-unspecified` | Component containing `snodec-control` |
+| `mqttsuite` | All five applications and both mapping plugins |
+| `mqttsuite-broker` | MQTT broker |
+| `mqttsuite-cli` | Publish/subscribe command-line client |
+
+See the [DEB/RPM component catalog](linux.md#component-packages) for all common choices.
+
+```sh
+sudo apt-get install snodec mqttsuite
+```
+
+## Configure and run
+
+Inspect `mqttbroker --help`, `mqttcli --help` and `snodec-control --help`. Configure
+listeners, credentials and TLS certificates before starting services. The store
+requires a configured database. Consult the [application documentation](https://github.com/SNodeC/mqttsuite#readme)
+and [framework documentation](https://github.com/SNodeC/snode.c#readme) for options.
+
+Executables are installed in `/usr/bin`. Administrative configuration lives in
+`/etc/snode.c`; non-root processes use their per-user configuration directories.
+Installation creates the `snodec` system group but does not start network services.
+To start a foreground broker:
+
+```sh
+mqttbroker --daemonize=false
+```
+
+For persistent operation, configure a systemd service with the desired user and
+arguments; these packages do not supply systemd service units.
+
+## Updates
+
+```sh
+sudo apt-get update
+sudo apt-get install snodec mqttsuite
+```
+
+For selective installations, name the installed components rather than adding
+the complete metapackages. After a distribution upgrade, configure the repository
+for its new supported release and refresh metadata.
+
+## Manual repository setup
+
+These commands configure the signed repository without installing SNode.C or MQTTSuite.
 
 Select your suite below (`trixie` is the example), then run the block:
 
@@ -93,32 +132,53 @@ Select your suite below (`trixie` is the example), then run the block:
 APT selects packages from the index for your native architecture. Package files
 for all architectures share the suite’s `pool/` directory.
 
-## Install packages
+Then [choose packages](#choose-packages) to install.
 
-### SNode.C
+## Reference
 
-[Full installation, individual components, configuration and updates](install-snodec.md).
+<details>
+<summary>Supported releases, package architectures and indexes</summary>
 
-### MQTTSuite
+### trixie
 
-[Full installation, individual components, configuration and updates](install-mqttsuite.md).
+[Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/trixie). APT selects the native architecture’s index.
 
-## Updates and troubleshooting
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| trixie | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-amd64) |
+| trixie | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-arm64) |
+| trixie | `armhf` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-armhf/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-armhf) |
+| trixie | `riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-riscv64) |
+### forky
 
-Use your project's installation guide above for update commands. After a distribution
-upgrade, select the matching supported repository release and refresh its indexes.
-Keep signature verification and the official repositories enabled.
+[Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky). APT selects the native architecture’s index.
+
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| forky | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-amd64) |
+| forky | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-arm64) |
+| forky | `armhf` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-armhf/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-armhf) |
+| forky | `riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-riscv64) |
+### sid
+
+[Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid). APT selects the native architecture’s index.
+
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| sid | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/sid/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-amd64) |
+| sid | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/sid/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-arm64) |
+| sid | `armhf` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/sid/main/binary-armhf/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-armhf) |
+| sid | `riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/sid/main/binary-riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/sid/main/binary-riscv64) |
+
+</details>
+
+## Troubleshooting
+
+See [common problems and fixes](troubleshooting.md) for download, signature,
+dependency and application errors.
 
 | Symptom | What to check |
 | --- | --- |
-| Feed returns 404 | Check the release and package architecture against the table above and the published repository. |
-| Signature verification fails | Check the installed public key, device clock and feed URL. Keep signature checks enabled. |
-| Dependencies cannot be installed | Keep the official repositories enabled for the installed release, including any prerequisites listed above. |
-| Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
-| Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
-| A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
+| Sid selects a testing suite | Pass `--suite sid` to the installer on an installed Sid system. |
 
-## Related navigation
-
-- [Choose another distribution](../README.md#distribution-and-architecture-matrix)
-- [Return to the top of this guide](#debian)
+[Back to top](#debian) · [All distributions](../README.md#distributions) · [Package status](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#debian)

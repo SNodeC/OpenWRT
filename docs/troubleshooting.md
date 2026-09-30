@@ -17,12 +17,12 @@
 
 ## Distribution-specific help
 
-- [OpenWrt](openwrt.md#updates-and-troubleshooting)
-- [Raspberry Pi OS](raspberrypi.md#updates-and-troubleshooting)
-- [Debian](debian.md#updates-and-troubleshooting)
-- [Ubuntu](ubuntu.md#updates-and-troubleshooting)
-- [Rocky Linux](rocky.md#updates-and-troubleshooting)
-- [Fedora](fedora.md#updates-and-troubleshooting)
+- [OpenWrt](openwrt.md#troubleshooting)
+- [Raspberry Pi OS](raspberrypi.md#troubleshooting)
+- [Debian](debian.md#troubleshooting)
+- [Ubuntu](ubuntu.md#troubleshooting)
+- [Rocky Linux](rocky.md#troubleshooting)
+- [Fedora](fedora.md#troubleshooting)
 
 If the problem remains, [open an issue](https://github.com/SNodeC/OpenWRT/issues).
 Include the distribution, release, package architecture, package name and error

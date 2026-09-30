@@ -1,44 +1,42 @@
 # Fedora
 
-## Installation and configuration
+[← All distributions](../README.md#distributions)
 
-- [Find supported releases and architectures](#releases-architectures-and-repositories)
-- [Prepare the repository using the script or manual commands](#prepare-the-repository)
-- [Install and configure SNode.C](install-snodec.md)
-- [Install and configure MQTTSuite](install-mqttsuite.md)
-- [Update packages and troubleshoot](#updates-and-troubleshooting)
+[Requirements](#requirements) · [Quick install](#quick-install) · [Choose packages](#choose-packages) · [Configure and run](#configure-and-run) · [Updates](#updates) · [Manual repository setup](#manual-repository-setup) · [Reference](#reference) · [Troubleshooting](#troubleshooting)
 
-## Package repository
+## Requirements
 
-- [Browse production packages for Fedora](https://github.com/SNodeC/OpenWRT/tree/packages/fedora)
-- [SNode.C build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
-- [MQTTSuite build results and versions](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
+Supported releases: `43`, `44`. Match the release and package architecture installed on your device. Keep official repositories enabled for dependencies.
 
-## Releases, architectures and repositories
+Use an account with `sudo`, or run administrative commands directly as root.
+Install `curl` and CA certificates before downloading the installer.
 
-| Release / suite | Architecture | Package files | Signed repository metadata |
-| --- | --- | --- | --- |
-| `43` | `x86_64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/x86_64/Packages) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/x86_64/repodata) |
-| `43` | `aarch64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/aarch64/Packages) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/aarch64/repodata) |
-| `44` | `x86_64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/x86_64/Packages) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/x86_64/repodata) |
-| `44` | `aarch64` | [Packages](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/aarch64/Packages) | [Index](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/aarch64/repodata) |
+```sh
+. /etc/os-release
+printf 'Distribution: %s\nRelease: %s\n' "$ID" "$VERSION_ID"
+rpm --eval '%{_arch}'
+```
 
-Keep the official distribution repositories enabled for dependencies. Use the
-feed matching the installed distribution and release; matching CPU architectures
-alone do not make packages interchangeable between distributions.
+```sh
+sudo dnf install ca-certificates curl
+```
 
-## Prepare the repository
+## Quick install
 
-The installer requires `curl` or `wget` and system CA certificates. Install these with `sudo dnf install ca-certificates curl` if needed.
+```sh
+curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
+  -o /tmp/snodec-install-feed.sh &&
+sudo sh /tmp/snodec-install-feed.sh
+```
 
-The [installer](../ci/install-feed.sh) detects the distribution, release and
-package architecture, verifies that the feed exists, imports the public key,
-configures the repository and refreshes indexes. Run it with `sudo`; it does not
-configure application listeners or certificates. Use `--help` for usage.
+The installer detects the distribution, release and package architecture, checks
+that an index exists, installs the signing key, configures the repository
+and installs the complete package set. Configure applications before starting them.
+Prefer manual setup? Use [Manual repository setup](#manual-repository-setup).
 
-### Preparation script
+## Choose packages
 
-Pass **`--prepare`** to configure the feed without installing any packages:
+Prepare the repository without installing packages:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed.sh \
@@ -46,11 +44,62 @@ curl -fsSL https://raw.githubusercontent.com/SNodeC/OpenWRT/main/ci/install-feed
 sudo sh /tmp/snodec-install-feed.sh --prepare
 ```
 
-Continue with the [project installation instructions](#install-packages).
+For only the broker and command-line client:
 
-### Manual preparation
+```sh
+sudo dnf install mqttsuite-broker mqttsuite-cli
+```
 
-These commands configure the signed feed without installing SNode.C or MQTTSuite.
+Dependencies are installed automatically. For the full selection after manual
+preparation, install the complete-project packages listed below.
+
+| Package | Contents |
+| --- | --- |
+| `snodec` | All framework components, headers, examples and configuration tool |
+| `snodec-apps` | Demonstration applications |
+| `snodec-unspecified` | Component containing `snodec-control` |
+| `mqttsuite` | All five applications and both mapping plugins |
+| `mqttsuite-broker` | MQTT broker |
+| `mqttsuite-cli` | Publish/subscribe command-line client |
+
+See the [DEB/RPM component catalog](linux.md#component-packages) for all common choices.
+
+```sh
+sudo dnf install snodec mqttsuite
+```
+
+## Configure and run
+
+Inspect `mqttbroker --help`, `mqttcli --help` and `snodec-control --help`. Configure
+listeners, credentials and TLS certificates before starting services. The store
+requires a configured database. Consult the [application documentation](https://github.com/SNodeC/mqttsuite#readme)
+and [framework documentation](https://github.com/SNodeC/snode.c#readme) for options.
+
+Executables are installed in `/usr/bin`. Administrative configuration lives in
+`/etc/snode.c`; non-root processes use their per-user configuration directories.
+Installation creates the `snodec` system group but does not start network services.
+To start a foreground broker:
+
+```sh
+mqttbroker --daemonize=false
+```
+
+For persistent operation, configure a systemd service with the desired user and
+arguments; these packages do not supply systemd service units.
+
+## Updates
+
+```sh
+sudo dnf upgrade 'snodec*' 'mqttsuite*'
+```
+
+For selective installations, name the installed components rather than adding
+the complete metapackages. After a distribution upgrade, configure the repository
+for its new supported release and refresh metadata.
+
+## Manual repository setup
+
+These commands configure the signed repository without installing SNode.C or MQTTSuite.
 
 APT and RPM repositories use the same signing key. Its download filename is
 `snodec-apt.asc`; the commands below install it under the RPM-specific name
@@ -77,32 +126,35 @@ The quoted `REPO` delimiter preserves `$releasever` and `$basearch`; DNF expands
 them for the installed system. Both RPM packages and repository metadata are
 signature-checked.
 
-## Install packages
+Then [choose packages](#choose-packages) to install.
 
-### SNode.C
+## Reference
 
-[Full installation, individual components, configuration and updates](install-snodec.md).
+<details>
+<summary>Supported releases, package architectures and indexes</summary>
 
-### MQTTSuite
+### 43
 
-[Full installation, individual components, configuration and updates](install-mqttsuite.md).
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| 43 | `aarch64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/43/aarch64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/aarch64) |
+| 43 | `x86_64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/43/x86_64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/x86_64) |
+### 44
 
-## Updates and troubleshooting
+| Release | Package architecture | Index | Browse |
+| --- | --- | --- | --- |
+| 44 | `aarch64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/44/aarch64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/aarch64) |
+| 44 | `x86_64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/44/x86_64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/44/x86_64) |
 
-Use your project's installation guide above for update commands. After a distribution
-upgrade, select the matching supported repository release and refresh its indexes.
-Keep signature verification and the official repositories enabled.
+</details>
+
+## Troubleshooting
+
+See [common problems and fixes](troubleshooting.md) for download, signature,
+dependency and application errors.
 
 | Symptom | What to check |
 | --- | --- |
-| Feed returns 404 | Check the release and package architecture against the table above and the published repository. |
-| Signature verification fails | Check the installed public key, device clock and feed URL. Keep signature checks enabled. |
-| Dependencies cannot be installed | Keep the official repositories enabled for the installed release, including any prerequisites listed above. |
-| Download fails just after publication | Refresh package metadata and retry after GitHub's raw-content caches update. |
-| Application does not start | Inspect its `--help` output, configuration and logs; verify installation completed. |
-| A newer build is unavailable | Check [Actions](https://github.com/SNodeC/OpenWRT/actions/workflows/openwrt.yml). Unfinished or failed builds do not replace the feed. |
+| DNF selects the wrong release | Check `VERSION_ID` and DNF’s `$releasever`; do not mix Fedora release repositories. |
 
-## Related navigation
-
-- [Choose another distribution](../README.md#distribution-and-architecture-matrix)
-- [Return to the top of this guide](#fedora)
+[Back to top](#fedora) · [All distributions](../README.md#distributions) · [Package status](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#fedora)
