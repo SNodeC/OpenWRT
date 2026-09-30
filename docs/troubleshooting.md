@@ -6,7 +6,7 @@
 
 | Symptom | What to check |
 | --- | --- |
-| Feed or repository returns 404 | Match the distribution, release and package architecture to the [distribution guide](../README.md#distribution-and-architecture-matrix). Use **Browse** links for directories; raw URLs serve individual files, not directory listings. |
+| Feed or repository returns 404 | Match the distribution, release and package architecture to the [distribution guide](../README.md#distributions). Use **Browse** links for directories; raw URLs serve individual files, not directory listings. |
 | Signature verification fails | Check the system clock, repository URL and installed [signing key](../README.md#signing-keys). Keep signature verification enabled. |
 | Dependencies cannot be installed | Keep the official repositories enabled for the installed release. Do not mix distributions, releases or package architectures. Check the guide for additional dependency repositories. |
 | Download fails just after publication | Refresh package indexes and retry after GitHub's raw-content caches update. |

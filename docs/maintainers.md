@@ -3,7 +3,7 @@
 [← Installation overview](../README.md)
 
 This page describes repository maintenance. Device installation belongs in the
-[distribution guides](../README.md#distribution-and-architecture-matrix).
+[distribution guides](../README.md#distributions).
 
 ## Repository layout and links
 

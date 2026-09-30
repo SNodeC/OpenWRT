@@ -125,18 +125,18 @@ Work takes place on `refactor/distribution-packages`, starting from main commit
 `backup/main-before-recipe-sync-20260927` branch was explicitly deleted locally
 and on GitHub. The current production workflow remains operational on `main`.
 
-The repository now serves OpenWRT, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux
+The repository now serves OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux
 and Fedora. Treat them consistently in build status, publication, repository
 access and installation documentation. Their native packaging mechanisms still
 differ; consistency does not mean forcing them into the same build environment.
 
-The current matrix contains 50 OpenWRT combinations, two Raspberry Pi OS
+The current matrix contains 50 OpenWrt combinations, two Raspberry Pi OS
 combinations and 24 other Linux combinations. Preserve the supported release
 and architecture definitions throughout the refactor.
 
 ## Recipe ownership and branches
 
-Keep the canonical OpenWRT recipes together on `main`:
+Keep the canonical OpenWrt recipes together on `main`:
 
 - `net/snode.c/`
 - `net/mqttsuite/`
@@ -153,7 +153,7 @@ repository, not the separate upstream source repositories.
 Current main already contains the working recipes. The old recipe branches still
 contain obsolete source patches and test/configuration files; these must not be
 reintroduced. Do not add source patches, rewrite upstream sources in CI, or move
-CPack policy into CI. DEB/RPM component packaging remains upstream; OpenWRT
+CPack policy into CI. DEB/RPM component packaging remains upstream; OpenWrt
 package selection and configuration remain in its recipes.
 
 The obsolete `ci/openwrt-32bit`, `ci/openwrt-infra` and `ci/openwrt-packages`
@@ -166,7 +166,7 @@ Each instance has its own build/test result, logs, artifacts and publication.
 Do not create one duplicated workflow file per combination. Reusable workflows
 may separate genuinely different build mechanisms:
 
-- OpenWRT: official SDK and target execution through QEMU where applicable.
+- OpenWrt: official SDK and target execution through QEMU where applicable.
 - Raspberry Pi OS: official OS-image filesystem.
 - Other Linux distributions: appropriate distribution containers, with native
   execution or QEMU as required.
@@ -180,7 +180,7 @@ At the start of development, run only these three representative combinations:
 | Family | Release | Architecture |
 | --- | --- | --- |
 | Linux | Debian Trixie | amd64 |
-| OpenWRT | 25.12 | x86_64 |
+| OpenWrt | 25.12 | x86_64 |
 | Raspberry Pi OS | Trixie | arm64 |
 
 Keep the complete matrix defined, but select this subset for development runs.
@@ -203,7 +203,7 @@ publisher's changes when updating the single-commit snapshot.
 
 Repository boundaries determine the update operation:
 
-- OpenWRT feeds have independent release/architecture directories.
+- OpenWrt feeds have independent release/architecture directories.
 - RPM feeds have independent distribution/release/architecture directories.
 - APT suites share release metadata across architectures. Publishing one
   architecture must preserve the other architectures, then regenerate and sign
@@ -266,7 +266,7 @@ together. Do not rely on GitHub redirects without testing package-manager access
 ## Release triggers and tag-driven versioning
 
 The initial proposal was one movable tag in each upstream repository, replacing
-the separate `OpenWRT`, `RaspberryPiOS` and `Linux` trigger groups. Names discussed
+the separate `OpenWrt`, `RaspberryPiOS` and `Linux` trigger groups. Names discussed
 included `Packages` and `Packaging`; no final new tag name was selected.
 
 The discussion then moved toward real upstream release management:
@@ -343,7 +343,7 @@ are not automatically reintroduced into indexes. The full 76-target definition
 is enabled by the development dispatcher, still publishing only to `packages-dev`.
 
 Development status and feed versions are generated in
-[packages-dev/README.md](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md).
+[archived validation snapshot](maintainers.md#branches-and-history).
 A failed build retains the last successful feed and its published version.
 
 Local publication checks cover partial APT updates, legacy manifest import,
@@ -353,7 +353,7 @@ indexes with forced by-hash downloads.
 
 The [first development run](https://github.com/SNodeC/OpenWRT/actions/runs/36385083597)
 passed all 212 upstream tests on each target and published them independently:
-Raspberry Pi OS at 06:26 UTC, Debian at 06:32 and OpenWRT at 06:43 on 28 September.
+Raspberry Pi OS at 06:26 UTC, Debian at 06:32 and OpenWrt at 06:43 on 28 September.
 The completion handler passed, and the published branch retained one parentless
 commit. Production workflows and feeds were unchanged.
 
@@ -379,9 +379,9 @@ production workflow has not been replaced or retriggered by this development wor
 
 | Development target | Latest build |
 | --- | --- |
-| Debian trixie amd64 | [![Debian](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/debian-trixie-amd64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
-| OpenWRT 25.12 x86_64 | [![OpenWRT](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/openwrt-25.12-x86_64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
-| Raspberry Pi OS trixie arm64 | [![Raspberry Pi OS](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages-dev/status/raspberrypios-trixie-arm64.svg)](https://github.com/SNodeC/OpenWRT/blob/packages-dev/README.md) |
+| Debian trixie amd64 | [Debian validation snapshot](maintainers.md#branches-and-history) |
+| OpenWrt 25.12 x86_64 | [OpenWrt validation snapshot](maintainers.md#branches-and-history) |
+| Raspberry Pi OS trixie arm64 | [Raspberry Pi OS validation snapshot](maintainers.md#branches-and-history) |
 
 ## Publication README and landing-page integration
 
