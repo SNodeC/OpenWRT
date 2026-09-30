@@ -23,7 +23,6 @@ live on the `packages` branch, using these paths:
 GitHub directory links let you browse packages. Package managers use the raw file
 URLs in the installation guides; raw URLs do not provide directory listings.
 
-
 ## Branches and history
 
 - `main` owns the OpenWrt recipes in `net/`, CI in `ci/` and `.github/workflows/`, and user documentation in `docs/`.
@@ -71,8 +70,9 @@ tables to inspect the manifest associated with a feed.
 
 ## Coverage and ordering
 
-OpenWrt targets come from `ci/platforms.json`, other Linux targets from
-`ci/linux.json`, and Raspberry Pi OS releases from `ci/raspberrypi.json`.
+OpenWrt targets and exact SDK releases come from [ci/platforms.json](../ci/platforms.json),
+other Linux targets from [ci/linux.json](../ci/linux.json), and Raspberry Pi OS
+releases from [ci/raspberrypi.json](../ci/raspberrypi.json).
 Presentation sorts package architectures alphabetically without changing CI's
 matrix order or scheduling. Raspberry Pi builds use the common ARMv8-A baseline,
 without board-specific CPU tuning.
@@ -81,6 +81,24 @@ Ubuntu coverage policy is the two latest LTS releases plus the latest stable
 interim release when newer. New releases require an explicit matrix update and
 successful validation. Rocky coverage does not imply separately validated RHEL
 or AlmaLinux coverage.
+
+## Documentation generation
+
+The publisher’s `render()` function in [ci/publication.py](../ci/publication.py)
+reads [the central status template](package-repository.md) and
+[the project navigation template](project-packages.md). It generates `README.md`,
+`snodec/README.md`, `mqttsuite/README.md` and status badges in the package snapshot.
+The central README is the only matrix. Existing project URLs remain navigation
+pages so incoming links continue to work.
+
+All distribution guides and catalogs are hand-written; no CI generator owns
+their architecture tables. Compare those tables with the matrix files above when
+changing supported targets. For a documentation preview, render into a temporary
+copy of `build.json` manifests and `status.json`; do not run a publication.
+
+Native component package names follow upstream CPack components. The
+`snodec-unspecified` package exposes the `Unspecified` component containing
+`snodec-control`. Changing that name is a packaging change, not a documentation change.
 
 ## Signing-key verification
 

@@ -19,7 +19,7 @@ automatically. OpenWrt uses different names; see the [name map](../README.md#pac
 | `snodec-apps` | Demonstration applications |
 | `snodec-unspecified` | Component containing the `snodec-control` executable |
 
-Individual names follow upstream CPack components. List all available packages:
+List all available framework component packages:
 
 ```sh
 # APT distributions

@@ -6,7 +6,7 @@ These package names apply to **OpenWrt**.
 
 - [Install SNode.C, including repository setup](install-snodec.md)
 - [DEB and RPM component packages](linux.md#snodec)
-- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/snodec/README.md)
+- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt)
 - [Return to the repository overview](../README.md)
 
 ## Packages: 67

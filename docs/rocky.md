@@ -147,6 +147,7 @@ Then [choose packages](#choose-packages) to install.
 | --- | --- | --- | --- |
 | 9 | `aarch64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/rocky/9/aarch64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky/9/aarch64) |
 | 9 | `x86_64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/rocky/9/x86_64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/rocky/9/x86_64) |
+
 ### 10
 
 | Release | Package architecture | Index | Browse |

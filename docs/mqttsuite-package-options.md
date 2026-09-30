@@ -6,7 +6,7 @@ These package names apply to **OpenWrt**.
 
 - [Install MQTTSuite, including repository setup](install-mqttsuite.md)
 - [DEB and RPM component packages](linux.md#mqttsuite)
-- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/mqttsuite/README.md)
+- [Published versions and build results](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt)
 - [Return to the repository overview](../README.md)
 
 ## Packages: 9

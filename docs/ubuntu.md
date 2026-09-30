@@ -22,6 +22,8 @@ sudo apt-get update
 sudo apt-get install ca-certificates curl
 ```
 
+Noble is Ubuntu 24.04 LTS; Resolute is Ubuntu 26.04 LTS.
+
 ## Quick install
 
 ```sh
@@ -142,6 +144,7 @@ Then [choose packages](#choose-packages) to install.
 | --- | --- | --- | --- |
 | noble | `amd64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/noble/main/binary-amd64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-amd64) |
 | noble | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/ubuntu/dists/noble/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/dists/noble/main/binary-arm64) |
+
 ### resolute
 
 [Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/ubuntu/pool/resolute). APT selects the native architecture’s index.

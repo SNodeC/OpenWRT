@@ -1,32 +1,67 @@
-# SNode.C and MQTTSuite packages
+# Package status
 
-Signed packages for OpenWrt, Raspberry Pi OS, Debian, Ubuntu, Rocky Linux and
-Fedora. Choose a project for its published versions, build results and installation
-instructions.
+To install, see [Quick start](https://github.com/SNodeC/OpenWRT/blob/main/README.md#quick-start).
 
-## SNode.C
+## Reading the matrix
 
-C++ networking framework, runtime libraries, development headers and tools.
+**Version** is what is available to install. **Status** describes the latest
+build attempt; click its badge to inspect the job. An unfinished or failed rebuild
+does not replace an available version. A dash means no version is recorded.
 
-- [Published packages and build results](snodec/README.md)
-- [Install SNode.C](https://github.com/SNodeC/OpenWRT/blob/main/docs/install-snodec.md)
-- [OpenWrt package catalog](https://github.com/SNodeC/OpenWRT/blob/main/docs/snodec-package-options.md)
+<details>
+<summary>Status legend and links</summary>
 
-## MQTTSuite
+- **Pending:** waiting to build or publish.
+- **Running:** building and testing.
+- **Publishing:** updating the package source.
+- **Published:** the packages have been pushed.
+- **Failed**, **cancelled**, **skipped**, **superseded:** the attempt did not publish.
+- **Not built:** neither a build result nor a published version is recorded.
 
-MQTT broker, bridge, integrator, command-line client, store and mapping plugins.
+Badges are snapshots refreshed during publication, not live monitors.
+**Published** shows the feed's latest publication date in UTC; click the date
+for the full timestamp and source record. Either project's publication can update
+that date. **Packages** opens the shared package directory; package managers use
+its signed index to select the current files.
 
-- [Published packages and build results](mqttsuite/README.md)
-- [Install MQTTSuite](https://github.com/SNodeC/OpenWRT/blob/main/docs/install-mqttsuite.md)
-- [OpenWrt package catalog](https://github.com/SNodeC/OpenWRT/blob/main/docs/mqttsuite-package-options.md)
+</details>
 
-## Repository setup and help
+## OpenWrt
 
-- [Choose your distribution and architecture](https://github.com/SNodeC/OpenWRT/blob/main/README.md#distribution-and-architecture-matrix)
-- [Inspect the public signing keys](keys/)
-- [Troubleshoot repository access](https://github.com/SNodeC/OpenWRT/blob/main/README.md#repository-troubleshooting)
-- [Return to the repository overview](https://github.com/SNodeC/OpenWRT/blob/main/README.md)
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/openwrt.md)
 
-Each successful project build publishes independently for its target. Failed or
-unfinished rebuilds leave previously published packages available. The project
-pages distinguish the latest build status from the version available to install.
+<!-- targets:openwrt -->
+
+## Raspberry Pi OS
+
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/raspberrypi.md)
+
+<!-- targets:raspberrypios -->
+
+## Debian
+
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/debian.md)
+
+<!-- targets:debian -->
+
+## Ubuntu
+
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/ubuntu.md)
+
+<!-- targets:ubuntu -->
+
+## Rocky Linux
+
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/rocky.md)
+
+<!-- targets:rocky -->
+
+## Fedora
+
+[Installation guide](https://github.com/SNodeC/OpenWRT/blob/main/docs/fedora.md)
+
+<!-- targets:fedora -->
+
+## Help
+
+[Troubleshooting](https://github.com/SNodeC/OpenWRT/blob/main/docs/troubleshooting.md) · [Repository maintenance](https://github.com/SNodeC/OpenWRT/blob/main/docs/maintainers.md) · [Back to installation](https://github.com/SNodeC/OpenWRT/blob/main/README.md#quick-start)

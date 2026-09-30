@@ -1,14 +1,15 @@
 # SNode.C and MQTTSuite for GL-MT3000
 
-These recipes default to SNode.C `v2.0.0` and MQTTSuite `v1.0.2`.
+The [SNode.C recipe](../net/snode.c/Makefile) and
+[MQTTSuite recipe](../net/mqttsuite/Makefile) declare the default source releases.
 For a release build, export `SNODEC_SOURCE_TAG=vX.Y.Z` and
 `MQTTSUITE_SOURCE_TAG=vA.B.C` before running the SDK commands; each recipe derives
 its package version from its selected release tag. CI selects and records these
 versions automatically.
 
-Source repositories:
-SNode.C 2.0.0 and MQTTSuite 1.0.2. The recipes use the upstream build systems
-without source patches.
+The recipes use the upstream build systems without source patches. See
+[Package status](https://github.com/SNodeC/OpenWRT/blob/packages/README.md#openwrt)
+for published versions. The SDK commands below are a recorded GL-MT3000 example.
 
 The build uses the official OpenWrt 25.12.5 `mediatek/filogic` SDK with GCC
 14.3.0 and musl, producing `aarch64_cortex-a53` APK packages. The release's
@@ -103,12 +104,12 @@ configuring to avoid stale defaults.
 ## WebSocket loading and RPATH
 
 The HTTP loader opens
-`/usr/lib/snode.c/web/http/upgrade/libsnodec-websocket-{server,client}.so.2`.
+`/usr/lib/snode.c/web/http/upgrade/libsnodec-websocket-{server,client}.so.<ABI>`.
 The WebSocket subprotocol loader then opens the application-specific
-`/usr/lib/snode.c/web/http/upgrade/websocket/mqtt<app>/libsnodec-websocket-mqtt-{server,client}.so.2`.
-MQTTSuite's plugin SONAME follows SNode.C ABI **2**, while the real plugin file
-version is **1.0.1**. Both the real file and ABI symlink are packaged. Ordinary
-MQTTSuite libraries use ABI **1**.
+`/usr/lib/snode.c/web/http/upgrade/websocket/mqtt<app>/libsnodec-websocket-mqtt-{server,client}.so.<ABI>`.
+MQTTSuite's plugin SONAME follows SNode.C's ABI major, while the real plugin
+filename follows MQTTSuite's release version. Both the real file and ABI symlink
+are packaged. Ordinary MQTTSuite libraries use MQTTSuite's ABI major.
 
 The plugin directory identifies the `dlopen` object; its dependencies still
 need the correct ELF library search paths. Before OpenWrt runs `rstrip`, the

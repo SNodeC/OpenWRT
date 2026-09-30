@@ -22,6 +22,7 @@ sudo apt-get update
 sudo apt-get install ca-certificates curl
 ```
 
+The matrix covers Trixie (stable), Forky (testing) and Sid (unstable).
 Use the installed suite’s name, not a moving `stable` or `testing` alias. For
 Sid, append `--suite sid` to the installer command; `/etc/os-release` may report
 a testing codename. Use `--suite forky` if Forky is not detected. This selects a
@@ -149,6 +150,7 @@ Then [choose packages](#choose-packages) to install.
 | trixie | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-arm64) |
 | trixie | `armhf` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-armhf/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-armhf) |
 | trixie | `riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/trixie/main/binary-riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/trixie/main/binary-riscv64) |
+
 ### forky
 
 [Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/forky). APT selects the native architecture’s index.
@@ -159,6 +161,7 @@ Then [choose packages](#choose-packages) to install.
 | forky | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-arm64) |
 | forky | `armhf` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-armhf/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-armhf) |
 | forky | `riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/debian/dists/forky/main/binary-riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/debian/dists/forky/main/binary-riscv64) |
+
 ### sid
 
 [Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/debian/pool/sid). APT selects the native architecture’s index.

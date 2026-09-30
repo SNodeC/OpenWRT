@@ -139,6 +139,7 @@ Then [choose packages](#choose-packages) to install.
 | --- | --- | --- | --- |
 | 43 | `aarch64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/43/aarch64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/aarch64) |
 | 43 | `x86_64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/fedora/43/x86_64/repodata/repomd.xml) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/fedora/43/x86_64) |
+
 ### 44
 
 | Release | Package architecture | Index | Browse |

@@ -143,6 +143,7 @@ Then [choose packages](#choose-packages) to install.
 | Release | Package architecture | Index | Browse |
 | --- | --- | --- | --- |
 | bookworm | `arm64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/raspberrypios/dists/bookworm/main/binary-arm64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/dists/bookworm/main/binary-arm64) |
+
 ### trixie
 
 [Package files for this suite](https://github.com/SNodeC/OpenWRT/tree/packages/raspberrypios/pool/trixie). APT selects the native architecture’s index.

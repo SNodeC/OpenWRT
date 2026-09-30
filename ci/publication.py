@@ -51,36 +51,43 @@ def published(root, row):
 def render(root, state):
     badges = root / 'status'
     badges.mkdir(exist_ok=True)
-    sections = {project: [] for project in REPOSITORIES}
+    sections = {}
     colors = {'pending': '#57606a', 'running': '#0969da', 'publishing': '#0969da', 'published': '#1a7f37',
               'failed': '#cf222e', 'cancelled': '#57606a', 'skipped': '#57606a', 'superseded': '#9a6700', 'not built': '#57606a'}
-    for row in targets():
+    for row in sorted(targets(), key=lambda item: item['arch']):
         info, feed = published(root, row)
         versions = info.get('versions', {})
         snodec = versions.get('snodec', versions.get('snode.c'))
-        date = f"[{info['published_at'][:10]}](../{feed}/build.json)" if info.get('published_at') else '—'
+        date = f"[{info['published_at'][:10]}]({feed}/build.json)" if info.get('published_at') else '—'
         packages = f"{row['distribution']}/pool/{row['suite']}" if row['distribution'] in {'debian', 'ubuntu', 'raspberrypios'} else f'{feed}/Packages' if row['distribution'] in {'rocky', 'fedora'} else feed
-        links = f'[Packages](../{packages}/)' if info else '—'
+        links = f'[Packages]({packages}/)' if info else '—'
         for project, version in zip(REPOSITORIES, (snodec, versions.get('mqttsuite'))):
             item = state['targets'].get(f"{row['id']}/{project}", {})
             status = item.get('status', 'published' if version else 'not built')
             width = len(status) * 7 + 16
             filename = f"{row['id']}-{project}.svg"
             (badges / filename).write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{escape(project)}: {escape(status)}"><rect width="{width}" height="20" rx="3" fill="{colors[status]}"/><text x="{width / 2}" y="14" text-anchor="middle" fill="white" font-family="Verdana,sans-serif" font-size="11">{escape(status)}</text></svg>\n')
-            badge = f"![{project}: {status}](../status/{filename})"
+            badge = f"![{project}: {status}](status/{filename})"
             url = item.get('job_url', item.get('run_url'))
             badge = f'[{badge}]({url})' if url else badge
             version = f'`{version}`' if version else '—'
-            sections[project].append(f"| {row['distribution']} | {row['suite']} | `{row['arch']}` | {version} | {badge} | {date} | {links} |")
+            sections.setdefault(row['distribution'], {}).setdefault(row['suite'], {}).setdefault(project, []).append(f"| `{row['arch']}` | {version} | {badge} | {date} | {links} |")
         (badges / f"{row['id']}.svg").unlink(missing_ok=True)
-    for project, lines in sections.items():
-        directory = project.replace('.', '')
-        text = (ROOT / 'docs/project-packages.md').read_text()
-        text = text.replace('<!-- project -->', 'SNode.C' if project == 'snode.c' else 'MQTTSuite')
-        text = text.replace('<!-- directory -->', directory).replace('<!-- targets -->', '\n'.join(lines))
-        (root / directory).mkdir(exist_ok=True)
-        (root / directory / 'README.md').write_text(text)
-    (root / 'README.md').write_text((ROOT / 'docs/package-repository.md').read_text())
+    text = (ROOT / 'docs/package-repository.md').read_text()
+    for distribution, suites in sections.items():
+        tables = []
+        for suite, projects in suites.items():
+            tables.append(f'### {suite}')
+            for project, lines in projects.items():
+                title = 'SNode.C' if project == 'snode.c' else 'MQTTSuite'
+                tables.append(f'#### {title}\n\n| Architecture | Version | Status | Published | Packages |\n| --- | --- | --- | --- | --- |\n' + '\n'.join(lines))
+        text = text.replace(f'<!-- targets:{distribution} -->', '\n\n'.join(tables))
+    (root / 'README.md').write_text(text)
+    for project in REPOSITORIES:
+        directory = root / project.replace('.', '')
+        directory.mkdir(exist_ok=True)
+        text = (ROOT / 'docs/project-packages.md').read_text().replace('<!-- project -->', 'SNode.C' if project == 'snode.c' else 'MQTTSuite')
+        (directory / 'README.md').write_text(text)
     (root / 'STATUS.md').unlink(missing_ok=True)
 
 

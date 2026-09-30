@@ -224,6 +224,7 @@ Both releases support the same platform variants. RISC-V is named
 | 24.10 | `powerpc_8548` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/powerpc_8548/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/powerpc_8548) |
 | 24.10 | `riscv64_riscv64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/riscv64_riscv64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/riscv64_riscv64) |
 | 24.10 | `x86_64` | [Index](https://raw.githubusercontent.com/SNodeC/OpenWRT/packages/openwrt/24.10/x86_64/Packages.gz) | [Browse](https://github.com/SNodeC/OpenWRT/tree/packages/openwrt/24.10/x86_64) |
+
 ### 25.12
 
 | Release | Package architecture | Index | Browse |
