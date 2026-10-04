@@ -22,11 +22,11 @@ done
 if [ -f /etc/openwrt_release ]; then
     . /etc/openwrt_release
     distribution=openwrt
-    suite=${suite:-${DISTRIB_RELEASE%.*}}
+    suite=${suite:-$DISTRIB_RELEASE}
     arch=$DISTRIB_ARCH
     case "$suite" in
-        24.10) manager=opkg ;;
-        25.12) manager=apk ;;
+        24.10|24.10.*|24.10-*) suite=24.10; manager=opkg ;;
+        25.12|25.12.*|25.12-*) suite=25.12; manager=apk ;;
         *) echo "Unsupported OpenWrt release: $suite" >&2; exit 1 ;;
     esac
 else
